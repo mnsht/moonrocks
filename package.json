@@ -2,7 +2,8 @@
   "name": "sr-components",
   "version": "1.0.0",
   "description": "The UI component library for Scholar Raise, using Storybook",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "scripts": {
     "start": "start-storybook -p 6006",
     "build": "parcel build index.js -d dist"
