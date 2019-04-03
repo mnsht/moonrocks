@@ -4,7 +4,7 @@
   "description": "The UI component library for Scholar Raise, using Storybook",
   "main": "index.js",
   "scripts": {
-    "storybook": "start-storybook -p 6006"
+    "start": "start-storybook -p 6006"
   },
   "repository": {
     "type": "git",
