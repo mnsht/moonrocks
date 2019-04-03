@@ -8,7 +8,7 @@
   "unpkg": "dist/index.umd.js",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "microbundle"
+    "build": "microbundle --jsx React.createElement"
   },
   "repository": {
     "type": "git",
