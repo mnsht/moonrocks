@@ -2,11 +2,13 @@
   "name": "sr-components",
   "version": "1.0.0",
   "description": "The UI component library for Scholar Raise, using Storybook",
+  "source": "index.js",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "parcel build index.js -d dist"
+    "build": "microbundle"
   },
   "repository": {
     "type": "git",
@@ -20,23 +22,17 @@
   "homepage": "https://github.com/scholarraise/sr-components#readme",
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^5.0.6",
     "@storybook/addon-links": "^5.0.6",
     "@storybook/addons": "^5.0.6",
     "@storybook/react": "^5.0.6",
     "babel-loader": "^8.0.5",
     "husky": "^1.3.1",
-    "parcel-bundler": "^1.12.3",
+    "microbundle": "^0.11.0",
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
   },
   "husky": {
     "hooks": {
