@@ -1,3 +1,1 @@
-import Box from "./src/box";
-
-export { Box };
+export { default as Box } from "./src/box";
