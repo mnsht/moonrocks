@@ -1,0 +1,19 @@
+{
+  "name": "components",
+  "version": "1.0.0",
+  "description": "The UI component library for Scholar Raise, using Storybook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scholarraise/components.git"
+  },
+  "author": "Patrick Cason <patrick@scholarraise.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scholarraise/components/issues"
+  },
+  "homepage": "https://github.com/scholarraise/components#readme"
+}
