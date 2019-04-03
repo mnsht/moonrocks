@@ -16,16 +16,14 @@
     "url": "https://github.com/scholarraise/sr-components/issues"
   },
   "homepage": "https://github.com/scholarraise/sr-components#readme",
-  "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "babel-loader": "^8.0.5",
-    "@storybook/react": "^5.0.6",
     "@storybook/addon-actions": "^5.0.6",
     "@storybook/addon-links": "^5.0.6",
-    "@storybook/addons": "^5.0.6"
+    "@storybook/addons": "^5.0.6",
+    "@storybook/react": "^5.0.6",
+    "babel-loader": "^8.0.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
