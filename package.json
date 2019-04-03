@@ -1,5 +1,5 @@
 {
-  "name": "components",
+  "name": "sr-components",
   "version": "1.0.0",
   "description": "The UI component library for Scholar Raise, using Storybook",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scholarraise/components.git"
+    "url": "git+https://github.com/scholarraise/sr-components.git"
   },
   "author": "Patrick Cason <patrick@scholarraise.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/scholarraise/components/issues"
+    "url": "https://github.com/scholarraise/sr-components/issues"
   },
-  "homepage": "https://github.com/scholarraise/components#readme",
+  "homepage": "https://github.com/scholarraise/sr-components#readme",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

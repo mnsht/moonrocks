@@ -1,4 +1,4 @@
-# Components
+# SR Components
 
 The UI component library for Scholar Raise, using Storybook
 
@@ -10,6 +10,6 @@ The UI component library for Scholar Raise, using Storybook
 
 ## Using
 
-1. Run `yarn add https://github.com/scholarraise/components.git` in your app
+1. Run `yarn add https://github.com/scholarraise/sr-components.git` in your app
 2. To import a component in a file, simply type `import Box from 'components/Box';`
 3. GG.
