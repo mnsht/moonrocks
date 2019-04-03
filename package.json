@@ -20,6 +20,7 @@
   "homepage": "https://github.com/scholarraise/sr-components#readme",
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^5.0.6",
     "@storybook/addon-links": "^5.0.6",
     "@storybook/addons": "^5.0.6",
@@ -31,6 +32,11 @@
     "pretty-quick": "^1.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
   },
   "husky": {
     "hooks": {
