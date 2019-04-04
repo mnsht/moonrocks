@@ -1,6 +1,10 @@
 const space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
 const fontSizes = [12, 14, 16, 18, 24, 36, 48, 64];
-const lineHeights = [18, 22, 24, 30, 36, 54, 72, 90];
+const lineHeights = {
+  normal: 1,
+  title: 1.5,
+  paragraph: 1.75
+};
 const breakpoints = ["40em", "52em", "64em"];
 
 const sizeScale = [18, 24, 36, 48, 64, 72, 96];
@@ -155,16 +159,9 @@ export default {
   fontWeights,
   letterSpacings,
   textStyles: {
-    // TODO: Need to set text styles
-    smallCaps: {
-      textTransform: "uppercase",
-      letterSpacing: letterSpacings.small,
-      fontSize: fontSizes[1]
-    },
     caps: {
       textTransform: "uppercase",
-      letterSpacing: letterSpacings.large,
-      fontSize: fontSizes[2]
+      letterSpacing: letterSpacings.spaced
     }
   },
 

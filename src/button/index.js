@@ -11,6 +11,7 @@ const Button = styled(BaseButton)(props => ({
   letterSpacing: themeGet("letterSpacings.spaced")(props),
   transition: `background ${themeGet("animations.fast")(props)} ease-in-out`,
   userSelect: "none",
+  WebkitFontSmoothing: "antialiased",
   cursor: props.disabled ? "default" : "pointer",
   opacity: props.disabled ? themeGet("opacities.1")(props) : 1,
   pointerEvents: props.disabled ? "none" : "initial"
