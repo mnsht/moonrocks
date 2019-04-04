@@ -21,7 +21,14 @@ stories.add("default", () => {
   const bg = colorKnob("Background", "blue", "Colors");
 
   return (
-    <Box p={p} m={m} fontSize={font} color={color} bg={bg}>
+    <Box
+      p={p}
+      m={m}
+      fontSize={font}
+      color={color}
+      bg={bg}
+      width={[2 / 3, 1 / 2, 1 / 4, 1 / 6]}
+    >
       {content}
     </Box>
   );
