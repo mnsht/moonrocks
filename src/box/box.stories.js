@@ -17,8 +17,8 @@ stories.add("default", () => {
   const m = spacingKnob("Margin", 4, "Spacing");
   const p = spacingKnob("Padding", 4, "Spacing");
 
-  const color = colorKnob("Text color", "lightgray", "Colors");
-  const bg = colorKnob("Background", "blue", "Colors");
+  const color = colorKnob("Text color", "secondary", "Colors");
+  const bg = colorKnob("Background", "primary", "Colors");
 
   return (
     <Box
