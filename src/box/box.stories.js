@@ -4,7 +4,7 @@ import { withKnobs, text } from "@storybook/addon-knobs";
 
 import { spacingKnob, fontSizeKnob, colorKnob } from "../../storybook-helpers";
 
-import Box from ".";
+import Box from "./";
 
 const stories = storiesOf("Box", module);
 

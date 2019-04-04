@@ -26,3 +26,6 @@ export const colorKnob = (title, defaultValue, group) =>
     theme.colors[defaultValue] ? theme.colors[defaultValue] : defaultValue,
     group
   );
+
+export const buttonVariantKnob = (title, defaultValue, group) =>
+  select(title, Object.keys(theme.buttons), defaultValue, group);

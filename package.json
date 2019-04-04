@@ -20,6 +20,11 @@
     "url": "https://github.com/scholarraise/sr-components/issues"
   },
   "homepage": "https://github.com/scholarraise/sr-components#readme",
+  "dependencies": {
+    "rebass": "^3.1.0",
+    "styled-components": "^4.2.0",
+    "styled-system": "^4.1.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@storybook/addon-actions": "^5.0.6",
@@ -40,9 +45,5 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged && yarn build"
     }
-  },
-  "dependencies": {
-    "rebass": "^3.1.0",
-    "styled-components": "^4.2.0"
   }
 }

@@ -62,8 +62,7 @@ const SYSTEM_FONTS =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
 
 const fonts = {
-  copy: `"Muli", ${SYSTEM_FONTS}`,
-  headings: `"Muli", ${SYSTEM_FONTS}`,
+  main: `"Muli", ${SYSTEM_FONTS}`,
   special: `"Quicksand", ${SYSTEM_FONTS}`
 };
 
@@ -180,10 +179,17 @@ export default {
     normal: `${space[0]} ${space[1]} ${space[3]} ${space[0]} ${blacks[0]}`
   },
 
+  // Animations
+  animations: {
+    fast: "200ms",
+    brisk: "500ms",
+    lazy: "1000ms"
+  },
+
   // Various z-indexes
   zIndicies: {},
 
-  // TODO: Need to set button styles
+  // All of our button styles
   buttons: {
     primary: {
       color: white,
