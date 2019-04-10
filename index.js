@@ -3,4 +3,4 @@ export { default as theme } from "./src/theme";
 
 // Export components
 export { default as Button } from "./src/button";
-export { default as Text } from "./src/text";
+export { InlineText, Paragraph, CappedText } from "./src/typography";

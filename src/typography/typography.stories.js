@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, text } from "@storybook/addon-knobs";
 
-import Text from "./";
+import { InlineText, Paragraph, CappedText } from "./";
 
 const sampleParagraph = `
   This is just a sample paragraph with no exact meaning. The official records have been lost
@@ -15,18 +15,30 @@ const stories = storiesOf("Text", module);
 
 stories.addDecorator(withKnobs);
 
-stories.add("default", () => {
+stories.add("as inline text", () => {
   const content = text("Text", "Sample Text", "Main");
 
-  return <Text>{content}</Text>;
+  return <InlineText>{content}</InlineText>;
 });
 
 stories.add("as a parargaph", () => {
   const content = text("Text", sampleParagraph, "Main");
 
   return (
-    <Text as="p" lineHeight="paragraph">
-      {content}
-    </Text>
+    <React.Fragment>
+      <Paragraph>{content}</Paragraph>
+      <Paragraph>{content}</Paragraph>
+    </React.Fragment>
+  );
+});
+
+stories.add("as capped text", () => {
+  const content = text("Text", "Important Title", "Main");
+
+  return (
+    <React.Fragment>
+      <CappedText>{content}</CappedText>
+      <Paragraph>Content of something important</Paragraph>
+    </React.Fragment>
   );
 });
