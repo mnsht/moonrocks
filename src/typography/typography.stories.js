@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { withKnobs, text, select } from "@storybook/addon-knobs";
 
-import { InlineText, Paragraph, CappedText } from "./";
+import { InlineText, Paragraph, CappedText, Heading } from "./";
 
 const sampleParagraph = `
   This is just a sample paragraph with no exact meaning. The official records have been lost
@@ -39,6 +39,23 @@ stories.add("as capped text", () => {
     <React.Fragment>
       <CappedText>{content}</CappedText>
       <Paragraph>Content of something important</Paragraph>
+    </React.Fragment>
+  );
+});
+
+stories.add("as a heading", () => {
+  const content = text("Text", "My Heading", "Main");
+
+  const headingSizes = ["h1", "h2", "h3", "h4", "h5", "h6"];
+  const elem = select("Element", headingSizes, "h3", "Main");
+  const variant = select("Variant", headingSizes, "h3", "Main");
+
+  return (
+    <React.Fragment>
+      <Heading as={elem} textStyle={variant}>
+        {content}
+      </Heading>
+      <Paragraph>{sampleParagraph}</Paragraph>
     </React.Fragment>
   );
 });

@@ -1,5 +1,5 @@
 const space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
-const fontSizes = [12, 14, 16, 18, 24, 36, 48, 64];
+const fontSizes = [12, 14, 16, 18, 24, 30, 36, 48, 64];
 const lineHeights = {
   normal: 1,
   title: 1.5,
@@ -159,12 +159,12 @@ export default {
   fontWeights,
   letterSpacings,
   textStyles: {
-    h1: {},
-    h2: {},
-    h3: {},
-    h4: {},
-    h5: {},
-    h6: {}
+    h1: { fontSize: fontSizes[7] },
+    h2: { fontSize: fontSizes[6] },
+    h3: { fontSize: fontSizes[5] },
+    h4: { fontSize: fontSizes[4] },
+    h5: { fontSize: fontSizes[3] },
+    h6: { fontSize: fontSizes[2] }
   },
 
   // Borders

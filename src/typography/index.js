@@ -2,36 +2,30 @@ import styled from "styled-components";
 import { Text as BaseText } from "rebass";
 import { textStyle, themeGet } from "styled-system";
 
-export const InlineText = styled(BaseText)(
-  {
-    WebkitFontSmoothing: "antialiased"
-  },
-  textStyle
-);
+export const InlineText = styled(BaseText)({
+  WebkitFontSmoothing: "antialiased"
+});
 
 InlineText.defaultProps = {
   as: "span",
   m: 0,
   fontFamily: "main",
-  fontSize: [1, 1, 2],
+  fontSize: 2,
   lineHeight: "normal"
 };
 
 InlineText.displayName = "InlineText";
 
-export const Paragraph = styled(BaseText)(
-  {
-    WebkitFontSmoothing: "antialiased"
-  },
-  textStyle
-);
+export const Paragraph = styled(BaseText)({
+  WebkitFontSmoothing: "antialiased"
+});
 
 Paragraph.defaultProps = {
   as: "p",
   mt: 0,
   mb: 3,
   fontFamily: "main",
-  fontSize: [1, 1, 2],
+  fontSize: 2,
   lineHeight: "paragraph"
 };
 
@@ -56,3 +50,21 @@ CappedText.defaultProps = {
 };
 
 CappedText.displayName = "CappedText";
+
+export const Heading = styled(BaseText)(
+  {
+    WebkitFontSmoothing: "antialiased"
+  },
+  textStyle
+);
+
+Heading.defaultProps = {
+  as: "h3",
+  variant: "h3",
+  mt: 2,
+  mb: 3,
+  fontFamily: "main",
+  lineHeight: "title"
+};
+
+Heading.displayName = "Heading";
