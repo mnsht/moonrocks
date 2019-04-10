@@ -1,6 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 import { Text as BaseText } from "rebass";
-import { textStyle, themeGet } from "styled-system";
+import { textStyle, colorStyle, themeGet } from "styled-system";
 
 export const InlineText = styled(BaseText)({
   WebkitFontSmoothing: "antialiased"
@@ -8,7 +9,6 @@ export const InlineText = styled(BaseText)({
 
 InlineText.defaultProps = {
   as: "span",
-  m: 0,
   fontFamily: "main",
   fontSize: 2,
   lineHeight: "normal"
@@ -64,7 +64,44 @@ Heading.defaultProps = {
   mt: 2,
   mb: 3,
   fontFamily: "main",
-  lineHeight: "title"
+  lineHeight: "title",
+  fontWeight: "bold"
 };
 
 Heading.displayName = "Heading";
+
+export const InternalLink = styled(BaseText)(
+  props => ({
+    WebkitFontSmoothing: "antialiased",
+    textDecoration: "none",
+    cursor: "pointer",
+    transition: `color ${themeGet("animations.fast")(props)} ease-in-out`
+  }),
+  colorStyle
+);
+
+InternalLink.defaultProps = {
+  as: "a",
+  fontFamily: "main",
+  fontSize: 2,
+  lineHeight: "normal",
+  color: "primary"
+};
+
+InternalLink.displayName = "InternalLink";
+
+export const ExternalLink = ({ children, ...props }) => (
+  <InternalLink {...props} target="_blank" rel="noopener noreferrer">
+    {children}
+  </InternalLink>
+);
+
+ExternalLink.displayName = "ExternalLink";
+
+export const InteractiveLink = ({ children, ...props }) => (
+  <InternalLink {...props} as="span">
+    {children}
+  </InternalLink>
+);
+
+InteractiveLink.displayName = "InteractiveLink";

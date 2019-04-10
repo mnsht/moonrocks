@@ -1,8 +1,17 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 
-import { InlineText, Paragraph, CappedText, Heading } from "./";
+import {
+  InlineText,
+  Paragraph,
+  CappedText,
+  Heading,
+  InternalLink,
+  ExternalLink,
+  InteractiveLink
+} from "./";
 
 const sampleParagraph = `
   This is just a sample paragraph with no exact meaning. The official records have been lost
@@ -11,7 +20,7 @@ const sampleParagraph = `
   but do not fall prey to the lies of elders. And as always, remember the timecube.
 `;
 
-const stories = storiesOf("Text", module);
+const stories = storiesOf("Typography", module);
 
 stories.addDecorator(withKnobs);
 
@@ -57,5 +66,56 @@ stories.add("as a heading", () => {
       </Heading>
       <Paragraph>{sampleParagraph}</Paragraph>
     </React.Fragment>
+  );
+});
+
+stories.add("as an internal link", () => {
+  const content = text("Text", "Shall we go home?", "Main");
+  const color = select(
+    "Color",
+    ["primary", "success", "warning", "error"],
+    "primary",
+    "Main"
+  );
+
+  return (
+    <InternalLink href="/" colors={color}>
+      {content}
+    </InternalLink>
+  );
+});
+
+stories.add("as an external link", () => {
+  const content = text("Text", "Going somewhere?", "Main");
+  const color = select(
+    "Color",
+    ["primary", "success", "warning", "error"],
+    "primary",
+    "Main"
+  );
+
+  return (
+    <ExternalLink href="https://google.com" colors={color}>
+      {content}
+    </ExternalLink>
+  );
+});
+
+stories.add("as an interactive link", () => {
+  const content = text("Text", "I am interactive!", "Main");
+  const color = select(
+    "Color",
+    ["primary", "success", "warning", "error"],
+    "primary",
+    "Main"
+  );
+
+  return (
+    <InteractiveLink
+      onClick={action("We did something special!")}
+      colors={color}
+    >
+      {content}
+    </InteractiveLink>
   );
 });

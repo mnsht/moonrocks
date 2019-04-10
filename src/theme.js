@@ -1,7 +1,7 @@
 const space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
 const fontSizes = [12, 14, 16, 18, 24, 30, 36, 48, 64];
 const lineHeights = {
-  normal: 1,
+  normal: 1.25,
   title: 1.5,
   paragraph: 1.75
 };
@@ -88,6 +88,8 @@ const radii = {
 };
 
 export default {
+  // ----- MAIN THEME -----
+
   // Base space sizes, font sizes (with respective line-heights), and @media breakpoints
   space,
   fontSizes,
@@ -103,19 +105,35 @@ export default {
   colors: {
     // Primary color (and tints/shades)
     primary: primary500,
-    primaries: [primary100, primary300, primary500, primary700, primary900],
+    primary100,
+    primary300,
+    primary500,
+    primary700,
+    primary900,
 
     // Success color (and tints/shades)
     success: success500,
-    successes: [success100, success300, success500, success700, success900],
+    success100,
+    success300,
+    success500,
+    success700,
+    success900,
 
     // Warning color (and tints/shades)
     warning: warning500,
-    warnings: [warning100, warning300, warning500, warning700, warning900],
+    warning100,
+    warning300,
+    warning500,
+    warning700,
+    warning900,
 
     // Error color (and tints/shades)
     error: error500,
-    errors: [error100, error300, error500, error700, error900],
+    error100,
+    error300,
+    error500,
+    error700,
+    error900,
 
     // Various gradients
     gradients: {
@@ -139,17 +157,6 @@ export default {
     // Transparent helper color
     transparent
   },
-  colorStyles: {
-    // TODO: Need to set color styles
-    warning: {
-      color: "black",
-      backgroundColor: "orange"
-    },
-    error: {
-      color: "white",
-      backgroundColor: "red"
-    }
-  },
 
   // Opacities (0 - 1)
   opacities,
@@ -158,14 +165,6 @@ export default {
   fonts,
   fontWeights,
   letterSpacings,
-  textStyles: {
-    h1: { fontSize: fontSizes[7] },
-    h2: { fontSize: fontSizes[6] },
-    h3: { fontSize: fontSizes[5] },
-    h4: { fontSize: fontSizes[4] },
-    h5: { fontSize: fontSizes[3] },
-    h6: { fontSize: fontSizes[2] }
-  },
 
   // Borders
   borders: {},
@@ -188,7 +187,46 @@ export default {
   // Various z-indexes
   zIndicies: {},
 
-  // All of our button styles
+  // ----- VARIANTS -----
+  // All of our color variants
+  colorStyles: {
+    primary: {
+      color: primary500,
+      "&:hover": {
+        color: primary700
+      }
+    },
+    success: {
+      color: success500,
+      "&:hover": {
+        color: success700
+      }
+    },
+    warning: {
+      color: warning500,
+      "&:hover": {
+        color: warning700
+      }
+    },
+    error: {
+      color: error500,
+      "&:hover": {
+        color: error700
+      }
+    }
+  },
+
+  // All of our text variants
+  textStyles: {
+    h1: { fontSize: fontSizes[7] },
+    h2: { fontSize: fontSizes[6] },
+    h3: { fontSize: fontSizes[5] },
+    h4: { fontSize: fontSizes[4] },
+    h5: { fontSize: fontSizes[3] },
+    h6: { fontSize: fontSizes[2] }
+  },
+
+  // All of our button variants
   buttons: {
     primary: {
       color: white,
