@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, text } from "@storybook/addon-knobs";
 
 import Flex from "./";
-import Box from "../box";
+import Card from "../card";
 
 const stories = storiesOf("Flex", module);
 
@@ -14,9 +14,15 @@ stories.add("default", () => {
 
   return (
     <Flex flexDirection={["column", "column", "row"]}>
-      <Box p="2">{content}</Box>
-      <Box p="2">{content}</Box>
-      <Box p="2">{content}</Box>
+      <Card p={2} m={2}>
+        {content}
+      </Card>
+      <Card p={2} m={2}>
+        {content}
+      </Card>
+      <Card p={2} m={2}>
+        {content}
+      </Card>
     </Flex>
   );
 });

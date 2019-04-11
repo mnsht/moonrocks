@@ -87,6 +87,10 @@ const radii = {
   round: "1000em"
 };
 
+const shadows = {
+  normal: `${space[0]}px ${space[1]}px ${space[3]}px ${space[0]}px ${blacks[0]}`
+};
+
 export default {
   // ----- MAIN THEME -----
 
@@ -173,9 +177,7 @@ export default {
   radii,
 
   // Drop shadows
-  shadows: {
-    normal: `${space[0]} ${space[1]} ${space[3]} ${space[0]} ${blacks[0]}`
-  },
+  shadows,
 
   // Animations
   animations: {
@@ -262,6 +264,14 @@ export default {
       "&:hover": {
         backgroundColor: error700
       }
+    }
+  },
+
+  // All of our card variants
+  cards: {
+    paper: {
+      boxShadow: shadows.normal,
+      borderRadius: radii.normal
     }
   }
 };
