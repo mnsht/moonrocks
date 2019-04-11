@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Box from "../box";
 import {
   themeGet,
-  fontWeight,
   borders,
   borderColor,
   borderRadius,
@@ -12,23 +11,21 @@ import {
 const Button = styled(Box)(
   props => ({
     appearance: "none",
-    outline: 0,
     border: 0,
     display: "inline-block",
     textAlign: "center",
-    lineHeight: themeGet("lineHeights.normal")(props),
-    textDecoration: "none",
-    textTransform: "uppercase",
     fontFamily: themeGet("fonts.main")(props),
     fontWeight: themeGet("fontWeights.extraBold")(props),
     letterSpacing: themeGet("letterSpacings.spaced")(props),
-    transition: `background ${themeGet("animations.fast")(props)} ease-in-out`,
+    lineHeight: themeGet("lineHeights.normal")(props),
+    textDecoration: "none",
+    textTransform: "uppercase",
     userSelect: "none",
+    transition: `background ${themeGet("animations.fast")(props)} linear`,
     cursor: props.disabled ? "default" : "pointer",
     opacity: props.disabled ? themeGet("opacities.1")(props) : 1,
     pointerEvents: props.disabled ? "none" : "initial"
   }),
-  fontWeight,
   borders,
   borderColor,
   borderRadius,
@@ -41,7 +38,7 @@ Button.defaultProps = {
   width: [1, "auto"],
   p: 3,
   mb: [2, 3],
-  fontSize: [1, 1, 2],
+  fontSize: [1, null, 2],
   borderRadius: "normal"
 };
 

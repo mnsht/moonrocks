@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {
-  fontFamily,
-  fontWeight,
   textAlign,
-  lineHeight,
   letterSpacing,
   textStyle,
   colorStyle,

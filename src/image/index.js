@@ -12,8 +12,7 @@ const Image = styled(Box)(
 );
 
 Image.defaultProps = {
-  as: "img",
-  m: 0
+  as: "img"
 };
 
 Image.displayName = "Image";

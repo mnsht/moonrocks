@@ -15,7 +15,8 @@ import {
 const Box = styled("div")(
   {
     boxSizing: "border-box",
-    WebkitFontSmoothing: "antialiased"
+    WebkitFontSmoothing: "antialiased",
+    outline: 0
   },
   space,
   width,

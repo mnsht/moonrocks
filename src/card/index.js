@@ -18,8 +18,6 @@ import Box from "../box";
 const cards = variant({ key: "cards" });
 
 const Card = styled(Box)(
-  fontFamily,
-  lineHeight,
   borders,
   borderColor,
   borderRadius,

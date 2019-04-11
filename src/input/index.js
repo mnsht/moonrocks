@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import Box from "../box";
 import Flex from "../flex";
 
-const BaseInput = styled.input({
-  WebkitFontSmoothing: "antialiased",
-  outline: "none"
-});
+const BaseInput = styled(Box)({});
 
 BaseInput.defaultProps = {
   as: "input",
