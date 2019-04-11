@@ -4,6 +4,7 @@ export { default as theme } from "./src/theme";
 // Export Rebass components
 export { default as Box } from "./src/box";
 export { default as Flex } from "./src/flex";
+export { default as Image } from "./src/image";
 
 // Export components
 export { default as Button } from "./src/button";
