@@ -1,11 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { Text as BaseText } from "rebass";
-import { textStyle, colorStyle, themeGet } from "styled-system";
+import {
+  fontFamily,
+  fontWeight,
+  textAlign,
+  lineHeight,
+  letterSpacing,
+  textStyle,
+  colorStyle,
+  themeGet
+} from "styled-system";
+import Box from "../box";
 
-export const InlineText = styled(BaseText)({
-  WebkitFontSmoothing: "antialiased"
-});
+const Text = styled(Box)(textAlign, letterSpacing);
+
+export const InlineText = styled(Text)({});
 
 InlineText.defaultProps = {
   as: "span",
@@ -16,9 +25,7 @@ InlineText.defaultProps = {
 
 InlineText.displayName = "InlineText";
 
-export const Paragraph = styled(BaseText)({
-  WebkitFontSmoothing: "antialiased"
-});
+export const Paragraph = styled(Text)({});
 
 Paragraph.defaultProps = {
   as: "p",
@@ -31,8 +38,7 @@ Paragraph.defaultProps = {
 
 Paragraph.displayName = "Paragraph";
 
-export const CappedText = styled(BaseText)(props => ({
-  WebkitFontSmoothing: "antialiased",
+export const CappedText = styled(Text)(props => ({
   display: "inline-block",
   userSelect: "none",
   fontFamily: themeGet("fonts.main")(props),
@@ -51,12 +57,7 @@ CappedText.defaultProps = {
 
 CappedText.displayName = "CappedText";
 
-export const Heading = styled(BaseText)(
-  {
-    WebkitFontSmoothing: "antialiased"
-  },
-  textStyle
-);
+export const Heading = styled(Text)(textStyle);
 
 Heading.defaultProps = {
   as: "h3",
@@ -70,9 +71,8 @@ Heading.defaultProps = {
 
 Heading.displayName = "Heading";
 
-export const InternalLink = styled(BaseText)(
+export const InternalLink = styled(Text)(
   props => ({
-    WebkitFontSmoothing: "antialiased",
     textDecoration: "none",
     cursor: "pointer",
     transition: `color ${themeGet("animations.fast")(props)} ease-in-out`

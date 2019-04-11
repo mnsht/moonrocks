@@ -1,21 +1,39 @@
 import styled from "styled-components";
-import { Button as BaseButton } from "rebass";
-import { themeGet } from "styled-system";
+import Box from "../box";
+import {
+  themeGet,
+  fontWeight,
+  borders,
+  borderColor,
+  borderRadius,
+  buttonStyle
+} from "styled-system";
 
-const Button = styled(BaseButton)(props => ({
-  outline: 0,
-  border: 0,
-  textTransform: "uppercase",
-  fontFamily: themeGet("fonts.main")(props),
-  fontWeight: themeGet("fontWeights.extraBold")(props),
-  letterSpacing: themeGet("letterSpacings.spaced")(props),
-  transition: `background ${themeGet("animations.fast")(props)} ease-in-out`,
-  userSelect: "none",
-  WebkitFontSmoothing: "antialiased",
-  cursor: props.disabled ? "default" : "pointer",
-  opacity: props.disabled ? themeGet("opacities.1")(props) : 1,
-  pointerEvents: props.disabled ? "none" : "initial"
-}));
+const Button = styled(Box)(
+  props => ({
+    appearance: "none",
+    outline: 0,
+    border: 0,
+    display: "inline-block",
+    textAlign: "center",
+    lineHeight: themeGet("lineHeights.normal")(props),
+    textDecoration: "none",
+    textTransform: "uppercase",
+    fontFamily: themeGet("fonts.main")(props),
+    fontWeight: themeGet("fontWeights.extraBold")(props),
+    letterSpacing: themeGet("letterSpacings.spaced")(props),
+    transition: `background ${themeGet("animations.fast")(props)} ease-in-out`,
+    userSelect: "none",
+    cursor: props.disabled ? "default" : "pointer",
+    opacity: props.disabled ? themeGet("opacities.1")(props) : 1,
+    pointerEvents: props.disabled ? "none" : "initial"
+  }),
+  fontWeight,
+  borders,
+  borderColor,
+  borderRadius,
+  buttonStyle
+);
 
 Button.defaultProps = {
   as: "button",

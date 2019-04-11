@@ -1,2 +1,22 @@
-// We don't need to make any modifications to the Flex component, ship it off as is!
-export { Flex as default } from "rebass";
+import styled from "styled-components";
+import {
+  flexWrap,
+  flexDirection,
+  alignItems,
+  justifyContent
+} from "styled-system";
+import Box from "../box";
+
+const Flex = styled(Box)(
+  {
+    display: "flex"
+  },
+  flexWrap,
+  flexDirection,
+  alignItems,
+  justifyContent
+);
+
+Flex.displayName = "Flex";
+
+export default Flex;

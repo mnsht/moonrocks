@@ -1,20 +1,40 @@
 import styled from "styled-components";
-import { Box as BaseBox } from "rebass";
-import { fontFamily, lineHeight } from "styled-system";
+import {
+  space,
+  width,
+  fontFamily,
+  fontWeight,
+  fontSize,
+  lineHeight,
+  color,
+  flex,
+  order,
+  alignSelf
+} from "styled-system";
 
-const Box = styled(BaseBox)(
+const Box = styled("div")(
   {
+    boxSizing: "border-box",
     WebkitFontSmoothing: "antialiased"
   },
+  space,
+  width,
   fontFamily,
-  lineHeight
+  fontWeight,
+  fontSize,
+  lineHeight,
+  color,
+  flex,
+  order,
+  alignSelf
 );
 
 Box.defaultProps = {
   as: "div",
   fontFamily: "main",
   fontSize: 2,
-  lineHeight: "normal"
+  lineHeight: "normal",
+  fontWeight: "regular"
 };
 
 Box.displayName = "Box";

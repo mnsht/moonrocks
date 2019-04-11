@@ -1,13 +1,35 @@
 import styled from "styled-components";
-import { Card as BaseCard } from "rebass";
-import { fontFamily, lineHeight } from "styled-system";
-
-const Card = styled(BaseCard)(
-  {
-    WebkitFontSmoothing: "antialiased"
-  },
+import {
   fontFamily,
-  lineHeight
+  lineHeight,
+  borders,
+  borderColor,
+  borderRadius,
+  boxShadow,
+  backgroundImage,
+  backgroundSize,
+  backgroundPosition,
+  backgroundRepeat,
+  opacity,
+  variant
+} from "styled-system";
+import Box from "../box";
+
+const cards = variant({ key: "cards" });
+
+const Card = styled(Box)(
+  fontFamily,
+  lineHeight,
+  borders,
+  borderColor,
+  borderRadius,
+  boxShadow,
+  backgroundImage,
+  backgroundSize,
+  backgroundPosition,
+  backgroundRepeat,
+  opacity,
+  cards
 );
 
 Card.defaultProps = {

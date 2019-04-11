@@ -1,2 +1,21 @@
-// We don't need to make any modifications to the Image component, ship it off as is!
-export { Image as default } from "rebass";
+import styled from "styled-components";
+import { height, borderRadius } from "styled-system";
+import Box from "../box";
+
+const Image = styled(Box)(
+  {
+    maxWidth: "100%",
+    height: "auto"
+  },
+  height,
+  borderRadius
+);
+
+Image.defaultProps = {
+  as: "img",
+  m: 0
+};
+
+Image.displayName = "Image";
+
+export default Image;
