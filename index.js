@@ -9,6 +9,7 @@ export { default as Card } from "./src/card";
 
 // Export components
 export { default as Button } from "./src/button";
+export { Container, Row, Column } from "./src/grid";
 export {
   InlineText,
   Paragraph,
