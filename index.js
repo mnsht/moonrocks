@@ -13,7 +13,10 @@ export {
   EmailInput,
   PhoneInput,
   SSNInput,
-  CurrencyInput
+  CurrencyInput,
+  ParagraphInput,
+  SelectInput,
+  MultiSelectInput
 } from "./src/input";
 export {
   InlineText,

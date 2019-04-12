@@ -8,7 +8,7 @@
   "unpkg": "dist/index.umd.js",
   "scripts": {
     "start": "start-storybook",
-    "build": "rm -rf ./dist && microbundle --name sr-components --jsx React.createElement --globals styled-system=styled-system,styled-components=styled-components"
+    "build": "rm -rf ./dist && microbundle --name sr-components --jsx React.createElement"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,10 @@
     "url": "https://github.com/scholarraise/sr-components/issues"
   },
   "homepage": "https://github.com/scholarraise/sr-components#readme",
+  "dependencies": {
+    "cleave.js": "^1.4.10",
+    "react-select": "^2.4.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@storybook/addon-actions": "^5.0.6",
@@ -48,8 +52,5 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged && yarn build"
     }
-  },
-  "dependencies": {
-    "cleave.js": "^1.4.10"
   }
 }

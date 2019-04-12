@@ -1,11 +1,15 @@
 import React from "react";
-import styled from "styled-components";
-import { themeGet } from "styled-system";
 
-import Cleave from "cleave.js/react";
-
-import Box from "../box";
-import { InlineText } from "../typography";
+import { Input, Textarea, InputContainer } from "./_base";
+import {
+  InputPhone,
+  InputSSN,
+  InputHiddenSSN,
+  InputCurrency,
+  InputSelect,
+  InputMultiSelect
+} from "./_custom-inputs";
+import Required from "./_required";
 
 /*
 - DONE: Text
@@ -13,9 +17,10 @@ import { InlineText } from "../typography";
 - DONE: Phone
 - DONE: SSN visible
 - DONE: SSN hidden
-- Currency
-- Textarea
+- DONE: Currency
+- DONE: Textarea
 - Select
+- Multiselect
 - Date (with various formats)
 - Borderless select (used in graphs on plan overview, could just be a variant of Select)
 - Checkbox
@@ -30,109 +35,16 @@ import { InlineText } from "../typography";
 - MAYBE: Left icons for all
 */
 
-const REQUIRED_WIDTH = 14;
-
-const RequiredElem = styled(InlineText)(props => ({
-  position: "absolute",
-  height: `${REQUIRED_WIDTH}px`,
-  width: `${REQUIRED_WIDTH}px`,
-  lineHeight: "0.85",
-  top: "20px",
-  right: themeGet("space.3")(props),
-  fontWeight: themeGet("fontWeights.extraBold")(props),
-  color: themeGet("colors.error")(props),
-  fontSize: themeGet("fontSizes.5")(props),
-  userSelect: "none"
-}));
-
-const Required = () => <RequiredElem>*</RequiredElem>;
-
-const determineInputRightPadding = props => {
-  const { required } = props;
-
-  let additionalPadding = 0;
-
-  if (required) {
-    additionalPadding += REQUIRED_WIDTH + themeGet("space.3")(props);
-  }
-
-  return themeGet("space.3")(props) + additionalPadding;
-};
-
-const Input = styled(Box)(props => ({
-  padding: themeGet("space.3")(props),
-  paddingRight: determineInputRightPadding(props),
-  width: "100%",
-  transition: `border ${themeGet("animations.fast")(props)} ease-in-out`,
-  borderRadius: themeGet("radii.normal")(props),
-  border: `1px solid ${themeGet("colors.snow")(props)}`,
-  "&:focus": {
-    border: `1px solid ${themeGet("colors.primary")(props)}`
-  }
-}));
-
-Input.defaultProps = {
-  as: "input",
-  fontFamily: "main",
-  fontSize: 2,
-  lineHeight: "normal"
-};
-
-Input.displayName = "Input";
-
-const InputPhone = props => (
-  <Input
-    {...props}
-    as={Cleave}
-    options={{
-      numericOnly: true,
-      blocks: [0, 3, 0, 3, 4],
-      delimiters: ["(", ")", " ", "-"]
-    }}
-  />
-);
-
-const InputSSN = props => (
-  <Input
-    {...props}
-    as={Cleave}
-    options={{
-      blocks: [3, 2, 4],
-      delimiter: "-",
-      numericOnly: true
-    }}
-  />
-);
-
-const InputHiddenSSN = styled(InlineText)(props => ({
-  fontWeight: themeGet("fontWeights.bold")(props),
-  userSelect: "none"
-}));
-
-const InputCurrency = props => (
-  <Input
-    {...props}
-    as={Cleave}
-    options={{
-      numeral: true,
-      numeralThousandsGroupStyle: "thousand",
-      prefix: "$"
-    }}
-  />
-);
-
-const InputContainer = styled(Box)({
-  position: "relative"
-});
-
-const isBoring = type => type === "text" || type === "email";
-
 const BaseInput = ({ type, ...props }) => (
   <InputContainer>
-    {isBoring(type) && <Input {...props} type={type} />}
+    {(type === "text" || type === "email") && <Input {...props} type={type} />}
+    {type === "paragraph" && <Textarea {...props} />}
     {type === "phone" && <InputPhone {...props} />}
     {type === "ssn" && <InputSSN {...props} />}
     {type === "currency" && <InputCurrency {...props} />}
+    {type === "select" && <InputSelect {...props} />}
+    {type === "multiselect" && <InputMultiSelect {...props} />}
+
     {props.required && <Required />}
   </InputContainer>
 );
@@ -147,3 +59,10 @@ export const SSNInput = ({ hidden, ...props }) =>
     <BaseInput type="ssn" {...props} />
   );
 export const CurrencyInput = props => <BaseInput type="currency" {...props} />;
+export const ParagraphInput = props => (
+  <BaseInput type="paragraph" {...props} />
+);
+export const SelectInput = props => <BaseInput type="select" {...props} />;
+export const MultiSelectInput = props => (
+  <BaseInput type="multiselect" {...props} />
+);
