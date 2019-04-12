@@ -7,7 +7,8 @@ import {
   InputHiddenSSN,
   InputCurrency,
   InputSelect,
-  InputMultiSelect
+  InputMultiSelect,
+  InputDate
 } from "./_custom-inputs";
 import Required from "./_required";
 
@@ -22,7 +23,7 @@ import Required from "./_required";
 - DONE: Select
 - DONE: Multiselect
 - DONE: Borderless select (used in graphs on plan overview, could just be a variant of Select)
-- Date (with various formats)
+- DONE: Date (with various formats)
 - Checkbox
 - Radio
 - Switch (instead of button toggle)
@@ -43,8 +44,8 @@ const BaseInput = ({ type, ...props }) => (
     {type === "ssn" && <InputSSN {...props} />}
     {type === "currency" && <InputCurrency {...props} />}
     {type === "select" && <InputSelect {...props} />}
-    {type === "borderless-select" && <InputSelect borderless {...props} />}
     {type === "multiselect" && <InputMultiSelect {...props} />}
+    {type === "date" && <InputDate {...props} />}
 
     {props.required && <Required />}
   </InputContainer>
@@ -64,9 +65,7 @@ export const ParagraphInput = props => (
   <BaseInput type="paragraph" {...props} />
 );
 export const SelectInput = props => <BaseInput type="select" {...props} />;
-export const BorderlessSelectInput = props => (
-  <BaseInput type="borderless-select" {...props} />
-);
 export const MultiSelectInput = props => (
   <BaseInput type="multiselect" {...props} />
 );
+export const DateInput = props => <BaseInput type="date" {...props} />;

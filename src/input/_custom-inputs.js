@@ -49,6 +49,18 @@ export const InputCurrency = props => (
   />
 );
 
+export const InputDate = ({ hasYear, ...props }) => (
+  <Input
+    {...props}
+    as={Cleave}
+    options={{
+      date: true,
+      delimiter: "-",
+      datePattern: hasYear ? ["m", "d", "Y"] : ["m", "d"]
+    }}
+  />
+);
+
 const selectStyles = {
   control: (provided, state) => ({
     ...provided,

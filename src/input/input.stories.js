@@ -10,7 +10,8 @@ import {
   CurrencyInput,
   ParagraphInput,
   SelectInput,
-  MultiSelectInput
+  MultiSelectInput,
+  DateInput
 } from "./";
 import Box from "../box";
 
@@ -126,6 +127,32 @@ stories.add("as a multiselect input", () => {
         required={required}
         options={sampleOptions}
       />
+    </Box>
+  );
+});
+
+stories.add("as a date input (mm-dd-yyyy)", () => {
+  const placeholder = text(
+    "Placeholder",
+    `Type a date (mm-dd-yyyy)...`,
+    "Main"
+  );
+  const required = boolean("Is required?", false, "Main");
+
+  return (
+    <Box width={[1, 1 / 2, 1 / 3]}>
+      <DateInput placeholder={placeholder} required={required} hasYear />
+    </Box>
+  );
+});
+
+stories.add("as a date input (mm-dd)", () => {
+  const placeholder = text("Placeholder", `Type a date (mm-dd)...`, "Main");
+  const required = boolean("Is required?", false, "Main");
+
+  return (
+    <Box width={[1, 1 / 2, 1 / 3]}>
+      <DateInput placeholder={placeholder} required={required} />
     </Box>
   );
 });

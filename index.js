@@ -16,7 +16,8 @@ export {
   CurrencyInput,
   ParagraphInput,
   SelectInput,
-  MultiSelectInput
+  MultiSelectInput,
+  DateInput
 } from "./src/input";
 export {
   InlineText,
