@@ -48,5 +48,8 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged && yarn build"
     }
+  },
+  "dependencies": {
+    "cleave.js": "^1.4.10"
   }
 }

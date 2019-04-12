@@ -8,7 +8,7 @@ export { default as Card } from "./src/card";
 export { default as Flex } from "./src/flex";
 export { Container, Row, Column } from "./src/grid";
 export { default as Image } from "./src/image";
-export { TextInput, EmailInput } from "./src/input";
+export { TextInput, EmailInput, PhoneInput, SSNInput } from "./src/input";
 export {
   InlineText,
   Paragraph,
