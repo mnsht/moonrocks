@@ -24,6 +24,7 @@ import Required from "./_required";
 - DONE: Multiselect
 - DONE: Borderless select (used in graphs on plan overview, could just be a variant of Select)
 - DONE: Date (with various formats)
+- DONE: Password
 - Checkbox
 - Radio
 - Switch (instead of button toggle)
@@ -38,7 +39,9 @@ import Required from "./_required";
 
 const BaseInput = ({ type, ...props }) => (
   <InputContainer>
-    {(type === "text" || type === "email") && <Input {...props} type={type} />}
+    {(type === "text" || type === "email" || type === "password") && (
+      <Input {...props} type={type} />
+    )}
     {type === "paragraph" && <Textarea {...props} />}
     {type === "phone" && <InputPhone {...props} />}
     {type === "ssn" && <InputSSN {...props} />}
@@ -53,6 +56,7 @@ const BaseInput = ({ type, ...props }) => (
 
 export const TextInput = props => <BaseInput type="text" {...props} />;
 export const EmailInput = props => <BaseInput type="email" {...props} />;
+export const PasswordInput = props => <BaseInput type="password" {...props} />;
 export const PhoneInput = props => <BaseInput type="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>
   hidden ? (

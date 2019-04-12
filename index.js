@@ -11,6 +11,7 @@ export { default as Image } from "./src/image";
 export {
   TextInput,
   EmailInput,
+  PasswordInput,
   PhoneInput,
   SSNInput,
   CurrencyInput,

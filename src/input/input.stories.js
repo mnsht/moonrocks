@@ -5,6 +5,7 @@ import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import {
   TextInput,
   EmailInput,
+  PasswordInput,
   PhoneInput,
   SSNInput,
   CurrencyInput,
@@ -43,6 +44,17 @@ stories.add("as an email input", () => {
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
       <EmailInput placeholder={placeholder} required={required} />
+    </Box>
+  );
+});
+
+stories.add("as an password input", () => {
+  const placeholder = text("Placeholder", "Type your password...", "Main");
+  const required = boolean("Is required?", false, "Main");
+
+  return (
+    <Box width={[1, 1 / 2, 1 / 3]}>
+      <PasswordInput placeholder={placeholder} required={required} />
     </Box>
   );
 });
