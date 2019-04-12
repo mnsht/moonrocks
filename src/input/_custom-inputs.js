@@ -5,6 +5,7 @@ import Cleave from "cleave.js/react";
 
 import { Input } from "./_base";
 
+import theme from "../theme";
 import { InlineText } from "../typography";
 
 export const InputPhone = props => (
@@ -48,26 +49,45 @@ export const InputCurrency = props => (
   />
 );
 
-const styles = {
-  option: (provided, state) => ({
+const selectStyles = {
+  control: (provided, state) => ({
     ...provided,
-    borderBottom: "1px dotted pink",
-    color: state.isSelected ? "red" : "blue"
+    boxShadow: "none",
+    borderWidth: state.selectProps.borderless ? "0px" : "1px"
   }),
-  control: provided => ({
+  indicatorSeparator: (provided, state) => ({
     ...provided,
-    height: 200
+    width: state.selectProps.borderless ? "0px" : "1px"
   }),
-  singleValue: (provided, state) => {
-    const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = "opacity 300ms";
-
-    return { ...provided, opacity, transition };
-  }
+  valueContainer: provided => ({
+    ...provided,
+    padding: theme.space[3]
+  }),
+  input: provided => ({
+    ...provided,
+    margin: 0,
+    paddingTop: 0,
+    paddingBottom: 0
+  })
 };
 
-export const InputSelect = props => <Select {...props} styles={styles} />;
+const selectTheme = baseTheme => ({
+  ...baseTheme,
+  colors: {
+    ...baseTheme.colors,
+    primary: theme.colors.primary,
+    primary75: theme.colors.primary,
+    primary50: theme.colors.primary300,
+    primary25: theme.colors.primary100,
+    danger: theme.colors.error,
+    dangerLight: theme.colors.error100
+  }
+});
+
+export const InputSelect = props => (
+  <Select {...props} styles={selectStyles} theme={selectTheme} />
+);
 
 export const InputMultiSelect = props => (
-  <Select {...props} isMulti styles={styles} />
+  <Select {...props} isMulti styles={selectStyles} theme={selectTheme} />
 );

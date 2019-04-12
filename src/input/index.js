@@ -19,10 +19,10 @@ import Required from "./_required";
 - DONE: SSN hidden
 - DONE: Currency
 - DONE: Textarea
-- Select
-- Multiselect
+- DONE: Select
+- DONE: Multiselect
+- DONE: Borderless select (used in graphs on plan overview, could just be a variant of Select)
 - Date (with various formats)
-- Borderless select (used in graphs on plan overview, could just be a variant of Select)
 - Checkbox
 - Radio
 - Switch (instead of button toggle)
@@ -43,6 +43,7 @@ const BaseInput = ({ type, ...props }) => (
     {type === "ssn" && <InputSSN {...props} />}
     {type === "currency" && <InputCurrency {...props} />}
     {type === "select" && <InputSelect {...props} />}
+    {type === "borderless-select" && <InputSelect borderless {...props} />}
     {type === "multiselect" && <InputMultiSelect {...props} />}
 
     {props.required && <Required />}
@@ -63,6 +64,9 @@ export const ParagraphInput = props => (
   <BaseInput type="paragraph" {...props} />
 );
 export const SelectInput = props => <BaseInput type="select" {...props} />;
+export const BorderlessSelectInput = props => (
+  <BaseInput type="borderless-select" {...props} />
+);
 export const MultiSelectInput = props => (
   <BaseInput type="multiselect" {...props} />
 );

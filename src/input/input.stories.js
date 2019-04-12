@@ -100,12 +100,14 @@ stories.add("as a select input", () => {
   // Use this as a reference... the props are passed right through: https://react-select.com/
   const placeholder = text("Placeholder", "Select something...", "Main");
   const required = boolean("Is required?", false, "Main");
+  const borderless = boolean("Is borderless?", false, "Main");
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
       <SelectInput
         placeholder={placeholder}
         required={required}
+        borderless={borderless}
         options={sampleOptions}
       />
     </Box>
