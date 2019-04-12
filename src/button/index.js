@@ -21,7 +21,7 @@ const Button = styled(Box)(
     textDecoration: "none",
     textTransform: "uppercase",
     userSelect: "none",
-    transition: `background ${themeGet("animations.fast")(props)} linear`,
+    transition: `background ${themeGet("animations.fast")(props)} ease-in-out`,
     cursor: props.disabled ? "default" : "pointer",
     opacity: props.disabled ? themeGet("opacities.1")(props) : 1,
     pointerEvents: props.disabled ? "none" : "initial"
