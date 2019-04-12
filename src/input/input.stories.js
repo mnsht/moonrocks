@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 
-import { TextInput, EmailInput, PhoneInput, SSNInput } from "./";
+import { TextInput, EmailInput, PhoneInput, SSNInput, CurrencyInput } from "./";
 import Box from "../box";
 
 const stories = storiesOf("Input", module);
@@ -56,6 +56,17 @@ stories.add("as SSN input", () => {
         hidden={hidden}
         value={value}
       />
+    </Box>
+  );
+});
+
+stories.add("as currency input", () => {
+  const placeholder = text("Placeholder", "Type a number...", "Main");
+  const required = boolean("Is required?", false, "Main");
+
+  return (
+    <Box width={[1, 1 / 2, 1 / 3]}>
+      <CurrencyInput placeholder={placeholder} required={required} />
     </Box>
   );
 });

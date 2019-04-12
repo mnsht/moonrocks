@@ -13,8 +13,7 @@ import { InlineText } from "../typography";
 - DONE: Phone
 - DONE: SSN visible
 - DONE: SSN hidden
-- Number
-- Currency (similar to number input)
+- Currency
 - Textarea
 - Select
 - Date (with various formats)
@@ -110,15 +109,30 @@ const InputHiddenSSN = styled(InlineText)(props => ({
   userSelect: "none"
 }));
 
+const InputCurrency = props => (
+  <Input
+    {...props}
+    as={Cleave}
+    options={{
+      numeral: true,
+      numeralThousandsGroupStyle: "thousand",
+      prefix: "$"
+    }}
+  />
+);
+
 const InputContainer = styled(Box)({
   position: "relative"
 });
 
+const isBoring = type => type === "text" || type === "email";
+
 const BaseInput = ({ type, ...props }) => (
   <InputContainer>
-    {(type === "text" || type === "email") && <Input {...props} type={type} />}
+    {isBoring(type) && <Input {...props} type={type} />}
     {type === "phone" && <InputPhone {...props} />}
     {type === "ssn" && <InputSSN {...props} />}
+    {type === "currency" && <InputCurrency {...props} />}
     {props.required && <Required />}
   </InputContainer>
 );
@@ -132,3 +146,4 @@ export const SSNInput = ({ hidden, ...props }) =>
   ) : (
     <BaseInput type="ssn" {...props} />
   );
+export const CurrencyInput = props => <BaseInput type="currency" {...props} />;
