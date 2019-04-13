@@ -270,6 +270,8 @@ export default {
   // All of our card variants
   cards: {
     paper: {
+      color: black,
+      backgroundColor: white,
       boxShadow: shadows.normal,
       borderRadius: radii.normal
     }

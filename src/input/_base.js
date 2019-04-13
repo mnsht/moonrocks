@@ -33,7 +33,9 @@ Input.defaultProps = {
   as: "input",
   fontFamily: "main",
   fontSize: 2,
-  lineHeight: "normal"
+  lineHeight: "normal",
+  backgroundColor: "trueWhite",
+  color: "black"
 };
 
 Input.displayName = "Input";
@@ -48,7 +50,9 @@ Textarea.defaultProps = {
   as: "textarea",
   fontFamily: "main",
   fontSize: 2,
-  lineHeight: "title"
+  lineHeight: "title",
+  backgroundColor: "trueWhite",
+  color: "black"
 };
 
 Textarea.displayName = "Textarea";

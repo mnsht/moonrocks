@@ -75,6 +75,10 @@ const selectStyles = {
     ...provided,
     padding: theme.space[3]
   }),
+  singleValue: provided => ({
+    ...provided,
+    color: theme.colors.black
+  }),
   input: provided => ({
     ...provided,
     margin: 0,

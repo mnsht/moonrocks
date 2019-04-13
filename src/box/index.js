@@ -35,7 +35,8 @@ Box.defaultProps = {
   fontFamily: "main",
   fontSize: 2,
   lineHeight: "normal",
-  fontWeight: "regular"
+  fontWeight: "regular",
+  color: "black"
 };
 
 Box.displayName = "Box";

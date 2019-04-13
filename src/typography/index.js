@@ -17,7 +17,8 @@ InlineText.defaultProps = {
   as: "span",
   fontFamily: "main",
   fontSize: 2,
-  lineHeight: "normal"
+  lineHeight: "normal",
+  color: "black"
 };
 
 InlineText.displayName = "InlineText";
@@ -30,7 +31,8 @@ Paragraph.defaultProps = {
   mb: 3,
   fontFamily: "main",
   fontSize: 2,
-  lineHeight: "paragraph"
+  lineHeight: "paragraph",
+  color: "black"
 };
 
 Paragraph.displayName = "Paragraph";
@@ -63,7 +65,8 @@ Heading.defaultProps = {
   mb: 3,
   fontFamily: "main",
   lineHeight: "title",
-  fontWeight: "bold"
+  fontWeight: "bold",
+  color: "black"
 };
 
 Heading.displayName = "Heading";
