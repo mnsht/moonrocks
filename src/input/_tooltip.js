@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
+import posed from "react-pose";
+
+import theme from "../theme";
 import Box from "../box";
 
 export const TOOLTIP_SIZE = 24;
@@ -42,11 +45,6 @@ const TooltipIcon = styled("div")(props => ({
 
 TooltipIcon.displayName = "TooltipIcon";
 
-/*
-- Animation (posed?)
-- Look up all instances of pointer-events and user-select and make sure we're using the right ones across all components
-*/
-
 const getPosition = (position, spacer) => {
   if (position === "top") {
     return {
@@ -63,7 +61,8 @@ const getPosition = (position, spacer) => {
       left: "100%",
       transform: "translateY(-100%)",
       marginTop: -spacer,
-      marginLeft: spacer
+      marginLeft: spacer,
+      borderBottomLeftRadius: 0
     };
   }
 
@@ -82,7 +81,8 @@ const getPosition = (position, spacer) => {
       left: "100%",
       transform: "none",
       marginTop: spacer,
-      marginLeft: spacer
+      marginLeft: spacer,
+      borderTopLeftRadius: 0
     };
   }
 
@@ -101,7 +101,8 @@ const getPosition = (position, spacer) => {
       left: "0%",
       transform: "translateX(-100%)",
       marginTop: spacer,
-      marginLeft: -spacer
+      marginLeft: -spacer,
+      borderTopRightRadius: 0
     };
   }
 
@@ -120,12 +121,30 @@ const getPosition = (position, spacer) => {
       left: "0%",
       transform: "translateX(-100%) translateY(-100%)",
       marginTop: -spacer,
-      marginLeft: -spacer
+      marginLeft: -spacer,
+      borderBottomRightRadius: 0
     };
   }
 };
 
-const Tooltip = styled(Box)(props => ({
+const posedTooltip = {
+  showing: {
+    opacity: 1,
+    transition: {
+      duration: parseInt(theme.animations.fast),
+      ease: "easeInOut"
+    }
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      duration: parseInt(theme.animations.fast),
+      ease: "easeInOut"
+    }
+  }
+};
+
+const Tooltip = styled(posed(Box)(posedTooltip))(props => ({
   position: "absolute",
   backgroundColor: themeGet("colors.blacks.4")(props),
   color: themeGet("colors.white")(props),
@@ -158,7 +177,9 @@ export default ({ tooltip, position, withinInput }) => {
   return (
     <TooltipContainer withinInput={withinInput}>
       <TooltipIcon onClick={() => setShowing(!showing)}>?</TooltipIcon>
-      {showing && <Tooltip position={position}>{tooltip}</Tooltip>}
+      <Tooltip position={position} pose={showing ? "showing" : "hidden"}>
+        {tooltip}
+      </Tooltip>
     </TooltipContainer>
   );
 };
