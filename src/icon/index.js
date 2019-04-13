@@ -14,10 +14,14 @@ const Icon = styled(FontAwesomeIcon)(
 );
 
 Icon.defaultProps = {
-  dimension: 0
+  dimension: 0,
+  color: "black"
 };
 
 Icon.displayName = "Icon";
 
 // NOTE: We have to change size to dimension internally because size is an expected prop for FontAwesomeIcon
 export default ({ size, ...props }) => <Icon dimension={size} {...props} />;
+
+// NOTE: Export the library so we can add icons to it from the app
+export { library as iconLibrary } from "@fortawesome/fontawesome-svg-core";

@@ -13,11 +13,20 @@ const FONT_SIZE_OPTS = {
   step: 1
 };
 
+const SIZE_OPTS = {
+  min: 0,
+  max: theme.widths.length - 1,
+  step: 1
+};
+
 export const spacingKnob = (title, defaultValue, group) =>
   number(title, defaultValue, SPACE_OPTS, group);
 
 export const fontSizeKnob = (title, defaultValue, group) =>
   number(title, defaultValue, FONT_SIZE_OPTS, group);
+
+export const sizeKnob = (title, defaultValue, group) =>
+  number(title, defaultValue, SIZE_OPTS, group);
 
 export const colorKnob = (title, defaultValue, group) =>
   select(
