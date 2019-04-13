@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { themeGet } from "styled-system";
 import Select from "react-select";
 import Cleave from "cleave.js/react";
 
-import { Input } from "./_base";
+import { Input, determineInputRightPadding } from "./_base";
 
 import theme from "../theme";
 import { InlineText } from "../typography";
@@ -65,15 +66,25 @@ const selectStyles = {
   control: (provided, state) => ({
     ...provided,
     boxShadow: "none",
-    borderWidth: state.selectProps.borderless ? "0px" : "1px"
+    borderColor: theme.colors.snow,
+    borderWidth: state.selectProps.borderless ? "0px" : "1px",
+    "&:hover": {
+      borderColor: theme.colors.snow
+    }
   }),
   indicatorSeparator: (provided, state) => ({
     ...provided,
     width: state.selectProps.borderless ? "0px" : "1px"
   }),
-  valueContainer: provided => ({
+  valueContainer: (provided, state) => ({
     ...provided,
-    padding: theme.space[3]
+    padding:
+      state.isMulti && state.hasValue ? theme.space[3] - 3 : theme.space[3],
+    paddingRight: determineInputRightPadding(
+      state.selectProps.required,
+      state.selectProps.tooltip,
+      theme.space[3]
+    )
   }),
   singleValue: provided => ({
     ...provided,
@@ -101,9 +112,20 @@ const selectTheme = baseTheme => ({
 });
 
 export const InputSelect = props => (
-  <Select {...props} styles={selectStyles} theme={selectTheme} />
+  <Select
+    {...props}
+    isClearable={false}
+    styles={selectStyles}
+    theme={selectTheme}
+  />
 );
 
 export const InputMultiSelect = props => (
-  <Select {...props} isMulti styles={selectStyles} theme={selectTheme} />
+  <Select
+    {...props}
+    isMulti
+    isClearable={false}
+    styles={selectStyles}
+    theme={selectTheme}
+  />
 );

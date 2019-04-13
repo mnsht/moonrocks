@@ -28,7 +28,7 @@ stories.addDecorator(withKnobs);
 
 stories.add("as a text input", () => {
   const placeholder = text("Placeholder", "Type something...", "Main");
-  const required = boolean("Is required?", false, "Main");
+  const required = boolean("Is required?", true, "Main");
   const tooltip = text("Tooltip text", "Hello world!", "Main");
 
   return (

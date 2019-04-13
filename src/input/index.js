@@ -38,18 +38,18 @@ import Tooltip from "./_tooltip";
 - MAYBE: Left icons for all
 */
 
-const BaseInput = ({ type, ...props }) => (
+const BaseInput = props => (
   <InputContainer>
-    {(type === "text" || type === "email" || type === "password") && (
-      <Input {...props} type={type} />
-    )}
-    {type === "paragraph" && <Textarea {...props} />}
-    {type === "phone" && <InputPhone {...props} />}
-    {type === "ssn" && <InputSSN {...props} />}
-    {type === "currency" && <InputCurrency {...props} />}
-    {type === "select" && <InputSelect {...props} />}
-    {type === "multiselect" && <InputMultiSelect {...props} />}
-    {type === "date" && <InputDate {...props} />}
+    {(props.type === "text" ||
+      props.type === "email" ||
+      props.type === "password") && <Input {...props} type={props.type} />}
+    {props.type === "paragraph" && <Textarea {...props} />}
+    {props.type === "phone" && <InputPhone {...props} />}
+    {props.type === "ssn" && <InputSSN {...props} />}
+    {props.type === "currency" && <InputCurrency {...props} />}
+    {props.type === "select" && <InputSelect {...props} />}
+    {props.type === "multiselect" && <InputMultiSelect {...props} />}
+    {props.type === "date" && <InputDate {...props} />}
 
     {props.required && <Required {...props} />}
     {props.tooltip && <Tooltip {...props} withinInput />}

@@ -6,24 +6,27 @@ import { TOOLTIP_SIZE } from "./_tooltip";
 
 import Box from "../box";
 
-const determineInputRightPadding = props => {
-  const { required, tooltip } = props;
-
+export const determineInputRightPadding = (required, tooltip, spacer) => {
   let additionalPadding = 0;
 
   if (required) {
-    additionalPadding += REQUIRED_SIZE + themeGet("space.3")(props);
-  }
-  if (tooltip) {
-    additionalPadding += TOOLTIP_SIZE + themeGet("space.3")(props);
+    additionalPadding += REQUIRED_SIZE + spacer;
   }
 
-  return themeGet("space.3")(props) + additionalPadding;
+  if (tooltip) {
+    additionalPadding += TOOLTIP_SIZE + spacer;
+  }
+
+  return spacer + additionalPadding;
 };
 
 export const Input = styled(Box)(props => ({
   padding: themeGet("space.3")(props),
-  paddingRight: determineInputRightPadding(props),
+  paddingRight: determineInputRightPadding(
+    props.required,
+    props.tooltip,
+    themeGet("space.3")(props)
+  ),
   width: "100%",
   transition: `border ${themeGet("animations.fast")(props)} ease-in-out`,
   borderRadius: themeGet("radii.normal")(props),

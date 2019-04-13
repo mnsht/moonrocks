@@ -9,10 +9,22 @@ import Box from "../box";
 export const TOOLTIP_SIZE = 24;
 const TOOLTIP_SPACING = "space.2";
 
+const determineRightPosition = props => {
+  const { withinInput, type } = props;
+
+  let additionalSpacing = 0;
+
+  if (withinInput && (type === "select" || type === "multiselect")) {
+    additionalSpacing += 38;
+  }
+
+  return themeGet("space.3")(props) + additionalSpacing;
+};
+
 const withinInputStyles = props => ({
   position: "absolute",
   top: 15,
-  right: themeGet("space.3")(props)
+  right: determineRightPosition(props)
 });
 
 const TooltipContainer = styled("div")(props =>
@@ -31,7 +43,9 @@ const TooltipIcon = styled("div")(props => ({
   textAlign: "center",
   lineHeight: `${TOOLTIP_SIZE}px`,
   borderRadius: themeGet("radii.round")(props),
-  backgroundColor: themeGet("colors.mediumGray")(props),
+  backgroundColor: props.showing
+    ? themeGet("colors.darkGray")(props)
+    : themeGet("colors.mediumGray")(props),
   color: themeGet("colors.white")(props),
   fontSize: themeGet("fontSizes.1")(props),
   fontWeight: themeGet("fontWeights.extraBold")(props),
@@ -167,7 +181,7 @@ Tooltip.defaultProps = {
 
 Tooltip.displayName = "Tooltip";
 
-export default ({ tooltip, position, withinInput }) => {
+export default ({ tooltip, position, withinInput, type }) => {
   const [showing, setShowing] = useState(false);
 
   if (withinInput) {
@@ -175,8 +189,10 @@ export default ({ tooltip, position, withinInput }) => {
   }
 
   return (
-    <TooltipContainer withinInput={withinInput}>
-      <TooltipIcon onClick={() => setShowing(!showing)}>?</TooltipIcon>
+    <TooltipContainer withinInput={withinInput} type={type}>
+      <TooltipIcon onClick={() => setShowing(!showing)} showing={showing}>
+        ?
+      </TooltipIcon>
       <Tooltip position={position} pose={showing ? "showing" : "hidden"}>
         {tooltip}
       </Tooltip>

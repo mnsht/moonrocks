@@ -6,21 +6,33 @@ import { InlineText } from "../typography";
 
 export const REQUIRED_SIZE = 14;
 
+const determineRightPosition = props => {
+  const { tooltip, type } = props;
+
+  let additionalSpacing = 0;
+
+  if (tooltip) {
+    additionalSpacing += themeGet("space.3")(props) + TOOLTIP_SIZE;
+  }
+
+  if (type === "select" || type === "multiselect") {
+    additionalSpacing += 38;
+  }
+
+  return themeGet("space.3")(props) + additionalSpacing;
+};
+
 const RequiredElem = styled(InlineText)(props => ({
   position: "absolute",
   height: `${REQUIRED_SIZE}px`,
   width: `${REQUIRED_SIZE}px`,
   lineHeight: "0.85",
   top: "20px",
-  right: props.tooltip
-    ? themeGet("space.3")(props) + TOOLTIP_SIZE + themeGet("space.3")(props)
-    : themeGet("space.3")(props),
+  right: determineRightPosition(props),
   fontWeight: themeGet("fontWeights.extraBold")(props),
   color: themeGet("colors.error")(props),
   fontSize: themeGet("fontSizes.5")(props),
   userSelect: "none"
 }));
 
-export default ({ tooltip }) => (
-  <RequiredElem tooltip={tooltip}>*</RequiredElem>
-);
+export default props => <RequiredElem {...props}>*</RequiredElem>;
