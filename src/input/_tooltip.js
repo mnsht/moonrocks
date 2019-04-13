@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
+import Box from "../box";
 
 export const TOOLTIP_SIZE = 24;
+const TOOLTIP_SPACING = "space.2";
 
 const withinInputStyles = props => ({
   position: "absolute",
@@ -18,6 +20,8 @@ const TooltipContainer = styled("div")(props =>
       }
 );
 
+TooltipContainer.displayName = "TooltipContainer";
+
 const TooltipIcon = styled("div")(props => ({
   width: `${TOOLTIP_SIZE}px`,
   height: `${TOOLTIP_SIZE}px`,
@@ -26,7 +30,7 @@ const TooltipIcon = styled("div")(props => ({
   borderRadius: themeGet("radii.round")(props),
   backgroundColor: themeGet("colors.mediumGray")(props),
   color: themeGet("colors.white")(props),
-  fontSize: themeGet("fontSizes.2")(props),
+  fontSize: themeGet("fontSizes.1")(props),
   fontWeight: themeGet("fontWeights.extraBold")(props),
   userSelect: "none",
   cursor: "pointer",
@@ -36,15 +40,125 @@ const TooltipIcon = styled("div")(props => ({
   }
 }));
 
-const Tooltip = styled("span")({});
+TooltipIcon.displayName = "TooltipIcon";
 
-export default ({ tooltip, withinInput }) => {
+/*
+- Animation (posed?)
+- Look up all instances of pointer-events and user-select and make sure we're using the right ones across all components
+*/
+
+const getPosition = (position, spacer) => {
+  if (position === "top") {
+    return {
+      top: "0%",
+      left: "50%",
+      transform: "translateX(-50%) translateY(-100%)",
+      marginTop: -spacer
+    };
+  }
+
+  if (position === "top-right") {
+    return {
+      top: "0%",
+      left: "100%",
+      transform: "translateY(-100%)",
+      marginTop: -spacer,
+      marginLeft: spacer
+    };
+  }
+
+  if (position === "right") {
+    return {
+      top: "50%",
+      left: "100%",
+      transform: "translateY(-50%)",
+      marginLeft: spacer
+    };
+  }
+
+  if (position === "bottom-right") {
+    return {
+      top: "100%",
+      left: "100%",
+      transform: "none",
+      marginTop: spacer,
+      marginLeft: spacer
+    };
+  }
+
+  if (position === "bottom") {
+    return {
+      top: "100%",
+      left: "50%",
+      transform: "translateX(-50%)",
+      marginTop: spacer
+    };
+  }
+
+  if (position === "bottom-left") {
+    return {
+      top: "100%",
+      left: "0%",
+      transform: "translateX(-100%)",
+      marginTop: spacer,
+      marginLeft: -spacer
+    };
+  }
+
+  if (position === "left") {
+    return {
+      top: "50%",
+      left: "0%",
+      transform: "translateX(-100%) translateY(-50%)",
+      marginLeft: -spacer
+    };
+  }
+
+  if (position === "top-left") {
+    return {
+      top: "0%",
+      left: "0%",
+      transform: "translateX(-100%) translateY(-100%)",
+      marginTop: -spacer,
+      marginLeft: -spacer
+    };
+  }
+};
+
+const Tooltip = styled(Box)(props => ({
+  position: "absolute",
+  backgroundColor: themeGet("colors.blacks.4")(props),
+  color: themeGet("colors.white")(props),
+  textAlign: "center",
+  borderRadius: themeGet("radii.normal")(props),
+  paddingTop: themeGet("space.2")(props),
+  paddingBottom: themeGet("space.2")(props),
+  paddingLeft: themeGet("space.3")(props),
+  paddingRight: themeGet("space.3")(props),
+  width: 240,
+  boxShadow: themeGet("shadows.normal")(props),
+  userSelect: "none",
+  zIndex: themeGet("zIndicies.tooltip")(props),
+  ...getPosition(props.position, themeGet(TOOLTIP_SPACING)(props))
+}));
+
+Tooltip.defaultProps = {
+  position: "top"
+};
+
+Tooltip.displayName = "Tooltip";
+
+export default ({ tooltip, position, withinInput }) => {
   const [showing, setShowing] = useState(false);
+
+  if (withinInput) {
+    position = "top-left";
+  }
 
   return (
     <TooltipContainer withinInput={withinInput}>
       <TooltipIcon onClick={() => setShowing(!showing)}>?</TooltipIcon>
-      {showing && <Tooltip>{tooltip}</Tooltip>}
+      {showing && <Tooltip position={position}>{tooltip}</Tooltip>}
     </TooltipContainer>
   );
 };

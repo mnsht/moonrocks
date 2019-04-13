@@ -9,7 +9,7 @@ const breakpoints = ["40em", "52em", "64em"];
 
 const sizeScale = [18, 24, 36, 48, 64, 72, 96];
 
-const opacities = [0.1, 0.35, 0.5, 0.65, 0.9];
+const opacities = [0.1, 0.35, 0.5, 0.65, 0.8];
 
 const transparent = "transparent";
 
@@ -88,7 +88,7 @@ const radii = {
 };
 
 const shadows = {
-  normal: `${space[0]}px ${space[1]}px ${space[3]}px ${space[0]}px ${blacks[0]}`
+  normal: `${space[0]}px ${space[1]}px ${space[2]}px ${space[0]}px ${blacks[0]}`
 };
 
 export default {
@@ -187,7 +187,11 @@ export default {
   },
 
   // Various z-indexes
-  zIndicies: {},
+  zIndicies: {
+    baseline: 0,
+    tooltip: 900,
+    dialog: 1000
+  },
 
   // ----- VARIANTS -----
   // All of our color variants
