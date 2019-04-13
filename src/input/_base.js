@@ -1,17 +1,21 @@
 import styled from "styled-components";
 import { themeGet } from "styled-system";
 
-import { REQUIRED_WIDTH } from "./_required";
+import { REQUIRED_SIZE } from "./_required";
+import { TOOLTIP_SIZE } from "./_tooltip";
 
 import Box from "../box";
 
 const determineInputRightPadding = props => {
-  const { required } = props;
+  const { required, tooltip } = props;
 
   let additionalPadding = 0;
 
   if (required) {
-    additionalPadding += REQUIRED_WIDTH + themeGet("space.3")(props);
+    additionalPadding += REQUIRED_SIZE + themeGet("space.3")(props);
+  }
+  if (tooltip) {
+    additionalPadding += TOOLTIP_SIZE + themeGet("space.3")(props);
   }
 
   return themeGet("space.3")(props) + additionalPadding;

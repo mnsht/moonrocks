@@ -11,6 +11,7 @@ import {
   InputDate
 } from "./_custom-inputs";
 import Required from "./_required";
+import Tooltip from "./_tooltip";
 
 /*
 - DONE: Text
@@ -31,7 +32,7 @@ import Required from "./_required";
 - DONE: Required for all
 - Validation for all (or perhaps do this inside of app?)
 - Success, warning, and alert states for all (with position absolute, not affecting next row)
-- Tooltips for all (remember to export this, as it can also be used outside a form)
+- DONE: Tooltips for all (remember to export this, as it can also be used outside a form)
 
 - MAYBE: Button toggle
 - MAYBE: Left icons for all
@@ -50,7 +51,8 @@ const BaseInput = ({ type, ...props }) => (
     {type === "multiselect" && <InputMultiSelect {...props} />}
     {type === "date" && <InputDate {...props} />}
 
-    {props.required && <Required />}
+    {props.required && <Required {...props} />}
+    {props.tooltip && <Tooltip {...props} withinInput />}
   </InputContainer>
 );
 

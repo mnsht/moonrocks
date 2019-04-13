@@ -21,6 +21,7 @@ export {
   MultiSelectInput,
   DateInput
 } from "./src/input";
+export { default as Tooltip } from "./src/input/_tooltip";
 export {
   InlineText,
   Paragraph,
