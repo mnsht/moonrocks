@@ -5,10 +5,6 @@ import posed, { PoseGroup } from "react-pose";
 
 import Box from "../box";
 
-/*
-- Get PoseGroup to work
-*/
-
 const MessagesContainer = styled(Box)(props => ({
   position: "absolute",
   top: "100%",
@@ -35,9 +31,11 @@ Message.defaultProps = {
 
 Message.displayName = "Message";
 
+const animationDelay = 100;
+
 const PosedMessage = posed(Message)({
-  enter: { y: 0, opacity: 1 },
-  exit: { y: -20, opacity: 0 }
+  enter: { y: 0, opacity: 1, delay: ({ i }) => i * animationDelay },
+  exit: { y: -30, opacity: 0 }
 });
 
 export const shouldShow = messages => messages && messages.length > 0;
@@ -46,9 +44,9 @@ const preparedMessages = ({ errors, warnings }) => {
   const allMessages = [];
 
   if (shouldShow(errors)) {
-    errors.map((message, index) => {
+    errors.map((message, i) => {
       allMessages.push(
-        <PosedMessage key={`error-${index}`} type="error">
+        <PosedMessage key={`error-${i}`} i={i} type="error">
           {message}
         </PosedMessage>
       );
@@ -56,9 +54,9 @@ const preparedMessages = ({ errors, warnings }) => {
   }
 
   if (shouldShow(warnings)) {
-    warnings.map((message, index) => {
+    warnings.map((message, i) => {
       allMessages.push(
-        <PosedMessage key={`warning-${index}`} type="warning">
+        <PosedMessage key={`warning-${i}`} i={i} type="warning">
           {message}
         </PosedMessage>
       );

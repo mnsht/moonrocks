@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { withKnobs, text, boolean, button } from "@storybook/addon-knobs";
+import { StateDecorator, Store } from "@sambego/storybook-state";
 
 import {
   TextInput,
@@ -24,17 +25,41 @@ const sampleOptions = [
 
 const stories = storiesOf("Input", module);
 
+const store = new Store({
+  messages: {
+    warnings: [],
+    errors: []
+  }
+});
+
 stories.addDecorator(withKnobs);
+stories.addDecorator(StateDecorator(store));
 
 stories.add("as a text input", () => {
   const placeholder = text("Placeholder", "Type something...", "Main");
   const required = boolean("Is required?", true, "Main");
   const tooltip = text("Tooltip text", "Hello world!", "Main");
 
-  const messages = {
-    warnings: ["You are agly", "I don't like your boots"],
-    errors: ["This field is required"]
+  const addMessage = (type, text) => {
+    const newMessages = store.get("messages");
+
+    newMessages[type].push(text);
+
+    store.set({ messages: newMessages });
   };
+
+  const removeMessage = type => {
+    const newMessages = store.get("messages");
+
+    newMessages[type].shift();
+
+    store.set({ messages: newMessages });
+  };
+
+  button("Add warning", () => addMessage("warnings", "Password isn't strong"));
+  button("Add error", () => addMessage("errors", "This field is required"));
+  button("Remove warning", () => removeMessage("warnings"));
+  button("Remove error", () => removeMessage("errors"));
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -42,7 +67,7 @@ stories.add("as a text input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
-        messages={messages}
+        messages={store.get("messages")}
       />
     </Box>
   );
