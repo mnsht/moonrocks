@@ -20,6 +20,13 @@ export const determineInputRightPadding = (required, tooltip, spacer) => {
   return spacer + additionalPadding;
 };
 
+const determineBorderRadius = props =>
+  props.hasMessages
+    ? `${themeGet("radii.normal")(props)}px ${themeGet("radii.normal")(
+        props
+      )}px 0px 0px`
+    : themeGet("radii.normal")(props);
+
 export const Input = styled(Box)(props => ({
   padding: themeGet("space.3")(props),
   paddingRight: determineInputRightPadding(
@@ -29,7 +36,7 @@ export const Input = styled(Box)(props => ({
   ),
   width: "100%",
   transition: `border ${themeGet("animations.fast")(props)} ease-in-out`,
-  borderRadius: themeGet("radii.normal")(props),
+  borderRadius: determineBorderRadius(props),
   border: `1px solid ${themeGet("colors.snow")(props)}`,
   "&:focus": {
     border: `1px solid ${themeGet("colors.primary")(props)}`

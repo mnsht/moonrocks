@@ -66,6 +66,9 @@ const selectStyles = {
   control: (provided, state) => ({
     ...provided,
     boxShadow: "none",
+    borderRadius: state.selectProps.messages
+      ? `${theme.radii.normal}px ${theme.radii.normal}px 0px 0px`
+      : theme.radii.normal,
     borderColor: theme.colors.snow,
     borderWidth: state.selectProps.borderless ? "0px" : "1px",
     "&:hover": {
@@ -111,6 +114,7 @@ const selectTheme = baseTheme => ({
   }
 });
 
+// NOTE: This input does NOT use the _base.js Input
 export const InputSelect = props => (
   <Select
     {...props}
@@ -120,6 +124,7 @@ export const InputSelect = props => (
   />
 );
 
+// NOTE: This input does NOT use the _base.js Input
 export const InputMultiSelect = props => (
   <Select
     {...props}

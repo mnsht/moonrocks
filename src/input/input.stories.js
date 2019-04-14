@@ -31,12 +31,18 @@ stories.add("as a text input", () => {
   const required = boolean("Is required?", true, "Main");
   const tooltip = text("Tooltip text", "Hello world!", "Main");
 
+  const messages = {
+    warnings: ["You are agly", "I don't like your boots"],
+    errors: ["This field is required"]
+  };
+
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
       <TextInput
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        messages={messages}
       />
     </Box>
   );

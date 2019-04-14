@@ -12,6 +12,7 @@ import {
 } from "./_custom-inputs";
 import Required from "./_required";
 import Tooltip from "./_tooltip";
+import Messages, { shouldShow as shouldShowMessages } from "./_messages";
 
 /*
 - DONE: Text
@@ -30,31 +31,55 @@ import Tooltip from "./_tooltip";
 - Radio
 - Switch (instead of button toggle)
 - DONE: Required for all
-- Validation for all (or perhaps do this inside of app?)
-- Success, warning, and alert states for all (with position absolute, not affecting next row)
 - DONE: Tooltips for all (remember to export this, as it can also be used outside a form)
+- Warning and alert states for all (with position absolute, not affecting next row)
+- Validation for all (or perhaps do this inside of app?)
+- See if all onChange events are firing correctly and all values are correctly outputting
+- Refactor this page for simplicity
 
 - MAYBE: Button toggle
 - MAYBE: Left icons for all
 */
 
-const BaseInput = props => (
-  <InputContainer>
-    {(props.type === "text" ||
-      props.type === "email" ||
-      props.type === "password") && <Input {...props} type={props.type} />}
-    {props.type === "paragraph" && <Textarea {...props} />}
-    {props.type === "phone" && <InputPhone {...props} />}
-    {props.type === "ssn" && <InputSSN {...props} />}
-    {props.type === "currency" && <InputCurrency {...props} />}
-    {props.type === "select" && <InputSelect {...props} />}
-    {props.type === "multiselect" && <InputMultiSelect {...props} />}
-    {props.type === "date" && <InputDate {...props} />}
+const BaseInput = props => {
+  const hasMsgs =
+    props.messages &&
+    (shouldShowMessages(props.messages.warnings) ||
+      shouldShowMessages(props.messages.errors));
 
-    {props.required && <Required {...props} />}
-    {props.tooltip && <Tooltip {...props} withinInput />}
-  </InputContainer>
-);
+  let InputComponent;
+
+  if (props.type === "text") {
+    InputComponent = <Input {...props} hasMessages={hasMsgs} type="text" />;
+  } else if (props.type === "email") {
+    InputComponent = <Input {...props} hasMessages={hasMsgs} type="email" />;
+  } else if (props.type === "password") {
+    InputComponent = <Input {...props} hasMessages={hasMsgs} type="password" />;
+  } else if (props.type === "paragraph") {
+    InputComponent = <Textarea {...props} hasMessages={hasMsgs} />;
+  } else if (props.type === "phone") {
+    InputComponent = <InputPhone {...props} hasMessages={hasMsgs} />;
+  } else if (props.type === "ssn") {
+    InputComponent = <InputSSN {...props} hasMessages={hasMsgs} />;
+  } else if (props.type === "currency") {
+    InputComponent = <InputCurrency {...props} hasMessages={hasMsgs} />;
+  } else if (props.type === "date") {
+    InputComponent = <InputDate {...props} hasMessages={hasMsgs} />;
+  } else if (props.type === "select") {
+    InputComponent = <InputSelect {...props} hasMessages={hasMsgs} />;
+  } else if (props.type === "multiselect") {
+    InputComponent = <InputMultiSelect {...props} hasMessages={hasMsgs} />;
+  }
+
+  return (
+    <InputContainer>
+      {InputComponent}
+      {props.required && <Required {...props} />}
+      {props.tooltip && <Tooltip {...props} withinInput />}
+      {hasMsgs && <Messages {...props} />}
+    </InputContainer>
+  );
+};
 
 export const TextInput = props => <BaseInput type="text" {...props} />;
 export const EmailInput = props => <BaseInput type="email" {...props} />;
