@@ -35,7 +35,9 @@ export const InputSSN = props => (
 
 export const InputHiddenSSN = styled(InlineText)(props => ({
   fontWeight: themeGet("fontWeights.bold")(props),
-  userSelect: "none"
+  userSelect: "none",
+  display: "block",
+  padding: themeGet("space.3")(props)
 }));
 
 export const InputCurrency = props => (
