@@ -44,12 +44,9 @@ export const Input = styled(Box)(props => ({
 }));
 
 Input.defaultProps = {
+  ...Box.defaultProps,
   as: "input",
-  fontFamily: "main",
-  fontSize: 2,
-  lineHeight: "normal",
-  backgroundColor: "trueWhite",
-  color: "black"
+  backgroundColor: "trueWhite"
 };
 
 Input.displayName = "Input";
@@ -61,12 +58,10 @@ export const Textarea = styled(Input)({
 });
 
 Textarea.defaultProps = {
+  ...Box.defaultProps,
+  ...Input.defaultProps,
   as: "textarea",
-  fontFamily: "main",
-  fontSize: 2,
-  lineHeight: "title",
-  backgroundColor: "trueWhite",
-  color: "black"
+  lineHeight: "title"
 };
 
 Textarea.displayName = "Textarea";

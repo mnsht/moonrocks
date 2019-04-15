@@ -31,10 +31,8 @@ const Card = styled(Box)(
 );
 
 Card.defaultProps = {
+  ...Box.defaultProps,
   as: "div",
-  fontFamily: "main",
-  fontSize: 2,
-  lineHeight: "normal",
   variant: "paper"
 };
 

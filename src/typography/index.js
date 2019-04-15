@@ -11,14 +11,13 @@ import Box from "../box";
 
 const Text = styled(Box)(textAlign, letterSpacing);
 
+Text.defaultProps = { ...Box.defaultProps };
+
 export const InlineText = styled(Text)({});
 
 InlineText.defaultProps = {
-  as: "span",
-  fontFamily: "main",
-  fontSize: 2,
-  lineHeight: "normal",
-  color: "black"
+  ...Text.defaultProps,
+  as: "span"
 };
 
 InlineText.displayName = "InlineText";
@@ -26,13 +25,11 @@ InlineText.displayName = "InlineText";
 export const Paragraph = styled(Text)({});
 
 Paragraph.defaultProps = {
+  ...Text.defaultProps,
   as: "p",
   mt: 0,
   mb: 3,
-  fontFamily: "main",
-  fontSize: 2,
-  lineHeight: "paragraph",
-  color: "black"
+  lineHeight: "paragraph"
 };
 
 Paragraph.displayName = "Paragraph";
@@ -47,6 +44,7 @@ export const CappedText = styled(Text)(props => ({
 }));
 
 CappedText.defaultProps = {
+  ...Text.defaultProps,
   as: "span",
   mt: 0,
   mb: 2,
@@ -59,14 +57,13 @@ CappedText.displayName = "CappedText";
 export const Heading = styled(Text)(textStyle);
 
 Heading.defaultProps = {
+  ...Text.defaultProps,
   as: "h3",
   variant: "h3",
   mt: 2,
   mb: 3,
-  fontFamily: "main",
   lineHeight: "title",
-  fontWeight: "bold",
-  color: "black"
+  fontWeight: "bold"
 };
 
 Heading.displayName = "Heading";
@@ -81,10 +78,8 @@ export const InternalLink = styled(Text)(
 );
 
 InternalLink.defaultProps = {
+  ...Text.defaultProps,
   as: "a",
-  fontFamily: "main",
-  fontSize: 2,
-  lineHeight: "normal",
   color: "primary"
 };
 
