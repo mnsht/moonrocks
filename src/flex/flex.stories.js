@@ -13,7 +13,7 @@ stories.add("default", () => {
   const content = text("Text", "Sample Text", "Main");
 
   return (
-    <Flex flexDirection={["column", "column", "row"]}>
+    <Flex flexDirection={["column", null, "row"]}>
       <Card p={2} m={2}>
         {content}
       </Card>

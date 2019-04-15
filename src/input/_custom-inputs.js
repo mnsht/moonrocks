@@ -9,7 +9,7 @@ import { Input, determineInputRightPadding } from "./_base";
 import theme from "../theme";
 import { InlineText } from "../typography";
 
-export const InputPhone = props => (
+export const CustomPhone = props => (
   <Input
     {...props}
     as={Cleave}
@@ -21,7 +21,7 @@ export const InputPhone = props => (
   />
 );
 
-export const InputSSN = props => (
+export const CustomSSN = props => (
   <Input
     {...props}
     as={Cleave}
@@ -33,14 +33,14 @@ export const InputSSN = props => (
   />
 );
 
-export const InputHiddenSSN = styled(InlineText)(props => ({
+export const CustomHiddenSSN = styled(InlineText)(props => ({
   fontWeight: themeGet("fontWeights.bold")(props),
   userSelect: "none",
   display: "block",
   padding: themeGet("space.3")(props)
 }));
 
-export const InputCurrency = props => (
+export const CustomCurrency = props => (
   <Input
     {...props}
     as={Cleave}
@@ -52,7 +52,7 @@ export const InputCurrency = props => (
   />
 );
 
-export const InputDate = ({ hasYear, ...props }) => (
+export const CustomDate = ({ hasYear, ...props }) => (
   <Input
     {...props}
     as={Cleave}
@@ -117,7 +117,7 @@ const selectTheme = baseTheme => ({
 });
 
 // NOTE: This input does NOT use the _base.js Input
-export const InputSelect = props => (
+export const CustomSelect = props => (
   <Select
     {...props}
     isClearable={false}
@@ -127,7 +127,7 @@ export const InputSelect = props => (
 );
 
 // NOTE: This input does NOT use the _base.js Input
-export const InputMultiSelect = props => (
+export const CustomMultiSelect = props => (
   <Select
     {...props}
     isMulti

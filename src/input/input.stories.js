@@ -7,6 +7,7 @@ import {
   TextInput,
   EmailInput,
   PasswordInput,
+  CheckboxInput,
   PhoneInput,
   SSNInput,
   CurrencyInput,
@@ -101,6 +102,18 @@ stories.add("as an password input", () => {
         required={required}
         tooltip={tooltip}
       />
+    </Box>
+  );
+});
+
+stories.add("as a checkbox input", () => {
+  const label = text("Label", "Do we wanna do this?", "Main");
+  const required = boolean("Is required?", false, "Main");
+  const tooltip = text("Tooltip text", null, "Main");
+
+  return (
+    <Box width={[1, 1 / 2, 1 / 3]}>
+      <CheckboxInput label={label} required={required} tooltip={tooltip} />
     </Box>
   );
 });

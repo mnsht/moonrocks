@@ -9,13 +9,13 @@ const stories = storiesOf("Grid", module);
 stories.add("default", () => {
   return (
     <Container>
-      <Row flexWrap="wrap">
-        <Column width={[1, 1, 1 / 2]}>
+      <Row>
+        <Column width={[1, null, 1 / 2]}>
           <Card p={2} m={2}>
             1 / 2
           </Card>
         </Column>
-        <Column width={[1, 1, 1 / 2]}>
+        <Column width={[1, null, 1 / 2]}>
           <Card p={2} m={2}>
             1 / 2
           </Card>

@@ -1,14 +1,14 @@
 import React from "react";
 
-import { Input, Textarea, InputContainer } from "./_base";
+import { Input, Checkbox, Textarea, InputContainer } from "./_base";
 import {
-  InputPhone,
-  InputSSN,
-  InputHiddenSSN,
-  InputCurrency,
-  InputSelect,
-  InputMultiSelect,
-  InputDate
+  CustomPhone,
+  CustomSSN,
+  CustomHiddenSSN,
+  CustomCurrency,
+  CustomSelect,
+  CustomMultiSelect,
+  CustomDate
 } from "./_custom-inputs";
 import Required from "./_required";
 import Tooltip from "./_tooltip";
@@ -36,6 +36,8 @@ import Messages, { shouldShow as shouldShowMessages } from "./_messages";
 - Validation for all (or perhaps do this inside of app?)
 - See if all onChange events are firing correctly and all values are correctly outputting
 - Refactor this page for simplicity
+- Fix props errors
+- Have a single story showing all inputs (responsive, kitchen sink)
 
 - MAYBE: Button toggle
 - MAYBE: Left icons for all
@@ -49,26 +51,28 @@ const BaseInput = props => {
 
   let InputComponent;
 
-  if (props.type === "text") {
+  if (props.inputType === "text") {
     InputComponent = <Input {...props} hasMessages={hasMsgs} type="text" />;
-  } else if (props.type === "email") {
+  } else if (props.inputType === "email") {
     InputComponent = <Input {...props} hasMessages={hasMsgs} type="email" />;
-  } else if (props.type === "password") {
+  } else if (props.inputType === "password") {
     InputComponent = <Input {...props} hasMessages={hasMsgs} type="password" />;
-  } else if (props.type === "paragraph") {
+  } else if (props.inputType === "checkbox") {
+    InputComponent = <Checkbox {...props} hasMessages={hasMsgs} />;
+  } else if (props.inputType === "paragraph") {
     InputComponent = <Textarea {...props} hasMessages={hasMsgs} />;
-  } else if (props.type === "phone") {
-    InputComponent = <InputPhone {...props} hasMessages={hasMsgs} />;
-  } else if (props.type === "ssn") {
-    InputComponent = <InputSSN {...props} hasMessages={hasMsgs} />;
-  } else if (props.type === "currency") {
-    InputComponent = <InputCurrency {...props} hasMessages={hasMsgs} />;
-  } else if (props.type === "date") {
-    InputComponent = <InputDate {...props} hasMessages={hasMsgs} />;
-  } else if (props.type === "select") {
-    InputComponent = <InputSelect {...props} hasMessages={hasMsgs} />;
-  } else if (props.type === "multiselect") {
-    InputComponent = <InputMultiSelect {...props} hasMessages={hasMsgs} />;
+  } else if (props.inputType === "phone") {
+    InputComponent = <CustomPhone {...props} hasMessages={hasMsgs} />;
+  } else if (props.inputType === "ssn") {
+    InputComponent = <CustomSSN {...props} hasMessages={hasMsgs} />;
+  } else if (props.inputType === "currency") {
+    InputComponent = <CustomCurrency {...props} hasMessages={hasMsgs} />;
+  } else if (props.inputType === "date") {
+    InputComponent = <CustomDate {...props} hasMessages={hasMsgs} />;
+  } else if (props.inputType === "select") {
+    InputComponent = <CustomSelect {...props} hasMessages={hasMsgs} />;
+  } else if (props.inputType === "multiselect") {
+    InputComponent = <CustomMultiSelect {...props} hasMessages={hasMsgs} />;
   }
 
   return (
@@ -81,22 +85,29 @@ const BaseInput = props => {
   );
 };
 
-export const TextInput = props => <BaseInput type="text" {...props} />;
-export const EmailInput = props => <BaseInput type="email" {...props} />;
-export const PasswordInput = props => <BaseInput type="password" {...props} />;
-export const PhoneInput = props => <BaseInput type="phone" {...props} />;
+export const TextInput = props => <BaseInput inputType="text" {...props} />;
+export const EmailInput = props => <BaseInput inputType="email" {...props} />;
+export const PasswordInput = props => (
+  <BaseInput inputType="password" {...props} />
+);
+export const CheckboxInput = props => (
+  <BaseInput inputType="checkbox" {...props} />
+);
+export const PhoneInput = props => <BaseInput inputType="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>
   hidden ? (
-    <InputHiddenSSN>SSN: {props.value}</InputHiddenSSN>
+    <CustomHiddenSSN>SSN: {props.value}</CustomHiddenSSN>
   ) : (
-    <BaseInput type="ssn" {...props} />
+    <BaseInput inputType="ssn" {...props} />
   );
-export const CurrencyInput = props => <BaseInput type="currency" {...props} />;
+export const CurrencyInput = props => (
+  <BaseInput inputType="currency" {...props} />
+);
 export const ParagraphInput = props => (
-  <BaseInput type="paragraph" {...props} />
+  <BaseInput inputType="paragraph" {...props} />
 );
-export const SelectInput = props => <BaseInput type="select" {...props} />;
+export const SelectInput = props => <BaseInput inputType="select" {...props} />;
 export const MultiSelectInput = props => (
-  <BaseInput type="multiselect" {...props} />
+  <BaseInput inputType="multiselect" {...props} />
 );
-export const DateInput = props => <BaseInput type="date" {...props} />;
+export const DateInput = props => <BaseInput inputType="date" {...props} />;
