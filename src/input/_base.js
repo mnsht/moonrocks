@@ -72,9 +72,7 @@ const CheckboxElem = styled(Box)(props => ({
   ...determineBorders(props)
 }));
 
-const Check = () => <Icon icon="check" size={0} m={2} color="success" />;
-
-const PosedCheck = posed(Check)({
+const PosedCheck = posed(Icon)({
   checked: {
     scale: 1,
     opacity: 1
@@ -99,7 +97,13 @@ export const Checkbox = props => {
   return (
     <CheckboxContainer onClick={() => setChecked(!checked)}>
       <CheckboxElem>
-        <PosedCheck pose={checked ? "checked" : "unchecked"} />
+        <PosedCheck
+          pose={checked ? "checked" : "unchecked"}
+          icon="check"
+          size={0}
+          m={2}
+          color="success"
+        />
       </CheckboxElem>
       <CheckboxLabel>{props.label}</CheckboxLabel>
     </CheckboxContainer>
