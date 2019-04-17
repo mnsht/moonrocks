@@ -21,13 +21,9 @@
   },
   "homepage": "https://github.com/scholarraise/sr-components#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.17",
-    "@fortawesome/free-brands-svg-icons": "^5.8.1",
-    "@fortawesome/free-regular-svg-icons": "^5.8.1",
-    "@fortawesome/free-solid-svg-icons": "^5.8.1",
-    "@fortawesome/react-fontawesome": "^0.1.4",
     "cleave.js": "^1.4.10",
-    "react-select": "^2.4.2"
+    "react-select": "^2.4.2",
+    "styled-icons": "^7.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

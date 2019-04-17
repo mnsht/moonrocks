@@ -2,9 +2,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { sizeKnob, colorKnob } from "../../storybook-helpers";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { Check } from "styled-icons/fa-solid";
 
-import Icon, { iconLibrary } from "./";
+import Icon from "./";
 
 const stories = storiesOf("Icon", module);
 
@@ -14,7 +14,5 @@ stories.add("default", () => {
   const size = sizeKnob("Size", 2, "Main");
   const color = colorKnob("Color", "success", "Main");
 
-  iconLibrary.add(faCheck);
-
-  return <Icon icon="check" size={size} m={3} color={color} />;
+  return <Icon icon={Check} size={size} m={3} color={color} />;
 });

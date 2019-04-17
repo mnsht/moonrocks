@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
 import posed from "react-pose";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { Check } from "styled-icons/fa-solid";
 
 import { REQUIRED_SIZE } from "./_required";
 import { TOOLTIP_SIZE } from "./_tooltip";
 
 import Box from "../box";
 import Flex from "../flex";
-import Icon, { iconLibrary } from "../icon";
+import Icon from "../icon";
 import { InlineText } from "../typography";
 
 export const determineInputRightPadding = (required, tooltip, spacer) => {
@@ -92,14 +92,12 @@ const CheckboxLabel = styled(InlineText)(props => ({
 export const Checkbox = props => {
   const [checked, setChecked] = useState(false);
 
-  iconLibrary.add(faCheck);
-
   return (
     <CheckboxContainer onClick={() => setChecked(!checked)}>
       <CheckboxElem>
         <PosedCheck
           pose={checked ? "checked" : "unchecked"}
-          icon="check"
+          icon={Check}
           size={0}
           m={2}
           color="success"

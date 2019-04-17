@@ -1,17 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { themeGet, space, color } from "styled-system";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { themeGet } from "styled-system";
 
-const Icon = styled(FontAwesomeIcon)(
-  props => ({
-    fontSize: themeGet(`widths.${props.dimension}`)(props),
-    maxWidth: themeGet(`widths.${props.dimension}`)(props),
-    height: themeGet(`heights.${props.dimension}`)(props)
-  }),
-  space,
-  color
-);
+import Box from "../box";
+
+const Icon = styled(Box)(props => ({
+  width: themeGet(`widths.${props.dimension}`)(props),
+  height: themeGet(`heights.${props.dimension}`)(props)
+}));
 
 Icon.defaultProps = {
   dimension: 0,
@@ -20,8 +16,6 @@ Icon.defaultProps = {
 
 Icon.displayName = "Icon";
 
-// NOTE: We have to change size to dimension internally because size is an expected prop for FontAwesomeIcon
-export default ({ size, ...props }) => <Icon dimension={size} {...props} />;
-
-// NOTE: Export the library so we can add icons to it from the app
-export { library as iconLibrary } from "@fortawesome/fontawesome-svg-core";
+export default React.forwardRef(({ icon, size, ...props }, ref) => (
+  <Icon {...props} as={icon} dimension={size} ref={ref} />
+));
