@@ -8,7 +8,9 @@ import {
   EmailInput,
   PasswordInput,
   CheckboxInput,
+  CheckboxInputs,
   RadioInput,
+  RadioInputs,
   PhoneInput,
   SSNInput,
   CurrencyInput,
@@ -119,6 +121,37 @@ stories.add("as a checkbox input", () => {
   );
 });
 
+stories.add("as multiple checkboxes", () => {
+  const required = boolean("Is required?", false, "Main");
+  const tooltip = text("Tooltip text", null, "Main");
+
+  const options = [
+    {
+      value: "blue",
+      label: "Blue pill"
+    },
+    {
+      value: "red",
+      label: "Red pill"
+    },
+    {
+      value: "rainbow",
+      label: "Rainbow pill"
+    }
+  ];
+
+  return (
+    <Box width={[1, 1 / 2, 1 / 3]}>
+      <CheckboxInputs
+        options={options}
+        required={required}
+        tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
+      />
+    </Box>
+  );
+});
+
 stories.add("as a radio input", () => {
   const label = text("Label", "Do we wanna do this?", "Main");
   const required = boolean("Is required?", false, "Main");
@@ -127,6 +160,37 @@ stories.add("as a radio input", () => {
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
       <RadioInput label={label} required={required} tooltip={tooltip} />
+    </Box>
+  );
+});
+
+stories.add("as multiple radios", () => {
+  const required = boolean("Is required?", false, "Main");
+  const tooltip = text("Tooltip text", null, "Main");
+
+  const options = [
+    {
+      value: "blue",
+      label: "Blue pill"
+    },
+    {
+      value: "red",
+      label: "Red pill"
+    },
+    {
+      value: "rainbow",
+      label: "Rainbow pill"
+    }
+  ];
+
+  return (
+    <Box width={[1, 1 / 2, 1 / 3]}>
+      <RadioInputs
+        options={options}
+        required={required}
+        tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
+      />
     </Box>
   );
 });

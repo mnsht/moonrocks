@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
 import Select from "react-select";
@@ -14,21 +14,6 @@ import Flex from "../flex";
 import Icon from "../icon";
 import { InlineText } from "../typography";
 
-const ChoiceLabel = styled(InlineText)(props => ({
-  fontWeight: themeGet("fontWeights.bold")(props),
-  userSelect: "none"
-}));
-
-ChoiceLabel.defaultProps = {
-  as: "span",
-  ml: 3
-};
-
-const ChoiceContainer = styled(Flex)({
-  cursor: "pointer",
-  alignItems: "center"
-});
-
 const choiceAnimation = {
   selected: {
     scale: 1,
@@ -38,45 +23,36 @@ const choiceAnimation = {
     }
   },
   unselected: {
-    scale: 0.5,
+    scale: 0,
     opacity: 0
   }
 };
 
-const CheckboxElem = styled(Box)(props => ({
-  width: themeGet("widths.2")(props),
-  height: themeGet("heights.2")(props),
-  border: `1px solid ${themeGet("colors.snow")(props)}`,
-  borderRadius: themeGet("radii.normal")(props)
+const ChoiceLabel = styled(InlineText)(props => ({
+  fontWeight: themeGet("fontWeights.bold")(props),
+  marginLeft: themeGet("space.3")(props),
+  userSelect: "none"
 }));
 
-const PosedCheck = posed(Icon)(choiceAnimation);
+const ChoiceContainer = styled(Flex)({
+  cursor: "pointer",
+  alignItems: "center"
+});
 
-export const Checkbox = props => {
-  const [selected, setSelected] = useState(false);
-
-  return (
-    <ChoiceContainer onClick={() => setSelected(!selected)}>
-      <CheckboxElem>
-        <PosedCheck
-          pose={selected ? "selected" : "unselected"}
-          icon={Check}
-          size={0}
-          m={2}
-          color="success"
-        />
-      </CheckboxElem>
-      <ChoiceLabel>{props.label}</ChoiceLabel>
-    </ChoiceContainer>
-  );
+ChoiceContainer.defaultProps = {
+  mb: 2
 };
 
-const RadioElem = styled(Box)(props => ({
+const ChoiceElem = styled(Box)(props => ({
   width: themeGet("widths.1")(props),
   height: themeGet("heights.1")(props),
   border: `1px solid ${themeGet("colors.snow")(props)}`,
-  borderRadius: themeGet("radii.round")(props)
+  borderRadius: props.single
+    ? themeGet("radii.round")(props)
+    : themeGet("radii.normal")(props)
 }));
+
+const PosedCheck = posed(Icon)(choiceAnimation);
 
 const RadioDot = styled(Box)(props => ({
   width: themeGet("widths.1")(props) * 0.5,
@@ -88,16 +64,88 @@ const RadioDot = styled(Box)(props => ({
 
 const PosedRadioDot = posed(RadioDot)(choiceAnimation);
 
-export const Radios = props => {
-  const [selected, setSelected] = useState(null);
+export const CustomChoice = ({ single, value, label, groupOnChange }) => {
+  const [selected, setSelected] = useState(false);
+
+  const ChoiceSelection = single ? (
+    <PosedRadioDot pose={selected ? "selected" : "unselected"} />
+  ) : (
+    <PosedCheck
+      pose={selected ? "selected" : "unselected"}
+      icon={Check}
+      size={0}
+      m="2px"
+      color="primary"
+    />
+  );
 
   return (
-    <ChoiceContainer onClick={() => setSelected(!selected)}>
-      <RadioElem>
-        <PosedRadioDot pose={selected ? "selected" : "unselected"} />
-      </RadioElem>
-      <ChoiceLabel ml={2}>{props.label}</ChoiceLabel>
+    <ChoiceContainer
+      onClick={() => {
+        const newSelectedValue = !selected;
+
+        setSelected(newSelectedValue);
+
+        if (groupOnChange && value) {
+          groupOnChange({ [value]: newSelectedValue });
+        }
+      }}
+    >
+      <ChoiceElem single={single}>{ChoiceSelection}</ChoiceElem>
+      <ChoiceLabel>{label}</ChoiceLabel>
     </ChoiceContainer>
+  );
+};
+
+/*
+TODO:
+- Make radios single selectable
+- Add event listener for individual checkboxes
+*/
+
+export const CustomChoices = ({ single, options, onChange }) => {
+  const [currentOption, setCurrentOption] = useState(null);
+
+  const groupOnChange = obj => {
+    const key = Object.keys(obj)[0];
+    const val = obj[key];
+
+    if (single) {
+      if (val === true) {
+        setCurrentOption(key);
+
+        if (onChange) {
+          onChange(key);
+        }
+      }
+    } else {
+      let optionsArray = Array.isArray(currentOption) ? currentOption : [];
+
+      if (val === true) {
+        optionsArray.push(key);
+      } else {
+        optionsArray = optionsArray.filter(i => i !== key);
+      }
+
+      setCurrentOption(optionsArray);
+
+      if (onChange) {
+        onChange(optionsArray);
+      }
+    }
+  };
+
+  return (
+    <React.Fragment>
+      {options.map((props, i) => (
+        <CustomChoice
+          key={i}
+          {...props}
+          single={single}
+          groupOnChange={groupOnChange}
+        />
+      ))}
+    </React.Fragment>
   );
 };
 
@@ -159,6 +207,7 @@ export const CustomDate = ({ hasYear, ...props }) => (
 const selectStyles = {
   control: (provided, state) => ({
     ...provided,
+    marginBottom: theme.space[3],
     boxShadow: "none",
     borderRadius: state.selectProps.messages
       ? `${theme.radii.normal}px ${theme.radii.normal}px 0px 0px`

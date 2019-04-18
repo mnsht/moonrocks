@@ -50,6 +50,7 @@ export const Input = styled(Box)(props => ({
 Input.defaultProps = {
   ...Box.defaultProps,
   as: "input",
+  mb: 3,
   backgroundColor: "trueWhite"
 };
 
