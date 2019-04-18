@@ -7,6 +7,7 @@ import { Check } from "styled-icons/fa-solid";
 import { REQUIRED_SIZE } from "./_required";
 import { TOOLTIP_SIZE } from "./_tooltip";
 
+import theme from "../theme";
 import Box from "../box";
 import Flex from "../flex";
 import Icon from "../icon";
@@ -75,7 +76,10 @@ const CheckboxElem = styled(Box)(props => ({
 const PosedCheck = posed(Icon)({
   checked: {
     scale: 1,
-    opacity: 1
+    opacity: 1,
+    transition: {
+      duration: parseInt(theme.animations.fast)
+    }
   },
   unchecked: {
     scale: 0.5,

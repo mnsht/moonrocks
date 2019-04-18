@@ -4,18 +4,27 @@ import { themeGet } from "styled-system";
 
 import Box from "../box";
 
-const Icon = styled(Box)(props => ({
+const IconContainer = styled(Box)(props => ({
   width: themeGet(`widths.${props.dimension}`)(props),
   height: themeGet(`heights.${props.dimension}`)(props)
 }));
 
+IconContainer.defaultProps = {
+  dimension: 0
+};
+
+IconContainer.displayName = "IconContainer";
+
+const Icon = styled(Box)({});
+
 Icon.defaultProps = {
-  dimension: 0,
   color: "black"
 };
 
 Icon.displayName = "Icon";
 
-export default React.forwardRef(({ icon, size, ...props }, ref) => (
-  <Icon {...props} as={icon} dimension={size} ref={ref} />
+export default React.forwardRef(({ icon, size, color, ...props }, ref) => (
+  <IconContainer {...props} dimension={size} ref={ref}>
+    <Icon as={icon} color={color} />
+  </IconContainer>
 ));
