@@ -1,13 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
 import Select from "react-select";
 import Cleave from "cleave.js/react";
+import posed from "react-pose";
+import { Check } from "styled-icons/fa-solid";
 
 import { Input, determineInputRightPadding } from "./_base";
 
 import theme from "../theme";
+import Box from "../box";
+import Flex from "../flex";
+import Icon from "../icon";
 import { InlineText } from "../typography";
+
+const ChoiceLabel = styled(InlineText)(props => ({
+  fontWeight: themeGet("fontWeights.bold")(props),
+  userSelect: "none"
+}));
+
+ChoiceLabel.defaultProps = {
+  as: "span",
+  ml: 3
+};
+
+const ChoiceContainer = styled(Flex)({
+  cursor: "pointer",
+  alignItems: "center"
+});
+
+const choiceAnimation = {
+  selected: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: parseInt(theme.animations.fast)
+    }
+  },
+  unselected: {
+    scale: 0.5,
+    opacity: 0
+  }
+};
+
+const CheckboxElem = styled(Box)(props => ({
+  width: themeGet("widths.2")(props),
+  height: themeGet("heights.2")(props),
+  border: `1px solid ${themeGet("colors.snow")(props)}`,
+  borderRadius: themeGet("radii.normal")(props)
+}));
+
+const PosedCheck = posed(Icon)(choiceAnimation);
+
+export const Checkbox = props => {
+  const [selected, setSelected] = useState(false);
+
+  return (
+    <ChoiceContainer onClick={() => setSelected(!selected)}>
+      <CheckboxElem>
+        <PosedCheck
+          pose={selected ? "selected" : "unselected"}
+          icon={Check}
+          size={0}
+          m={2}
+          color="success"
+        />
+      </CheckboxElem>
+      <ChoiceLabel>{props.label}</ChoiceLabel>
+    </ChoiceContainer>
+  );
+};
+
+const RadioElem = styled(Box)(props => ({
+  width: themeGet("widths.1")(props),
+  height: themeGet("heights.1")(props),
+  border: `1px solid ${themeGet("colors.snow")(props)}`,
+  borderRadius: themeGet("radii.round")(props)
+}));
+
+const RadioDot = styled(Box)(props => ({
+  width: themeGet("widths.1")(props) * 0.5,
+  height: themeGet("heights.1")(props) * 0.5,
+  borderRadius: themeGet("radii.round")(props),
+  margin: 5,
+  backgroundColor: themeGet("colors.primary")(props)
+}));
+
+const PosedRadioDot = posed(RadioDot)(choiceAnimation);
+
+export const Radios = props => {
+  const [selected, setSelected] = useState(null);
+
+  return (
+    <ChoiceContainer onClick={() => setSelected(!selected)}>
+      <RadioElem>
+        <PosedRadioDot pose={selected ? "selected" : "unselected"} />
+      </RadioElem>
+      <ChoiceLabel ml={2}>{props.label}</ChoiceLabel>
+    </ChoiceContainer>
+  );
+};
 
 export const CustomPhone = props => (
   <Input

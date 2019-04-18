@@ -1,7 +1,9 @@
 import React from "react";
 
-import { Input, Checkbox, Textarea, InputContainer } from "./_base";
+import { Input, Textarea, InputContainer } from "./_base";
 import {
+  Checkbox,
+  Radios,
   CustomPhone,
   CustomSSN,
   CustomHiddenSSN,
@@ -27,7 +29,7 @@ import Messages, { shouldShow as shouldShowMessages } from "./_messages";
 - DONE: Borderless select (used in graphs on plan overview, could just be a variant of Select)
 - DONE: Date (with various formats)
 - DONE: Password
-- Checkbox
+- DONE: Checkbox
 - Radio
 - Switch (instead of button toggle)
 - DONE: Required for all
@@ -59,6 +61,8 @@ const BaseInput = props => {
     InputComponent = <Input {...props} hasMessages={hasMsgs} type="password" />;
   } else if (props.inputType === "checkbox") {
     InputComponent = <Checkbox {...props} hasMessages={hasMsgs} />;
+  } else if (props.inputType === "radio") {
+    InputComponent = <Radios {...props} hasMessages={hasMsgs} />;
   } else if (props.inputType === "paragraph") {
     InputComponent = <Textarea {...props} hasMessages={hasMsgs} />;
   } else if (props.inputType === "phone") {
@@ -93,6 +97,7 @@ export const PasswordInput = props => (
 export const CheckboxInput = props => (
   <BaseInput inputType="checkbox" {...props} />
 );
+export const RadioInput = props => <BaseInput inputType="radio" {...props} />;
 export const PhoneInput = props => <BaseInput inputType="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>
   hidden ? (

@@ -1,17 +1,10 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
-import posed from "react-pose";
-import { Check } from "styled-icons/fa-solid";
 
 import { REQUIRED_SIZE } from "./_required";
 import { TOOLTIP_SIZE } from "./_tooltip";
 
-import theme from "../theme";
 import Box from "../box";
-import Flex from "../flex";
-import Icon from "../icon";
-import { InlineText } from "../typography";
 
 export const determineInputRightPadding = (required, tooltip, spacer) => {
   let additionalPadding = 0;
@@ -61,56 +54,6 @@ Input.defaultProps = {
 };
 
 Input.displayName = "Input";
-
-const CheckboxContainer = styled(Flex)({
-  cursor: "pointer",
-  alignItems: "center"
-});
-
-const CheckboxElem = styled(Box)(props => ({
-  width: themeGet("widths.2")(props),
-  height: themeGet("heights.2")(props),
-  ...determineBorders(props)
-}));
-
-const PosedCheck = posed(Icon)({
-  checked: {
-    scale: 1,
-    opacity: 1,
-    transition: {
-      duration: parseInt(theme.animations.fast)
-    }
-  },
-  unchecked: {
-    scale: 0.5,
-    opacity: 0
-  }
-});
-
-const CheckboxLabel = styled(InlineText)(props => ({
-  fontWeight: themeGet("fontWeights.bold")(props),
-  marginLeft: themeGet("space.3")(props),
-  userSelect: "none"
-}));
-
-export const Checkbox = props => {
-  const [checked, setChecked] = useState(false);
-
-  return (
-    <CheckboxContainer onClick={() => setChecked(!checked)}>
-      <CheckboxElem>
-        <PosedCheck
-          pose={checked ? "checked" : "unchecked"}
-          icon={Check}
-          size={0}
-          m={2}
-          color="success"
-        />
-      </CheckboxElem>
-      <CheckboxLabel>{props.label}</CheckboxLabel>
-    </CheckboxContainer>
-  );
-};
 
 export const Textarea = styled(Input)({
   resize: "none",
