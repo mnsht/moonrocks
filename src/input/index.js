@@ -12,7 +12,7 @@ import {
   CustomSelect,
   CustomMultiSelect,
   CustomDate
-} from "./_custom-inputs";
+} from "./_custom";
 import Required from "./_required";
 import Tooltip from "./_tooltip";
 import Messages, { shouldShow as shouldShowMessages } from "./_messages";

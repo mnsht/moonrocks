@@ -10,11 +10,11 @@ export const TOOLTIP_SIZE = 24;
 const TOOLTIP_SPACING = "space.2";
 
 const determineRightPosition = props => {
-  const { withinInput, type } = props;
+  const { withinInput, inputType } = props;
 
   let additionalSpacing = 0;
 
-  if (withinInput && (type === "select" || type === "multiselect")) {
+  if (withinInput && (inputType === "select" || inputType === "multiselect")) {
     additionalSpacing += 38;
   }
 
@@ -181,7 +181,7 @@ Tooltip.defaultProps = {
 
 Tooltip.displayName = "Tooltip";
 
-export default ({ tooltip, position, withinInput, type }) => {
+export default ({ tooltip, position, withinInput, inputType }) => {
   const [showing, setShowing] = useState(false);
 
   if (withinInput) {
@@ -189,7 +189,7 @@ export default ({ tooltip, position, withinInput, type }) => {
   }
 
   return (
-    <TooltipContainer withinInput={withinInput} type={type}>
+    <TooltipContainer withinInput={withinInput} inputType={inputType}>
       <TooltipIcon onClick={() => setShowing(!showing)} showing={showing}>
         ?
       </TooltipIcon>
