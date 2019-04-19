@@ -6,6 +6,20 @@ import { InlineText } from "../typography";
 
 export const REQUIRED_SIZE = 14;
 
+const determinePositioning = props => {
+  if (props.withinInput) {
+    return {
+      position: "absolute",
+      top: "20px",
+      right: determineRightPosition(props)
+    };
+  } else {
+    return {
+      marginRight: themeGet("space.3")(props)
+    };
+  }
+};
+
 const determineRightPosition = props => {
   const { tooltip, type } = props;
 
@@ -23,12 +37,10 @@ const determineRightPosition = props => {
 };
 
 const RequiredElem = styled(InlineText)(props => ({
-  position: "absolute",
+  ...determinePositioning(props),
   height: `${REQUIRED_SIZE}px`,
   width: `${REQUIRED_SIZE}px`,
   lineHeight: "0.85",
-  top: "20px",
-  right: determineRightPosition(props),
   fontWeight: themeGet("fontWeights.extraBold")(props),
   color: themeGet("colors.error")(props),
   fontSize: themeGet("fontSizes.5")(props),

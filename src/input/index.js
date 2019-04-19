@@ -1,5 +1,6 @@
 import React from "react";
 
+import Flex from "../flex";
 import { Input, Textarea, InputContainer } from "./_base";
 import {
   CustomChoice,
@@ -59,12 +60,6 @@ const BaseInput = props => {
     InputComponent = <Input {...props} hasMessages={hasMsgs} type="email" />;
   } else if (props.inputType === "password") {
     InputComponent = <Input {...props} hasMessages={hasMsgs} type="password" />;
-  } else if (props.inputType === "checkbox") {
-    InputComponent = <CustomChoice {...props} hasMessages={hasMsgs} />;
-  } else if (props.inputType === "checkboxes") {
-    InputComponent = <CustomChoices {...props} hasMessages={hasMsgs} />;
-  } else if (props.inputType === "radios") {
-    InputComponent = <CustomChoices {...props} hasMessages={hasMsgs} isRadio />;
   } else if (props.inputType === "paragraph") {
     InputComponent = <Textarea {...props} hasMessages={hasMsgs} />;
   } else if (props.inputType === "phone") {
@@ -84,9 +79,33 @@ const BaseInput = props => {
   return (
     <InputContainer>
       {InputComponent}
-      {props.required && <Required {...props} />}
+      {props.required && <Required {...props} withinInput />}
       {props.tooltip && <Tooltip {...props} withinInput />}
       {hasMsgs && <Messages {...props} />}
+    </InputContainer>
+  );
+};
+
+const ChoiceBaseInput = props => {
+  let InputComponent;
+
+  if (props.inputType === "checkbox") {
+    InputComponent = <CustomChoice {...props} />;
+  } else if (props.inputType === "checkboxes") {
+    InputComponent = <CustomChoices {...props} />;
+  } else if (props.inputType === "radios") {
+    InputComponent = <CustomChoices {...props} isRadio />;
+  }
+
+  return (
+    <InputContainer>
+      {(props.required || props.tooltip) && (
+        <Flex alignItems="center" mb={2}>
+          {props.required && <Required {...props} />}
+          {props.tooltip && <Tooltip {...props} position="top-right" />}
+        </Flex>
+      )}
+      {InputComponent}
     </InputContainer>
   );
 };
@@ -97,12 +116,14 @@ export const PasswordInput = props => (
   <BaseInput inputType="password" {...props} />
 );
 export const CheckboxInput = props => (
-  <BaseInput inputType="checkbox" {...props} />
+  <ChoiceBaseInput inputType="checkbox" {...props} />
 );
 export const CheckboxInputs = props => (
-  <BaseInput inputType="checkboxes" {...props} />
+  <ChoiceBaseInput inputType="checkboxes" {...props} />
 );
-export const RadioInputs = props => <BaseInput inputType="radios" {...props} />;
+export const RadioInputs = props => (
+  <ChoiceBaseInput inputType="radios" {...props} />
+);
 export const PhoneInput = props => <BaseInput inputType="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>
   hidden ? (
