@@ -30,7 +30,7 @@ import Messages, { shouldShow as shouldShowMessages } from "./_messages";
 - DONE: Date (with various formats)
 - DONE: Password
 - DONE: Checkbox
-- Radio
+- DONE: Radio
 - Switch (instead of button toggle)
 - DONE: Required for all
 - DONE: Tooltips for all (remember to export this, as it can also be used outside a form)
@@ -63,10 +63,8 @@ const BaseInput = props => {
     InputComponent = <CustomChoice {...props} hasMessages={hasMsgs} />;
   } else if (props.inputType === "checkboxes") {
     InputComponent = <CustomChoices {...props} hasMessages={hasMsgs} />;
-  } else if (props.inputType === "radio") {
-    InputComponent = <CustomChoice {...props} hasMessages={hasMsgs} single />;
   } else if (props.inputType === "radios") {
-    InputComponent = <CustomChoices {...props} hasMessages={hasMsgs} single />;
+    InputComponent = <CustomChoices {...props} hasMessages={hasMsgs} isRadio />;
   } else if (props.inputType === "paragraph") {
     InputComponent = <Textarea {...props} hasMessages={hasMsgs} />;
   } else if (props.inputType === "phone") {
@@ -104,7 +102,6 @@ export const CheckboxInput = props => (
 export const CheckboxInputs = props => (
   <BaseInput inputType="checkboxes" {...props} />
 );
-export const RadioInput = props => <BaseInput inputType="radio" {...props} />;
 export const RadioInputs = props => <BaseInput inputType="radios" {...props} />;
 export const PhoneInput = props => <BaseInput inputType="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>

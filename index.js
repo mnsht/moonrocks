@@ -19,7 +19,10 @@ export {
   ParagraphInput,
   SelectInput,
   MultiSelectInput,
-  DateInput
+  DateInput,
+  CheckboxInput,
+  CheckboxInputs,
+  RadioInputs
 } from "./src/input";
 export { default as Tooltip } from "./src/input/_tooltip";
 export {

@@ -116,7 +116,13 @@ stories.add("as a checkbox input", () => {
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
-      <CheckboxInput label={label} required={required} tooltip={tooltip} />
+      <CheckboxInput
+        label={label}
+        required={required}
+        tooltip={tooltip}
+        initialValue={true}
+        onChange={value => console.log("STORY", value)}
+      />
     </Box>
   );
 });
@@ -148,18 +154,6 @@ stories.add("as multiple checkboxes", () => {
         tooltip={tooltip}
         onChange={value => console.log("STORY", value)}
       />
-    </Box>
-  );
-});
-
-stories.add("as a radio input", () => {
-  const label = text("Label", "Do we wanna do this?", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
-
-  return (
-    <Box width={[1, 1 / 2, 1 / 3]}>
-      <RadioInput label={label} required={required} tooltip={tooltip} />
     </Box>
   );
 });

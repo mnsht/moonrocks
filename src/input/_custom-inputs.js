@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
 import Select from "react-select";
@@ -47,7 +47,7 @@ const ChoiceElem = styled(Box)(props => ({
   width: themeGet("widths.1")(props),
   height: themeGet("heights.1")(props),
   border: `1px solid ${themeGet("colors.snow")(props)}`,
-  borderRadius: props.single
+  borderRadius: props.isRadio
     ? themeGet("radii.round")(props)
     : themeGet("radii.normal")(props)
 }));
@@ -64,10 +64,27 @@ const RadioDot = styled(Box)(props => ({
 
 const PosedRadioDot = posed(RadioDot)(choiceAnimation);
 
-export const CustomChoice = ({ single, value, label, groupOnChange }) => {
-  const [selected, setSelected] = useState(false);
+export const CustomChoice = ({
+  initialValue = false,
+  isRadio,
+  value,
+  label,
+  currentOption, // current values when part of a group
+  groupOnChange, // onChange when part of a group
+  onChange // local onChange
+}) => {
+  const [selected, setSelected] = useState(initialValue);
 
-  const ChoiceSelection = single ? (
+  if (
+    isRadio &&
+    currentOption !== null &&
+    currentOption !== value &&
+    selected !== false
+  ) {
+    setSelected(false);
+  }
+
+  const ChoiceSelection = isRadio ? (
     <PosedRadioDot pose={selected ? "selected" : "unselected"} />
   ) : (
     <PosedCheck
@@ -82,35 +99,35 @@ export const CustomChoice = ({ single, value, label, groupOnChange }) => {
   return (
     <ChoiceContainer
       onClick={() => {
-        const newSelectedValue = !selected;
+        if (!isRadio || (isRadio && selected !== true)) {
+          const newSelectedValue = !selected;
 
-        setSelected(newSelectedValue);
+          setSelected(newSelectedValue);
 
-        if (groupOnChange && value) {
-          groupOnChange({ [value]: newSelectedValue });
+          if (!isRadio && onChange) {
+            onChange(newSelectedValue);
+          }
+
+          if (groupOnChange && value) {
+            groupOnChange({ [value]: newSelectedValue });
+          }
         }
       }}
     >
-      <ChoiceElem single={single}>{ChoiceSelection}</ChoiceElem>
+      <ChoiceElem isRadio={isRadio}>{ChoiceSelection}</ChoiceElem>
       <ChoiceLabel>{label}</ChoiceLabel>
     </ChoiceContainer>
   );
 };
 
-/*
-TODO:
-- Make radios single selectable
-- Add event listener for individual checkboxes
-*/
-
-export const CustomChoices = ({ single, options, onChange }) => {
+export const CustomChoices = ({ isRadio, options, onChange }) => {
   const [currentOption, setCurrentOption] = useState(null);
 
   const groupOnChange = obj => {
     const key = Object.keys(obj)[0];
     const val = obj[key];
 
-    if (single) {
+    if (isRadio) {
       if (val === true) {
         setCurrentOption(key);
 
@@ -141,7 +158,8 @@ export const CustomChoices = ({ single, options, onChange }) => {
         <CustomChoice
           key={i}
           {...props}
-          single={single}
+          isRadio={isRadio}
+          currentOption={currentOption}
           groupOnChange={groupOnChange}
         />
       ))}
