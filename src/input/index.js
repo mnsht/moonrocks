@@ -5,6 +5,7 @@ import { Input, Textarea, InputContainer } from "./_base";
 import {
   CustomChoice,
   CustomChoices,
+  CustomSwitch,
   CustomPhone,
   CustomSSN,
   CustomHiddenSSN,
@@ -95,6 +96,8 @@ const ChoiceBaseInput = props => {
     InputComponent = <CustomChoices {...props} />;
   } else if (props.inputType === "radios") {
     InputComponent = <CustomChoices {...props} isRadio />;
+  } else if (props.inputType === "switch") {
+    InputComponent = <CustomSwitch {...props} />;
   }
 
   return (
@@ -123,6 +126,9 @@ export const CheckboxInputs = props => (
 );
 export const RadioInputs = props => (
   <ChoiceBaseInput inputType="radios" {...props} />
+);
+export const SwitchInput = props => (
+  <ChoiceBaseInput inputType="switch" {...props} />
 );
 export const PhoneInput = props => <BaseInput inputType="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>

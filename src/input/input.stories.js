@@ -9,8 +9,8 @@ import {
   PasswordInput,
   CheckboxInput,
   CheckboxInputs,
-  RadioInput,
   RadioInputs,
+  SwitchInput,
   PhoneInput,
   SSNInput,
   CurrencyInput,
@@ -181,6 +181,26 @@ stories.add("as multiple radios", () => {
     <Box width={[1, 1 / 2, 1 / 3]}>
       <RadioInputs
         options={options}
+        required={required}
+        tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
+      />
+    </Box>
+  );
+});
+
+stories.add("as a switch input", () => {
+  const on = text("On", "To be", "Main");
+  const off = text("Off", "Not to be", "Main");
+  const required = boolean("Is required?", false, "Main");
+  const tooltip = text("Tooltip text", null, "Main");
+
+  return (
+    <Box width={[1, 1 / 2, 1 / 3]}>
+      <SwitchInput
+        initialValue={true}
+        on={on}
+        off={off}
         required={required}
         tooltip={tooltip}
         onChange={value => console.log("STORY", value)}
