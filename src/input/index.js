@@ -33,7 +33,7 @@ import Messages, { shouldShow as shouldShowMessages } from "./_messages";
 - DONE: Password
 - DONE: Checkbox
 - DONE: Radio
-- Switch (instead of button toggle)
+- DONE: Switch (instead of button toggle)
 - DONE: Required for all
 - DONE: Tooltips for all (remember to export this, as it can also be used outside a form)
 - DONE: Warning and alert states for all (with position absolute, not affecting next row)

@@ -22,7 +22,8 @@ export {
   DateInput,
   CheckboxInput,
   CheckboxInputs,
-  RadioInputs
+  RadioInputs,
+  SwitchInput
 } from "./src/input";
 export { default as Tooltip } from "./src/input/_tooltip";
 export {
