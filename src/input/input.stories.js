@@ -72,6 +72,7 @@ stories.add("as a text input", () => {
         required={required}
         tooltip={tooltip}
         messages={store.get("messages")}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
@@ -88,6 +89,7 @@ stories.add("as an email input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
@@ -104,6 +106,7 @@ stories.add("as an password input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
@@ -192,7 +195,6 @@ stories.add("as multiple radios", () => {
 stories.add("as a switch input", () => {
   const on = text("On", "To be", "Main");
   const off = text("Off", "Not to be", "Main");
-  const required = boolean("Is required?", false, "Main");
   const tooltip = text("Tooltip text", null, "Main");
 
   return (
@@ -201,7 +203,6 @@ stories.add("as a switch input", () => {
         initialValue={true}
         on={on}
         off={off}
-        required={required}
         tooltip={tooltip}
         onChange={value => console.log("STORY", value)}
       />
@@ -220,6 +221,7 @@ stories.add("as a phone input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
@@ -240,6 +242,7 @@ stories.add("as an SSN input", () => {
         tooltip={tooltip}
         hidden={hidden}
         value={value}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
@@ -251,7 +254,11 @@ stories.add("as a currency input", () => {
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
-      <CurrencyInput required={required} tooltip={tooltip} />
+      <CurrencyInput
+        required={required}
+        tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
+      />
     </Box>
   );
 });
@@ -267,13 +274,13 @@ stories.add("as a paragraph input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
 });
 
 stories.add("as a select input", () => {
-  // Use this as a reference... the props are passed right through: https://react-select.com/
   const placeholder = text("Placeholder", "Select something...", "Main");
   const required = boolean("Is required?", false, "Main");
   const tooltip = text("Tooltip text", null, "Main");
@@ -287,13 +294,13 @@ stories.add("as a select input", () => {
         tooltip={tooltip}
         borderless={borderless}
         options={sampleOptions}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
 });
 
 stories.add("as a multiselect input", () => {
-  // Use this as a reference... the props are passed right through: https://react-select.com/
   const placeholder = text("Placeholder", "Select multiple things...", "Main");
   const required = boolean("Is required?", false, "Main");
   const tooltip = text("Tooltip text", null, "Main");
@@ -305,6 +312,7 @@ stories.add("as a multiselect input", () => {
         required={required}
         tooltip={tooltip}
         options={sampleOptions}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
@@ -326,6 +334,7 @@ stories.add("as a date input (mm-dd-yyyy)", () => {
         required={required}
         tooltip={tooltip}
         hasYear
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
@@ -342,6 +351,7 @@ stories.add("as a date input (mm-dd)", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        onChange={value => console.log("STORY", value)}
       />
     </Box>
   );
