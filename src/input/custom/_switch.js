@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
 
+import Box from "../../box";
 import Flex from "../../flex";
 import { InlineText } from "../../typography";
 
 const SWITCH_PADDING = 3;
 
-const SwitchText = styled(InlineText)(props => ({
-  fontWeight: themeGet("fontWeights.bold")(props)
-}));
-
-const SwitchTrack = styled("div")(props => ({
+const SwitchTrack = styled(Box)(props => ({
   position: "relative",
   width: themeGet("widths.1")(props) * 2 + SWITCH_PADDING * 4,
   height: themeGet("heights.1")(props) + SWITCH_PADDING * 2,
@@ -23,7 +20,7 @@ const SwitchTrack = styled("div")(props => ({
   transition: `background ${themeGet("animations.fast")(props)} ease-in-out`
 }));
 
-const SwitchBall = styled("div")(props => ({
+const SwitchBall = styled(Box)(props => ({
   position: "absolute",
   top: 0,
   left: props.selected ? "50%" : "0%",
@@ -44,7 +41,11 @@ export default ({ initialValue = false, on, off, onChange }) => {
 
   return (
     <Flex alignItems="center">
-      {off && <SwitchText mr={2}>{off}</SwitchText>}
+      {off && (
+        <InlineText fontWeight="bold" mr={2}>
+          {off}
+        </InlineText>
+      )}
       <SwitchTrack
         selected={selected}
         onClick={() => {
@@ -59,7 +60,11 @@ export default ({ initialValue = false, on, off, onChange }) => {
       >
         <SwitchBall selected={selected} />
       </SwitchTrack>
-      {on && <SwitchText ml={2}>{on}</SwitchText>}
+      {on && (
+        <InlineText fontWeight="bold" ml={2}>
+          {on}
+        </InlineText>
+      )}
     </Flex>
   );
 };

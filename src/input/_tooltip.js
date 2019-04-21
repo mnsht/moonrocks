@@ -27,7 +27,7 @@ const withinInputStyles = props => ({
   right: determineRightPosition(props)
 });
 
-const TooltipContainer = styled("div")(props =>
+const TooltipContainer = styled(Box)(props =>
   props.withinInput
     ? withinInputStyles(props)
     : {
@@ -37,7 +37,7 @@ const TooltipContainer = styled("div")(props =>
 
 TooltipContainer.displayName = "TooltipContainer";
 
-const TooltipIcon = styled("div")(props => ({
+const TooltipIcon = styled(Box)(props => ({
   width: `${TOOLTIP_SIZE}px`,
   height: `${TOOLTIP_SIZE}px`,
   textAlign: "center",
