@@ -41,11 +41,7 @@ export default ({ initialValue = false, on, off, onChange }) => {
 
   return (
     <Flex alignItems="center">
-      {off && (
-        <InlineText fontWeight="bold" mr={2}>
-          {off}
-        </InlineText>
-      )}
+      {off && <InlineText mr={2}>{off}</InlineText>}
       <SwitchTrack
         selected={selected}
         onClick={() => {
@@ -60,11 +56,7 @@ export default ({ initialValue = false, on, off, onChange }) => {
       >
         <SwitchBall selected={selected} />
       </SwitchTrack>
-      {on && (
-        <InlineText fontWeight="bold" ml={2}>
-          {on}
-        </InlineText>
-      )}
+      {on && <InlineText ml={2}>{on}</InlineText>}
     </Flex>
   );
 };

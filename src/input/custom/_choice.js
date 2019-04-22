@@ -25,7 +25,6 @@ const choiceAnimation = {
 };
 
 const ChoiceLabel = styled(InlineText)(props => ({
-  fontWeight: themeGet("fontWeights.bold")(props),
   marginLeft: themeGet("space.3")(props),
   userSelect: "none"
 }));

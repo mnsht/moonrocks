@@ -19,24 +19,7 @@ import Tooltip from "./_tooltip";
 import Messages, { shouldShow as shouldShowMessages } from "./_messages";
 
 /*
-- DONE: Text
-- DONE: Email
-- DONE: Phone
-- DONE: SSN visible
-- DONE: SSN hidden
-- DONE: Currency
-- DONE: Textarea
-- DONE: Select
-- DONE: Multiselect
-- DONE: Borderless select (used in graphs on plan overview, could just be a variant of Select)
-- DONE: Date (with various formats)
-- DONE: Password
-- DONE: Checkbox
-- DONE: Radio
-- DONE: Switch (instead of button toggle)
-- DONE: Required for all
-- DONE: Tooltips for all (remember to export this, as it can also be used outside a form)
-- DONE: Warning and alert states for all (with position absolute, not affecting next row)
+TODO:
 - Fix issue error messages showing up below
 - Fix props errors
 */
