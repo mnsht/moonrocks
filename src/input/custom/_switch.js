@@ -29,7 +29,7 @@ const SwitchBall = styled(Box)(props => ({
   height: themeGet("heights.1")(props),
   background: props.selected
     ? themeGet("colors.white")(props)
-    : themeGet("colors.darkGray")(props),
+    : themeGet("colors.mediumGray")(props),
   borderRadius: themeGet("radii.round")(props),
   transition: `left ${themeGet("animations.fast")(
     props

@@ -189,6 +189,7 @@ export default {
   // Various z-indexes
   zIndicies: {
     baseline: 0,
+    messages: 100,
     tooltip: 900,
     dialog: 1000
   },

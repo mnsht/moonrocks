@@ -50,7 +50,6 @@ export const Input = styled(Box)(props => ({
 Input.defaultProps = {
   ...Box.defaultProps,
   as: "input",
-  mb: 3,
   backgroundColor: "trueWhite"
 };
 
@@ -74,3 +73,9 @@ Textarea.displayName = "Textarea";
 export const InputContainer = styled(Box)({
   position: "relative"
 });
+
+InputContainer.defaultProps = {
+  mb: 3
+};
+
+InputContainer.displayName = "InputContainer";

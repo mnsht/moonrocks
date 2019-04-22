@@ -20,7 +20,6 @@ import Messages, { shouldShow as shouldShowMessages } from "./_messages";
 
 /*
 TODO:
-- Fix issue error messages showing up below
 - Fix props errors
 */
 

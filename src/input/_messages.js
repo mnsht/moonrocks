@@ -5,11 +5,20 @@ import posed, { PoseGroup } from "react-pose";
 
 import Box from "../box";
 
+// NOTE: If we want styles to sit below the input, rather than float on top, then simply flip this value... :)
+const IS_FLOATING = true;
+
+const floatingStyles = () =>
+  IS_FLOATING && {
+    position: "absolute",
+    top: "100%",
+    left: 0,
+    marginTop: -1
+  };
+
 const MessagesContainer = styled(Box)(props => ({
-  position: "absolute",
-  top: "100%",
-  left: 0,
-  marginTop: -1,
+  ...floatingStyles(),
+  zIndex: themeGet("zIndicies.messages")(props),
   width: "100%",
   overflow: "hidden",
   borderBottomLeftRadius: themeGet("radii.normal")(props),
