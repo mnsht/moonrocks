@@ -75,6 +75,7 @@ export const InputContainer = styled(Box)({
 });
 
 InputContainer.defaultProps = {
+  ...Box.defaultProps,
   mb: 3
 };
 
