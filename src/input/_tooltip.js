@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { themeGet } from "styled-system";
-import posed from "react-pose";
+import posed, { PoseGroup } from "react-pose";
 
 import theme from "../theme";
 import Box from "../box";
 
-export const TOOLTIP_SIZE = 24;
-const TOOLTIP_SPACING = "space.2";
+export const TOOLTIP_SIZE = theme.widths[1];
+const TOOLTIP_SPACING = theme.space[2];
 
 const determineRightPosition = props => {
   const { withinInput, inputType } = props;
@@ -59,9 +59,11 @@ const TooltipIcon = styled(Box)(props => ({
 
 TooltipIcon.displayName = "TooltipIcon";
 
-const getPosition = (position, spacer) => {
+const getPosition = (position, spacer, justMargins) => {
+  let returnedPositions;
+
   if (position === "top") {
-    return {
+    returnedPositions = {
       top: "0%",
       left: "50%",
       transform: "translateX(-50%) translateY(-100%)",
@@ -70,7 +72,7 @@ const getPosition = (position, spacer) => {
   }
 
   if (position === "top-right") {
-    return {
+    returnedPositions = {
       top: "0%",
       left: "100%",
       transform: "translateY(-100%)",
@@ -81,7 +83,7 @@ const getPosition = (position, spacer) => {
   }
 
   if (position === "right") {
-    return {
+    returnedPositions = {
       top: "50%",
       left: "100%",
       transform: "translateY(-50%)",
@@ -90,7 +92,7 @@ const getPosition = (position, spacer) => {
   }
 
   if (position === "bottom-right") {
-    return {
+    returnedPositions = {
       top: "100%",
       left: "100%",
       transform: "none",
@@ -101,7 +103,7 @@ const getPosition = (position, spacer) => {
   }
 
   if (position === "bottom") {
-    return {
+    returnedPositions = {
       top: "100%",
       left: "50%",
       transform: "translateX(-50%)",
@@ -110,7 +112,7 @@ const getPosition = (position, spacer) => {
   }
 
   if (position === "bottom-left") {
-    return {
+    returnedPositions = {
       top: "100%",
       left: "0%",
       transform: "translateX(-100%)",
@@ -121,7 +123,7 @@ const getPosition = (position, spacer) => {
   }
 
   if (position === "left") {
-    return {
+    returnedPositions = {
       top: "50%",
       left: "0%",
       transform: "translateX(-100%) translateY(-50%)",
@@ -130,7 +132,7 @@ const getPosition = (position, spacer) => {
   }
 
   if (position === "top-left") {
-    return {
+    returnedPositions = {
       top: "0%",
       left: "0%",
       transform: "translateX(-100%) translateY(-100%)",
@@ -139,40 +141,61 @@ const getPosition = (position, spacer) => {
       borderBottomRightRadius: 0
     };
   }
-};
 
-const posedTooltip = {
-  showing: {
-    opacity: 1,
-    transition: {
-      duration: parseInt(theme.animations.fast),
-      ease: "easeInOut"
-    }
-  },
-  hidden: {
-    opacity: 0,
-    transition: {
-      duration: parseInt(theme.animations.fast),
-      ease: "easeInOut"
-    }
+  const marginKeys = ["marginTop", "marginRight", "marginBottom", "marginLeft"];
+
+  const filterMargins = (myObj, flipped) =>
+    Object.keys(myObj)
+      .filter(key =>
+        flipped ? !marginKeys.includes(key) : marginKeys.includes(key)
+      )
+      .reduce((obj, key) => {
+        return {
+          ...obj,
+          [key]: myObj[key]
+        };
+      }, {});
+
+  if (justMargins) {
+    return filterMargins(returnedPositions);
+  } else {
+    return filterMargins(returnedPositions, true);
   }
 };
 
-const Tooltip = styled(posed(Box)(posedTooltip))(props => ({
+const tooltipTransition = {
+  transition: {
+    duration: parseInt(theme.animations.fast),
+    ease: "easeInOut"
+  }
+};
+
+const posedTooltip = position => ({
+  enter: {
+    opacity: 1,
+    ...getPosition(position, TOOLTIP_SPACING, true),
+    ...tooltipTransition
+  },
+  exit: {
+    opacity: 0,
+    ...tooltipTransition
+  }
+});
+
+const Tooltip = styled(
+  posed(Box)(poseProps => posedTooltip(poseProps.position))
+)(props => ({
   position: "absolute",
   backgroundColor: themeGet("colors.blacks.4")(props),
   color: themeGet("colors.white")(props),
   textAlign: "center",
   borderRadius: themeGet("radii.normal")(props),
-  paddingTop: themeGet("space.2")(props),
-  paddingBottom: themeGet("space.2")(props),
-  paddingLeft: themeGet("space.3")(props),
-  paddingRight: themeGet("space.3")(props),
+  padding: `${themeGet("space.2")(props)}px ${themeGet("space.3")(props)}px`,
   width: 240,
   boxShadow: themeGet("shadows.normal")(props),
   userSelect: "none",
   zIndex: themeGet("zIndicies.tooltip")(props),
-  ...getPosition(props.position, themeGet(TOOLTIP_SPACING)(props))
+  ...getPosition(props.position, TOOLTIP_SPACING)
 }));
 
 Tooltip.defaultProps = {
@@ -193,9 +216,13 @@ export default ({ tooltip, position, withinInput, inputType }) => {
       <TooltipIcon onClick={() => setShowing(!showing)} showing={showing}>
         ?
       </TooltipIcon>
-      <Tooltip position={position} pose={showing ? "showing" : "hidden"}>
-        {tooltip}
-      </Tooltip>
+      <PoseGroup>
+        {showing && (
+          <Tooltip key="tooltip" position={position}>
+            {tooltip}
+          </Tooltip>
+        )}
+      </PoseGroup>
     </TooltipContainer>
   );
 };
