@@ -22,4 +22,11 @@ Row.defaultProps = {
 
 Row.displayName = "Row";
 
-export { default as Column } from "../box";
+export const Column = styled(Box)({});
+
+Column.defaultProps = {
+  as: "div",
+  px: 2
+};
+
+Column.displayName = "Column";

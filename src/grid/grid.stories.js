@@ -11,29 +11,29 @@ stories.add("default", () => {
     <Container>
       <Row>
         <Column width={[1, null, 1 / 2]}>
-          <Card p={2} m={2}>
+          <Card p={2} my={2}>
             1 / 2
           </Card>
         </Column>
         <Column width={[1, null, 1 / 2]}>
-          <Card p={2} m={2}>
+          <Card p={2} my={2}>
             1 / 2
           </Card>
         </Column>
       </Row>
       <Row>
         <Column width={1 / 3}>
-          <Card p={2} m={2}>
+          <Card p={2} my={2}>
             1 / 3
           </Card>
         </Column>
         <Column width={1 / 3}>
-          <Card p={2} m={2}>
+          <Card p={2} my={2}>
             1 / 3
           </Card>
         </Column>
         <Column width={1 / 3}>
-          <Card p={2} m={2}>
+          <Card p={2} my={2}>
             1 / 3
           </Card>
         </Column>

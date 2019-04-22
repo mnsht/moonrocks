@@ -20,6 +20,7 @@ import {
   DateInput
 } from "./";
 import Box from "../box";
+import { Container, Row, Column } from "../grid";
 
 const sampleOptions = [
   { value: "chocolate", label: "Chocolate" },
@@ -39,26 +40,207 @@ const store = new Store({
 stories.addDecorator(withKnobs);
 stories.addDecorator(StateDecorator(store));
 
+const addMessage = (type, text) => {
+  const newMessages = store.get("messages");
+
+  newMessages[type].push(text);
+
+  store.set({ messages: newMessages });
+};
+
+const removeMessage = type => {
+  const newMessages = store.get("messages");
+
+  newMessages[type].shift();
+
+  store.set({ messages: newMessages });
+};
+
+stories.add("everything but the kitchen sink", () => {
+  const required = boolean("Is required?", true, "Main");
+  const tooltip = text("Tooltip text", "Hello world!", "Main");
+  const messages = store.get("messages");
+
+  const onChange = (key, value) => {
+    store.set({ [key]: value });
+
+    console.log("onChange", key, value);
+    console.log("store", store.get());
+  };
+
+  button("Add warning", () => addMessage("warnings", "Password isn't strong"));
+  button("Add error", () => addMessage("errors", "This field is required"));
+  button("Remove warning", () => removeMessage("warnings"));
+  button("Remove error", () => removeMessage("errors"));
+
+  const options = [
+    {
+      value: "blue",
+      label: "Blue pill"
+    },
+    {
+      value: "red",
+      label: "Red pill"
+    },
+    {
+      value: "rainbow",
+      label: "Rainbow pill"
+    }
+  ];
+
+  return (
+    <Container>
+      <Row>
+        <Column width={[1, null, 1 / 3]}>
+          <TextInput
+            placeholder="Text input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("text", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <EmailInput
+            placeholder="Email input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("email", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <PasswordInput
+            placeholder="Password input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("password", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <PhoneInput
+            placeholder="Phone input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("phone", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <SSNInput
+            placeholder="SSN input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("ssn", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <CurrencyInput
+            placeholder="Currency input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("currency", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <ParagraphInput
+            placeholder="Paragraph input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("paragraph", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <DateInput
+            placeholder="Date input (MM-DD)"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("date", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <DateInput
+            placeholder="Date input (MM-DD-YYYY)"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            hasYear
+            onChange={value => onChange("date-long", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <SelectInput
+            placeholder="Select input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            options={sampleOptions}
+            onChange={value => onChange("select", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <MultiSelectInput
+            placeholder="Multiselect input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            options={sampleOptions}
+            onChange={value => onChange("multiselect", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <CheckboxInput
+            label="Checkbox input"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("checkbox", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <CheckboxInputs
+            label="Checkbox inputs"
+            options={options}
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("checkboxes", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <RadioInputs
+            label="Radio inputs"
+            options={options}
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("radios", value)}
+          />
+        </Column>
+        <Column width={[1, null, 1 / 3]}>
+          <SwitchInput
+            off="Off"
+            on="On"
+            required={required}
+            tooltip={tooltip}
+            messages={messages}
+            onChange={value => onChange("switch", value)}
+          />
+        </Column>
+      </Row>
+    </Container>
+  );
+});
+
 stories.add("as a text input", () => {
   const placeholder = text("Placeholder", "Type something...", "Main");
   const required = boolean("Is required?", true, "Main");
   const tooltip = text("Tooltip text", "Hello world!", "Main");
-
-  const addMessage = (type, text) => {
-    const newMessages = store.get("messages");
-
-    newMessages[type].push(text);
-
-    store.set({ messages: newMessages });
-  };
-
-  const removeMessage = type => {
-    const newMessages = store.get("messages");
-
-    newMessages[type].shift();
-
-    store.set({ messages: newMessages });
-  };
 
   button("Add warning", () => addMessage("warnings", "Password isn't strong"));
   button("Add error", () => addMessage("errors", "This field is required"));

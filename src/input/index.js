@@ -37,14 +37,8 @@ import Messages, { shouldShow as shouldShowMessages } from "./_messages";
 - DONE: Required for all
 - DONE: Tooltips for all (remember to export this, as it can also be used outside a form)
 - DONE: Warning and alert states for all (with position absolute, not affecting next row)
-- Validation for all (or perhaps do this inside of app?)
-- DONE: See if all onChange events are firing correctly and all values are correctly outputting
-- Refactor this page for simplicity
+- Fix issue error messages showing up below
 - Fix props errors
-- Have a single story showing all inputs (responsive, kitchen sink)
-
-- MAYBE: Button toggle
-- MAYBE: Left icons for all
 */
 
 const eventOnChange = (event, type) => onChange => {
