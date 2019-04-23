@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Flex from '../flex';
 import { Input, Textarea, InputContainer } from './_base';
 import {
   CustomChoice,
@@ -18,10 +17,7 @@ import Required from './_required';
 import Tooltip from './_tooltip';
 import Messages from './_messages';
 
-/*
-TODO:
-- Fix props errors
-*/
+import Flex from '../flex';
 
 const eventOnChange = (event, type) => onChange => {
   if (!onChange) return;
@@ -57,57 +53,50 @@ const eventOnChange = (event, type) => onChange => {
   return onChange(value);
 };
 
-const BaseInput = props => {
+const Base = ({ type, onChange, ...props }) => {
   const inputProps = Object.assign({}, props);
-  inputProps.onChange = event =>
-    eventOnChange(event, props.inputType)(props.onChange);
+  inputProps.onChange = event => eventOnChange(event, type)(onChange);
 
   let InputComponent;
 
-  console.log('BASE INPUT', inputProps);
-
-  if (props.inputType === 'text') {
-    InputComponent = <Input {...inputProps} type="text" />;
-  } else if (props.inputType === 'email') {
-    InputComponent = <Input {...inputProps} type="email" />;
-  } else if (props.inputType === 'password') {
-    InputComponent = <Input {...inputProps} type="password" />;
-  } else if (props.inputType === 'paragraph') {
+  if (type === 'text' || type === 'email' || type === 'password') {
+    InputComponent = <Input {...inputProps} type={type} />;
+  } else if (type === 'paragraph') {
     InputComponent = <Textarea {...inputProps} />;
-  } else if (props.inputType === 'phone') {
+  } else if (type === 'phone') {
     InputComponent = <CustomPhone {...inputProps} />;
-  } else if (props.inputType === 'ssn') {
+  } else if (type === 'ssn') {
     InputComponent = <CustomSSN {...inputProps} />;
-  } else if (props.inputType === 'currency') {
+  } else if (type === 'currency') {
     InputComponent = <CustomCurrency {...inputProps} />;
-  } else if (props.inputType === 'date') {
+  } else if (type === 'date') {
     InputComponent = <CustomDate {...inputProps} />;
-  } else if (props.inputType === 'select') {
+  } else if (type === 'select') {
     InputComponent = <CustomSelect {...inputProps} />;
-  } else if (props.inputType === 'multiselect') {
+  } else if (type === 'multiselect') {
     InputComponent = <CustomMultiSelect {...inputProps} />;
   }
 
   return (
     <InputContainer>
       {InputComponent}
-      {props.required && <Required {...props} withinInput />}
-      {props.tooltip && <Tooltip {...props} withinInput />}
+      {props.required && <Required {...props} type={type} withinInput />}
+      {props.tooltip && <Tooltip {...props} type={type} withinInput />}
       {props.messages && <Messages {...props} />}
     </InputContainer>
   );
 };
 
-const ChoiceBaseInput = props => {
+const ChoiceBase = ({ type, ...props }) => {
   let InputComponent;
 
-  if (props.inputType === 'checkbox') {
+  if (type === 'checkbox') {
     InputComponent = <CustomChoice {...props} />;
-  } else if (props.inputType === 'checkboxes') {
+  } else if (type === 'checkboxes') {
     InputComponent = <CustomChoices {...props} />;
-  } else if (props.inputType === 'radios') {
+  } else if (type === 'radios') {
     InputComponent = <CustomChoices {...props} isRadio />;
-  } else if (props.inputType === 'switch') {
+  } else if (type === 'switch') {
     InputComponent = <CustomSwitch {...props} />;
   }
 
@@ -124,38 +113,24 @@ const ChoiceBaseInput = props => {
   );
 };
 
-export const TextInput = props => <BaseInput inputType="text" {...props} />;
-export const EmailInput = props => <BaseInput inputType="email" {...props} />;
-export const PasswordInput = props => (
-  <BaseInput inputType="password" {...props} />
-);
-export const CheckboxInput = props => (
-  <ChoiceBaseInput inputType="checkbox" {...props} />
-);
+export const TextInput = props => <Base type="text" {...props} />;
+export const EmailInput = props => <Base type="email" {...props} />;
+export const PasswordInput = props => <Base type="password" {...props} />;
+export const CheckboxInput = props => <ChoiceBase type="checkbox" {...props} />;
 export const CheckboxInputs = props => (
-  <ChoiceBaseInput inputType="checkboxes" {...props} />
+  <ChoiceBase type="checkboxes" {...props} />
 );
-export const RadioInputs = props => (
-  <ChoiceBaseInput inputType="radios" {...props} />
-);
-export const SwitchInput = props => (
-  <ChoiceBaseInput inputType="switch" {...props} />
-);
-export const PhoneInput = props => <BaseInput inputType="phone" {...props} />;
+export const RadioInputs = props => <ChoiceBase type="radios" {...props} />;
+export const SwitchInput = props => <ChoiceBase type="switch" {...props} />;
+export const PhoneInput = props => <Base type="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>
   hidden ? (
     <CustomHiddenSSN>SSN: {props.value}</CustomHiddenSSN>
   ) : (
-    <BaseInput inputType="ssn" {...props} />
+    <Base type="ssn" {...props} />
   );
-export const CurrencyInput = props => (
-  <BaseInput inputType="currency" {...props} />
-);
-export const ParagraphInput = props => (
-  <BaseInput inputType="paragraph" {...props} />
-);
-export const SelectInput = props => <BaseInput inputType="select" {...props} />;
-export const MultiSelectInput = props => (
-  <BaseInput inputType="multiselect" {...props} />
-);
-export const DateInput = props => <BaseInput inputType="date" {...props} />;
+export const CurrencyInput = props => <Base type="currency" {...props} />;
+export const ParagraphInput = props => <Base type="paragraph" {...props} />;
+export const SelectInput = props => <Base type="select" {...props} />;
+export const MultiSelectInput = props => <Base type="multiselect" {...props} />;
+export const DateInput = props => <Base type="date" {...props} />;

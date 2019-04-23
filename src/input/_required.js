@@ -21,7 +21,7 @@ const determinePositioning = props => {
 };
 
 const determineRightPosition = props => {
-  const { tooltip, inputType } = props;
+  const { tooltip, type } = props;
 
   let additionalSpacing = 0;
 
@@ -29,7 +29,7 @@ const determineRightPosition = props => {
     additionalSpacing += themeGet('space.3')(props) + TOOLTIP_SIZE;
   }
 
-  if (inputType === 'select' || inputType === 'multiselect') {
+  if (type === 'select' || type === 'multiselect') {
     additionalSpacing += 38;
   }
 
