@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { themeGet } from "styled-system";
+import styled from 'styled-components';
+import { themeGet } from 'styled-system';
 
-import { REQUIRED_SIZE } from "./_required";
-import { TOOLTIP_SIZE } from "./_tooltip";
+import { REQUIRED_SIZE } from './_required';
+import { TOOLTIP_SIZE } from './_tooltip';
 
-import Box from "../box";
+import Box from '../box';
 
 export const determineInputRightPadding = (required, tooltip, spacer) => {
   let additionalPadding = 0;
@@ -22,56 +22,56 @@ export const determineInputRightPadding = (required, tooltip, spacer) => {
 
 const determineBorderRadius = props =>
   props.hasMessages
-    ? `${themeGet("radii.normal")(props)}px ${themeGet("radii.normal")(
+    ? `${themeGet('radii.normal')(props)}px ${themeGet('radii.normal')(
         props
       )}px 0px 0px`
-    : themeGet("radii.normal")(props);
+    : themeGet('radii.normal')(props);
 
 const determineBorders = props => ({
-  transition: `border ${themeGet("animations.fast")(props)} ease-in-out`,
+  transition: `border ${themeGet('animations.fast')(props)} ease-in-out`,
   borderRadius: determineBorderRadius(props),
-  border: `1px solid ${themeGet("colors.snow")(props)}`,
-  "&:focus": {
-    border: `1px solid ${themeGet("colors.primary")(props)}`
+  border: `1px solid ${themeGet('colors.snow')(props)}`,
+  '&:focus': {
+    border: `1px solid ${themeGet('colors.primary')(props)}`
   }
 });
 
 export const Input = styled(Box)(props => ({
-  padding: themeGet("space.3")(props),
+  padding: themeGet('space.3')(props),
   paddingRight: determineInputRightPadding(
     props.required,
     props.tooltip,
-    themeGet("space.3")(props)
+    themeGet('space.3')(props)
   ),
-  width: "100%",
+  width: '100%',
   ...determineBorders(props)
 }));
 
 Input.defaultProps = {
   ...Box.defaultProps,
-  as: "input",
-  backgroundColor: "trueWhite"
+  as: 'input',
+  bg: 'trueWhite'
 };
 
-Input.displayName = "Input";
+Input.displayName = 'Input';
 
 export const Textarea = styled(Input)({
-  resize: "none",
-  paddingTop: "10px",
-  minHeight: "90px"
+  resize: 'none',
+  paddingTop: '10px',
+  minHeight: '90px'
 });
 
 Textarea.defaultProps = {
   ...Box.defaultProps,
   ...Input.defaultProps,
-  as: "textarea",
-  lineHeight: "title"
+  as: 'textarea',
+  lineHeight: 'title'
 };
 
-Textarea.displayName = "Textarea";
+Textarea.displayName = 'Textarea';
 
 export const InputContainer = styled(Box)({
-  position: "relative"
+  position: 'relative'
 });
 
 InputContainer.defaultProps = {
@@ -79,4 +79,4 @@ InputContainer.defaultProps = {
   mb: 3
 };
 
-InputContainer.displayName = "InputContainer";
+InputContainer.displayName = 'InputContainer';
