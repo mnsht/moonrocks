@@ -2,6 +2,7 @@
 export { default as theme } from './src/theme';
 
 // Export components
+export { default as Avatar } from './src/avatar';
 export { default as Box } from './src/box';
 export { default as Button } from './src/button';
 export { default as Card } from './src/card';
@@ -13,17 +14,17 @@ export {
   TextInput,
   EmailInput,
   PasswordInput,
+  CheckboxInput,
+  CheckboxInputs,
+  RadioInputs,
+  SwitchInput,
   PhoneInput,
   SSNInput,
   CurrencyInput,
   ParagraphInput,
   SelectInput,
   MultiSelectInput,
-  DateInput,
-  CheckboxInput,
-  CheckboxInputs,
-  RadioInputs,
-  SwitchInput
+  DateInput
 } from './src/input';
 export { default as Tooltip } from './src/input/_tooltip';
 export {

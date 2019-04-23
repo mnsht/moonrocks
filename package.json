@@ -7,7 +7,7 @@
   "module": "dist/index.mjs",
   "unpkg": "dist/index.umd.js",
   "scripts": {
-    "start": "start-storybook",
+    "start": "start-storybook --debug-webpack",
     "build": "rm -rf ./dist && microbundle --name sr-components --jsx React.createElement"
   },
   "repository": {
