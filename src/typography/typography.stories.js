@@ -1,7 +1,7 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import { withKnobs, text, select } from "@storybook/addon-knobs";
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { withKnobs, text, select } from '@storybook/addon-knobs';
 
 import {
   InlineText,
@@ -11,7 +11,7 @@ import {
   InternalLink,
   ExternalLink,
   InteractiveLink
-} from "./";
+} from './';
 
 const sampleParagraph = `
   This is just a sample paragraph with no exact meaning. The official records have been lost
@@ -20,18 +20,18 @@ const sampleParagraph = `
   but do not fall prey to the lies of elders. And as always, remember the timecube.
 `;
 
-const stories = storiesOf("Typography", module);
+const stories = storiesOf('Typography', module);
 
 stories.addDecorator(withKnobs);
 
-stories.add("as inline text", () => {
-  const content = text("Text", "Sample Text", "Main");
+stories.add('as inline text', () => {
+  const content = text('Text', 'Sample Text', 'Main');
 
   return <InlineText>{content}</InlineText>;
 });
 
-stories.add("as a parargaph", () => {
-  const content = text("Text", sampleParagraph, "Main");
+stories.add('as a parargaph', () => {
+  const content = text('Text', sampleParagraph, 'Main');
 
   return (
     <React.Fragment>
@@ -41,8 +41,8 @@ stories.add("as a parargaph", () => {
   );
 });
 
-stories.add("as capped text", () => {
-  const content = text("Text", "Important Title", "Main");
+stories.add('as capped text', () => {
+  const content = text('Text', 'Important Title', 'Main');
 
   return (
     <React.Fragment>
@@ -52,12 +52,12 @@ stories.add("as capped text", () => {
   );
 });
 
-stories.add("as a heading", () => {
-  const content = text("Text", "My Heading", "Main");
+stories.add('as a heading', () => {
+  const content = text('Text', 'My Heading', 'Main');
 
-  const headingSizes = ["h1", "h2", "h3", "h4", "h5", "h6"];
-  const elem = select("Element", headingSizes, "h3", "Main");
-  const variant = select("Variant", headingSizes, "h3", "Main");
+  const headingSizes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+  const elem = select('Element', headingSizes, 'h3', 'Main');
+  const variant = select('Variant', headingSizes, 'h3', 'Main');
 
   return (
     <React.Fragment>
@@ -69,13 +69,13 @@ stories.add("as a heading", () => {
   );
 });
 
-stories.add("as an internal link", () => {
-  const content = text("Text", "Shall we go home?", "Main");
+stories.add('as an internal link', () => {
+  const content = text('Text', 'Shall we go home?', 'Main');
   const color = select(
-    "Color",
-    ["primary", "success", "warning", "error"],
-    "primary",
-    "Main"
+    'Color',
+    ['primary', 'success', 'warning', 'error'],
+    'primary',
+    'Main'
   );
 
   return (
@@ -85,13 +85,13 @@ stories.add("as an internal link", () => {
   );
 });
 
-stories.add("as an external link", () => {
-  const content = text("Text", "Going somewhere?", "Main");
+stories.add('as an external link', () => {
+  const content = text('Text', 'Going somewhere?', 'Main');
   const color = select(
-    "Color",
-    ["primary", "success", "warning", "error"],
-    "primary",
-    "Main"
+    'Color',
+    ['primary', 'success', 'warning', 'error'],
+    'primary',
+    'Main'
   );
 
   return (
@@ -101,18 +101,18 @@ stories.add("as an external link", () => {
   );
 });
 
-stories.add("as an interactive link", () => {
-  const content = text("Text", "I am interactive!", "Main");
+stories.add('as an interactive link', () => {
+  const content = text('Text', 'I am interactive!', 'Main');
   const color = select(
-    "Color",
-    ["primary", "success", "warning", "error"],
-    "primary",
-    "Main"
+    'Color',
+    ['primary', 'success', 'warning', 'error'],
+    'primary',
+    'Main'
   );
 
   return (
     <InteractiveLink
-      onClick={action("We did something special!")}
+      onClick={action('We did something special!')}
       colors={color}
     >
       {content}

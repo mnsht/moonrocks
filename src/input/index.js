@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import Flex from "../flex";
-import { Input, Textarea, InputContainer } from "./_base";
+import Flex from '../flex';
+import { Input, Textarea, InputContainer } from './_base';
 import {
   CustomChoice,
   CustomChoices,
@@ -13,10 +13,10 @@ import {
   CustomSelect,
   CustomMultiSelect,
   CustomDate
-} from "./_custom";
-import Required from "./_required";
-import Tooltip from "./_tooltip";
-import Messages, { shouldShow as shouldShowMessages } from "./_messages";
+} from './_custom';
+import Required from './_required';
+import Tooltip from './_tooltip';
+import Messages, { shouldShow as shouldShowMessages } from './_messages';
 
 /*
 TODO:
@@ -28,21 +28,21 @@ const eventOnChange = (event, type) => onChange => {
 
   let value = event.target.value;
 
-  if (type === "phone") {
+  if (type === 'phone') {
     value = `+1${value
-      .replace(/\D/g, "")
-      .split(" ")
-      .join("")}`;
-  } else if (type === "ssn") {
-    value = value.split("-").join("");
-  } else if (type === "currency") {
+      .replace(/\D/g, '')
+      .split(' ')
+      .join('')}`;
+  } else if (type === 'ssn') {
+    value = value.split('-').join('');
+  } else if (type === 'currency') {
     value = value
       .substr(1)
-      .split(",")
-      .join("");
+      .split(',')
+      .join('');
   }
 
-  if (!value || (type === "phone" && value === "+1")) return;
+  if (!value || (type === 'phone' && value === '+1')) return;
 
   return onChange(value);
 };
@@ -50,9 +50,9 @@ const eventOnChange = (event, type) => onChange => {
 const selectOnChange = (value, type) => onChange => {
   if (!onChange) return;
 
-  if (type === "select") {
+  if (type === 'select') {
     return onChange(value.value);
-  } else if (type === "multiselect") {
+  } else if (type === 'multiselect') {
     return onChange(value.map(({ value }) => value));
   }
 };
@@ -61,11 +61,15 @@ const BaseInput = props => {
   const hasMsgs =
     props.messages &&
     (shouldShowMessages(props.messages.warnings) ||
-      shouldShowMessages(props.messages.errors));
+      shouldShowMessages(props.messages.errors))
+      ? true
+      : false;
 
   let InputComponent;
 
-  if (props.inputType === "text") {
+  console.log('BASE INPUT', props);
+
+  if (props.inputType === 'text') {
     InputComponent = (
       <Input
         {...props}
@@ -74,7 +78,7 @@ const BaseInput = props => {
         onChange={event => eventOnChange(event)(props.onChange)}
       />
     );
-  } else if (props.inputType === "email") {
+  } else if (props.inputType === 'email') {
     InputComponent = (
       <Input
         {...props}
@@ -83,7 +87,7 @@ const BaseInput = props => {
         onChange={event => eventOnChange(event)(props.onChange)}
       />
     );
-  } else if (props.inputType === "password") {
+  } else if (props.inputType === 'password') {
     InputComponent = (
       <Input
         {...props}
@@ -92,7 +96,7 @@ const BaseInput = props => {
         onChange={event => eventOnChange(event)(props.onChange)}
       />
     );
-  } else if (props.inputType === "paragraph") {
+  } else if (props.inputType === 'paragraph') {
     InputComponent = (
       <Textarea
         {...props}
@@ -100,31 +104,31 @@ const BaseInput = props => {
         onChange={event => eventOnChange(event)(props.onChange)}
       />
     );
-  } else if (props.inputType === "phone") {
+  } else if (props.inputType === 'phone') {
     InputComponent = (
       <CustomPhone
         {...props}
         hasMessages={hasMsgs}
-        onChange={event => eventOnChange(event, "phone")(props.onChange)}
+        onChange={event => eventOnChange(event, 'phone')(props.onChange)}
       />
     );
-  } else if (props.inputType === "ssn") {
+  } else if (props.inputType === 'ssn') {
     InputComponent = (
       <CustomSSN
         {...props}
         hasMessages={hasMsgs}
-        onChange={event => eventOnChange(event, "ssn")(props.onChange)}
+        onChange={event => eventOnChange(event, 'ssn')(props.onChange)}
       />
     );
-  } else if (props.inputType === "currency") {
+  } else if (props.inputType === 'currency') {
     InputComponent = (
       <CustomCurrency
         {...props}
         hasMessages={hasMsgs}
-        onChange={event => eventOnChange(event, "currency")(props.onChange)}
+        onChange={event => eventOnChange(event, 'currency')(props.onChange)}
       />
     );
-  } else if (props.inputType === "date") {
+  } else if (props.inputType === 'date') {
     InputComponent = (
       <CustomDate
         {...props}
@@ -132,20 +136,20 @@ const BaseInput = props => {
         onChange={event => eventOnChange(event)(props.onChange)}
       />
     );
-  } else if (props.inputType === "select") {
+  } else if (props.inputType === 'select') {
     InputComponent = (
       <CustomSelect
         {...props}
         hasMessages={hasMsgs}
-        onChange={value => selectOnChange(value, "select")(props.onChange)}
+        onChange={value => selectOnChange(value, 'select')(props.onChange)}
       />
     );
-  } else if (props.inputType === "multiselect") {
+  } else if (props.inputType === 'multiselect') {
     InputComponent = (
       <CustomMultiSelect
         {...props}
         hasMessages={hasMsgs}
-        onChange={value => selectOnChange(value, "multiselect")(props.onChange)}
+        onChange={value => selectOnChange(value, 'multiselect')(props.onChange)}
       />
     );
   }
@@ -163,13 +167,13 @@ const BaseInput = props => {
 const ChoiceBaseInput = props => {
   let InputComponent;
 
-  if (props.inputType === "checkbox") {
+  if (props.inputType === 'checkbox') {
     InputComponent = <CustomChoice {...props} />;
-  } else if (props.inputType === "checkboxes") {
+  } else if (props.inputType === 'checkboxes') {
     InputComponent = <CustomChoices {...props} />;
-  } else if (props.inputType === "radios") {
+  } else if (props.inputType === 'radios') {
     InputComponent = <CustomChoices {...props} isRadio />;
-  } else if (props.inputType === "switch") {
+  } else if (props.inputType === 'switch') {
     InputComponent = <CustomSwitch {...props} />;
   }
 

@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { themeGet } from "styled-system";
+import React from 'react';
+import styled from 'styled-components';
+import { themeGet } from 'styled-system';
 
-import Box from "../box";
+import Box from '../box';
 
 const IconContainer = styled(Box)(props => ({
   width: themeGet(`widths.${props.dimension}`)(props),
@@ -13,15 +13,15 @@ IconContainer.defaultProps = {
   dimension: 0
 };
 
-IconContainer.displayName = "IconContainer";
+IconContainer.displayName = 'IconContainer';
 
 const Icon = styled(Box)({});
 
 Icon.defaultProps = {
-  color: "black"
+  color: 'black'
 };
 
-Icon.displayName = "Icon";
+Icon.displayName = 'Icon';
 
 export default React.forwardRef(({ icon, size, color, ...props }, ref) => (
   <IconContainer {...props} dimension={size} ref={ref}>

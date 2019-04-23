@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   fontFamily,
   lineHeight,
@@ -12,10 +12,10 @@ import {
   backgroundRepeat,
   opacity,
   variant
-} from "styled-system";
-import Box from "../box";
+} from 'styled-system';
+import Box from '../box';
 
-const cards = variant({ key: "cards" });
+const cards = variant({ key: 'cards' });
 
 const Card = styled(Box)(
   borders,
@@ -32,10 +32,10 @@ const Card = styled(Box)(
 
 Card.defaultProps = {
   ...Box.defaultProps,
-  as: "div",
-  variant: "paper"
+  as: 'div',
+  variant: 'paper'
 };
 
-Card.displayName = "Card";
+Card.displayName = 'Card';
 
 export default Card;

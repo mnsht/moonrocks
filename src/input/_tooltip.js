@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { themeGet } from "styled-system";
-import posed, { PoseGroup } from "react-pose";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { themeGet } from 'styled-system';
+import posed, { PoseGroup } from 'react-pose';
 
-import theme from "../theme";
-import Box from "../box";
+import theme from '../theme';
+import Box from '../box';
 
 export const TOOLTIP_SIZE = theme.widths[1];
 const TOOLTIP_SPACING = theme.space[2];
@@ -14,15 +14,15 @@ const determineRightPosition = props => {
 
   let additionalSpacing = 0;
 
-  if (withinInput && (inputType === "select" || inputType === "multiselect")) {
+  if (withinInput && (inputType === 'select' || inputType === 'multiselect')) {
     additionalSpacing += 38;
   }
 
-  return themeGet("space.3")(props) + additionalSpacing;
+  return themeGet('space.3')(props) + additionalSpacing;
 };
 
 const withinInputStyles = props => ({
-  position: "absolute",
+  position: 'absolute',
   top: 15,
   right: determineRightPosition(props)
 });
@@ -31,118 +31,118 @@ const TooltipContainer = styled(Box)(props =>
   props.withinInput
     ? withinInputStyles(props)
     : {
-        position: "relative"
+        position: 'relative'
       }
 );
 
-TooltipContainer.displayName = "TooltipContainer";
+TooltipContainer.displayName = 'TooltipContainer';
 
 const TooltipIcon = styled(Box)(props => ({
   width: `${TOOLTIP_SIZE}px`,
   height: `${TOOLTIP_SIZE}px`,
-  textAlign: "center",
+  textAlign: 'center',
   lineHeight: `${TOOLTIP_SIZE}px`,
-  borderRadius: themeGet("radii.round")(props),
+  borderRadius: themeGet('radii.round')(props),
   backgroundColor: props.showing
-    ? themeGet("colors.darkGray")(props)
-    : themeGet("colors.mediumGray")(props),
-  color: themeGet("colors.white")(props),
-  fontSize: themeGet("fontSizes.1")(props),
-  fontWeight: themeGet("fontWeights.extraBold")(props),
-  userSelect: "none",
-  cursor: "pointer",
-  transition: `background ${themeGet("animations.fast")(props)} ease-in-out`,
-  "&:hover": {
-    backgroundColor: themeGet("colors.darkGray")(props)
+    ? themeGet('colors.darkGray')(props)
+    : themeGet('colors.mediumGray')(props),
+  color: themeGet('colors.white')(props),
+  fontSize: themeGet('fontSizes.1')(props),
+  fontWeight: themeGet('fontWeights.extraBold')(props),
+  userSelect: 'none',
+  cursor: 'pointer',
+  transition: `background ${themeGet('animations.fast')(props)} ease-in-out`,
+  '&:hover': {
+    backgroundColor: themeGet('colors.darkGray')(props)
   }
 }));
 
-TooltipIcon.displayName = "TooltipIcon";
+TooltipIcon.displayName = 'TooltipIcon';
 
 const getPosition = (position, spacer, justMargins) => {
   let returnedPositions;
 
-  if (position === "top") {
+  if (position === 'top') {
     returnedPositions = {
-      top: "0%",
-      left: "50%",
-      transform: "translateX(-50%) translateY(-100%)",
+      top: '0%',
+      left: '50%',
+      transform: 'translateX(-50%) translateY(-100%)',
       marginTop: -spacer
     };
   }
 
-  if (position === "top-right") {
+  if (position === 'top-right') {
     returnedPositions = {
-      top: "0%",
-      left: "100%",
-      transform: "translateY(-100%)",
+      top: '0%',
+      left: '100%',
+      transform: 'translateY(-100%)',
       marginTop: -spacer,
       marginLeft: spacer,
       borderBottomLeftRadius: 0
     };
   }
 
-  if (position === "right") {
+  if (position === 'right') {
     returnedPositions = {
-      top: "50%",
-      left: "100%",
-      transform: "translateY(-50%)",
+      top: '50%',
+      left: '100%',
+      transform: 'translateY(-50%)',
       marginLeft: spacer
     };
   }
 
-  if (position === "bottom-right") {
+  if (position === 'bottom-right') {
     returnedPositions = {
-      top: "100%",
-      left: "100%",
-      transform: "none",
+      top: '100%',
+      left: '100%',
+      transform: 'none',
       marginTop: spacer,
       marginLeft: spacer,
       borderTopLeftRadius: 0
     };
   }
 
-  if (position === "bottom") {
+  if (position === 'bottom') {
     returnedPositions = {
-      top: "100%",
-      left: "50%",
-      transform: "translateX(-50%)",
+      top: '100%',
+      left: '50%',
+      transform: 'translateX(-50%)',
       marginTop: spacer
     };
   }
 
-  if (position === "bottom-left") {
+  if (position === 'bottom-left') {
     returnedPositions = {
-      top: "100%",
-      left: "0%",
-      transform: "translateX(-100%)",
+      top: '100%',
+      left: '0%',
+      transform: 'translateX(-100%)',
       marginTop: spacer,
       marginLeft: -spacer,
       borderTopRightRadius: 0
     };
   }
 
-  if (position === "left") {
+  if (position === 'left') {
     returnedPositions = {
-      top: "50%",
-      left: "0%",
-      transform: "translateX(-100%) translateY(-50%)",
+      top: '50%',
+      left: '0%',
+      transform: 'translateX(-100%) translateY(-50%)',
       marginLeft: -spacer
     };
   }
 
-  if (position === "top-left") {
+  if (position === 'top-left') {
     returnedPositions = {
-      top: "0%",
-      left: "0%",
-      transform: "translateX(-100%) translateY(-100%)",
+      top: '0%',
+      left: '0%',
+      transform: 'translateX(-100%) translateY(-100%)',
       marginTop: -spacer,
       marginLeft: -spacer,
       borderBottomRightRadius: 0
     };
   }
 
-  const marginKeys = ["marginTop", "marginRight", "marginBottom", "marginLeft"];
+  const marginKeys = ['marginTop', 'marginRight', 'marginBottom', 'marginLeft'];
 
   const filterMargins = (myObj, flipped) =>
     Object.keys(myObj)
@@ -166,7 +166,7 @@ const getPosition = (position, spacer, justMargins) => {
 const tooltipTransition = {
   transition: {
     duration: parseInt(theme.animations.fast),
-    ease: "easeInOut"
+    ease: 'easeInOut'
   }
 };
 
@@ -185,30 +185,30 @@ const posedTooltip = position => ({
 const Tooltip = styled(
   posed(Box)(poseProps => posedTooltip(poseProps.position))
 )(props => ({
-  position: "absolute",
-  backgroundColor: themeGet("colors.blacks.4")(props),
-  color: themeGet("colors.white")(props),
-  textAlign: "center",
-  borderRadius: themeGet("radii.normal")(props),
-  padding: `${themeGet("space.2")(props)}px ${themeGet("space.3")(props)}px`,
+  position: 'absolute',
+  backgroundColor: themeGet('colors.blacks.4')(props),
+  color: themeGet('colors.white')(props),
+  textAlign: 'center',
+  borderRadius: themeGet('radii.normal')(props),
+  padding: `${themeGet('space.2')(props)}px ${themeGet('space.3')(props)}px`,
   width: 240,
-  boxShadow: themeGet("shadows.normal")(props),
-  userSelect: "none",
-  zIndex: themeGet("zIndicies.tooltip")(props),
+  boxShadow: themeGet('shadows.normal')(props),
+  userSelect: 'none',
+  zIndex: themeGet('zIndicies.tooltip')(props),
   ...getPosition(props.position, TOOLTIP_SPACING)
 }));
 
 Tooltip.defaultProps = {
-  position: "top"
+  position: 'top'
 };
 
-Tooltip.displayName = "Tooltip";
+Tooltip.displayName = 'Tooltip';
 
 export default ({ tooltip, position, withinInput, inputType }) => {
   const [showing, setShowing] = useState(false);
 
   if (withinInput) {
-    position = "top-left";
+    position = 'top-left';
   }
 
   return (

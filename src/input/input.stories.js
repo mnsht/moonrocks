@@ -1,7 +1,7 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
-import { withKnobs, text, boolean, button } from "@storybook/addon-knobs";
-import { StateDecorator, Store } from "@sambego/storybook-state";
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { withKnobs, text, boolean, button } from '@storybook/addon-knobs';
+import { StateDecorator, Store } from '@sambego/storybook-state';
 
 import {
   TextInput,
@@ -18,17 +18,17 @@ import {
   SelectInput,
   MultiSelectInput,
   DateInput
-} from "./";
-import Box from "../box";
-import { Container, Row, Column } from "../grid";
+} from './';
+import Box from '../box';
+import { Container, Row, Column } from '../grid';
 
 const sampleOptions = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" }
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
 ];
 
-const stories = storiesOf("Input", module);
+const stories = storiesOf('Input', module);
 
 const store = new Store({
   messages: {
@@ -41,7 +41,7 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(StateDecorator(store));
 
 const addMessage = (type, text) => {
-  const newMessages = store.get("messages");
+  const newMessages = store.get('messages');
 
   newMessages[type].push(text);
 
@@ -49,42 +49,42 @@ const addMessage = (type, text) => {
 };
 
 const removeMessage = type => {
-  const newMessages = store.get("messages");
+  const newMessages = store.get('messages');
 
   newMessages[type].shift();
 
   store.set({ messages: newMessages });
 };
 
-stories.add("everything but the kitchen sink", () => {
-  const required = boolean("Is required?", true, "Main");
-  const tooltip = text("Tooltip text", "Hello world!", "Main");
-  const messages = store.get("messages");
+stories.add('everything but the kitchen sink', () => {
+  const required = boolean('Is required?', true, 'Main');
+  const tooltip = text('Tooltip text', 'Hello world!', 'Main');
+  const messages = store.get('messages');
 
   const onChange = (key, value) => {
     store.set({ [key]: value });
 
-    console.log("onChange", key, value);
-    console.log("store", store.get());
+    console.log('onChange', key, value);
+    console.log('store', store.get());
   };
 
-  button("Add warning", () => addMessage("warnings", "Password isn't strong"));
-  button("Add error", () => addMessage("errors", "This field is required"));
-  button("Remove warning", () => removeMessage("warnings"));
-  button("Remove error", () => removeMessage("errors"));
+  button('Add warning', () => addMessage('warnings', "Password isn't strong"));
+  button('Add error', () => addMessage('errors', 'This field is required'));
+  button('Remove warning', () => removeMessage('warnings'));
+  button('Remove error', () => removeMessage('errors'));
 
   const options = [
     {
-      value: "blue",
-      label: "Blue pill"
+      value: 'blue',
+      label: 'Blue pill'
     },
     {
-      value: "red",
-      label: "Red pill"
+      value: 'red',
+      label: 'Red pill'
     },
     {
-      value: "rainbow",
-      label: "Rainbow pill"
+      value: 'rainbow',
+      label: 'Rainbow pill'
     }
   ];
 
@@ -97,7 +97,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("text", value)}
+            onChange={value => onChange('text', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -106,7 +106,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("email", value)}
+            onChange={value => onChange('email', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -115,7 +115,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("password", value)}
+            onChange={value => onChange('password', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -124,7 +124,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("phone", value)}
+            onChange={value => onChange('phone', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -133,7 +133,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("ssn", value)}
+            onChange={value => onChange('ssn', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -142,7 +142,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("currency", value)}
+            onChange={value => onChange('currency', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -151,7 +151,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("paragraph", value)}
+            onChange={value => onChange('paragraph', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -160,7 +160,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("date", value)}
+            onChange={value => onChange('date', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -170,7 +170,7 @@ stories.add("everything but the kitchen sink", () => {
             tooltip={tooltip}
             messages={messages}
             hasYear
-            onChange={value => onChange("date-long", value)}
+            onChange={value => onChange('date-long', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -180,7 +180,7 @@ stories.add("everything but the kitchen sink", () => {
             tooltip={tooltip}
             messages={messages}
             options={sampleOptions}
-            onChange={value => onChange("select", value)}
+            onChange={value => onChange('select', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -190,7 +190,7 @@ stories.add("everything but the kitchen sink", () => {
             tooltip={tooltip}
             messages={messages}
             options={sampleOptions}
-            onChange={value => onChange("multiselect", value)}
+            onChange={value => onChange('multiselect', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -199,7 +199,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("checkbox", value)}
+            onChange={value => onChange('checkbox', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -209,7 +209,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("checkboxes", value)}
+            onChange={value => onChange('checkboxes', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -219,7 +219,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("radios", value)}
+            onChange={value => onChange('radios', value)}
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
@@ -229,7 +229,7 @@ stories.add("everything but the kitchen sink", () => {
             required={required}
             tooltip={tooltip}
             messages={messages}
-            onChange={value => onChange("switch", value)}
+            onChange={value => onChange('switch', value)}
           />
         </Column>
       </Row>
@@ -237,15 +237,15 @@ stories.add("everything but the kitchen sink", () => {
   );
 });
 
-stories.add("as a text input", () => {
-  const placeholder = text("Placeholder", "Type something...", "Main");
-  const required = boolean("Is required?", true, "Main");
-  const tooltip = text("Tooltip text", "Hello world!", "Main");
+stories.add('as a text input', () => {
+  const placeholder = text('Placeholder', 'Type something...', 'Main');
+  const required = boolean('Is required?', true, 'Main');
+  const tooltip = text('Tooltip text', 'Hello world!', 'Main');
 
-  button("Add warning", () => addMessage("warnings", "Password isn't strong"));
-  button("Add error", () => addMessage("errors", "This field is required"));
-  button("Remove warning", () => removeMessage("warnings"));
-  button("Remove error", () => removeMessage("errors"));
+  button('Add warning', () => addMessage('warnings', "Password isn't strong"));
+  button('Add error', () => addMessage('errors', 'This field is required'));
+  button('Remove warning', () => removeMessage('warnings'));
+  button('Remove error', () => removeMessage('errors'));
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -253,17 +253,17 @@ stories.add("as a text input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
-        messages={store.get("messages")}
-        onChange={value => console.log("STORY", value)}
+        messages={store.get('messages')}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as an email input", () => {
-  const placeholder = text("Placeholder", "Type your email...", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as an email input', () => {
+  const placeholder = text('Placeholder', 'Type your email...', 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -271,16 +271,16 @@ stories.add("as an email input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as an password input", () => {
-  const placeholder = text("Placeholder", "Type your password...", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as an password input', () => {
+  const placeholder = text('Placeholder', 'Type your password...', 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -288,16 +288,16 @@ stories.add("as an password input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a checkbox input", () => {
-  const label = text("Label", "Do we wanna do this?", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as a checkbox input', () => {
+  const label = text('Label', 'Do we wanna do this?', 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -306,28 +306,28 @@ stories.add("as a checkbox input", () => {
         required={required}
         tooltip={tooltip}
         initialValue={true}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as multiple checkboxes", () => {
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as multiple checkboxes', () => {
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   const options = [
     {
-      value: "blue",
-      label: "Blue pill"
+      value: 'blue',
+      label: 'Blue pill'
     },
     {
-      value: "red",
-      label: "Red pill"
+      value: 'red',
+      label: 'Red pill'
     },
     {
-      value: "rainbow",
-      label: "Rainbow pill"
+      value: 'rainbow',
+      label: 'Rainbow pill'
     }
   ];
 
@@ -337,28 +337,28 @@ stories.add("as multiple checkboxes", () => {
         options={options}
         required={required}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as multiple radios", () => {
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as multiple radios', () => {
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   const options = [
     {
-      value: "blue",
-      label: "Blue pill"
+      value: 'blue',
+      label: 'Blue pill'
     },
     {
-      value: "red",
-      label: "Red pill"
+      value: 'red',
+      label: 'Red pill'
     },
     {
-      value: "rainbow",
-      label: "Rainbow pill"
+      value: 'rainbow',
+      label: 'Rainbow pill'
     }
   ];
 
@@ -368,16 +368,16 @@ stories.add("as multiple radios", () => {
         options={options}
         required={required}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a switch input", () => {
-  const on = text("On", "To be", "Main");
-  const off = text("Off", "Not to be", "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as a switch input', () => {
+  const on = text('On', 'To be', 'Main');
+  const off = text('Off', 'Not to be', 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -386,16 +386,16 @@ stories.add("as a switch input", () => {
         on={on}
         off={off}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a phone input", () => {
-  const placeholder = text("Placeholder", "Type your phone number...", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as a phone input', () => {
+  const placeholder = text('Placeholder', 'Type your phone number...', 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -403,18 +403,18 @@ stories.add("as a phone input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as an SSN input", () => {
-  const placeholder = text("Placeholder", "Type your SSN...", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
-  const hidden = boolean("Is hidden?", false, "Main");
-  const value = hidden ? text("SSN", "***-**-1210", "Main") : null;
+stories.add('as an SSN input', () => {
+  const placeholder = text('Placeholder', 'Type your SSN...', 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
+  const hidden = boolean('Is hidden?', false, 'Main');
+  const value = hidden ? text('SSN', '***-**-1210', 'Main') : null;
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -424,31 +424,31 @@ stories.add("as an SSN input", () => {
         tooltip={tooltip}
         hidden={hidden}
         value={value}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a currency input", () => {
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as a currency input', () => {
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
       <CurrencyInput
         required={required}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a paragraph input", () => {
-  const placeholder = text("Placeholder", "Type a number...", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as a paragraph input', () => {
+  const placeholder = text('Placeholder', 'Type a number...', 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -456,17 +456,17 @@ stories.add("as a paragraph input", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a select input", () => {
-  const placeholder = text("Placeholder", "Select something...", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
-  const borderless = boolean("Is borderless?", false, "Main");
+stories.add('as a select input', () => {
+  const placeholder = text('Placeholder', 'Select something...', 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
+  const borderless = boolean('Is borderless?', false, 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -476,16 +476,16 @@ stories.add("as a select input", () => {
         tooltip={tooltip}
         borderless={borderless}
         options={sampleOptions}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a multiselect input", () => {
-  const placeholder = text("Placeholder", "Select multiple things...", "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as a multiselect input', () => {
+  const placeholder = text('Placeholder', 'Select multiple things...', 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -494,20 +494,20 @@ stories.add("as a multiselect input", () => {
         required={required}
         tooltip={tooltip}
         options={sampleOptions}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a date input (mm-dd-yyyy)", () => {
+stories.add('as a date input (mm-dd-yyyy)', () => {
   const placeholder = text(
-    "Placeholder",
+    'Placeholder',
     `Type a date (mm-dd-yyyy)...`,
-    "Main"
+    'Main'
   );
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -516,16 +516,16 @@ stories.add("as a date input (mm-dd-yyyy)", () => {
         required={required}
         tooltip={tooltip}
         hasYear
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );
 });
 
-stories.add("as a date input (mm-dd)", () => {
-  const placeholder = text("Placeholder", `Type a date (mm-dd)...`, "Main");
-  const required = boolean("Is required?", false, "Main");
-  const tooltip = text("Tooltip text", null, "Main");
+stories.add('as a date input (mm-dd)', () => {
+  const placeholder = text('Placeholder', `Type a date (mm-dd)...`, 'Main');
+  const required = boolean('Is required?', false, 'Main');
+  const tooltip = text('Tooltip text', '', 'Main');
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -533,7 +533,7 @@ stories.add("as a date input (mm-dd)", () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
-        onChange={value => console.log("STORY", value)}
+        onChange={value => console.log('STORY', value)}
       />
     </Box>
   );

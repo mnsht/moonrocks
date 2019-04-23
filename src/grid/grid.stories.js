@@ -1,12 +1,12 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import React from 'react';
+import { storiesOf } from '@storybook/react';
 
-import { Container, Row, Column } from "./";
-import Card from "../card";
+import { Container, Row, Column } from './';
+import Card from '../card';
 
-const stories = storiesOf("Grid", module);
+const stories = storiesOf('Grid', module);
 
-stories.add("default", () => {
+stories.add('default', () => {
   return (
     <Container>
       <Row>

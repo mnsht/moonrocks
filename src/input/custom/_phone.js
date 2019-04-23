@@ -1,7 +1,7 @@
-import React from "react";
-import Cleave from "cleave.js/react";
+import React from 'react';
+import Cleave from 'cleave.js/react';
 
-import { Input } from "../_base";
+import { Input } from '../_base';
 
 export default props => (
   <Input
@@ -10,7 +10,7 @@ export default props => (
     options={{
       numericOnly: true,
       blocks: [0, 3, 0, 3, 4],
-      delimiters: ["(", ")", " ", "-"]
+      delimiters: ['(', ')', ' ', '-']
     }}
   />
 );

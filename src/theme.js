@@ -5,22 +5,22 @@ const lineHeights = {
   title: 1.5,
   paragraph: 1.75
 };
-const breakpoints = ["40em", "52em", "64em"];
+const breakpoints = ['40em', '52em', '64em'];
 
 const sizeScale = [18, 24, 36, 48, 64, 72, 96];
 
 const opacities = [0.1, 0.35, 0.5, 0.65, 0.8];
 
-const transparent = "transparent";
+const transparent = 'transparent';
 
-const trueBlack = "#000";
-const black = "#101B2F";
-const darkGray = "#344B66";
-const mediumGray = "#778F9B";
-const lightGray = "#B8C1CB";
-const snow = "#DDE2E8";
-const white = "#FAFAFA";
-const trueWhite = "#FFF";
+const trueBlack = '#000';
+const black = '#101B2F';
+const darkGray = '#344B66';
+const mediumGray = '#778F9B';
+const lightGray = '#B8C1CB';
+const snow = '#DDE2E8';
+const white = '#FAFAFA';
+const trueWhite = '#FFF';
 
 const blacks = [
   `rgba(0, 0, 0, ${opacities[0]})`,
@@ -38,29 +38,29 @@ const whites = [
   `rgba(255, 255, 255, ${opacities[4]})`
 ];
 
-const primary100 = "#C4D7F9";
-const primary300 = "#8AB0F3";
-const primary500 = "#518AEE";
-const primary700 = "#365C9F";
-const primary900 = "#1B2F51";
+const primary100 = '#C4D7F9';
+const primary300 = '#8AB0F3';
+const primary500 = '#518AEE';
+const primary700 = '#365C9F';
+const primary900 = '#1B2F51';
 
-const success100 = "#D6EFDD";
-const success300 = "#A3DCB1";
-const success500 = "#7CCD90";
-const success700 = "#3E7938";
-const success900 = "#243E2B";
+const success100 = '#D6EFDD';
+const success300 = '#A3DCB1';
+const success500 = '#7CCD90';
+const success700 = '#3E7938';
+const success900 = '#243E2B';
 
-const warning100 = "#FBEAC6";
-const warning300 = "#F6CE7A";
-const warning500 = "#F3B942";
-const warning700 = "#A3792D";
-const warning900 = "#60432D";
+const warning100 = '#FBEAC6';
+const warning300 = '#F6CE7A';
+const warning500 = '#F3B942';
+const warning700 = '#A3792D';
+const warning900 = '#60432D';
 
-const error100 = "#FAD9CF";
-const error300 = "#F4A68F";
-const error500 = "#EF815F";
-const error700 = "#A2442B";
-const error900 = "#722E1F";
+const error100 = '#FAD9CF';
+const error300 = '#F4A68F';
+const error500 = '#EF815F';
+const error700 = '#A2442B';
+const error900 = '#722E1F';
 
 const SYSTEM_FONTS =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
@@ -77,14 +77,14 @@ const fontWeights = {
 };
 
 const letterSpacings = {
-  normal: "normal",
-  spaced: "1px"
+  normal: 'normal',
+  spaced: '1px'
 };
 
 const radii = {
   normal: space[1],
   special: space[3],
-  round: "1000em"
+  round: '1000em'
 };
 
 const shadows = {
@@ -181,9 +181,9 @@ export default {
 
   // Animations
   animations: {
-    fast: "200ms",
-    brisk: "500ms",
-    lazy: "1000ms"
+    fast: '200ms',
+    brisk: '500ms',
+    lazy: '1000ms'
   },
 
   // Various z-indexes
@@ -199,25 +199,25 @@ export default {
   colorStyles: {
     primary: {
       color: primary500,
-      "&:hover": {
+      '&:hover': {
         color: primary700
       }
     },
     success: {
       color: success500,
-      "&:hover": {
+      '&:hover': {
         color: success700
       }
     },
     warning: {
       color: warning500,
-      "&:hover": {
+      '&:hover': {
         color: warning700
       }
     },
     error: {
       color: error500,
-      "&:hover": {
+      '&:hover': {
         color: error700
       }
     }
@@ -238,35 +238,35 @@ export default {
     primary: {
       color: white,
       backgroundColor: primary500,
-      "&:hover": {
+      '&:hover': {
         backgroundColor: primary700
       }
     },
     secondary: {
       color: black,
       backgroundColor: snow,
-      "&:hover": {
+      '&:hover': {
         backgroundColor: lightGray
       }
     },
     success: {
       color: white,
       backgroundColor: success500,
-      "&:hover": {
+      '&:hover': {
         backgroundColor: success700
       }
     },
     warning: {
       color: white,
       backgroundColor: warning500,
-      "&:hover": {
+      '&:hover': {
         backgroundColor: warning700
       }
     },
     error: {
       color: white,
       backgroundColor: error500,
-      "&:hover": {
+      '&:hover': {
         backgroundColor: error700
       }
     }

@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   flexWrap,
   flexDirection,
   alignItems,
   justifyContent
-} from "styled-system";
-import Box from "../box";
+} from 'styled-system';
+import Box from '../box';
 
 const Flex = styled(Box)(
   {
-    display: "flex"
+    display: 'flex'
   },
   flexWrap,
   flexDirection,
@@ -17,6 +17,6 @@ const Flex = styled(Box)(
   justifyContent
 );
 
-Flex.displayName = "Flex";
+Flex.displayName = 'Flex';
 
 export default Flex;

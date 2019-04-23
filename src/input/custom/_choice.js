@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { themeGet } from "styled-system";
-import posed from "react-pose";
-import { Check } from "styled-icons/fa-solid";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { themeGet } from 'styled-system';
+import posed from 'react-pose';
+import { Check } from 'styled-icons/fa-solid';
 
-import theme from "../../theme";
-import Box from "../../box";
-import Flex from "../../flex";
-import Icon from "../../icon";
-import { InlineText } from "../../typography";
+import theme from '../../theme';
+import Box from '../../box';
+import Flex from '../../flex';
+import Icon from '../../icon';
+import { InlineText } from '../../typography';
 
 const choiceAnimation = {
   selected: {
@@ -25,13 +25,13 @@ const choiceAnimation = {
 };
 
 const ChoiceLabel = styled(InlineText)(props => ({
-  marginLeft: themeGet("space.3")(props),
-  userSelect: "none"
+  marginLeft: themeGet('space.3')(props),
+  userSelect: 'none'
 }));
 
 const ChoiceContainer = styled(Flex)({
-  cursor: "pointer",
-  alignItems: "center"
+  cursor: 'pointer',
+  alignItems: 'center'
 });
 
 ChoiceContainer.defaultProps = {
@@ -39,22 +39,22 @@ ChoiceContainer.defaultProps = {
 };
 
 const ChoiceElem = styled(Box)(props => ({
-  width: themeGet("widths.1")(props),
-  height: themeGet("heights.1")(props),
-  border: `1px solid ${themeGet("colors.snow")(props)}`,
+  width: themeGet('widths.1')(props),
+  height: themeGet('heights.1')(props),
+  border: `1px solid ${themeGet('colors.snow')(props)}`,
   borderRadius: props.isRadio
-    ? themeGet("radii.round")(props)
-    : themeGet("radii.normal")(props)
+    ? themeGet('radii.round')(props)
+    : themeGet('radii.normal')(props)
 }));
 
 const PosedCheck = posed(Icon)(choiceAnimation);
 
 const RadioDot = styled(Box)(props => ({
-  width: themeGet("widths.1")(props) * 0.5,
-  height: themeGet("heights.1")(props) * 0.5,
-  borderRadius: themeGet("radii.round")(props),
+  width: themeGet('widths.1')(props) * 0.5,
+  height: themeGet('heights.1')(props) * 0.5,
+  borderRadius: themeGet('radii.round')(props),
   margin: 5,
-  backgroundColor: themeGet("colors.primary")(props)
+  backgroundColor: themeGet('colors.primary')(props)
 }));
 
 const PosedRadioDot = posed(RadioDot)(choiceAnimation);
@@ -80,10 +80,10 @@ export const CustomChoice = ({
   }
 
   const ChoiceSelection = isRadio ? (
-    <PosedRadioDot pose={selected ? "selected" : "unselected"} />
+    <PosedRadioDot pose={selected ? 'selected' : 'unselected'} />
   ) : (
     <PosedCheck
-      pose={selected ? "selected" : "unselected"}
+      pose={selected ? 'selected' : 'unselected'}
       icon={Check}
       size={0}
       m="2px"

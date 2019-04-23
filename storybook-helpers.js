@@ -1,5 +1,5 @@
-import { select, number } from "@storybook/addon-knobs";
-import theme from "./src/theme";
+import { select, number } from '@storybook/addon-knobs';
+import theme from './src/theme';
 
 const SPACE_OPTS = {
   min: 0,

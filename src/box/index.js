@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   space,
   width,
@@ -10,12 +10,12 @@ import {
   flex,
   order,
   alignSelf
-} from "styled-system";
+} from 'styled-system';
 
-const Box = styled("div")(
+const Box = styled('div')(
   {
-    boxSizing: "border-box",
-    WebkitFontSmoothing: "antialiased",
+    boxSizing: 'border-box',
+    WebkitFontSmoothing: 'antialiased',
     outline: 0
   },
   space,
@@ -31,14 +31,14 @@ const Box = styled("div")(
 );
 
 Box.defaultProps = {
-  as: "div",
-  fontFamily: "main",
+  as: 'div',
+  fontFamily: 'main',
   fontSize: 2,
-  lineHeight: "normal",
-  fontWeight: "regular",
-  color: "black"
+  lineHeight: 'normal',
+  fontWeight: 'regular',
+  color: 'black'
 };
 
-Box.displayName = "Box";
+Box.displayName = 'Box';
 
 export default Box;

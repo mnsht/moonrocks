@@ -1,14 +1,14 @@
 // Export main theme
-export { default as theme } from "./src/theme";
+export { default as theme } from './src/theme';
 
 // Export components
-export { default as Box } from "./src/box";
-export { default as Button } from "./src/button";
-export { default as Card } from "./src/card";
-export { default as Flex } from "./src/flex";
-export { Container, Row, Column } from "./src/grid";
-import { default as Icon } from "./src/icon";
-export { default as Image } from "./src/image";
+export { default as Box } from './src/box';
+export { default as Button } from './src/button';
+export { default as Card } from './src/card';
+export { default as Flex } from './src/flex';
+export { Container, Row, Column } from './src/grid';
+import { default as Icon } from './src/icon';
+export { default as Image } from './src/image';
 export {
   TextInput,
   EmailInput,
@@ -24,8 +24,8 @@ export {
   CheckboxInputs,
   RadioInputs,
   SwitchInput
-} from "./src/input";
-export { default as Tooltip } from "./src/input/_tooltip";
+} from './src/input';
+export { default as Tooltip } from './src/input/_tooltip';
 export {
   InlineText,
   Paragraph,
@@ -34,4 +34,4 @@ export {
   InternalLink,
   ExternalLink,
   InteractiveLink
-} from "./src/typography";
+} from './src/typography';

@@ -1,20 +1,20 @@
-import styled from "styled-components";
-import { height, borderRadius } from "styled-system";
-import Box from "../box";
+import styled from 'styled-components';
+import { height, borderRadius } from 'styled-system';
+import Box from '../box';
 
 const Image = styled(Box)(
   {
-    maxWidth: "100%",
-    height: "auto"
+    maxWidth: '100%',
+    height: 'auto'
   },
   height,
   borderRadius
 );
 
 Image.defaultProps = {
-  as: "img"
+  as: 'img'
 };
 
-Image.displayName = "Image";
+Image.displayName = 'Image';
 
 export default Image;
