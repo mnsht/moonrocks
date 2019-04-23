@@ -1,27 +1,33 @@
-import React from "react";
-import Select from "react-select";
+import React from 'react';
+import Select from 'react-select';
 
-import { determineInputRightPadding } from "../_base";
+import { determineInputRightPadding } from '../_base';
+import { shouldShow as shouldShowMessages } from '../_messages';
 
-import theme from "../../theme";
+import theme from '../../theme';
+
+const determineBorderRadius = props =>
+  props.messages &&
+  (shouldShowMessages(props.messages.warnings) ||
+    shouldShowMessages(props.messages.errors));
 
 const selectStyles = {
   control: (provided, state) => ({
     ...provided,
     marginBottom: theme.space[3],
-    boxShadow: "none",
-    borderRadius: state.selectProps.messages
+    boxShadow: 'none',
+    borderRadius: determineBorderRadius(state.selectProps)
       ? `${theme.radii.normal}px ${theme.radii.normal}px 0px 0px`
       : theme.radii.normal,
     borderColor: theme.colors.snow,
-    borderWidth: state.selectProps.borderless ? "0px" : "1px",
-    "&:hover": {
+    borderWidth: state.selectProps.borderless ? '0px' : '1px',
+    '&:hover': {
       borderColor: theme.colors.snow
     }
   }),
   indicatorSeparator: (provided, state) => ({
     ...provided,
-    width: state.selectProps.borderless ? "0px" : "1px"
+    width: state.selectProps.borderless ? '0px' : '1px'
   }),
   valueContainer: (provided, state) => ({
     ...provided,

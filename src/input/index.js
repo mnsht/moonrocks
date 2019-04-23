@@ -16,7 +16,7 @@ import {
 } from './_custom';
 import Required from './_required';
 import Tooltip from './_tooltip';
-import Messages, { shouldShow as shouldShowMessages } from './_messages';
+import Messages from './_messages';
 
 /*
 TODO:
@@ -26,7 +26,13 @@ TODO:
 const eventOnChange = (event, type) => onChange => {
   if (!onChange) return;
 
-  let value = event.target.value;
+  let value;
+
+  if (type === 'select' || type === 'multiselect') {
+    value = event;
+  } else {
+    value = event.target.value;
+  }
 
   if (type === 'phone') {
     value = `+1${value
@@ -40,6 +46,10 @@ const eventOnChange = (event, type) => onChange => {
       .substr(1)
       .split(',')
       .join('');
+  } else if (type === 'select') {
+    value = value.value;
+  } else if (type === 'multiselect') {
+    value = value.map(({ value }) => value);
   }
 
   if (!value || (type === 'phone' && value === '+1')) return;
@@ -47,111 +57,35 @@ const eventOnChange = (event, type) => onChange => {
   return onChange(value);
 };
 
-const selectOnChange = (value, type) => onChange => {
-  if (!onChange) return;
-
-  if (type === 'select') {
-    return onChange(value.value);
-  } else if (type === 'multiselect') {
-    return onChange(value.map(({ value }) => value));
-  }
-};
-
 const BaseInput = props => {
-  const hasMsgs =
-    props.messages &&
-    (shouldShowMessages(props.messages.warnings) ||
-      shouldShowMessages(props.messages.errors))
-      ? true
-      : false;
+  const inputProps = Object.assign({}, props);
+  inputProps.onChange = event =>
+    eventOnChange(event, props.inputType)(props.onChange);
 
   let InputComponent;
 
-  console.log('BASE INPUT', props);
+  console.log('BASE INPUT', inputProps);
 
   if (props.inputType === 'text') {
-    InputComponent = (
-      <Input
-        {...props}
-        hasMessages={hasMsgs}
-        type="text"
-        onChange={event => eventOnChange(event)(props.onChange)}
-      />
-    );
+    InputComponent = <Input {...inputProps} type="text" />;
   } else if (props.inputType === 'email') {
-    InputComponent = (
-      <Input
-        {...props}
-        hasMessages={hasMsgs}
-        type="email"
-        onChange={event => eventOnChange(event)(props.onChange)}
-      />
-    );
+    InputComponent = <Input {...inputProps} type="email" />;
   } else if (props.inputType === 'password') {
-    InputComponent = (
-      <Input
-        {...props}
-        hasMessages={hasMsgs}
-        type="password"
-        onChange={event => eventOnChange(event)(props.onChange)}
-      />
-    );
+    InputComponent = <Input {...inputProps} type="password" />;
   } else if (props.inputType === 'paragraph') {
-    InputComponent = (
-      <Textarea
-        {...props}
-        hasMessages={hasMsgs}
-        onChange={event => eventOnChange(event)(props.onChange)}
-      />
-    );
+    InputComponent = <Textarea {...inputProps} />;
   } else if (props.inputType === 'phone') {
-    InputComponent = (
-      <CustomPhone
-        {...props}
-        hasMessages={hasMsgs}
-        onChange={event => eventOnChange(event, 'phone')(props.onChange)}
-      />
-    );
+    InputComponent = <CustomPhone {...inputProps} />;
   } else if (props.inputType === 'ssn') {
-    InputComponent = (
-      <CustomSSN
-        {...props}
-        hasMessages={hasMsgs}
-        onChange={event => eventOnChange(event, 'ssn')(props.onChange)}
-      />
-    );
+    InputComponent = <CustomSSN {...inputProps} />;
   } else if (props.inputType === 'currency') {
-    InputComponent = (
-      <CustomCurrency
-        {...props}
-        hasMessages={hasMsgs}
-        onChange={event => eventOnChange(event, 'currency')(props.onChange)}
-      />
-    );
+    InputComponent = <CustomCurrency {...inputProps} />;
   } else if (props.inputType === 'date') {
-    InputComponent = (
-      <CustomDate
-        {...props}
-        hasMessages={hasMsgs}
-        onChange={event => eventOnChange(event)(props.onChange)}
-      />
-    );
+    InputComponent = <CustomDate {...inputProps} />;
   } else if (props.inputType === 'select') {
-    InputComponent = (
-      <CustomSelect
-        {...props}
-        hasMessages={hasMsgs}
-        onChange={value => selectOnChange(value, 'select')(props.onChange)}
-      />
-    );
+    InputComponent = <CustomSelect {...inputProps} />;
   } else if (props.inputType === 'multiselect') {
-    InputComponent = (
-      <CustomMultiSelect
-        {...props}
-        hasMessages={hasMsgs}
-        onChange={value => selectOnChange(value, 'multiselect')(props.onChange)}
-      />
-    );
+    InputComponent = <CustomMultiSelect {...inputProps} />;
   }
 
   return (
@@ -159,7 +93,7 @@ const BaseInput = props => {
       {InputComponent}
       {props.required && <Required {...props} withinInput />}
       {props.tooltip && <Tooltip {...props} withinInput />}
-      {hasMsgs && <Messages {...props} />}
+      {props.messages && <Messages {...props} />}
     </InputContainer>
   );
 };

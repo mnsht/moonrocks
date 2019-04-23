@@ -1,7 +1,7 @@
-import React from "react";
-import Cleave from "cleave.js/react";
+import React from 'react';
+import Cleave from 'cleave.js/react';
 
-import { Input } from "../_base";
+import { Input } from '../_base';
 
 export default props => (
   <Input
@@ -9,8 +9,8 @@ export default props => (
     as={Cleave}
     options={{
       numeral: true,
-      numeralThousandsGroupStyle: "thousand",
-      prefix: "$"
+      numeralThousandsGroupStyle: 'thousand',
+      prefix: '$'
     }}
   />
 );

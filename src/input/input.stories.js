@@ -64,8 +64,7 @@ stories.add('everything but the kitchen sink', () => {
   const onChange = (key, value) => {
     store.set({ [key]: value });
 
-    console.log('onChange', key, value);
-    console.log('store', store.get());
+    console.log('STORE', key, value, store.get());
   };
 
   button('Add warning', () => addMessage('warnings', "Password isn't strong"));

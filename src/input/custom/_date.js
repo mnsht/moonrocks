@@ -1,7 +1,7 @@
-import React from "react";
-import Cleave from "cleave.js/react";
+import React from 'react';
+import Cleave from 'cleave.js/react';
 
-import { Input } from "../_base";
+import { Input } from '../_base';
 
 export default ({ hasYear, ...props }) => (
   <Input
@@ -9,8 +9,8 @@ export default ({ hasYear, ...props }) => (
     as={Cleave}
     options={{
       date: true,
-      delimiter: "-",
-      datePattern: hasYear ? ["m", "d", "Y"] : ["m", "d"]
+      delimiter: '-',
+      datePattern: hasYear ? ['m', 'd', 'Y'] : ['m', 'd']
     }}
   />
 );

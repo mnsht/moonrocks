@@ -5,6 +5,7 @@ import { REQUIRED_SIZE } from './_required';
 import { TOOLTIP_SIZE } from './_tooltip';
 
 import Box from '../box';
+import { shouldShow as shouldShowMessages } from './_messages';
 
 export const determineInputRightPadding = (required, tooltip, spacer) => {
   let additionalPadding = 0;
@@ -21,7 +22,9 @@ export const determineInputRightPadding = (required, tooltip, spacer) => {
 };
 
 const determineBorderRadius = props =>
-  props.hasMessages
+  props.messages &&
+  (shouldShowMessages(props.messages.warnings) ||
+    shouldShowMessages(props.messages.errors))
     ? `${themeGet('radii.normal')(props)}px ${themeGet('radii.normal')(
         props
       )}px 0px 0px`
