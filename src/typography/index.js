@@ -54,7 +54,7 @@ CappedText.defaultProps = {
 
 CappedText.displayName = 'CappedText';
 
-export const Heading = styled(Text)(textStyle);
+export const Heading = styled(Text)({ display: 'inline-block' }, textStyle);
 
 Heading.defaultProps = {
   ...Text.defaultProps,
