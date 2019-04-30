@@ -10,11 +10,53 @@ import Card from '../card';
 import Button from '../button';
 
 const reactContent = (
-  <Flex>
-    <Card p={3} m={3}>
+  <Flex flexWrap="wrap">
+    <Card p={3} mb={3} mr={3}>
       Hello
     </Card>
-    <Card p={3} m={3}>
+    <Card p={3} mb={3} mr={3}>
+      World
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      Hello
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      World
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      Hello
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      World
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      Hello
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      World
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      Hello
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      World
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      Hello
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      World
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      Hello
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      World
+    </Card>
+    <Card p={3} mb={3} mr={3}>
+      Hello
+    </Card>
+    <Card p={3} mb={3} mr={3}>
       World
     </Card>
   </Flex>
@@ -58,6 +100,7 @@ stories.add('default', () => {
       <State store={store}>
         {({ isOpen }) => [
           <Dialog
+            key="my-dialog" // NOTE: Only needed for Storybook, don't use the key prop in production
             heading={heading}
             buttons={buttons}
             hasBackground={hasBackground}

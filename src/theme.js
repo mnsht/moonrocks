@@ -6,6 +6,11 @@ const lineHeights = {
   paragraph: 1.75
 };
 const breakpoints = ['40em', '52em', '64em'];
+const media = {
+  tablet: `@media screen and (min-width: ${breakpoints[0]})`,
+  desktop: `@media screen and (min-width: ${breakpoints[1]})`,
+  widescreen: `@media screen and (min-width: ${breakpoints[2]})`
+};
 
 const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128];
 
@@ -99,6 +104,7 @@ export default {
   fontSizes,
   lineHeights,
   breakpoints,
+  media,
 
   // Common sizes, often used in images and icons
   widths: sizeScale,
@@ -225,12 +231,30 @@ export default {
 
   // All of our text variants
   textStyles: {
-    h1: { fontSize: fontSizes[7] },
-    h2: { fontSize: fontSizes[6] },
-    h3: { fontSize: fontSizes[5] },
-    h4: { fontSize: fontSizes[4] },
-    h5: { fontSize: fontSizes[3] },
-    h6: { fontSize: fontSizes[2] }
+    h1: {
+      fontSize: fontSizes[6],
+      [media.desktop]: { fontSize: fontSizes[7] }
+    },
+    h2: {
+      fontSize: fontSizes[5],
+      [media.desktop]: { fontSize: fontSizes[6] }
+    },
+    h3: {
+      fontSize: fontSizes[4],
+      [media.desktop]: { fontSize: fontSizes[5] }
+    },
+    h4: {
+      fontSize: fontSizes[3],
+      [media.desktop]: { fontSize: fontSizes[4] }
+    },
+    h5: {
+      fontSize: fontSizes[2],
+      [media.desktop]: { fontSize: fontSizes[3] }
+    },
+    h6: {
+      fontSize: fontSizes[1],
+      [media.desktop]: { fontSize: fontSizes[2] }
+    }
   },
 
   // All of our button variants

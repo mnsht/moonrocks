@@ -60,8 +60,8 @@ Heading.defaultProps = {
   ...Text.defaultProps,
   as: 'h3',
   variant: 'h3',
-  mt: 2,
-  mb: 3,
+  mt: [1, null, 2],
+  mb: [2, null, 3],
   lineHeight: 'title',
   fontWeight: 'bold'
 };
