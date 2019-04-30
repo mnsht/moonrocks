@@ -15,7 +15,10 @@ IconContainer.defaultProps = {
 
 IconContainer.displayName = 'IconContainer';
 
-const Icon = styled(Box)({});
+const Icon = styled(Box)(props => ({
+  width: themeGet(`widths.${props.dimension}`)(props),
+  height: themeGet(`heights.${props.dimension}`)(props)
+}));
 
 Icon.defaultProps = {
   color: 'black'
@@ -25,6 +28,6 @@ Icon.displayName = 'Icon';
 
 export default React.forwardRef(({ icon, size, color, ...props }, ref) => (
   <IconContainer {...props} dimension={size} ref={ref}>
-    <Icon as={icon} color={color} />
+    <Icon as={icon} color={color} dimension={size} />
   </IconContainer>
 ));

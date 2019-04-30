@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';
-import { StateDecorator, Store } from '@sambego/storybook-state';
+import { State, Store } from '@sambego/storybook-state';
 
 import Dialog from './';
 
@@ -11,23 +11,24 @@ import Button from '../button';
 
 const reactContent = (
   <Flex>
-    <Card p={3}>Hello</Card>
-    <Card p={3}>World</Card>
+    <Card p={3} m={3}>
+      Hello
+    </Card>
+    <Card p={3} m={3}>
+      World
+    </Card>
   </Flex>
 );
 
 const stories = storiesOf('Dialog', module);
 
 const store = new Store({
-  dialogIsOpen: false
+  isOpen: false
 });
 
 stories.addDecorator(withKnobs);
-stories.addDecorator(StateDecorator(store));
 
 stories.add('default', () => {
-  const dialogIsOpen = store.get('dialogIsOpen');
-
   const heading = text('Heading', 'This is my title', 'Main');
   const contentIsText = boolean('Content is text?', true, 'Main');
   const content = contentIsText
@@ -49,21 +50,26 @@ stories.add('default', () => {
     ]
   };
 
+  const toggleDialog = () => store.set({ isOpen: !store.get('isOpen') });
+
   return (
     <React.Fragment>
-      <Button onClick={() => store.set({ dialogIsOpen: !dialogIsOpen })}>
-        Open the dialog
-      </Button>
-      {dialogIsOpen && <p>Open</p>}
-      <Dialog
-        heading={heading}
-        content={content}
-        buttons={buttons}
-        hasBackground={hasBackground}
-        isOpen={dialogIsOpen}
-        onOpen={() => console.log('DIALOG', 'open')}
-        onClose={() => console.log('DIALOG', 'close')}
-      />
+      <Button onClick={toggleDialog}>Open the dialog</Button>
+      <State store={store}>
+        {({ isOpen }) => [
+          <Dialog
+            heading={heading}
+            buttons={buttons}
+            hasBackground={hasBackground}
+            isOpen={isOpen} // Whether or not the dialog is open
+            close={toggleDialog} // Function that closes the dialog
+            onOpen={() => console.log('DIALOG', 'open')} // Event listener that fires when the dialog is opened
+            onClose={() => console.log('DIALOG', 'close')} // Event listener that fires when the dialog is closed
+          >
+            {content}
+          </Dialog>
+        ]}
+      </State>
     </React.Fragment>
   );
 });

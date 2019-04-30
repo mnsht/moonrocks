@@ -1,49 +1,141 @@
 import React from 'react';
 import styled from 'styled-components';
+import { themeGet } from 'styled-system';
+import { Times } from 'styled-icons/fa-solid';
 
 import Card from '../card';
 import Flex from '../flex';
 import Box from '../box';
-import { Heading } from '../typography';
+import { Heading as BaseHeading } from '../typography';
+import Icon from '../icon';
 
-const Dialog = styled(Card)({
-  display: 'block'
+const DIALOG_PADDING = 3;
+
+const Dialog = styled(Card)(props => ({
+  position: 'relative',
+  padding: themeGet(`space.${DIALOG_PADDING}`)(props)
+}));
+
+const Heading = styled(BaseHeading)({
+  marginTop: 0
 });
 
-Dialog.defaultProps = {
-  ...Card.defaultProps,
-  as: 'div'
+Heading.defaultProps = {
+  ...BaseHeading.defaultProps,
+  as: 'span',
+  textStyle: 'h3'
 };
 
-Dialog.displayName = 'Dialog';
+Heading.displayName = 'Heading';
 
-const mappedButtons = (buttons, side) =>
-  buttons && Array.isArray(buttons) && buttons.length > 0
-    ? buttons.map(button =>
-        React.cloneElement(
-          button,
-          side === 'left' ? { mb: 0, mr: 3 } : { mb: 0, ml: 3 }
-        )
-      )
-    : null;
+const Content = styled(Box)(props => ({
+  marginBottom: themeGet('space.4')(props)
+}));
 
-const generateButtons = buttons => ({
-  leftButtons: <Box>{mappedButtons(buttons.left, 'left')}</Box>,
-  rightButtons: <Box>{mappedButtons(buttons.right, 'right')}</Box>
+const Buttons = styled(Flex)({
+  justifyContent: 'space-between'
 });
 
-export default ({ isOpen, heading, buttons, ...props }) => {
-  const { leftButtons, rightButtons } = generateButtons(buttons);
+const CloseButton = styled(Icon)(props => ({
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  margin: themeGet(`space.${DIALOG_PADDING}`)(props),
+  cursor: 'pointer',
+  '& > svg': {
+    color: themeGet('colors.snow')(props),
+    transition: `color ${themeGet('animations.fast')(props)} ease-in-out`
+  },
+  '&:hover > svg': {
+    color: themeGet('colors.mediumGray')(props)
+  }
+}));
 
-  return (
-    <Dialog p={3}>
-      <Heading as="span" textStyle="h3" mt={0}>
-        {heading}
-      </Heading>
-      <Flex justifyContent="space-between">
-        {leftButtons}
-        {rightButtons}
-      </Flex>
-    </Dialog>
-  );
+CloseButton.defaultProps = {
+  ...Icon.defaultProps,
+  size: 2,
+  icon: Times
+};
+
+CloseButton.displayName = 'CloseButton';
+
+const handleClose = (closeFunc, onClose) => {
+  closeFunc();
+
+  if (onClose && typeof onClose === 'function') {
+    onClose();
+  }
+};
+
+const generateButtons = (buttons, closeFunc, onClose) => {
+  const mappedButtons = (buttons, side) =>
+    buttons && Array.isArray(buttons) && buttons.length > 0
+      ? buttons.map((button, index) => {
+          const commonProps = {
+            key: `${side}-${index}`,
+            mb: 0,
+            onClick: () => {
+              button.props.onClick();
+
+              handleClose(closeFunc, onClose);
+            }
+          };
+
+          return React.cloneElement(
+            button,
+            side === 'left'
+              ? { ...commonProps, mr: 3 }
+              : { ...commonProps, ml: 3 }
+          );
+        })
+      : null;
+
+  return {
+    leftButtons: <Box>{mappedButtons(buttons.left, 'left')}</Box>,
+    rightButtons: <Box>{mappedButtons(buttons.right, 'right')}</Box>
+  };
+};
+
+/*
+TODO:
+ - Ensure it works on all screen sizes
+ - Animation
+ - Background (optional) - maybe a portal?
+*/
+
+export default ({
+  isOpen,
+  close,
+  onOpen,
+  onClose,
+  heading,
+  buttons,
+  children,
+  ...props
+}) => {
+  if (isOpen) {
+    if (onOpen && typeof onOpen === 'function') {
+      onOpen();
+    }
+
+    const { leftButtons, rightButtons } = generateButtons(
+      buttons,
+      close,
+      onClose
+    );
+
+    return (
+      <Dialog {...props}>
+        <Heading>{heading}</Heading>
+        <Content>{children}</Content>
+        <Buttons>
+          {leftButtons}
+          {rightButtons}
+        </Buttons>
+        <CloseButton onClick={() => handleClose(close, onClose)} />
+      </Dialog>
+    );
+  }
+
+  return null;
 };
