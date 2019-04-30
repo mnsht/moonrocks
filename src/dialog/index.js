@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
+import posed, { PoseGroup } from 'react-pose';
 import { Times } from 'styled-icons/fa-solid';
 
+import theme from '../theme';
 import Card from '../card';
 import Flex from '../flex';
 import Box from '../box';
@@ -21,6 +23,18 @@ const Background = styled(Box)(props => ({
   background: themeGet('colors.blacks.1')(props)
 }));
 
+const PosedBackground = posed(Background)({
+  enter: { opacity: 1 },
+  exit: {
+    opacity: 0,
+    delay: parseInt(theme.animations.fast)
+  },
+  transition: {
+    duration: parseInt(theme.animations.fast),
+    ease: 'easeInOut'
+  }
+});
+
 const Dialog = styled(Card)(props => ({
   position: 'fixed',
   zIndex: themeGet('zIndicies.dialog')(props),
@@ -35,6 +49,18 @@ Dialog.defaultProps = {
 };
 
 Dialog.displayName = 'Dialog';
+
+const PosedDialog = posed(Dialog)({
+  enter: {
+    opacity: 1,
+    delay: parseInt(theme.animations.fast)
+  },
+  exit: { opacity: 0 },
+  transition: {
+    duration: parseInt(theme.animations.fast),
+    ease: 'easeInOut'
+  }
+});
 
 const DialogContainer = styled(Flex)(props => ({
   flexDirection: 'column',
@@ -157,11 +183,6 @@ const generateButtons = (buttons, closeFunc, onClose) => {
   };
 };
 
-/*
-TODO:
- - Animation
-*/
-
 export default ({
   isOpen,
   close,
@@ -169,25 +190,30 @@ export default ({
   onClose,
   heading,
   buttons,
-  hasBackground,
+  hasBackground = true,
   children,
   ...props
 }) => {
-  if (isOpen) {
-    if (onOpen && typeof onOpen === 'function') {
-      onOpen();
-    }
+  if (isOpen && onOpen && typeof onOpen === 'function') {
+    onOpen();
+  }
 
-    const { leftButtons, rightButtons } = generateButtons(
-      buttons,
-      close,
-      onClose
-    );
+  const { leftButtons, rightButtons } = generateButtons(
+    buttons,
+    close,
+    onClose
+  );
 
-    return (
-      <React.Fragment>
-        {hasBackground && <Background />}
-        <Dialog {...props}>
+  return (
+    <PoseGroup>
+      {isOpen && hasBackground && (
+        <PosedBackground
+          key="background"
+          onClick={() => handleClose(close, onClose)}
+        />
+      )}
+      {isOpen && (
+        <PosedDialog {...props} key="dialog">
           <DialogContainer>
             <DialogTop>
               <Heading>{heading}</Heading>
@@ -199,10 +225,8 @@ export default ({
               {rightButtons}
             </Buttons>
           </DialogContainer>
-        </Dialog>
-      </React.Fragment>
-    );
-  }
-
-  return null;
+        </PosedDialog>
+      )}
+    </PoseGroup>
+  );
 };
