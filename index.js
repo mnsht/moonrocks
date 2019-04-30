@@ -28,6 +28,7 @@ export {
   MultiSelectInput,
   DateInput
 } from './src/input';
+export { default as Pagination } from './src/pagination';
 export { default as Tooltip } from './src/input/_tooltip';
 export {
   InlineText,
