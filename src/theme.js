@@ -196,7 +196,8 @@ export default {
   zIndicies: {
     baseline: 0,
     messages: 100,
-    tooltip: 900,
+    tooltip: 800,
+    notifications: 900,
     dialog: 1000
   },
 
