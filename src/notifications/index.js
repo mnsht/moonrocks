@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import posed, { PoseGroup } from 'react-pose';
@@ -6,6 +6,10 @@ import posed, { PoseGroup } from 'react-pose';
 import theme from '../theme';
 import Box from '../box';
 import Flex from '../flex';
+
+const NotificationsContext = React.createContext();
+
+export const NotificationsContextConsumer = NotificationsContext.Consumer;
 
 const getPosition = position => {
   const positions = {
@@ -101,16 +105,55 @@ const PosedNotification = posed(Notification)({
   }
 });
 
-export default ({ notifications, position = 'bottom-left', ...props }) => {
+/*
+TODO:
+For the below, we should use the Context API so that the rest of the app has access to the add and remove notification methods
+
+- Close?
+- Sticky and timed notifications?
+*/
+
+export const NotificationsContextProvider = ({ children }) => {
+  const [notifications, changeNotifications] = useState([]);
+
+  const addNotification = notification => {
+    // TODO... figure out a better way to copy the notifications array
+    const newNotifications = Object.assign([], notifications);
+
+    newNotifications.push(notification);
+
+    changeNotifications(newNotifications);
+  };
+
+  const removeNotification = () => {
+    const newNotifications = Object.assign([], notifications);
+
+    newNotifications.shift();
+
+    changeNotifications(newNotifications);
+  };
+
   return (
-    <Notifications position={position} {...props}>
-      <PoseGroup>
-        {notifications.map(({ text, ...notification }, index) => (
-          <PosedNotification key={index} position={position} {...notification}>
-            {text}
-          </PosedNotification>
-        ))}
-      </PoseGroup>
-    </Notifications>
+    <NotificationsContext.Provider
+      value={{
+        addNotification,
+        removeNotification,
+        notifications
+      }}
+    >
+      {children}
+    </NotificationsContext.Provider>
   );
 };
+
+export default ({ notifications, position = 'bottom-left', ...props }) => (
+  <Notifications position={position} {...props}>
+    <PoseGroup>
+      {notifications.map(({ text, ...notification }, index) => (
+        <PosedNotification key={index} position={position} {...notification}>
+          {text}
+        </PosedNotification>
+      ))}
+    </PoseGroup>
+  </Notifications>
+);

@@ -1,17 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select, button } from '@storybook/addon-knobs';
-import { State, Store } from '@sambego/storybook-state';
+import { withKnobs, select } from '@storybook/addon-knobs';
 
-import Notifications from './';
+import Notifications, {
+  NotificationsContextProvider,
+  NotificationsContextConsumer
+} from './';
+
+import Button from '../button';
 
 const stories = storiesOf('Notifications', module);
 
-const store = new Store({
-  notifications: []
-});
-
-const addNotification = (isSticky = false) => {
+const add = (addNotification, notifications, isSticky = false) => {
   const texts = [
     'This is a great notification',
     'Perhaps the greatest ever',
@@ -24,23 +24,19 @@ const addNotification = (isSticky = false) => {
 
   const getRandom = items => items[Math.floor(Math.random() * items.length)];
 
-  const notifications = store.get('notifications');
-
   notifications.push({
     text: getRandom(texts),
     type: getRandom(types),
     sticky: isSticky
   });
 
-  store.set({ notifications });
+  addNotification(notifications);
 };
 
-const removeNotification = () => {
-  const notifications = store.get('notifications');
-
+const remove = (removeNotification, notifications) => {
   notifications.shift();
 
-  store.set({ notifications });
+  removeNotification(notifications);
 };
 
 stories.addDecorator(withKnobs);
@@ -52,19 +48,24 @@ stories.add('default', () => {
     'bottom-left'
   );
 
-  button('Add notification', addNotification);
-  button('Add sticky notification', () => addNotification(true));
-  button('Remove notification', removeNotification);
-
   return (
-    <State store={store}>
-      {({ notifications }) => [
-        <Notifications
-          key="my-Notifications"
-          notifications={notifications}
-          position={position}
-        />
-      ]}
-    </State>
+    <NotificationsContextProvider>
+      <NotificationsContextConsumer>
+        {({ notifications, addNotification, removeNotification }) => (
+          <React.Fragment>
+            <Notifications notifications={notifications} position={position} />
+            <Button onClick={() => add(addNotification, notifications)}>
+              Add Notification
+            </Button>
+            <Button onClick={() => add(addNotification, notifications, true)}>
+              Add Notification (sticky)
+            </Button>
+            <Button onClick={() => remove(removeNotification, notifications)}>
+              Remove Notification
+            </Button>
+          </React.Fragment>
+        )}
+      </NotificationsContextConsumer>
+    </NotificationsContextProvider>
   );
 });
