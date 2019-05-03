@@ -14,8 +14,7 @@ import { default as Icon } from './src/icon';
 export { default as Image } from './src/image';
 export {
   default as Notifications,
-  NotificationsContextProvider,
-  NotificationsContextConsumer
+  NotificationsConsumer
 } from './src/notifications';
 export {
   TextInput,

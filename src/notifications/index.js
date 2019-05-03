@@ -9,7 +9,7 @@ import Flex from '../flex';
 
 const NotificationsContext = React.createContext();
 
-export const NotificationsContextConsumer = NotificationsContext.Consumer;
+export const NotificationsConsumer = NotificationsContext.Consumer;
 
 const getPosition = position => {
   const positions = {
@@ -107,53 +107,37 @@ const PosedNotification = posed(Notification)({
 
 /*
 TODO:
-For the below, we should use the Context API so that the rest of the app has access to the add and remove notification methods
-
 - Close?
 - Sticky and timed notifications?
 */
 
-export const NotificationsContextProvider = ({ children }) => {
+export default ({ children, position = 'bottom-left', ...props }) => {
   const [notifications, changeNotifications] = useState([]);
 
   const addNotification = notification => {
-    // TODO... figure out a better way to copy the notifications array
-    const newNotifications = Object.assign([], notifications);
+    const newNotifications = [...notifications];
 
     newNotifications.push(notification);
 
     changeNotifications(newNotifications);
   };
 
-  const removeNotification = () => {
-    const newNotifications = Object.assign([], notifications);
-
-    newNotifications.shift();
-
-    changeNotifications(newNotifications);
-  };
-
   return (
-    <NotificationsContext.Provider
-      value={{
-        addNotification,
-        removeNotification,
-        notifications
-      }}
-    >
+    <NotificationsContext.Provider value={{ addNotification }}>
+      <Notifications position={position} {...props}>
+        <PoseGroup>
+          {notifications.map(({ text, ...notification }, index) => (
+            <PosedNotification
+              key={index}
+              position={position}
+              {...notification}
+            >
+              {text}
+            </PosedNotification>
+          ))}
+        </PoseGroup>
+      </Notifications>
       {children}
     </NotificationsContext.Provider>
   );
 };
-
-export default ({ notifications, position = 'bottom-left', ...props }) => (
-  <Notifications position={position} {...props}>
-    <PoseGroup>
-      {notifications.map(({ text, ...notification }, index) => (
-        <PosedNotification key={index} position={position} {...notification}>
-          {text}
-        </PosedNotification>
-      ))}
-    </PoseGroup>
-  </Notifications>
-);

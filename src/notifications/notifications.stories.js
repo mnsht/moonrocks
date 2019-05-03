@@ -2,42 +2,24 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, select } from '@storybook/addon-knobs';
 
-import Notifications, {
-  NotificationsContextProvider,
-  NotificationsContextConsumer
-} from './';
+import Notifications, { NotificationsConsumer } from './';
 
+import Flex from '../flex';
 import Button from '../button';
 
 const stories = storiesOf('Notifications', module);
 
-const add = (addNotification, notifications, isSticky = false) => {
-  const texts = [
-    'This is a great notification',
-    'Perhaps the greatest ever',
-    'Notifications will never be the same',
-    'God bless notifications',
-    'No more crooked notifications'
-  ];
+const texts = [
+  'This is a great notification',
+  'Perhaps the greatest ever',
+  'Notifications will never be the same',
+  'God bless notifications',
+  'No more crooked notifications'
+];
 
-  const types = ['success', 'warning', 'error', 'info'];
+const types = ['success', 'warning', 'error', 'info'];
 
-  const getRandom = items => items[Math.floor(Math.random() * items.length)];
-
-  notifications.push({
-    text: getRandom(texts),
-    type: getRandom(types),
-    sticky: isSticky
-  });
-
-  addNotification(notifications);
-};
-
-const remove = (removeNotification, notifications) => {
-  notifications.shift();
-
-  removeNotification(notifications);
-};
+const getRandom = items => items[Math.floor(Math.random() * items.length)];
 
 stories.addDecorator(withKnobs);
 
@@ -49,23 +31,41 @@ stories.add('default', () => {
   );
 
   return (
-    <NotificationsContextProvider>
-      <NotificationsContextConsumer>
-        {({ notifications, addNotification, removeNotification }) => (
-          <React.Fragment>
-            <Notifications notifications={notifications} position={position} />
-            <Button onClick={() => add(addNotification, notifications)}>
+    <Notifications position={position}>
+      <NotificationsConsumer>
+        {({ addNotification }) => (
+          <Flex
+            alignItems={
+              position === 'top' || position === 'bottom'
+                ? 'flex-start'
+                : 'center'
+            }
+            flexDirection="column"
+          >
+            <Button
+              onClick={() =>
+                addNotification({
+                  text: getRandom(texts),
+                  type: getRandom(types)
+                })
+              }
+            >
               Add Notification
             </Button>
-            <Button onClick={() => add(addNotification, notifications, true)}>
+            <Button
+              onClick={() =>
+                addNotification({
+                  text: getRandom(texts),
+                  type: getRandom(types),
+                  sticky: true
+                })
+              }
+            >
               Add Notification (sticky)
             </Button>
-            <Button onClick={() => remove(removeNotification, notifications)}>
-              Remove Notification
-            </Button>
-          </React.Fragment>
+          </Flex>
         )}
-      </NotificationsContextConsumer>
-    </NotificationsContextProvider>
+      </NotificationsConsumer>
+    </Notifications>
   );
 });
