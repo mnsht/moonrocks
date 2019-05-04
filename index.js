@@ -12,6 +12,7 @@ export { default as Flex } from './src/flex';
 export { Container, Row, Column } from './src/grid';
 import { default as Icon } from './src/icon';
 export { default as Image } from './src/image';
+export { default as Message } from './src/message';
 export {
   default as Notifications,
   NotificationsConsumer
