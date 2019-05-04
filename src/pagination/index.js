@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 
@@ -29,15 +29,11 @@ const Page = styled(Box)(props => ({
 export default ({ pages, current = 1, onChange, ...props }) => {
   const [selected, setSelected] = useState(current);
 
-  const handlePageChange = num => {
-    if (num !== selected) {
-      setSelected(num);
-
-      if (onChange && typeof onChange === 'function') {
-        onChange(num);
-      }
+  useEffect(() => {
+    if (onChange && typeof onChange === 'function') {
+      onChange(selected);
     }
-  };
+  }, [selected]);
 
   return (
     <Flex {...props}>
@@ -48,7 +44,7 @@ export default ({ pages, current = 1, onChange, ...props }) => {
           <Page
             key={index}
             selected={realNum === selected}
-            onClick={() => handlePageChange(realNum)}
+            onClick={() => setSelected(realNum)}
           >
             {realNum}
           </Page>
