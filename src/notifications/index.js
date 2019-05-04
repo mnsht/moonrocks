@@ -1,15 +1,26 @@
-import React, { createContext, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import posed, { PoseGroup } from 'react-pose';
+import { Times } from 'styled-icons/fa-solid';
 
 import theme from '../theme';
-import Box from '../box';
 import Flex from '../flex';
+import Icon from '../icon';
+import { InlineText } from '../typography';
 
 const NotificationsContext = React.createContext();
 
 export const NotificationsConsumer = NotificationsContext.Consumer;
+
+const uuid = () => {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+};
 
 const getPosition = position => {
   const positions = {
@@ -70,6 +81,35 @@ const getColors = type => {
   return { backgroundColor: theme.colors.snow, color: theme.colors.darkGray };
 };
 
+const getIconColors = type => {
+  if (type === 'success') {
+    return {
+      backgroundColor: theme.colors.success300,
+      color: theme.colors.success700
+    };
+  } else if (type === 'warning') {
+    return {
+      backgroundColor: theme.colors.warning300,
+      color: theme.colors.warning700
+    };
+  } else if (type === 'error') {
+    return {
+      backgroundColor: theme.colors.error300,
+      color: theme.colors.error700
+    };
+  } else if (type === 'info') {
+    return {
+      backgroundColor: theme.colors.primary300,
+      color: theme.colors.primary700
+    };
+  }
+
+  return {
+    backgroundColor: theme.colors.lightGray,
+    color: theme.colors.darkGray
+  };
+};
+
 const Notifications = styled(Flex)(props => ({
   position: 'fixed',
   zIndex: themeGet('zIndicies.notifications')(props),
@@ -85,7 +125,9 @@ Notifications.defaultProps = {
   width: ['100%', '300px']
 };
 
-const Notification = styled(Box)(props => ({
+const Notification = styled(Flex)(props => ({
+  alignItems: 'center',
+  justifyContent: 'space-between',
   ...getColors(props.type),
   borderRadius: themeGet('radii.normal')(props),
   width: '100%',
@@ -105,19 +147,57 @@ const PosedNotification = posed(Notification)({
   }
 });
 
-/*
-TODO:
-- Close?
-- Sticky and timed notifications?
-*/
+const NotificationText = styled(InlineText)({
+  flex: 1
+});
 
-export default ({ children, position = 'bottom-left', ...props }) => {
+const RemoveIconElem = styled(Flex)(props => ({
+  backgroundColor: getIconColors(props.type).backgroundColor,
+  marginLeft: themeGet('space.2')(props),
+  borderRadius: themeGet('radii.round')(props),
+  width: themeGet('widths.1')(props),
+  height: themeGet('heights.1')(props),
+  cursor: 'pointer',
+  justifyContent: 'center',
+  alignItems: 'center'
+}));
+
+const RemoveIcon = props => (
+  <RemoveIconElem {...props}>
+    <Icon icon={Times} size={0} color={getIconColors(props.type).color} />
+  </RemoveIconElem>
+);
+
+export default ({
+  children,
+  position = 'bottom-left',
+  duration = 3000,
+  ...props
+}) => {
   const [notifications, changeNotifications] = useState([]);
 
   const addNotification = notification => {
     const newNotifications = [...notifications];
+    const id = uuid();
 
+    notification.id = id;
     newNotifications.push(notification);
+
+    changeNotifications(newNotifications);
+
+    if (!notification.sticky) {
+      setTimeout(() => removeNotification(id), duration);
+    }
+  };
+
+  const removeNotification = id => {
+    const newNotifications = [...notifications];
+
+    if (id) {
+      newNotifications.splice(newNotifications.findIndex(n => n.id === id), 1);
+    } else {
+      newNotifications.shift();
+    }
 
     changeNotifications(newNotifications);
   };
@@ -126,13 +206,13 @@ export default ({ children, position = 'bottom-left', ...props }) => {
     <NotificationsContext.Provider value={{ addNotification }}>
       <Notifications position={position} {...props}>
         <PoseGroup>
-          {notifications.map(({ text, ...notification }, index) => (
-            <PosedNotification
-              key={index}
-              position={position}
-              {...notification}
-            >
-              {text}
+          {notifications.map(({ text, id, ...notification }) => (
+            <PosedNotification key={id} position={position} {...notification}>
+              <NotificationText>{text}</NotificationText>
+              <RemoveIcon
+                type={notification.type}
+                onClick={() => removeNotification(id)}
+              />
             </PosedNotification>
           ))}
         </PoseGroup>
