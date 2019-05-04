@@ -12,7 +12,7 @@ const Page = styled(Box)(props => ({
   textAlign: 'center',
   backgroundColor: props.selected
     ? themeGet('colors.primary')(props)
-    : themeGet('colors.snow')(props),
+    : themeGet('colors.transparent')(props),
   color: props.selected
     ? themeGet('colors.white')(props)
     : themeGet('colors.black')(props),

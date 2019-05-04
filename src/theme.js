@@ -304,6 +304,11 @@ export default {
       backgroundColor: white,
       boxShadow: shadows.normal,
       borderRadius: radii.normal
+    },
+    note: {
+      color: mediumGray,
+      backgroundColor: white,
+      borderRadius: radii.normal
     }
   }
 };

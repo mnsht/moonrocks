@@ -12,8 +12,8 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => {
   const type = select(
     'Type',
-    ['info', 'success', 'warning', 'error'],
-    'info',
+    ['info', 'primary', 'success', 'warning', 'error'],
+    'primary',
     'Main'
   );
   const title = text('Title', 'Mission accomplished', 'Main');
