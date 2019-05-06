@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import posed, { PoseGroup } from 'react-pose';
 
-import Box from '../box';
+import Box from '../../box';
 
 // NOTE: If we want styles to sit below the input, rather than float on top, then simply flip this value... :)
 const IS_FLOATING = true;

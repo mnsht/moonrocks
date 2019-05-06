@@ -12,12 +12,6 @@ export { default as Flex } from './src/flex';
 export { Container, Row, Column } from './src/grid';
 import { default as Icon } from './src/icon';
 export { default as Image } from './src/image';
-export { default as Message } from './src/message';
-export { default as Note } from './src/note';
-export {
-  default as Notifications,
-  NotificationsConsumer
-} from './src/notifications';
 export {
   TextInput,
   EmailInput,
@@ -33,9 +27,17 @@ export {
   SelectInput,
   MultiSelectInput,
   DateInput
-} from './src/input';
+} from './src/form/inputs';
+export { default as Menu } from './src/menu';
+export { default as Message } from './src/message';
+export { default as Note } from './src/note';
+export {
+  default as Notifications,
+  NotificationsConsumer
+} from './src/notifications';
 export { default as Pagination } from './src/pagination';
-export { default as Tooltip } from './src/input/_tooltip';
+export { default as Steps } from './src/form/steps';
+export { default as Tooltip } from './src/form/inputs/_tooltip';
 export {
   InlineText,
   Paragraph,

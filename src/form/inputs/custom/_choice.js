@@ -4,11 +4,11 @@ import { themeGet } from 'styled-system';
 import posed from 'react-pose';
 import { Check } from 'styled-icons/fa-solid';
 
-import theme from '../../theme';
-import Box from '../../box';
-import Flex from '../../flex';
-import Icon from '../../icon';
-import { InlineText } from '../../typography';
+import theme from '../../../theme';
+import Box from '../../../box';
+import Flex from '../../../flex';
+import Icon from '../../../icon';
+import { InlineText } from '../../../typography';
 
 const choiceAnimation = {
   selected: {

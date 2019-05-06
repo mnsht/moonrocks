@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { determineInputRightPadding } from '../_base';
 import { shouldShow as shouldShowMessages } from '../_messages';
 
-import theme from '../../theme';
+import theme from '../../../theme';
 
 const determineBorderRadius = props =>
   props.messages &&

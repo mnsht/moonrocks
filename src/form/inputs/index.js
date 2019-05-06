@@ -12,12 +12,12 @@ import {
   CustomSelect,
   CustomMultiSelect,
   CustomDate
-} from './_custom';
+} from './custom';
 import Required from './_required';
 import Tooltip from './_tooltip';
 import Messages from './_messages';
 
-import Flex from '../flex';
+import Flex from '../../flex';
 
 const eventOnChange = (event, type) => onChange => {
   if (!onChange) return;

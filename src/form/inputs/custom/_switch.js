@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 
-import Box from '../../box';
-import Flex from '../../flex';
-import { InlineText } from '../../typography';
+import Box from '../../../box';
+import Flex from '../../../flex';
+import { InlineText } from '../../../typography';
 
 const SWITCH_PADDING = 3;
 

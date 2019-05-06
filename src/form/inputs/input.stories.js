@@ -19,8 +19,8 @@ import {
   MultiSelectInput,
   DateInput
 } from './';
-import Box from '../box';
-import { Container, Row, Column } from '../grid';
+import Box from '../../box';
+import { Container, Row, Column } from '../../grid';
 
 const sampleOptions = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -28,7 +28,7 @@ const sampleOptions = [
   { value: 'vanilla', label: 'Vanilla' }
 ];
 
-const stories = storiesOf('Input', module);
+const stories = storiesOf('Inputs', module);
 
 const store = new Store({
   messages: {

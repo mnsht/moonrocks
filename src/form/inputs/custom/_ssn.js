@@ -4,7 +4,7 @@ import { themeGet } from 'styled-system';
 import Cleave from 'cleave.js/react';
 
 import { Input } from '../_base';
-import { InlineText } from '../../typography';
+import { InlineText } from '../../../typography';
 
 export const CustomSSN = props => (
   <Input

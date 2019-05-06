@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import { TOOLTIP_SIZE } from './_tooltip';
-import { InlineText } from '../typography';
+import { InlineText } from '../../typography';
 
 export const REQUIRED_SIZE = 14;
 

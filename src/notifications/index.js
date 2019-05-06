@@ -9,6 +9,8 @@ import Flex from '../flex';
 import Icon from '../icon';
 import { InlineText } from '../typography';
 
+// TODO: We cannot figure out how to remove notifications after a timeout
+
 const NotificationsContext = React.createContext();
 
 export const NotificationsConsumer = NotificationsContext.Consumer;
@@ -184,23 +186,23 @@ export default ({
     newNotifications.push(notification);
 
     changeNotifications(newNotifications);
-
-    if (!notification.sticky) {
-      setTimeout(() => removeNotification(id), duration);
-    }
   };
 
   const removeNotification = id => {
-    const newNotifications = [...notifications];
-
-    if (id) {
-      newNotifications.splice(newNotifications.findIndex(n => n.id === id), 1);
-    } else {
-      newNotifications.shift();
-    }
-
-    changeNotifications(newNotifications);
+    console.log('removing', id);
+    changeNotifications(notifications.filter(n => n.id !== id));
   };
+
+  useEffect(() => {
+    console.log('notifications', notifications);
+    // if (notifications.length > 0) {
+    //   const latest = notifications[notifications.length - 1];
+
+    //   if (!latest.sticky) {
+    //     setTimeout(() => removeNotification(latest.id), duration);
+    //   }
+    // }
+  }, [notifications]);
 
   return (
     <NotificationsContext.Provider value={{ addNotification }}>

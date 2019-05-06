@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import posed, { PoseGroup } from 'react-pose';
 
-import theme from '../theme';
-import Box from '../box';
+import theme from '../../theme';
+import Box from '../../box';
 
 export const TOOLTIP_SIZE = theme.widths[1];
 const TOOLTIP_SPACING = theme.space[2];

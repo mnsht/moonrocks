@@ -4,7 +4,7 @@ import { themeGet } from 'styled-system';
 import { REQUIRED_SIZE } from './_required';
 import { TOOLTIP_SIZE } from './_tooltip';
 
-import Box from '../box';
+import Box from '../../box';
 import { shouldShow as shouldShowMessages } from './_messages';
 
 export const determineInputRightPadding = (required, tooltip, spacer) => {

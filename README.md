@@ -4,6 +4,8 @@ The UI component library for Scholar Raise, using Storybook
 
 ## Developing
 
+Be sure to check the [list of todos](TODOS.md).
+
 1. `yarn install`
 2. `yarn start`
 3. GG.
