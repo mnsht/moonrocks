@@ -5,7 +5,7 @@ import { SpaceShuttle } from 'styled-icons/fa-solid';
 
 import Message from './';
 
-const stories = storiesOf('Message', module);
+const stories = storiesOf('2. Simple|Message', module);
 
 stories.addDecorator(withKnobs);
 

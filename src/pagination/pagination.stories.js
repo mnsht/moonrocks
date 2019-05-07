@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import Pagination from './';
 
-const stories = storiesOf('Pagination', module);
+const stories = storiesOf('2. Simple|Pagination', module);
 
 stories.add('default', () => {
   return (

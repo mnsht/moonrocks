@@ -4,7 +4,7 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 
 import Card from './';
 
-const stories = storiesOf('Card', module);
+const stories = storiesOf('1. Foundation|Card', module);
 
 stories.addDecorator(withKnobs);
 

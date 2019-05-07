@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import Menu from '.';
 
-const stories = storiesOf('Menu', module);
+const stories = storiesOf('2. Simple|Menu', module);
 
 const pages = [
   {

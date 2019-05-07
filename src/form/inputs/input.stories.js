@@ -28,7 +28,7 @@ const sampleOptions = [
   { value: 'vanilla', label: 'Vanilla' }
 ];
 
-const stories = storiesOf('Inputs', module);
+const stories = storiesOf('2. Simple|Form/Inputs', module);
 
 const store = new Store({
   messages: {

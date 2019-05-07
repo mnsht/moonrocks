@@ -6,7 +6,7 @@ import { buttonVariantKnob } from '../../storybook-helpers';
 
 import Button from './';
 
-const stories = storiesOf('Button', module);
+const stories = storiesOf('1. Foundation|Button', module);
 
 stories.addDecorator(withKnobs);
 

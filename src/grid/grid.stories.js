@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { Container, Row, Column } from './';
 import Card from '../card';
 
-const stories = storiesOf('Grid', module);
+const stories = storiesOf('1. Foundation|Grid', module);
 
 stories.add('default', () => {
   return (

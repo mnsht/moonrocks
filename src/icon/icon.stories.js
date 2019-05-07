@@ -6,7 +6,7 @@ import { Check } from 'styled-icons/fa-solid';
 
 import Icon from './';
 
-const stories = storiesOf('Icon', module);
+const stories = storiesOf('2. Simple|Icon', module);
 
 stories.addDecorator(withKnobs);
 

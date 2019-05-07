@@ -62,7 +62,7 @@ const reactContent = (
   </Flex>
 );
 
-const stories = storiesOf('Dialog', module);
+const stories = storiesOf('2. Simple|Dialog', module);
 
 const store = new Store({
   isOpen: false

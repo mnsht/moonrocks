@@ -20,7 +20,7 @@ const sampleParagraph = `
   but do not fall prey to the lies of elders. And as always, remember the timecube.
 `;
 
-const stories = storiesOf('Typography', module);
+const stories = storiesOf('1. Foundation|Typography', module);
 
 stories.addDecorator(withKnobs);
 

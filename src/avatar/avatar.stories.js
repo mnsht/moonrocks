@@ -5,7 +5,7 @@ import { sizeKnob } from '../../storybook-helpers';
 
 import Avatar from './';
 
-const stories = storiesOf('Avatar', module);
+const stories = storiesOf('2. Simple|Avatar', module);
 
 stories.addDecorator(withKnobs);
 

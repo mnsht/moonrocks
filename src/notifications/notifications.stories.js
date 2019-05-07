@@ -7,7 +7,7 @@ import Notifications, { NotificationsConsumer } from './';
 import Flex from '../flex';
 import Button from '../button';
 
-const stories = storiesOf('Notifications', module);
+const stories = storiesOf('2. Simple|Notifications', module);
 
 const texts = [
   'This is a great notification',

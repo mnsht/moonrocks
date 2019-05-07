@@ -5,7 +5,7 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 import Flex from './';
 import Card from '../card';
 
-const stories = storiesOf('Flex', module);
+const stories = storiesOf('1. Foundation|Flex', module);
 
 stories.addDecorator(withKnobs);
 

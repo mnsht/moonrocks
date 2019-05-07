@@ -5,7 +5,7 @@ import Divider from './';
 
 import { Paragraph } from '../typography';
 
-const stories = storiesOf('Divider', module);
+const stories = storiesOf('2. Simple|Divider', module);
 
 stories.add('default', () => {
   return (
