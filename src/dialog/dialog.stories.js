@@ -98,9 +98,8 @@ stories.add('default', () => {
     <React.Fragment>
       <Button onClick={toggleDialog}>Open the dialog</Button>
       <State store={store}>
-        {({ isOpen }) => [
+        {({ isOpen }) => (
           <Dialog
-            key="my-dialog" // NOTE: Only needed for Storybook, don't use the key prop in production
             heading={heading}
             buttons={buttons}
             hasBackground={hasBackground}
@@ -111,7 +110,7 @@ stories.add('default', () => {
           >
             {content}
           </Dialog>
-        ]}
+        )}
       </State>
     </React.Fragment>
   );
