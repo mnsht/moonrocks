@@ -24,7 +24,8 @@
     "cleave.js": "^1.4.10",
     "formik": "^1.5.4",
     "react-select": "^2.4.3",
-    "styled-icons": "^7.11.0"
+    "styled-icons": "^7.11.0",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
@@ -44,16 +45,14 @@
     "react-dom": "^16.8.6",
     "react-pose": "^4.0.8",
     "styled-components": "^4.2.0",
-    "styled-system": "^4.1.0",
-    "yup": "^0.27.0"
+    "styled-system": "^4.1.0"
   },
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-pose": "^4.0.8",
     "styled-components": "^4.2.0",
-    "styled-system": "^4.1.0",
-    "yup": "^0.27.0"
+    "styled-system": "^4.1.0"
   },
   "husky": {
     "hooks": {

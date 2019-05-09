@@ -120,7 +120,7 @@ export const CheckboxInput = props => <ChoiceBase type="checkbox" {...props} />;
 export const CheckboxInputs = props => (
   <ChoiceBase type="checkboxes" {...props} />
 );
-export const RadioInputs = props => <ChoiceBase type="radios" {...props} />;
+export const RadioInput = props => <ChoiceBase type="radios" {...props} />;
 export const SwitchInput = props => <ChoiceBase type="switch" {...props} />;
 export const PhoneInput = props => <Base type="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>

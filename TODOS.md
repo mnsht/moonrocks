@@ -3,9 +3,8 @@
 ## Simple Components
 
 - Form
-  - Standardize input error messages with Yup
-  - Get field arrays working as well
   - Make a form with all types of inputs (kitchen sink)
+  - Get field arrays working as well
   - Ensure that onBlur and onChange correctly fire for every input
   - Array configuration ("form wizard")
     - Array of object configs, no extra prop needed (object = form, array of objects = form wizard)
@@ -40,6 +39,15 @@
 
 ## Known Problems
 
-- Deleting the value on a form input doesn't work
+### Avatars
+
 - [Avatars don't have a fallback](src/avatar/index.js)
+
+### Forms
+
+- **Deleting the value on a form input doesn't work**
+- Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React
+
+### Notifications
+
 - [Notifications are always sticky and don't automatically disappear](src/notifications/index.js)

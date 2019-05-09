@@ -19,7 +19,7 @@ export {
   PasswordInput,
   CheckboxInput,
   CheckboxInputs,
-  RadioInputs,
+  RadioInput,
   SwitchInput,
   PhoneInput,
   SSNInput,

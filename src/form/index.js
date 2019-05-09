@@ -1,67 +1,27 @@
 import React from 'react';
-import { Formik, Form as FormikForm, Field } from 'formik';
+import { Formik, Form as FormikForm } from 'formik';
+import constructValidation from './_validation';
+import createInput from './_input';
 
-import { TextInput, EmailInput } from './inputs';
 import { Row, Column } from '../grid';
 import Button from '../button';
 
-const getInputType = type => {
-  if (type === 'text') {
-    return TextInput;
-  } else if (type === 'email') {
-    return EmailInput;
-  }
+const constructInitialValues = forms => {
+  const initialValues = {};
 
-  return null;
+  forms.forEach(form => {
+    form.forEach(({ name, value }) => {
+      initialValues[name] = value || '';
+    });
+  });
+
+  return initialValues;
 };
 
-export default ({ submit, button, initial, validation, forms, ...props }) => {
+export default ({ submit, button, forms, ...props }) => {
+  const initial = constructInitialValues(forms);
+  const validation = constructValidation(forms);
   const isSingle = forms.length === 1;
-
-  const createInput = (
-    { type, name, tooltip, width, ...input },
-    formikProps
-  ) => {
-    const { errors, touched, setFieldValue, setFieldTouched } = formikProps;
-
-    const required =
-      validation.fields[name] && validation.fields[name]._exclusive.required;
-    const messages =
-      touched[name] && errors[name]
-        ? { warnings: [], errors: [errors[name]] }
-        : null;
-
-    let FieldComponent;
-
-    if (type === 'array') {
-      console.log('DO AN ARRAY');
-    } else {
-      const Component = getInputType(type);
-
-      FieldComponent = (
-        <Field
-          name={name}
-          render={({ field }) => (
-            <Component
-              {...field}
-              {...input}
-              required={required}
-              tooltip={tooltip}
-              messages={messages}
-              onChange={value => setFieldValue(name, value)}
-              onBlur={() => setFieldTouched(name, true)}
-            />
-          )}
-        />
-      );
-    }
-
-    return (
-      <Column key={name} width={width}>
-        {FieldComponent}
-      </Column>
-    );
-  };
 
   return (
     <Formik
