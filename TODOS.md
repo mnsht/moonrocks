@@ -2,17 +2,18 @@
 
 ## Simple Components
 
-- Steps
-- Header
-- Footer
 - Form
-  - Implement Formik with object configuation
-  - Validation using Yup
+  - Standardize input error messages with Yup
+  - Get field arrays working as well
+  - Make a form with all types of inputs (kitchen sink)
+  - Ensure that onBlur and onChange correctly fire for every input
   - Array configuration ("form wizard")
     - Array of object configs, no extra prop needed (object = form, array of objects = form wizard)
     - Optional steps
   - Remove direct export access inputs and steps (just supply form)
   - Export only the Form component bundled with Formik
+- Header
+- Footer
 
 ## Complex Components
 
@@ -39,5 +40,6 @@
 
 ## Known Problems
 
+- Deleting the value on a form input doesn't work
 - [Avatars don't have a fallback](src/avatar/index.js)
 - [Notifications are always sticky and don't automatically disappear](src/notifications/index.js)
