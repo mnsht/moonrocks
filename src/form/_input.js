@@ -87,7 +87,10 @@ export default (
         required={required}
         tooltip={tooltip}
         messages={messages}
-        onChange={value => setFieldValue(name, value)}
+        onChange={value => {
+          console.log(value);
+          setFieldValue(name, value);
+        }}
         onBlur={() => setFieldTouched(name, true)}
       />
     );
