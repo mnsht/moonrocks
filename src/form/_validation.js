@@ -35,11 +35,19 @@ export default forms => {
         }
 
         if (type === 'ssn') {
+          // TODO: Required isn't quite right here...
           valid = valid.matches(/^[0-9]{3}\-?[0-9]{2}\-?[0-9]{4}$/, {
             message: 'Must be a valid social security number',
             excludeEmptyString: !required
           });
         }
+
+        // if (type === 'phone') {
+        //   valid = valid.matches(/^[0-9]{3}\-?[0-9]{2}\-?[0-9]{4}$/, {
+        //     message: 'Must be a valid phone number',
+        //     excludeEmptyString: !required
+        //   });
+        // }
       }
 
       validations[name] = valid;

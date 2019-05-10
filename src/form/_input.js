@@ -1,5 +1,4 @@
 import React from 'react';
-import { Field } from 'formik';
 
 import {
   TextInput,
@@ -58,7 +57,13 @@ export default (
     return null;
   };
 
-  const { errors, touched, setFieldValue, setFieldTouched } = formikProps;
+  const {
+    errors,
+    touched,
+    setFieldValue,
+    setFieldTouched,
+    values
+  } = formikProps;
 
   const required = validation.required;
   const messages =
@@ -73,20 +78,17 @@ export default (
   } else {
     const Component = getInputType(type);
 
+    // TODO: PATRICK... do initial value
     FieldComponent = (
-      <Field
+      <Component
         name={name}
-        render={({ field }) => (
-          <Component
-            {...field}
-            placeholder={placeholder}
-            required={required}
-            tooltip={tooltip}
-            messages={messages}
-            onChange={value => setFieldValue(name, value)}
-            onBlur={() => setFieldTouched(name, true)}
-          />
-        )}
+        value={values[name]}
+        placeholder={placeholder}
+        required={required}
+        tooltip={tooltip}
+        messages={messages}
+        onChange={value => setFieldValue(name, value)}
+        onBlur={() => setFieldTouched(name, true)}
       />
     );
   }

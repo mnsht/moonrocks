@@ -4,6 +4,7 @@
 
 - Form
   - Make a form with all types of inputs (kitchen sink)
+  - Be able to support reference validation between two inputs that should be the same
   - Get field arrays working as well
   - Ensure that onBlur and onChange correctly fire for every input
   - Array configuration ("form wizard")
