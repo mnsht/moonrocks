@@ -22,5 +22,5 @@ export const CustomHiddenSSN = styled(InlineText)(props => ({
   fontWeight: themeGet('fontWeights.bold')(props),
   userSelect: 'none',
   display: 'block',
-  padding: themeGet('space.3')(props)
+  padding: `${themeGet('space.3')(props)}px 0px`
 }));

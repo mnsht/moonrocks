@@ -8,40 +8,15 @@ const stories = storiesOf('2. Simple|Form', module);
 
 stories.addDecorator(withKnobs);
 
-/*
-CheckboxInput
-CheckboxInputs
-RadioInput
-SwitchInput
-SSNInput - hidden
-CurrencyInput
-ParagraphInput
-SelectInput
-MultiSelectInput
-DateInput
-*/
-
 const createPage = num => [
   {
-    name: `firstName-${num}`,
-    placeholder: 'First name',
-    initialValue: 'Wesley',
+    name: `text-${num}`,
+    placeholder: 'Full name',
+    initialValue: 'Wesley Belden',
     type: 'text',
     validation: {
       min: 2,
       max: 50,
-      required: true
-    },
-    width: [1, null, 1 / 3]
-  },
-  {
-    name: `lastName-${num}`,
-    placeholder: 'Last name',
-    initialValue: 'Belden',
-    type: 'text',
-    validation: {
-      min: 4,
-      max: 30,
       required: true
     },
     width: [1, null, 1 / 3]
@@ -57,9 +32,9 @@ const createPage = num => [
     width: [1, null, 1 / 3]
   },
   {
-    name: `ssn-${num}`,
-    placeholder: 'Social security number',
-    type: 'ssn',
+    name: `phone-${num}`,
+    placeholder: 'Phone number',
+    type: 'phone',
     validation: {
       required: true
     },
@@ -85,15 +60,72 @@ const createPage = num => [
     width: [1, null, 1 / 3]
   },
   {
-    name: `phone-${num}`,
-    placeholder: 'Phone number',
-    type: 'phone',
+    name: `ssn-${num}`,
+    placeholder: 'Social security number',
+    type: 'ssn',
+    // hidden: true, // Uncomment this and you'll get a "hidden" SSN input
+    validation: {
+      required: true
+    },
+    width: [1, null, 1 / 3]
+  },
+  {
+    name: `currency-${num}`,
+    placeholder: 'Does nothing...',
+    type: 'currency',
+    validation: {
+      required: true
+    },
+    width: [1, null, 1 / 3]
+  },
+  {
+    name: `date-${num}`,
+    placeholder: 'Date',
+    type: 'date',
+    validation: {
+      required: true
+    },
+    width: [1, null, 1 / 3]
+  },
+  {
+    name: `date-yearly-${num}`,
+    placeholder: 'Date (with a year)',
+    type: 'date',
+    hasYear: true,
+    validation: {
+      required: true
+    },
+    width: [1, null, 1 / 3]
+  },
+  {
+    name: `paragraph-${num}`,
+    placeholder: 'Start typing anything...',
+    type: 'paragraph',
+    validation: {
+      required: true
+    },
+    width: [1]
+  },
+  null, // NOTE: this is a line break ;)
+  {
+    name: `date-yearly2-${num}`,
+    placeholder: 'Date (with a year)',
+    type: 'date',
     validation: {
       required: true
     },
     width: [1, null, 1 / 3]
   }
 ];
+
+/*
+CheckboxInput
+CheckboxInputs
+RadioInput
+SwitchInput
+SelectInput
+MultiSelectInput
+*/
 
 const singleForm = {
   submit: values => console.log('SUBMIT', values),

@@ -5,6 +5,7 @@
 - Form
   - Make a form with all types of inputs (kitchen sink)
   - Get field arrays working as well
+  - Ensure that all validations work
   - Ensure that initial values always work
   - Ensure that onBlur and onChange correctly fire for every input
   - Array configuration ("form wizard")

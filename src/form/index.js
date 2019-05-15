@@ -15,8 +15,10 @@ const constructInitialValues = forms => {
   const initialValues = {};
 
   forms.forEach(form => {
-    form.forEach(({ name, initialValue }) => {
-      initialValues[name] = initialValue || '';
+    form.forEach(input => {
+      if (input) {
+        initialValues[input.name] = input.initialValue || '';
+      }
     });
   });
 
