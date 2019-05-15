@@ -16,7 +16,7 @@ export default forms => {
           valid = Yup.string();
         }
 
-        const { required, min, max } = validation;
+        const { required, min, max, reference } = validation;
 
         if (required) {
           valid = valid.required('This field is required');
@@ -28,6 +28,13 @@ export default forms => {
 
         if (max) {
           valid = valid.max(max, `Cannot be longer than ${max} characters`);
+        }
+
+        if (reference) {
+          valid = valid.oneOf(
+            [Yup.ref(reference), null],
+            'This should match the previous field'
+          );
         }
 
         if (type === 'email') {

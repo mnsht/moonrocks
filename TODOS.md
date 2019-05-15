@@ -4,7 +4,6 @@
 
 - Form
   - Make a form with all types of inputs (kitchen sink)
-  - Be able to support reference validation between two inputs that should be the same
   - Get field arrays working as well
   - Ensure that initial values always work
   - Ensure that onBlur and onChange correctly fire for every input
@@ -47,7 +46,7 @@
 
 ### Forms
 
-- **Deleting the value on a form input doesn't work**
+- Validation for SSN and phone are not necessarily correct depending on "required" also existing
 - Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React
 
 ### Notifications

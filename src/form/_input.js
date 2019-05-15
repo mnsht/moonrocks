@@ -78,7 +78,6 @@ export default (
   } else {
     const Component = getInputType(type);
 
-    // TODO: PATRICK... do initial value
     FieldComponent = (
       <Component
         name={name}

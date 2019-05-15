@@ -68,8 +68,6 @@ export default ({ submit, button, startAt, forms, ...props }) => {
                 )}
               </WizardPage>
             );
-
-            return null;
           })}
           <Row>
             <Column width={1}>

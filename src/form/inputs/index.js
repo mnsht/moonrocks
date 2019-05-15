@@ -48,8 +48,6 @@ const eventOnChange = (event, type) => onChange => {
     value = value.map(({ value }) => value);
   }
 
-  if (!value || (type === 'phone' && value === '+1')) return;
-
   return onChange(value);
 };
 

@@ -8,6 +8,19 @@ const stories = storiesOf('2. Simple|Form', module);
 
 stories.addDecorator(withKnobs);
 
+/*
+CheckboxInput
+CheckboxInputs
+RadioInput
+SwitchInput
+SSNInput - hidden
+CurrencyInput
+ParagraphInput
+SelectInput
+MultiSelectInput
+DateInput
+*/
+
 const createPage = num => [
   {
     name: `firstName-${num}`,
@@ -49,6 +62,25 @@ const createPage = num => [
     type: 'ssn',
     validation: {
       required: true
+    },
+    width: [1, null, 1 / 3]
+  },
+  {
+    name: `password-${num}`,
+    placeholder: 'Password',
+    type: 'password',
+    validation: {
+      required: true
+    },
+    width: [1, null, 1 / 3]
+  },
+  {
+    name: `password-again-${num}`,
+    placeholder: 'Password (again)',
+    type: 'password',
+    validation: {
+      required: true,
+      reference: `password-${num}`
     },
     width: [1, null, 1 / 3]
   },
