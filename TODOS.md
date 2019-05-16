@@ -2,17 +2,19 @@
 
 ## Simple Components
 
-- Steps
-- Header
-- Footer
 - Form
-  - Implement Formik with object configuation
-  - Validation using Yup
+  - Get field arrays working as well
+  - Ensure that all validations work
+  - Ensure that initial values always work
+  - Ensure that onBlur and onChange correctly fire for every input
+  - Style button (more top margin?)
   - Array configuration ("form wizard")
     - Array of object configs, no extra prop needed (object = form, array of objects = form wizard)
     - Optional steps
-  - Remove direct export access inputs and steps (just supply form)
+  - Remove direct export access for inputs and steps (just supply form)
   - Export only the Form component bundled with Formik
+- Header
+- Footer
 
 ## Complex Components
 
@@ -39,5 +41,15 @@
 
 ## Known Problems
 
+### Avatars
+
 - [Avatars don't have a fallback](src/avatar/index.js)
+
+### Forms
+
+- Validation for SSN and phone are not necessarily correct depending on "required" also existing
+- Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React
+
+### Notifications
+
 - [Notifications are always sticky and don't automatically disappear](src/notifications/index.js)

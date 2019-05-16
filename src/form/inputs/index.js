@@ -48,8 +48,6 @@ const eventOnChange = (event, type) => onChange => {
     value = value.map(({ value }) => value);
   }
 
-  if (!value || (type === 'phone' && value === '+1')) return;
-
   return onChange(value);
 };
 
@@ -100,17 +98,7 @@ const ChoiceBase = ({ type, ...props }) => {
     InputComponent = <CustomSwitch {...props} />;
   }
 
-  return (
-    <InputContainer>
-      {(props.required || props.tooltip) && (
-        <Flex alignItems="center" mb={2}>
-          {props.required && <Required {...props} />}
-          {props.tooltip && <Tooltip {...props} position="top-right" />}
-        </Flex>
-      )}
-      {InputComponent}
-    </InputContainer>
-  );
+  return <InputContainer>{InputComponent}</InputContainer>;
 };
 
 export const TextInput = props => <Base type="text" {...props} />;
@@ -120,7 +108,7 @@ export const CheckboxInput = props => <ChoiceBase type="checkbox" {...props} />;
 export const CheckboxInputs = props => (
   <ChoiceBase type="checkboxes" {...props} />
 );
-export const RadioInputs = props => <ChoiceBase type="radios" {...props} />;
+export const RadioInput = props => <ChoiceBase type="radios" {...props} />;
 export const SwitchInput = props => <ChoiceBase type="switch" {...props} />;
 export const PhoneInput = props => <Base type="phone" {...props} />;
 export const SSNInput = ({ hidden, ...props }) =>

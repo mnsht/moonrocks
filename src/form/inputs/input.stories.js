@@ -9,7 +9,7 @@ import {
   PasswordInput,
   CheckboxInput,
   CheckboxInputs,
-  RadioInputs,
+  RadioInput,
   SwitchInput,
   PhoneInput,
   SSNInput,
@@ -212,7 +212,7 @@ stories.add('everything but the kitchen sink', () => {
           />
         </Column>
         <Column width={[1, null, 1 / 3]}>
-          <RadioInputs
+          <RadioInput
             label="Radio inputs"
             options={options}
             required={required}
@@ -363,7 +363,7 @@ stories.add('as multiple radios', () => {
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
-      <RadioInputs
+      <RadioInput
         options={options}
         required={required}
         tooltip={tooltip}

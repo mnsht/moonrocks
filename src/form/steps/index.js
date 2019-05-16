@@ -131,6 +131,7 @@ export default ({ steps, onChange, ...props }) => {
             <Description
               display={['none', null, 'block']}
               color="mediumGray"
+              lineHeight="title"
               mt={2}
               mr={3}
               mb={0}

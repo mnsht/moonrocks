@@ -5,6 +5,7 @@ import posed, { PoseGroup } from 'react-pose';
 import { Times } from 'styled-icons/fa-solid';
 
 import theme from '../theme';
+import { uuid } from '../_helpers';
 import Flex from '../flex';
 import Icon from '../icon';
 import { InlineText } from '../typography';
@@ -14,15 +15,6 @@ import { InlineText } from '../typography';
 const NotificationsContext = React.createContext();
 
 export const NotificationsConsumer = NotificationsContext.Consumer;
-
-const uuid = () => {
-  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-    (
-      c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-    ).toString(16)
-  );
-};
 
 const getPosition = position => {
   const positions = {
@@ -189,15 +181,12 @@ export default ({
   };
 
   const removeNotification = id => {
-    console.log('removing', id);
     changeNotifications(notifications.filter(n => n.id !== id));
   };
 
   useEffect(() => {
-    console.log('notifications', notifications);
     // if (notifications.length > 0) {
     //   const latest = notifications[notifications.length - 1];
-
     //   if (!latest.sticky) {
     //     setTimeout(() => removeNotification(latest.id), duration);
     //   }
