@@ -97,16 +97,18 @@ export default (input, formikProps) => {
           render={arrayHelpers =>
             inputProps.value.map((empty, index) => {
               return (
-                <Row key={index}>
-                  {fields.map(({ width, ...input }) => (
-                    <Column key={input.name} width={width}>
-                      {React.createElement(getInputType(input.type), {
-                        ...input,
-                        name: `${inputProps.name}[${index}].${input.name}`,
-                        value: input.initialValue
-                      })}
-                    </Column>
-                  ))}
+                <Row mx={-2} key={index}>
+                  {fields.map(
+                    ({ width, type, name, initialValue, ...input }) => (
+                      <Column key={name} width={width}>
+                        {React.createElement(getInputType(type), {
+                          ...input,
+                          name: `${inputProps.name}[${index}].${name}`,
+                          value: initialValue
+                        })}
+                      </Column>
+                    )
+                  )}
                   {inputProps.value.length > 1 && (
                     <Icon
                       icon={Minus}
