@@ -43,13 +43,18 @@ export default ({ submit, button, startAt, forms, ...props }) => {
           {forms.map((form, index) => {
             if (isSingle) {
               return (
-                <Row>{form.map(input => createInput(input, formikProps))}</Row>
+                <Row key={index} mt={3}>
+                  {form.map(input => createInput(input, formikProps))}
+                </Row>
               );
             }
 
             // TODO: Finish the form wizard
             return (
-              <WizardPage display={currentPage === index ? 'block' : 'none'}>
+              <WizardPage
+                key={index}
+                display={currentPage === index ? 'block' : 'none'}
+              >
                 <p>Form Wizard - Page {currentPage}</p>
                 <Row>{form.map(input => createInput(input, formikProps))}</Row>
                 {currentPage - 1 >= 0 && (

@@ -8,6 +8,12 @@ const stories = storiesOf('2. Simple|Form', module);
 
 stories.addDecorator(withKnobs);
 
+const multipleOptions = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+];
+
 const createPage = num => [
   {
     name: `text-${num}`,
@@ -108,24 +114,62 @@ const createPage = num => [
   },
   null, // NOTE: this is a line break ;)
   {
-    name: `date-yearly2-${num}`,
-    placeholder: 'Date (with a year)',
-    type: 'date',
+    name: `checkboxes-${num}`,
+    label: 'Ice cream flavors that I like',
+    options: multipleOptions,
+    type: 'checkboxes',
     validation: {
       required: true
     },
     width: [1, null, 1 / 3]
+  },
+  {
+    name: `radio-${num}`,
+    label: 'My favorite ice cream flavor',
+    options: multipleOptions,
+    type: 'radio',
+    validation: {
+      required: true
+    },
+    width: [1, null, 1 / 3]
+  },
+  {
+    name: `switch-${num}`,
+    off: 'Not to be',
+    on: 'To be',
+    type: 'switch',
+    width: [1, null, 1 / 3]
+  },
+  {
+    name: `select-${num}`,
+    placeholder: 'Select one...',
+    options: multipleOptions,
+    type: 'select',
+    validation: {
+      required: true
+    },
+    width: [1, null, 1 / 2]
+  },
+  {
+    name: `multiselect-${num}`,
+    placeholder: 'Select multiple...',
+    options: multipleOptions,
+    type: 'multiselect',
+    validation: {
+      required: true
+    },
+    width: [1, null, 1 / 2]
+  },
+  {
+    name: `checkbox-${num}`,
+    label: 'I agree to the terms and conditions',
+    type: 'checkbox',
+    validation: {
+      required: true
+    },
+    width: [1]
   }
 ];
-
-/*
-CheckboxInput
-CheckboxInputs
-RadioInput
-SwitchInput
-SelectInput
-MultiSelectInput
-*/
 
 const singleForm = {
   submit: values => console.log('SUBMIT', values),

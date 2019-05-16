@@ -57,15 +57,7 @@ export default (input, formikProps) => {
       return null;
     };
 
-    const {
-      type,
-      name,
-      placeholder,
-      tooltip,
-      width,
-      validation,
-      ...restOfInputProps
-    } = input;
+    const { type, name, width, validation, ...restOfInputProps } = input;
     const {
       errors,
       touched,
@@ -77,9 +69,7 @@ export default (input, formikProps) => {
     const inputProps = {
       name,
       value: values[name],
-      placeholder,
-      required: validation.required,
-      tooltip,
+      required: validation && validation.required,
       messages:
         touched[name] && errors[name]
           ? { warnings: [], errors: [errors[name]] }

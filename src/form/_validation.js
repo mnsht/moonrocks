@@ -5,7 +5,7 @@ export default forms => {
 
   forms.forEach(form => {
     form.forEach(input => {
-      if (input) {
+      if (input && input.hasOwnProperty('validation')) {
         const {
           name,
           type,
