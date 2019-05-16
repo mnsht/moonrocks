@@ -127,7 +127,7 @@ const createPage = num => [
   },
   {
     name: `radio-${num}`,
-    label: 'What is your favorite ice cream flavor?',
+    label: 'Favorite ice cream flavor?',
     tooltip: 'Choose one quickly!',
     options: multipleOptions,
     type: 'radio',
