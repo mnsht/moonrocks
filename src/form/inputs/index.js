@@ -98,17 +98,7 @@ const ChoiceBase = ({ type, ...props }) => {
     InputComponent = <CustomSwitch {...props} />;
   }
 
-  return (
-    <InputContainer>
-      {(props.required || props.tooltip) && (
-        <Flex alignItems="center" mb={2}>
-          {props.required && <Required {...props} />}
-          {props.tooltip && <Tooltip {...props} position="top-right" />}
-        </Flex>
-      )}
-      {InputComponent}
-    </InputContainer>
-  );
+  return <InputContainer>{InputComponent}</InputContainer>;
 };
 
 export const TextInput = props => <Base type="text" {...props} />;

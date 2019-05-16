@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 
+import Tooltip from '../_tooltip';
 import Box from '../../../box';
 import Flex from '../../../flex';
 import { InlineText } from '../../../typography';
@@ -36,7 +37,7 @@ const SwitchBall = styled(Box)(props => ({
   )} ease-in-out, background ${themeGet('animations.fast')(props)} ease-in-out`
 }));
 
-export default ({ initialValue = false, on, off, onChange }) => {
+export default ({ initialValue = false, on, off, onChange, ...props }) => {
   const [selected, setSelected] = useState(initialValue);
 
   return (
@@ -57,6 +58,7 @@ export default ({ initialValue = false, on, off, onChange }) => {
         <SwitchBall selected={selected} />
       </SwitchTrack>
       {on && <InlineText ml={2}>{on}</InlineText>}
+      {props.tooltip && <Tooltip {...props} ml={3} position="top-left" />}
     </Flex>
   );
 };

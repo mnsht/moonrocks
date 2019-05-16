@@ -204,7 +204,7 @@ Tooltip.defaultProps = {
 
 Tooltip.displayName = 'Tooltip';
 
-export default ({ tooltip, position, withinInput, type }) => {
+export default ({ tooltip, position, withinInput, type, ...props }) => {
   const [showing, setShowing] = useState(false);
 
   if (withinInput) {
@@ -212,7 +212,7 @@ export default ({ tooltip, position, withinInput, type }) => {
   }
 
   return (
-    <TooltipContainer withinInput={withinInput} type={type}>
+    <TooltipContainer withinInput={withinInput} type={type} {...props}>
       <TooltipIcon onClick={() => setShowing(!showing)} showing={showing}>
         ?
       </TooltipIcon>

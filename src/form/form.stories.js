@@ -4,6 +4,8 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import Form from './';
 
+import { InlineText, InternalLink } from '../typography';
+
 const stories = storiesOf('2. Simple|Form', module);
 
 stories.addDecorator(withKnobs);
@@ -115,7 +117,7 @@ const createPage = num => [
   null, // NOTE: this is a line break ;)
   {
     name: `checkboxes-${num}`,
-    label: 'Ice cream flavors that I like',
+    label: 'What ice cream flavors do you like?',
     options: multipleOptions,
     type: 'checkboxes',
     validation: {
@@ -125,7 +127,8 @@ const createPage = num => [
   },
   {
     name: `radio-${num}`,
-    label: 'My favorite ice cream flavor',
+    label: 'What is your favorite ice cream flavor?',
+    tooltip: 'Choose one quickly!',
     options: multipleOptions,
     type: 'radio',
     validation: {
@@ -137,6 +140,7 @@ const createPage = num => [
     name: `switch-${num}`,
     off: 'Not to be',
     on: 'To be',
+    tooltip: 'Choose wisely',
     type: 'switch',
     width: [1, null, 1 / 3]
   },
@@ -162,7 +166,12 @@ const createPage = num => [
   },
   {
     name: `checkbox-${num}`,
-    label: 'I agree to the terms and conditions',
+    label: (
+      <InlineText>
+        Please read the{' '}
+        <InternalLink href="/">terms and conditions</InternalLink>
+      </InlineText>
+    ),
     type: 'checkbox',
     validation: {
       required: true

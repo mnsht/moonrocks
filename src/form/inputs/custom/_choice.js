@@ -4,6 +4,8 @@ import { themeGet } from 'styled-system';
 import posed from 'react-pose';
 import { Check } from 'styled-icons/fa-solid';
 
+import Required from '../_required';
+import Tooltip from '../_tooltip';
 import theme from '../../../theme';
 import Box from '../../../box';
 import Flex from '../../../flex';
@@ -23,11 +25,6 @@ const choiceAnimation = {
     opacity: 0
   }
 };
-
-const ChoiceLabel = styled(InlineText)(props => ({
-  marginLeft: themeGet('space.3')(props),
-  userSelect: 'none'
-}));
 
 const ChoiceContainer = styled(Flex)({
   cursor: 'pointer',
@@ -59,14 +56,32 @@ const RadioDot = styled(Box)(props => ({
 
 const PosedRadioDot = posed(RadioDot)(choiceAnimation);
 
+const ChoiceLabel = ({ mb, ml, partOfGroup, handleClick, ...props }) => {
+  const labelIsString = typeof props.label === 'string';
+  const labelProps = { onClick: handleClick };
+
+  if (!partOfGroup) {
+    labelProps.pr = 3;
+  }
+
+  return (
+    <Flex alignItems="center" mb={mb} ml={ml}>
+      {labelIsString && <InlineText {...labelProps}>{props.label}</InlineText>}
+      {!labelIsString && React.cloneElement(props.label, labelProps)}
+      {props.required && <Required {...props} />}
+      {props.tooltip && <Tooltip {...props} position="top-left" />}
+    </Flex>
+  );
+};
+
 export const CustomChoice = ({
   initialValue = false,
   isRadio,
   value,
-  label,
   currentOption, // current values when part of a group
   groupOnChange, // onChange when part of a group
-  onChange // local onChange
+  onChange, // local onChange
+  ...props
 }) => {
   const [selected, setSelected] = useState(initialValue);
 
@@ -91,31 +106,38 @@ export const CustomChoice = ({
     />
   );
 
+  const handleOnClick = () => {
+    if (!isRadio || (isRadio && selected !== true)) {
+      const newSelectedValue = !selected;
+
+      setSelected(newSelectedValue);
+
+      if (!isRadio && onChange) {
+        onChange(newSelectedValue);
+      }
+
+      if (groupOnChange && value) {
+        groupOnChange({ [value]: newSelectedValue });
+      }
+    }
+  };
+
   return (
-    <ChoiceContainer
-      onClick={() => {
-        if (!isRadio || (isRadio && selected !== true)) {
-          const newSelectedValue = !selected;
-
-          setSelected(newSelectedValue);
-
-          if (!isRadio && onChange) {
-            onChange(newSelectedValue);
-          }
-
-          if (groupOnChange && value) {
-            groupOnChange({ [value]: newSelectedValue });
-          }
-        }
-      }}
-    >
-      <ChoiceElem isRadio={isRadio}>{ChoiceSelection}</ChoiceElem>
-      <ChoiceLabel>{label}</ChoiceLabel>
+    <ChoiceContainer>
+      <ChoiceElem isRadio={isRadio} onClick={handleOnClick}>
+        {ChoiceSelection}
+      </ChoiceElem>
+      <ChoiceLabel
+        ml={3}
+        partOfGroup={!!groupOnChange}
+        handleClick={handleOnClick}
+        {...props}
+      />
     </ChoiceContainer>
   );
 };
 
-export const CustomChoices = ({ isRadio, options, onChange }) => {
+export const CustomChoices = ({ isRadio, options, onChange, ...props }) => {
   const [currentOption, setCurrentOption] = useState(null);
 
   const groupOnChange = obj => {
@@ -149,10 +171,11 @@ export const CustomChoices = ({ isRadio, options, onChange }) => {
 
   return (
     <React.Fragment>
-      {options.map((props, i) => (
+      <ChoiceLabel mb={3} {...props} />
+      {options.map((choiceProps, i) => (
         <CustomChoice
           key={i}
-          {...props}
+          {...choiceProps}
           isRadio={isRadio}
           currentOption={currentOption}
           groupOnChange={groupOnChange}

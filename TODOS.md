@@ -3,8 +3,6 @@
 ## Simple Components
 
 - Form
-  - Get labels working for checkboxes and radios
-  - Re-evaluate the positioning of the required and tooltip for all checkbox, radio, and switch inputs
   - Get field arrays working as well
   - Ensure that all validations work
   - Ensure that initial values always work
