@@ -1,6 +1,8 @@
 import React from 'react';
+import styled from 'styled-components';
+import { themeGet } from 'styled-system';
 import { FieldArray } from 'formik';
-import { Plus, Minus } from 'styled-icons/fa-solid';
+import { Trash } from 'styled-icons/fa-solid';
 
 import {
   TextInput,
@@ -23,6 +25,25 @@ import { Row, Column } from '../grid';
 import { uuid } from '../_helpers';
 import Divider from '../divider';
 import Icon from '../icon';
+import Button from '../button';
+
+const FieldArrayRow = styled(Row)({
+  position: 'relative'
+});
+
+const RemoveIcon = styled(Icon)(props => ({
+  position: 'absolute',
+  right: -themeGet('space.4')(props),
+  top: `${themeGet('space.3')(props) + 1}px`, // 1px extra to accommodate for top border
+  cursor: 'pointer',
+  '& > svg': {
+    color: themeGet('colors.lightGray')(props),
+    transition: `color ${themeGet('animations.fast')(props)} ease-in-out`
+  },
+  '&:hover > svg': {
+    color: themeGet('colors.mediumGray')(props)
+  }
+}));
 
 const getInputType = type => {
   if (type === 'text') {
@@ -62,12 +83,13 @@ const getFieldArray = (
   arrayValue,
   arrayName,
   arrayHelpers,
+  button,
   fields,
   { initialValues, touched, errors, setFieldValue, setFieldTouched }
-) =>
-  arrayValue.map((empty, index) => {
-    return (
-      <Row mx={-2} key={index}>
+) => (
+  <React.Fragment>
+    {arrayValue.map((empty, index) => (
+      <FieldArrayRow ml={-2} mr={arrayValue.length > 1 ? 4 : -2} key={index}>
         {fields.map(
           ({ width, type, name, validation, initialValue, ...input }) => (
             <Column key={name} width={width}>
@@ -91,15 +113,23 @@ const getFieldArray = (
           )
         )}
         {arrayValue.length > 1 && (
-          <Icon icon={Minus} onClick={() => arrayHelpers.remove(index)} />
+          <RemoveIcon
+            icon={Trash}
+            size={0}
+            onClick={() => arrayHelpers.remove(index)}
+          />
         )}
-        <Icon
-          icon={Plus}
-          onClick={() => arrayHelpers.push(initialValues[arrayName][0])}
-        />
-      </Row>
-    );
-  });
+      </FieldArrayRow>
+    ))}
+    <Button
+      type="button"
+      variant="secondary"
+      onClick={() => arrayHelpers.push(initialValues[arrayName][0])}
+    >
+      {button}
+    </Button>
+  </React.Fragment>
+);
 
 export default (input, formikProps) => {
   if (!input) {
@@ -143,6 +173,7 @@ export default (input, formikProps) => {
             inputProps.value,
             inputProps.name,
             arrayHelpers,
+            inputProps.button,
             fields,
             formikProps
           )

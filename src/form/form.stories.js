@@ -168,6 +168,8 @@ const createPage = num => [
   {
     name: `array-${num}`,
     type: 'array',
+    button: 'Add person',
+    initialValue: [{ name: 'That guy', email: 'me@patrickcason.com' }],
     fields: [
       {
         name: `text`,
