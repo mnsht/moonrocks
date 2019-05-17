@@ -3,9 +3,6 @@
 ## Simple Components
 
 - Form
-  - Get field arrays working as well
-    - Get messages, onBlur, and onChange working
-    - Get remove properly removing
   - Ensure that all validations work
   - Ensure that initial values always work
   - Ensure that onBlur and onChange correctly fire for every input
