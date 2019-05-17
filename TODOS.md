@@ -4,13 +4,12 @@
 
 - Form
   - Get field arrays working as well
-    - Style plus and minus buttons
-    - Get default value working
     - Get messages, onBlur, and onChange working
     - Get remove properly removing
   - Ensure that all validations work
   - Ensure that initial values always work
   - Ensure that onBlur and onChange correctly fire for every input
+  - Errors on textarea aren't on the bottom border
   - Style button (more top margin?)
   - Array configuration ("form wizard")
     - Array of object configs, no extra prop needed (object = form, array of objects = form wizard)

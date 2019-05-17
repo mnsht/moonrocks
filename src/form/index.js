@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { display } from 'styled-system';
 import { Formik, Form as FormikForm } from 'formik';
 import constructValidation from './_validation';
-import createInput from './_input';
+import createInput, { generateBlankFieldArray } from './_input';
 
 import { Row, Column } from '../grid';
 import Card from '../card';
@@ -18,13 +18,9 @@ const constructInitialValues = forms => {
     form.forEach(input => {
       if (input) {
         if (input.type === 'array') {
-          const blankFields = {};
-
-          input.fields.forEach(({ name, initialValue }) => {
-            blankFields[name] = initialValue || '';
-          });
-
-          initialValues[input.name] = input.initialValue || [blankFields];
+          initialValues[input.name] = input.initialValue || [
+            generateBlankFieldArray(input.fields)
+          ];
         } else {
           initialValues[input.name] = input.initialValue || '';
         }
@@ -69,6 +65,7 @@ export default ({ submit, button, startAt, forms, ...props }) => {
                 <Row>{form.map(input => createInput(input, formikProps))}</Row>
                 {currentPage - 1 >= 0 && (
                   <Button
+                    type="button"
                     variant="secondary"
                     onClick={() => setCurrentPage(currentPage - 1)}
                   >
@@ -77,6 +74,7 @@ export default ({ submit, button, startAt, forms, ...props }) => {
                 )}
                 {currentPage + 1 < forms.length && (
                   <Button
+                    type="button"
                     variant="secondary"
                     onClick={() => setCurrentPage(currentPage + 1)}
                   >

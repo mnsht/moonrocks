@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
-import { FieldArray } from 'formik';
+import { FieldArray, getIn } from 'formik';
 import { Trash } from 'styled-icons/fa-solid';
 
 import {
@@ -45,91 +45,15 @@ const RemoveIcon = styled(Icon)(props => ({
   }
 }));
 
-const getInputType = type => {
-  if (type === 'text') {
-    return TextInput;
-  } else if (type === 'email') {
-    return EmailInput;
-  } else if (type === 'password') {
-    return PasswordInput;
-  } else if (type === 'checkbox') {
-    return CheckboxInput;
-  } else if (type === 'checkboxes') {
-    return CheckboxInputs;
-  } else if (type === 'radio') {
-    return RadioInput;
-  } else if (type === 'switch') {
-    return SwitchInput;
-  } else if (type === 'phone') {
-    return PhoneInput;
-  } else if (type === 'ssn') {
-    return SSNInput;
-  } else if (type === 'currency') {
-    return CurrencyInput;
-  } else if (type === 'paragraph') {
-    return ParagraphInput;
-  } else if (type === 'select') {
-    return SelectInput;
-  } else if (type === 'multiselect') {
-    return MultiSelectInput;
-  } else if (type === 'date') {
-    return DateInput;
-  }
+export const generateBlankFieldArray = fields => {
+  const blankFields = {};
 
-  return null;
+  fields.forEach(({ name, initialValue }) => {
+    blankFields[name] = initialValue || '';
+  });
+
+  return blankFields;
 };
-
-const getFieldArray = (
-  arrayValue,
-  arrayName,
-  arrayHelpers,
-  button,
-  fields,
-  { initialValues, touched, errors, setFieldValue, setFieldTouched }
-) => (
-  <React.Fragment>
-    {arrayValue.map((empty, index) => (
-      <FieldArrayRow ml={-2} mr={arrayValue.length > 1 ? 4 : -2} key={index}>
-        {fields.map(
-          ({ width, type, name, validation, initialValue, ...input }) => (
-            <Column key={name} width={width}>
-              {React.createElement(getInputType(type), {
-                ...input,
-                name: `${arrayName}[${index}].${name}`,
-                required: validation && validation.required,
-                messages:
-                  touched[name] && errors[name]
-                    ? {
-                        warnings: [],
-                        errors: [errors[name]]
-                      }
-                    : null,
-                onChange: value =>
-                  setFieldValue(`${arrayName}[${index}].${name}`, value),
-                onBlur: () =>
-                  setFieldTouched(`${arrayName}[${index}].${name}`, true)
-              })}
-            </Column>
-          )
-        )}
-        {arrayValue.length > 1 && (
-          <RemoveIcon
-            icon={Trash}
-            size={0}
-            onClick={() => arrayHelpers.remove(index)}
-          />
-        )}
-      </FieldArrayRow>
-    ))}
-    <Button
-      type="button"
-      variant="secondary"
-      onClick={() => arrayHelpers.push(initialValues[arrayName][0])}
-    >
-      {button}
-    </Button>
-  </React.Fragment>
-);
 
 export default (input, formikProps) => {
   if (!input) {
@@ -140,7 +64,7 @@ export default (input, formikProps) => {
     );
   }
 
-  const { type, name, width, validation, fields, ...restOfInputProps } = input;
+  const { type, name, width, fields, ...restOfInputProps } = input;
   const {
     errors,
     touched,
@@ -148,45 +72,87 @@ export default (input, formikProps) => {
     setFieldTouched,
     values
   } = formikProps;
+  const isArray = type === 'array' && fields;
 
-  const inputProps = {
-    ...restOfInputProps,
-    name,
-    value: values[name],
-    required: validation && validation.required,
-    messages:
-      touched[name] && errors[name]
-        ? { warnings: [], errors: [errors[name]] }
-        : null,
-    onChange: value => setFieldValue(name, value),
-    onBlur: () => setFieldTouched(name, true)
+  const getInputType = type => {
+    if (type === 'text') return TextInput;
+    else if (type === 'email') return EmailInput;
+    else if (type === 'password') return PasswordInput;
+    else if (type === 'checkbox') return CheckboxInput;
+    else if (type === 'checkboxes') return CheckboxInputs;
+    else if (type === 'radio') return RadioInput;
+    else if (type === 'switch') return SwitchInput;
+    else if (type === 'phone') return PhoneInput;
+    else if (type === 'ssn') return SSNInput;
+    else if (type === 'currency') return CurrencyInput;
+    else if (type === 'paragraph') return ParagraphInput;
+    else if (type === 'select') return SelectInput;
+    else if (type === 'multiselect') return MultiSelectInput;
+    else if (type === 'date') return DateInput;
+
+    return null;
   };
 
-  let FieldComponent;
-
-  if (type === 'array' && fields) {
-    FieldComponent = (
-      <FieldArray
-        {...inputProps}
-        render={arrayHelpers =>
-          getFieldArray(
-            inputProps.value,
-            inputProps.name,
-            arrayHelpers,
-            inputProps.button,
-            fields,
-            formikProps
-          )
+  const getMessages = name =>
+    getIn(touched, name) && getIn(errors, name)
+      ? {
+          warnings: [],
+          errors: [getIn(errors, name)]
         }
-      />
-    );
-  } else {
-    FieldComponent = React.createElement(getInputType(type), inputProps);
-  }
+      : null;
+
+  const getInputProps = (name, { validation, ...extra }) => ({
+    ...extra,
+    name,
+    value: getIn(values, name),
+    required: validation && validation.required,
+    messages: getMessages(name),
+    onChange: value => setFieldValue(name, value),
+    onBlur: () => setFieldTouched(name, true)
+  });
+
+  const createInput = (type, name, extras) =>
+    React.createElement(getInputType(type), getInputProps(name, extras));
+
+  const getFieldArray = (arrayValue, arrayName, arrayHelpers) => (
+    <React.Fragment>
+      {arrayValue.map((empty, index) => (
+        <FieldArrayRow key={index} ml={-2} mr={arrayValue.length > 1 ? 4 : -2}>
+          {fields.map(({ width, type, name, ...input }) => (
+            <Column key={name} width={width}>
+              {createInput(type, `${arrayName}[${index}].${name}`, input)}
+            </Column>
+          ))}
+          {arrayValue.length > 1 && (
+            <RemoveIcon
+              icon={Trash}
+              size={0}
+              onClick={() => arrayHelpers.remove(index)}
+            />
+          )}
+        </FieldArrayRow>
+      ))}
+      <Button
+        type="button"
+        variant="secondary"
+        onClick={() => arrayHelpers.push(generateBlankFieldArray(fields))}
+      >
+        {restOfInputProps.button}
+      </Button>
+    </React.Fragment>
+  );
 
   return (
     <Column key={name} width={width}>
-      {FieldComponent}
+      {isArray && (
+        <FieldArray
+          name={name}
+          render={arrayHelpers =>
+            getFieldArray(values[name], name, arrayHelpers)
+          }
+        />
+      )}
+      {!isArray && createInput(type, name, restOfInputProps)}
     </Column>
   );
 };

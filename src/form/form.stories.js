@@ -169,13 +169,16 @@ const createPage = num => [
     name: `array-${num}`,
     type: 'array',
     button: 'Add person',
-    initialValue: [{ name: 'That guy', email: 'me@patrickcason.com' }],
+    initialValue: [
+      { name: 'Patrick Cason', email: 'patrick@scholarraise.com' },
+      { name: 'Wesley Belden', email: 'wesley@scholarraise.com' }
+    ],
     fields: [
       {
-        name: `text`,
+        name: 'name',
         placeholder: 'Name',
-        initialValue: 'Biggles Biggleston',
         type: 'text',
+        initialValue: 'Some guy',
         validation: {
           min: 4,
           max: 20,
@@ -184,9 +187,10 @@ const createPage = num => [
         width: [1, null, 1 / 3]
       },
       {
-        name: `email`,
+        name: 'email',
         placeholder: 'Email address',
         type: 'email',
+        initialValue: 'someguy@example.com',
         tooltip: 'Make tooltips great again',
         validation: {
           required: true
