@@ -3,14 +3,15 @@
 ## Simple Components
 
 - Form
-  - Ensure that all validations work
-  - Ensure that initial values always work
-  - Ensure that onBlur and onChange correctly fire for every input
-  - Errors on textarea aren't on the bottom border
+  - Fix errors on paragraph
   - Style button (more top margin?)
-  - Array configuration ("form wizard")
-    - Array of object configs, no extra prop needed (object = form, array of objects = form wizard)
-    - Optional steps
+  - Fix select
+  - Fix multiselect
+  - Test initial values for all fields
+  - Test onBlur and onChange for all fields
+  - Write and test remaining validations
+  - Style form wizard
+  - Add optional steps
   - Remove direct export access for inputs and steps (just supply form)
   - Export only the Form component bundled with Formik
 - Header

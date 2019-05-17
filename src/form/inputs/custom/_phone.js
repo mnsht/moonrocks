@@ -1,5 +1,6 @@
 import React from 'react';
 import Cleave from 'cleave.js/react';
+import 'cleave.js/dist/addons/cleave-phone.us.js';
 
 import { Input } from '../_base';
 
@@ -8,9 +9,9 @@ export default props => (
     {...props}
     as={Cleave}
     options={{
-      numericOnly: true,
-      blocks: [0, 3, 0, 3, 4],
-      delimiters: ['(', ')', ' ', '-']
+      phone: true,
+      phoneRegionCode: 'US',
+      prefix: '+1'
     }}
   />
 );

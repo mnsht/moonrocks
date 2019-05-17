@@ -17,8 +17,6 @@ import Required from './_required';
 import Tooltip from './_tooltip';
 import Messages from './_messages';
 
-import Flex from '../../flex';
-
 const eventOnChange = (event, type) => onChange => {
   if (!onChange) return;
 
@@ -31,10 +29,7 @@ const eventOnChange = (event, type) => onChange => {
   }
 
   if (type === 'phone') {
-    value = `+1${value
-      .replace(/\D/g, '')
-      .split(' ')
-      .join('')}`;
+    value = value.split(' ').join('');
   } else if (type === 'ssn') {
     value = value.split('-').join('');
   } else if (type === 'currency') {
