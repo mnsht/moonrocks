@@ -3,14 +3,19 @@ import Cleave from 'cleave.js/react';
 
 import { Input } from '../_base';
 
-export default props => (
+export default ({ onChange, ...props }) => (
   <Input
     {...props}
     as={Cleave}
     options={{
       numeral: true,
       numeralThousandsGroupStyle: 'thousand',
-      prefix: '$'
+      prefix: '$',
+      noImmediatePrefix: true,
+      rawValueTrimPrefix: true
+    }}
+    onChange={event => {
+      if (typeof onChange === 'function') onChange(event.target.rawValue);
     }}
   />
 );

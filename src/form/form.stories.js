@@ -79,7 +79,7 @@ const createPage = num => [
   },
   {
     name: `currency-${num}`,
-    placeholder: 'Does nothing...',
+    placeholder: 'Total contribution',
     type: 'currency',
     validation: {
       required: true

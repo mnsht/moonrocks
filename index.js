@@ -1,5 +1,6 @@
 // Export main theme
 export { default as theme } from './src/theme';
+export { ThemeProvider } from 'styled-components';
 
 // Export components
 export { default as Avatar } from './src/avatar';

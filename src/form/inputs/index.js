@@ -20,30 +20,15 @@ import Messages from './_messages';
 const eventOnChange = (event, type) => onChange => {
   if (!onChange) return;
 
-  let value;
-
-  if (type === 'select' || type === 'multiselect') {
-    value = event;
-  } else {
-    value = event.target.value;
-  }
-
-  if (type === 'phone') {
-    value = value.split(' ').join('');
-  } else if (type === 'ssn') {
-    value = value.split('-').join('');
-  } else if (type === 'currency') {
-    value = value
-      .substr(1)
-      .split(',')
-      .join('');
+  if (type === 'currency' || type === 'ssn' || type === 'phone') {
+    return onChange(event);
   } else if (type === 'select') {
-    value = value.value;
+    return onChange(event.value);
   } else if (type === 'multiselect') {
-    value = value.map(({ value }) => value);
+    return onChange(event.map(({ value }) => value));
+  } else {
+    return onChange(event.target.value);
   }
-
-  return onChange(value);
 };
 
 const Base = ({ type, onChange, ...props }) => {

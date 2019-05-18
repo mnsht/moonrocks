@@ -53,7 +53,7 @@ export default forms => {
 
       if (type === 'phone') {
         // TODO: Required isn't quite right here, check the empty string if required... perhaps separate into another if statement
-        valid = valid.matches(/^\+?[0-9]{11}$/, {
+        valid = valid.matches(/^\+?[0-9]{10}$/, {
           message: 'Must be a valid phone number',
           excludeEmptyString: !required
         });

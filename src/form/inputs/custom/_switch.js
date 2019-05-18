@@ -12,13 +12,18 @@ const SWITCH_PADDING = 3;
 const SwitchTrack = styled(Box)(props => ({
   position: 'relative',
   width: themeGet('widths.1')(props) * 2 + SWITCH_PADDING * 4,
-  height: themeGet('heights.1')(props) + SWITCH_PADDING * 2,
+  height: themeGet('heights.1')(props) + SWITCH_PADDING * 2 + 2,
   background: props.selected
     ? themeGet('colors.primary')(props)
-    : themeGet('colors.snow')(props),
+    : themeGet('colors.trueWhite')(props),
+  border: props.selected
+    ? `1px solid ${themeGet('colors.primary')(props)}`
+    : `1px solid ${themeGet('colors.snow')(props)}`,
   borderRadius: themeGet('radii.round')(props),
   cursor: 'pointer',
-  transition: `background ${themeGet('animations.fast')(props)} ease-in-out`
+  transition: `background ${themeGet('animations.fast')(
+    props
+  )} ease-in-out, border ${themeGet('animations.fast')(props)} ease-in-out`
 }));
 
 const SwitchBall = styled(Box)(props => ({
@@ -30,7 +35,7 @@ const SwitchBall = styled(Box)(props => ({
   height: themeGet('heights.1')(props),
   background: props.selected
     ? themeGet('colors.white')(props)
-    : themeGet('colors.mediumGray')(props),
+    : themeGet('colors.lightGray')(props),
   borderRadius: themeGet('radii.round')(props),
   transition: `left ${themeGet('animations.fast')(
     props
