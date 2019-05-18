@@ -3,10 +3,9 @@
 ## Simple Components
 
 - Form
-  - Fix errors on paragraph
-  - Style button (more top margin?)
   - Fix select
   - Fix multiselect
+  - Consider a non-input prefix for currency and phone inputs (allowing a placeholder to be seen)
   - Test initial values for all fields
   - Test onBlur and onChange for all fields
   - Write and test remaining validations

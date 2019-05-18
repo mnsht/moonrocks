@@ -8,16 +8,16 @@ import Box from '../../box';
 // NOTE: If we want styles to sit below the input, rather than float on top, then simply flip this value... :)
 const IS_FLOATING = true;
 
-const floatingStyles = () =>
+const floatingStyles = type =>
   IS_FLOATING && {
     position: 'absolute',
     top: '100%',
     left: 0,
-    marginTop: -1
+    marginTop: type === 'paragraph' ? -5 : -1
   };
 
 const MessagesContainer = styled(Box)(props => ({
-  ...floatingStyles(),
+  ...floatingStyles(props.type),
   zIndex: themeGet('zIndicies.messages')(props),
   width: '100%',
   overflow: 'hidden',
@@ -75,8 +75,8 @@ const preparedMessages = ({ errors, warnings }) => {
   return allMessages;
 };
 
-export default ({ messages }) => (
-  <MessagesContainer>
+export default ({ messages, type }) => (
+  <MessagesContainer type={type}>
     <PoseGroup>{preparedMessages(messages)}</PoseGroup>
   </MessagesContainer>
 );

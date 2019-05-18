@@ -84,13 +84,19 @@ export default ({ submit, button, startAt, forms, ...props }) => {
               </WizardPage>
             );
           })}
-          <Row>
-            <Column width={1}>
-              <Button type="submit" disabled={isSubmitting || !isValid}>
-                {button}
-              </Button>
-            </Column>
-          </Row>
+          {isSingle && (
+            <Row>
+              <Column width={1}>
+                <Button
+                  mt={3}
+                  type="submit"
+                  disabled={isSubmitting || !isValid}
+                >
+                  {button}
+                </Button>
+              </Column>
+            </Row>
+          )}
         </FormikForm>
       )}
     </Formik>

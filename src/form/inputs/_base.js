@@ -59,8 +59,7 @@ Input.defaultProps = {
 Input.displayName = 'Input';
 
 export const Textarea = styled(Input)({
-  resize: 'none',
-  paddingTop: '10px',
+  resize: 'vertical',
   minHeight: '90px'
 });
 

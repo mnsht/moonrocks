@@ -75,7 +75,7 @@ const Base = ({ type, onChange, ...props }) => {
       {InputComponent}
       {props.required && <Required {...props} type={type} withinInput />}
       {props.tooltip && <Tooltip {...props} type={type} withinInput />}
-      {props.messages && <Messages {...props} />}
+      {props.messages && <Messages {...props} type={type} />}
     </InputContainer>
   );
 };
