@@ -8,13 +8,16 @@ import Box from '../../box';
 // NOTE: If we want styles to sit below the input, rather than float on top, then simply flip this value... :)
 const IS_FLOATING = true;
 
-const floatingStyles = type =>
-  IS_FLOATING && {
-    position: 'absolute',
-    top: '100%',
-    left: 0,
-    marginTop: type === 'paragraph' ? -5 : -1
-  };
+const floatingStyles = type => {
+  return (
+    IS_FLOATING && {
+      position: 'absolute',
+      top: '100%',
+      left: 0,
+      marginTop: type === 'paragraph' ? -5 : -1
+    }
+  );
+};
 
 const MessagesContainer = styled(Box)(props => ({
   ...floatingStyles(props.type),
