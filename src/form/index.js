@@ -46,6 +46,7 @@ export default ({ submit, button, startAt, forms, ...props }) => {
     >
       {({ isSubmitting, isValid, ...formikProps }) => (
         <FormikForm>
+          {console.log('ALL VALUES', formikProps.values)}
           {forms.map((form, index) => {
             if (isSingle) {
               return (

@@ -3,8 +3,6 @@
 ## Simple Components
 
 - Form
-  - Fix select
-  - Fix multiselect
   - Consider a non-input prefix for currency and phone inputs (allowing a placeholder to be seen)
   - Test initial values for all fields
   - Test onBlur and onChange for all fields

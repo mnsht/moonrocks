@@ -14,7 +14,7 @@ import { InlineText } from '../../../typography';
 
 const choiceAnimation = {
   selected: {
-    scale: 1,
+    scale: 0.8,
     opacity: 1,
     transition: {
       duration: parseInt(theme.animations.fast)
@@ -38,6 +38,7 @@ ChoiceContainer.defaultProps = {
 const ChoiceElem = styled(Box)(props => ({
   width: themeGet('widths.1')(props),
   height: themeGet('heights.1')(props),
+  backgroundColor: themeGet('colors.trueWhite')(props),
   border: `1px solid ${themeGet('colors.snow')(props)}`,
   borderRadius: props.isRadio
     ? themeGet('radii.round')(props)
