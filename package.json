@@ -1,12 +1,13 @@
 {
   "name": "sr-components",
-  "version": "1.0.0",
+  "version": "0.7.0",
   "description": "The UI component library for Scholar Raise, using Storybook",
   "source": "index.js",
   "main": "dist/index.js",
   "scripts": {
     "start": "start-storybook",
-    "build": "rm -rf ./dist && rollup -c"
+    "build": "rm -rf ./dist && rollup -c",
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
     "@storybook/react": "^5.0.11",
     "babel-loader": "^8.0.5",
     "husky": "^2.1.0",
+    "np": "^5.0.2",
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0",
     "react": "^16.8.6",
