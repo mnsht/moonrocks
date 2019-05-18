@@ -7,7 +7,7 @@
   "scripts": {
     "start": "start-storybook",
     "build": "rm -rf ./dist && rollup -c",
-    "release": "np"
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -40,11 +40,11 @@
     "@storybook/react": "^5.0.11",
     "babel-loader": "^8.0.5",
     "husky": "^2.1.0",
-    "np": "^5.0.2",
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "release-it": "^12.2.0",
     "rollup": "^1.12.2",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-node-resolve": "^5.0.0",
