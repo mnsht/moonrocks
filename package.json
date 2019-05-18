@@ -4,8 +4,6 @@
   "description": "The UI component library for Scholar Raise, using Storybook",
   "source": "index.js",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "unpkg": "dist/index.umd.js",
   "scripts": {
     "start": "start-storybook",
     "build": "rm -rf ./dist && rollup -c"
@@ -46,11 +44,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "rollup": "^1.12.2",
-    "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-uglify": "^6.0.2",
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "peerDependencies": {
     "react": "^16.8.6",
