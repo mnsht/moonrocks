@@ -3,7 +3,6 @@
 ## Simple Components
 
 - Form
-  - Test initial values for all fields
   - Test onBlur and onChange for all fields
   - Write and test remaining validations
   - Style form wizard

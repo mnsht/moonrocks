@@ -64,32 +64,43 @@ const selectTheme = baseTheme => ({
   }
 });
 
-const selectProps = props => {
+const selectProps = ({ value, initialValue, ...props }) => {
   const extra = {};
 
   // Formik Form will pass a value, using the input standalone might not
-  if (props.value) {
-    extra.value = props.options
-      ? props.options.find(option => option.value === props.value.value)
-      : '';
+  if (value || initialValue) {
+    const value = value || initialValue;
+
+    if (Array.isArray(value)) {
+      const mappedValues = [];
+
+      value.forEach(iValue => {
+        mappedValues.push(
+          props.options.find(option => option.value === iValue)
+        );
+      });
+
+      extra.value = mappedValues;
+    } else {
+      extra.value = props.options.find(option => option.value === value) || '';
+    }
   }
 
   return {
     isClearable: false,
     styles: selectStyles,
     theme: selectTheme,
-    ...extra
+    ...extra,
+    ...props
   };
 };
 
 // NOTE: This input does NOT use the _base.js Input, and therefore must be styled similarly from the styles and theme above
 // https://react-select.com/styles
-export const CustomSelect = props => (
-  <Select {...props} {...selectProps(props)} />
-);
+export const CustomSelect = props => <Select {...selectProps(props)} />;
 
 // NOTE: This input does NOT use the _base.js Input, and therefore must be styled similarly from the styles and theme above
 // https://react-select.com/styles
 export const CustomMultiSelect = props => (
-  <Select {...props} {...selectProps(props)} isMulti />
+  <Select {...selectProps(props)} isMulti />
 );

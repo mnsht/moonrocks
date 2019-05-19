@@ -5,6 +5,7 @@
   "source": "index.js",
   "main": "dist/index.js",
   "scripts": {
+    "analyze": "yarn build && source-map-explorer dist/index.js dist/index.js.map",
     "start": "start-storybook",
     "build": "rm -rf ./dist && rollup -c",
     "release": "release-it"
@@ -49,7 +50,8 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.2",
+    "source-map-explorer": "^1.8.0"
   },
   "peerDependencies": {
     "react": "^16.8.6",

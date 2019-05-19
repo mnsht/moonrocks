@@ -138,8 +138,14 @@ export const CustomChoice = ({
   );
 };
 
-export const CustomChoices = ({ isRadio, options, onChange, ...props }) => {
-  const [currentOption, setCurrentOption] = useState(null);
+export const CustomChoices = ({
+  isRadio,
+  options,
+  onChange,
+  initialValue,
+  ...props
+}) => {
+  const [currentOption, setCurrentOption] = useState(initialValue);
 
   const groupOnChange = obj => {
     const key = Object.keys(obj)[0];
@@ -177,6 +183,9 @@ export const CustomChoices = ({ isRadio, options, onChange, ...props }) => {
         <CustomChoice
           key={i}
           {...choiceProps}
+          initialValue={
+            initialValue && initialValue.includes(choiceProps.value)
+          }
           isRadio={isRadio}
           currentOption={currentOption}
           groupOnChange={groupOnChange}

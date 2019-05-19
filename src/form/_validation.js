@@ -73,7 +73,9 @@ export default forms => {
           const fieldValidation = {};
 
           input.fields.forEach(field => {
-            fieldValidation[field.name] = constructValidationString(field);
+            if (field.hasOwnProperty('validation')) {
+              fieldValidation[field.name] = constructValidationString(field);
+            }
           });
 
           validations[input.name] = Yup.array().of(
