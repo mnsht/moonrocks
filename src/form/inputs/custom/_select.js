@@ -80,9 +80,10 @@ const selectProps = ({ value, initialValue, ...props }) => {
         );
       });
 
-      extra.value = mappedValues;
+      extra.defaultValue = mappedValues;
     } else {
-      extra.value = props.options.find(option => option.value === value) || '';
+      extra.defaultValue =
+        props.options.find(option => option.value === value) || '';
     }
   }
 

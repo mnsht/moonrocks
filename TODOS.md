@@ -3,7 +3,6 @@
 ## Simple Components
 
 - Form
-  - Test onBlur and onChange for all fields
   - Write and test remaining validations
   - Style form wizard
   - Add optional steps
@@ -29,6 +28,7 @@
 ## Refactors
 
 - Turn all Storybook buttons into withKnob buttons
+- Consider refactoring how we're doing the React Select custom inputs
 - Consider setting up local visual regression testing before doing the following...
 - Convert as many styled components over to using existing Box, Flex, and Card components
 - [Convert to styled-system/css](https://styled-system.com/css/) AND USE THE HOC METHOD, only using defaultProps when a value should be changable by a user
@@ -43,7 +43,6 @@
 
 ### Forms
 
-- Validation for SSN and phone are not necessarily correct depending on "required" also existing
 - Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React
 
 ### Notifications

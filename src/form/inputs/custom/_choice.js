@@ -58,6 +58,8 @@ const RadioDot = styled(Box)(props => ({
 const PosedRadioDot = posed(RadioDot)(choiceAnimation);
 
 const ChoiceLabel = ({ mb, ml, partOfGroup, handleClick, ...props }) => {
+  if (!props.label) return null;
+
   const labelIsString = typeof props.label === 'string';
   const labelProps = { onClick: handleClick };
 
