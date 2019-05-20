@@ -160,9 +160,10 @@ const createPage = (
       width: [1, null, 1 / 3],
       ...genInitial(['chocolate', 'vanilla']),
       ...genValidation({
-        required: true
+        required: true,
+        length: 2
       }),
-      ...genTooltips('Make tooltips great again')
+      ...genTooltips('Choose at least 2')
     },
     {
       name: `switch-${num}`,
@@ -171,7 +172,9 @@ const createPage = (
       on: 'To be',
       width: [1, null, 1 / 3],
       ...genInitial(true),
-      // There is no added validation allowed on a switch
+      ...genValidation({
+        required: true
+      }),
       ...genTooltips('Make tooltips great again')
     },
     {
@@ -194,9 +197,10 @@ const createPage = (
       width: [1, null, 1 / 2],
       ...genInitial(['chocolate', 'vanilla']),
       ...genValidation({
-        required: true
+        required: true,
+        length: 2
       }),
-      ...genTooltips('Make tooltips great again')
+      ...genTooltips('Choose at least 2')
     },
     null,
     {
@@ -208,7 +212,10 @@ const createPage = (
         { name: 'Patrick Cason', email: 'patrick@scholarraise.com' },
         { name: 'Wesley Belden', email: 'wesley@scholarraise.com' }
       ]),
-      // There is (currently) no additional validation on the array, rather validation is left up to the fields
+      ...genValidation({
+        required: true,
+        length: 2
+      }),
       // There are (currently) no tooltips on the array, tooltips are left up to the fields
       fields: [
         {
@@ -277,7 +284,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
   // This requires flipping the value here, it cannot be done as a Storybook control
-  const initialValues = true;
+  const initialValues = false;
 
   const validations = boolean(
     'Should show additional validations?',

@@ -10,6 +10,7 @@ export default ({ onChange, ...props }) => (
     options={{
       numeral: true,
       numeralThousandsGroupStyle: 'thousand',
+      numeralPositiveOnly: true,
       prefix: '$',
       noImmediatePrefix: true,
       rawValueTrimPrefix: true
