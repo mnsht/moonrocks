@@ -1,13 +1,27 @@
 import * as Yup from 'yup';
 
+const errors = {
+  required: 'This field is required',
+  reference: 'This should match the previous field',
+  minimum: min => `Must be at least ${min} characters`,
+  maximum: max => `Must be shorter than ${max} characters`,
+  length: length => `Must have at least ${length} items`,
+  validOption: 'Must be a valid value',
+  email: 'Must be a valid email address',
+  currency: 'Must be a valid amount of money',
+  date: 'Must be a valid date',
+  ssn: 'Must be a valid social security number',
+  phone: 'Must be a valid phone number',
+  checkboxTrue: 'You must check this box',
+  switchTrue: 'You must switch this on'
+};
+
 export default forms => {
   const validations = {};
 
   const constructValidationString = (input, valid = '') => {
-    const {
-      type,
-      validation: { required, min, max, reference, length }
-    } = input;
+    const { type, validation } = input;
+    const { required, min, max, reference, length } = validation || false;
 
     if (type === 'checkbox' || type === 'switch') {
       valid = Yup.boolean();
@@ -15,9 +29,7 @@ export default forms => {
       if (required) {
         valid = valid.oneOf(
           [true],
-          `You must ${
-            type === 'checkbox' ? 'check this box' : 'switch this on'
-          }`
+          type === 'checkbox' ? errors.checkboxTrue : errors.switchTrue
         );
       }
     } else {
@@ -28,42 +40,39 @@ export default forms => {
       }
 
       if (required) {
-        valid = valid.required('This field is required');
+        valid = valid.required(errors.required);
       }
 
       if (min) {
-        valid = valid.min(min, `Must be at least ${min} characters`);
+        valid = valid.min(min, errors.minimum(min));
       }
 
       if (max) {
-        valid = valid.max(max, `Cannot be longer than ${max} characters`);
+        valid = valid.max(max, errors.maximum(max));
       }
 
       if (reference) {
-        valid = valid.oneOf(
-          [Yup.ref(reference), null],
-          'This should match the previous field'
-        );
+        valid = valid.oneOf([Yup.ref(reference), null], errors.reference);
       }
 
       if (length) {
-        valid = valid.min(length, `Must have at least ${length} items`);
+        valid = valid.min(length, errors.length(length));
       }
 
       if (type === 'select' || type === 'multiselect') {
         valid = valid.oneOf(
           input.options.map(({ value }) => value),
-          'Must be a valid value'
+          errors.validOption
         );
       }
 
       if (type === 'email') {
-        valid = valid.email('Must be a valid email address');
+        valid = valid.email(errors.email);
       }
 
       if (type === 'currency') {
         valid = valid.matches(/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*\.[0-9]{2}$/, {
-          message: 'Must be a valid amount of money',
+          message: errors.currency,
           excludeEmptyString: !required
         });
       }
@@ -71,12 +80,12 @@ export default forms => {
       if (type === 'date') {
         if (input.hasYear) {
           valid = valid.matches(/^[0-9]{2}\-?[0-9]{2}\-?[0-9]{4}$/, {
-            message: 'Must be a valid date',
+            message: errors.date,
             excludeEmptyString: !required
           });
         } else {
           valid = valid.matches(/^[0-9]{2}\-?[0-9]{2}$/, {
-            message: 'Must be a valid date',
+            message: errors.date,
             excludeEmptyString: !required
           });
         }
@@ -84,20 +93,17 @@ export default forms => {
 
       if (type === 'ssn') {
         valid = valid.matches(/^[0-9]{3}\-?[0-9]{2}\-?[0-9]{4}$/, {
-          message: 'Must be a valid social security number',
+          message: errors.ssn,
           excludeEmptyString: !required
         });
       }
 
       if (type === 'phone') {
         valid = valid.matches(/^\+?[0-9]{10}$/, {
-          message: 'Must be a valid phone number',
+          message: errors.phone,
           excludeEmptyString: !required
         });
       }
-
-      // TODO: Fix required on empty string for all "matches" statements (and potentially email?)
-      // TODO: Ensure all rules work ONLY if required is true, otherwise they can accept empty values
     }
 
     return valid;
@@ -110,16 +116,14 @@ export default forms => {
           const fieldValidation = {};
 
           input.fields.forEach(field => {
-            if (field.hasOwnProperty('validation')) {
-              fieldValidation[field.name] = constructValidationString(field);
-            }
+            fieldValidation[field.name] = constructValidationString(field);
           });
 
           validations[input.name] = constructValidationString(
             input,
             Yup.array().of(Yup.object().shape(fieldValidation))
           );
-        } else if (input.hasOwnProperty('validation')) {
+        } else {
           validations[input.name] = constructValidationString(input);
         }
       }

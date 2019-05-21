@@ -3,7 +3,6 @@
 ## Simple Components
 
 - Form
-  - Write and test remaining validations
   - Style form wizard
   - Add optional steps
   - Remove direct export access for inputs and steps (just supply form)
