@@ -50,6 +50,13 @@ export default forms => {
         valid = valid.min(length, `Must have at least ${length} items`);
       }
 
+      if (type === 'select' || type === 'multiselect') {
+        valid = valid.oneOf(
+          input.options.map(({ value }) => value),
+          'Must be a valid value'
+        );
+      }
+
       if (type === 'email') {
         valid = valid.email('Must be a valid email address');
       }
@@ -89,10 +96,7 @@ export default forms => {
         });
       }
 
-      // TODO: Add default select (one of the options), multiselect (each one of the options), checkboxes, radio, and paragraph (with counter?) validation
       // TODO: Fix required on empty string for all "matches" statements (and potentially email?)
-      // TODO: Add errors that don't have an input (checkbox, checkboxes, radio, switch, array) below items
-      // TODO: Unchecked checkbox and untoggled switch don't fire until clicked once, meaning that the initial value isn't validated
       // TODO: Ensure all rules work ONLY if required is true, otherwise they can accept empty values
     }
 

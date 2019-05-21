@@ -4,6 +4,7 @@ import { themeGet } from 'styled-system';
 import posed, { PoseGroup } from 'react-pose';
 
 import Box from '../../box';
+import { InlineText } from '../../typography';
 
 // NOTE: If we want styles to sit below the input, rather than float on top, then simply flip this value... :)
 const IS_FLOATING = true;
@@ -52,15 +53,18 @@ const PosedMessage = posed(Message)({
 
 export const shouldShow = messages => messages && messages.length > 0;
 
-const preparedMessages = ({ errors, warnings }) => {
+const preparedMessages = (
+  { errors, warnings },
+  MessageComponent = PosedMessage
+) => {
   const allMessages = [];
 
   if (shouldShow(errors)) {
     errors.map((message, i) => {
       allMessages.push(
-        <PosedMessage key={`error-${i}`} i={i} type="error">
+        <MessageComponent key={`error-${i}`} i={i} type="error">
           {message}
-        </PosedMessage>
+        </MessageComponent>
       );
     });
   }
@@ -68,9 +72,9 @@ const preparedMessages = ({ errors, warnings }) => {
   if (shouldShow(warnings)) {
     warnings.map((message, i) => {
       allMessages.push(
-        <PosedMessage key={`warning-${i}`} i={i} type="warning">
+        <MessageComponent key={`warning-${i}`} i={i} type="warning">
           {message}
-        </PosedMessage>
+        </MessageComponent>
       );
     });
   }
@@ -82,4 +86,16 @@ export default ({ messages, type }) => (
   <MessagesContainer type={type}>
     <PoseGroup>{preparedMessages(messages)}</PoseGroup>
   </MessagesContainer>
+);
+
+const BareMessage = styled(InlineText)(props => ({
+  display: 'block',
+  marginTop: themeGet('space.2')(props),
+  marginBottom: themeGet('space.2')(props),
+  color: themeGet(`colors.${props.type}`)(props),
+  fontSize: themeGet('fontSizes.1')(props)
+}));
+
+export const BareMessages = ({ messages }) => (
+  <React.Fragment>{preparedMessages(messages, BareMessage)}</React.Fragment>
 );

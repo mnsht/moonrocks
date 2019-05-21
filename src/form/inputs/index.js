@@ -15,7 +15,7 @@ import {
 } from './custom';
 import Required from './_required';
 import Tooltip from './_tooltip';
-import Messages from './_messages';
+import Messages, { BareMessages } from './_messages';
 
 const eventOnChange = (event, type) => onChange => {
   if (!onChange) return;
@@ -78,7 +78,12 @@ const ChoiceBase = ({ type, ...props }) => {
     InputComponent = <CustomSwitch {...props} />;
   }
 
-  return <InputContainer>{InputComponent}</InputContainer>;
+  return (
+    <InputContainer>
+      {InputComponent}
+      {props.messages && <BareMessages {...props} />}
+    </InputContainer>
+  );
 };
 
 export const TextInput = props => <Base type="text" {...props} />;

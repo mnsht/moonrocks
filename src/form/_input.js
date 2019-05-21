@@ -20,6 +20,7 @@ import {
   MultiSelectInput,
   DateInput
 } from './inputs';
+import { BareMessages } from './inputs/_messages';
 
 import { Row, Column } from '../grid';
 import { uuid } from '../_helpers';
@@ -114,33 +115,46 @@ export default (input, formikProps) => {
   const createInput = (type, name, extras) =>
     React.createElement(getInputType(type), getInputProps(name, extras));
 
-  const getFieldArray = (arrayValue, arrayName, arrayHelpers) => (
-    <React.Fragment>
-      {arrayValue.map((empty, index) => (
-        <FieldArrayRow key={index} ml={-2} mr={arrayValue.length > 1 ? 4 : -2}>
-          {fields.map(({ width, type, name, ...input }) => (
-            <Column key={name} width={width}>
-              {createInput(type, `${arrayName}[${index}].${name}`, input)}
-            </Column>
-          ))}
-          {arrayValue.length > 1 && (
-            <RemoveIcon
-              icon={Trash}
-              size={0}
-              onClick={() => arrayHelpers.remove(index)}
-            />
-          )}
-        </FieldArrayRow>
-      ))}
-      <Button
-        type="button"
-        variant="secondary"
-        onClick={() => arrayHelpers.push(generateBlankFieldArray(fields))}
-      >
-        {restOfInputProps.button}
-      </Button>
-    </React.Fragment>
-  );
+  const getFieldArray = (arrayValue, arrayName, arrayHelpers) => {
+    const messages = getMessages(arrayName);
+    const shouldShowBareMessages =
+      messages &&
+      ((messages.errors.length > 0 && !Array.isArray(messages.errors[0])) ||
+        (messages.warnings.length > 0 && !Array.isArray(messages.warnings[0])));
+
+    return (
+      <React.Fragment>
+        {shouldShowBareMessages && <BareMessages messages={messages} />}
+        {arrayValue.map((empty, index) => (
+          <FieldArrayRow
+            key={index}
+            ml={-2}
+            mr={arrayValue.length > 1 ? 4 : -2}
+          >
+            {fields.map(({ width, type, name, ...input }) => (
+              <Column key={name} width={width}>
+                {createInput(type, `${arrayName}[${index}].${name}`, input)}
+              </Column>
+            ))}
+            {arrayValue.length > 1 && (
+              <RemoveIcon
+                icon={Trash}
+                size={0}
+                onClick={() => arrayHelpers.remove(index)}
+              />
+            )}
+          </FieldArrayRow>
+        ))}
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={() => arrayHelpers.push(generateBlankFieldArray(fields))}
+        >
+          {restOfInputProps.button}
+        </Button>
+      </React.Fragment>
+    );
+  };
 
   return (
     <Column key={name} width={width}>

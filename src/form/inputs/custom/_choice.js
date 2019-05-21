@@ -83,7 +83,8 @@ export const CustomChoice = ({
   value,
   currentOption, // current values when part of a group
   groupOnChange, // onChange when part of a group
-  onChange, // local onChange
+  onChange, // local onChange,
+  onBlur, // local onBlur
   ...props
 }) => {
   const [selected, setSelected] = useState(initialValue);
@@ -110,6 +111,10 @@ export const CustomChoice = ({
   );
 
   const handleOnClick = () => {
+    if (onBlur) {
+      onBlur();
+    }
+
     if (!isRadio || (isRadio && selected !== true)) {
       const newSelectedValue = !selected;
 
@@ -144,12 +149,17 @@ export const CustomChoices = ({
   isRadio,
   options,
   onChange,
+  onBlur,
   initialValue,
   ...props
 }) => {
   const [currentOption, setCurrentOption] = useState(initialValue);
 
   const groupOnChange = obj => {
+    if (onBlur) {
+      onBlur();
+    }
+
     const key = Object.keys(obj)[0];
     const val = obj[key];
 

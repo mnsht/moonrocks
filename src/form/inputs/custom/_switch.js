@@ -42,7 +42,14 @@ const SwitchBall = styled(Box)(props => ({
   )} ease-in-out, background ${themeGet('animations.fast')(props)} ease-in-out`
 }));
 
-export default ({ initialValue = false, on, off, onChange, ...props }) => {
+export default ({
+  initialValue = false,
+  on,
+  off,
+  onChange,
+  onBlur,
+  ...props
+}) => {
   const [selected, setSelected] = useState(initialValue);
 
   return (
@@ -57,6 +64,10 @@ export default ({ initialValue = false, on, off, onChange, ...props }) => {
 
           if (onChange) {
             onChange(newSelectedValue);
+          }
+
+          if (onBlur) {
+            onBlur();
           }
         }}
       >
