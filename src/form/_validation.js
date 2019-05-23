@@ -51,14 +51,16 @@ export default forms => {
         valid = valid.max(max, errors.maximum(max));
       }
 
+      // TODO: Not working in wizard...
       if (reference) {
-        valid = valid.oneOf([Yup.ref(reference), null], errors.reference);
+        valid = valid.oneOf([Yup.ref(reference)], errors.reference);
       }
 
       if (length) {
         valid = valid.min(length, errors.length(length));
       }
 
+      // TODO: Not working in multiselect...
       if (type === 'select' || type === 'multiselect') {
         valid = valid.oneOf(
           input.options.map(({ value }) => value),
@@ -109,8 +111,8 @@ export default forms => {
     return valid;
   };
 
-  forms.forEach(form => {
-    form.forEach(input => {
+  forms.forEach(({ page }) => {
+    page.forEach(input => {
       if (input) {
         if (input.type === 'array' && input.hasOwnProperty('fields')) {
           const fieldValidation = {};

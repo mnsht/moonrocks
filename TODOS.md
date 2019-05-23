@@ -5,6 +5,7 @@
 - Form
   - Style form wizard
   - Add optional steps
+  - Fix validation problems in form wizard
   - Remove direct export access for inputs and steps (just supply form)
   - Export only the Form component bundled with Formik
 - Header

@@ -9,6 +9,7 @@ import { InlineText, InternalLink } from '../typography';
 
 const createPage = (
   num,
+  multiple,
   initials = false,
   validation = true,
   tooltips = false
@@ -23,7 +24,29 @@ const createPage = (
     { value: 'vanilla', label: 'Vanilla' }
   ];
 
+  const formWizardTitles = {};
+
+  if (multiple) {
+    formWizardTitles.type = 'heading';
+
+    if (num === 0) {
+      formWizardTitles.title = 'Step One';
+      formWizardTitles.description =
+        'Who is the administrator of this college savings account?';
+    } else if (num === 1) {
+      formWizardTitles.title = 'Step Two';
+      formWizardTitles.description = 'Who is the account being created for?';
+    } else if (num === 2) {
+      formWizardTitles.title = 'Step Three';
+      formWizardTitles.description = 'Great - now wrap it up, buddy!';
+    }
+  }
+
+  /* TODO: Finish this later */
+  // console.log(formWizardTitles);
+
   return [
+    // { ...formWizardTitles },
     {
       name: `text-${num}`,
       type: 'text',
@@ -70,18 +93,18 @@ const createPage = (
       }),
       ...genTooltips('Make tooltips great again')
     },
-    {
-      name: `password-again-${num}`,
-      type: 'password',
-      placeholder: 'Password (again)',
-      width: [1, null, 1 / 3],
-      ...genInitial('helloworld'),
-      ...genValidation({
-        required: true,
-        reference: `password-${num}`
-      }),
-      ...genTooltips('Make tooltips great again')
-    },
+    // {
+    //   name: `password-again-${num}`,
+    //   type: 'password',
+    //   placeholder: 'Password (again)',
+    //   width: [1, null, 1 / 3],
+    //   ...genInitial('helloworld'),
+    //   ...genValidation({
+    //     required: true,
+    //     reference: `password-${num}`
+    //   }),
+    //   ...genTooltips('Make tooltips great again')
+    // },
     {
       name: `ssn-${num}`,
       type: 'ssn',
@@ -189,19 +212,19 @@ const createPage = (
       }),
       ...genTooltips('Make tooltips great again')
     },
-    {
-      name: `multiselect-${num}`,
-      type: 'multiselect',
-      placeholder: 'Select multiple...',
-      options: multipleOptions,
-      width: [1, null, 1 / 2],
-      ...genInitial(['chocolate', 'vanilla']),
-      ...genValidation({
-        required: true,
-        length: 2
-      }),
-      ...genTooltips('Choose at least 2')
-    },
+    // {
+    //   name: `multiselect-${num}`,
+    //   type: 'multiselect',
+    //   placeholder: 'Select multiple...',
+    //   options: multipleOptions,
+    //   width: [1, null, 1 / 2],
+    //   ...genInitial(['chocolate', 'vanilla']),
+    //   ...genValidation({
+    //     required: true,
+    //     length: 2
+    //   }),
+    //   ...genTooltips('Choose at least 2')
+    // },
     null,
     {
       name: `array-${num}`,
@@ -270,13 +293,29 @@ const store = new Store({
   singleForm: (iv, v, t) => ({
     submit: values => console.log('SUBMIT', values),
     button: 'Submit form',
-    forms: [createPage(0, iv, v, t)]
+    forms: [{ page: createPage(0, false, iv, v, t) }]
   }),
   multipleForm: {
     submit: values => console.log('SUBMIT', values),
     button: 'Submit form',
     startAt: 1,
-    forms: [createPage(0), createPage(1), createPage(2)]
+    forms: [
+      {
+        title: 'Owner(s)',
+        description: 'Define the administrators of this 529 account',
+        page: createPage(0, true)
+      },
+      {
+        title: 'Scholar',
+        description: 'Tell us who the account is going to benefit',
+        page: createPage(1, true)
+      },
+      {
+        title: 'Confirm',
+        description: 'Answer some security questions and confirm details',
+        page: createPage(2, true)
+      }
+    ]
   }
 });
 
@@ -305,7 +344,9 @@ stories.add('default', () => {
 stories.add('as a form wizard', () => {
   const steps = boolean('Should show steps?', true, 'Main');
 
-  <State store={store}>
-    {({ multipleForm }) => <Form {...multipleForm} showSteps={steps} />}
-  </State>;
+  return (
+    <State store={store}>
+      {({ multipleForm }) => <Form {...multipleForm} showSteps={steps} />}
+    </State>
+  );
 });
