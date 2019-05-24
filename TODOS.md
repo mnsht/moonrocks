@@ -4,7 +4,7 @@
 
 - Form
   - Reference validation does not work for second form page only... WEIRD
-  - Length validation isn't showing up or just not working
+  - Multiselect doesn't use options in validation
   - Finish and optimize the steps
   - Disable next and previous buttons for wizard once steps are done
 - Header
