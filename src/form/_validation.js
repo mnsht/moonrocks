@@ -19,8 +19,10 @@ const errors = {
 export default forms => {
   const validations = {};
 
-  const constructValidationString = (input, valid = '') => {
-    const { type, validation } = input;
+  const constructValidationString = (
+    { type, validation, ...input },
+    valid = ''
+  ) => {
     const { required, min, max, reference, length } = validation || false;
 
     if (type === 'checkbox' || type === 'switch') {
@@ -112,22 +114,20 @@ export default forms => {
   };
 
   forms.forEach(({ page }) => {
-    page.forEach(input => {
-      if (input) {
-        if (input.type === 'array' && input.hasOwnProperty('fields')) {
-          const fieldValidation = {};
+    page.forEach(({ type, fields, name, ...input }) => {
+      if (type === 'array' && fields) {
+        const fieldValidation = {};
 
-          input.fields.forEach(field => {
-            fieldValidation[field.name] = constructValidationString(field);
-          });
+        fields.forEach(field => {
+          fieldValidation[field.name] = constructValidationString(field);
+        });
 
-          validations[input.name] = constructValidationString(
-            input,
-            Yup.array().of(Yup.object().shape(fieldValidation))
-          );
-        } else {
-          validations[input.name] = constructValidationString(input);
-        }
+        validations[name] = constructValidationString(
+          input,
+          Yup.array().of(Yup.object().shape(fieldValidation))
+        );
+      } else if (type !== 'divider' && type !== 'heading') {
+        validations[name] = constructValidationString(input);
       }
     });
   });

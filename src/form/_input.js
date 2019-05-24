@@ -22,8 +22,9 @@ import {
 } from './inputs';
 import { BareMessages } from './inputs/_messages';
 
-import { Row, Column } from '../grid';
 import { uuid } from '../_helpers';
+import { Row, Column } from '../grid';
+import { CappedText, Heading } from '../typography';
 import Divider from '../divider';
 import Icon from '../icon';
 import Button from '../button';
@@ -56,8 +57,13 @@ export const generateBlankFieldArray = fields => {
   return blankFields;
 };
 
-export default (input, formikProps) => {
-  if (!input) {
+export default (
+  { type, name, width, fields, button, ...restOfInputProps },
+  { errors, touched, setFieldValue, setFieldTouched, values }
+) => {
+  const isArray = type === 'array' && fields;
+
+  if (type === 'divider') {
     return (
       <Column key={uuid()} width={1}>
         <Divider mt={3} mb={4} />
@@ -65,15 +71,16 @@ export default (input, formikProps) => {
     );
   }
 
-  const { type, name, width, fields, ...restOfInputProps } = input;
-  const {
-    errors,
-    touched,
-    setFieldValue,
-    setFieldTouched,
-    values
-  } = formikProps;
-  const isArray = type === 'array' && fields;
+  if (type === 'heading') {
+    const { title, description } = restOfInputProps;
+
+    return (
+      <Column key={uuid()} width={1}>
+        {title && <CappedText>{title}</CappedText>}
+        {description && <Heading>{description}</Heading>}
+      </Column>
+    );
+  }
 
   const getInputType = type => {
     if (type === 'text') return TextInput;
@@ -90,6 +97,8 @@ export default (input, formikProps) => {
     else if (type === 'select') return SelectInput;
     else if (type === 'multiselect') return MultiSelectInput;
     else if (type === 'date') return DateInput;
+
+    console.log('WE HAVE A PROBLEM', type);
 
     return null;
   };
@@ -150,7 +159,7 @@ export default (input, formikProps) => {
           variant="secondary"
           onClick={() => arrayHelpers.push(generateBlankFieldArray(fields))}
         >
-          {restOfInputProps.button}
+          {button}
         </Button>
       </React.Fragment>
     );

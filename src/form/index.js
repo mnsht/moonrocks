@@ -9,7 +9,6 @@ import Steps from './_steps';
 
 import { Row, Column } from '../grid';
 import Card from '../card';
-import { Heading } from '../typography';
 import Button from '../button';
 
 const WizardPage = styled(Card)(display);
@@ -32,14 +31,9 @@ export default ({ submit, button, startAt, forms, showSteps, ...props }) => {
           {!isSingle && showSteps && <Steps forms={forms} />}
           {forms.map(({ page }, index) => {
             let FormPage = (
-              <React.Fragment key={index}>
-                {/* TODO: Finish this later */}
-                {/* {title && <Heading>{title}</Heading>}
-                {description && <Heading>{description}</Heading>} */}
-                <Row mt={3}>
-                  {page.map(input => createInput(input, formikProps))}
-                </Row>
-              </React.Fragment>
+              <Row key={index} mt={3}>
+                {page.map(input => createInput(input, formikProps))}
+              </Row>
             );
 
             if (!isSingle) {

@@ -24,29 +24,7 @@ const createPage = (
     { value: 'vanilla', label: 'Vanilla' }
   ];
 
-  const formWizardTitles = {};
-
-  if (multiple) {
-    formWizardTitles.type = 'heading';
-
-    if (num === 0) {
-      formWizardTitles.title = 'Step One';
-      formWizardTitles.description =
-        'Who is the administrator of this college savings account?';
-    } else if (num === 1) {
-      formWizardTitles.title = 'Step Two';
-      formWizardTitles.description = 'Who is the account being created for?';
-    } else if (num === 2) {
-      formWizardTitles.title = 'Step Three';
-      formWizardTitles.description = 'Great - now wrap it up, buddy!';
-    }
-  }
-
-  /* TODO: Finish this later */
-  // console.log(formWizardTitles);
-
-  return [
-    // { ...formWizardTitles },
+  const page = [
     {
       name: `text-${num}`,
       type: 'text',
@@ -93,18 +71,18 @@ const createPage = (
       }),
       ...genTooltips('Make tooltips great again')
     },
-    // {
-    //   name: `password-again-${num}`,
-    //   type: 'password',
-    //   placeholder: 'Password (again)',
-    //   width: [1, null, 1 / 3],
-    //   ...genInitial('helloworld'),
-    //   ...genValidation({
-    //     required: true,
-    //     reference: `password-${num}`
-    //   }),
-    //   ...genTooltips('Make tooltips great again')
-    // },
+    {
+      name: `password-again-${num}`,
+      type: 'password',
+      placeholder: 'Password (again)',
+      width: [1, null, 1 / 3],
+      ...genInitial('helloworld'),
+      ...genValidation({
+        required: true,
+        reference: `password-${num}`
+      }),
+      ...genTooltips('Make tooltips great again')
+    },
     {
       name: `ssn-${num}`,
       type: 'ssn',
@@ -162,7 +140,9 @@ const createPage = (
       }),
       ...genTooltips('Make tooltips great again')
     },
-    null, // NOTE: this is a line break ;)
+    {
+      type: 'divider'
+    },
     {
       name: `radio-${num}`,
       type: 'radio',
@@ -212,20 +192,22 @@ const createPage = (
       }),
       ...genTooltips('Make tooltips great again')
     },
-    // {
-    //   name: `multiselect-${num}`,
-    //   type: 'multiselect',
-    //   placeholder: 'Select multiple...',
-    //   options: multipleOptions,
-    //   width: [1, null, 1 / 2],
-    //   ...genInitial(['chocolate', 'vanilla']),
-    //   ...genValidation({
-    //     required: true,
-    //     length: 2
-    //   }),
-    //   ...genTooltips('Choose at least 2')
-    // },
-    null,
+    {
+      name: `multiselect-${num}`,
+      type: 'multiselect',
+      placeholder: 'Select multiple...',
+      options: multipleOptions,
+      width: [1, null, 1 / 2],
+      ...genInitial(['chocolate', 'vanilla']),
+      ...genValidation({
+        required: true,
+        length: 2
+      }),
+      ...genTooltips('Choose at least 2')
+    },
+    {
+      type: 'divider'
+    },
     {
       name: `array-${num}`,
       type: 'array',
@@ -267,7 +249,9 @@ const createPage = (
         }
       ]
     },
-    null,
+    {
+      type: 'divider'
+    },
     {
       name: `checkbox-${num}`,
       type: 'checkbox',
@@ -285,6 +269,28 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     }
   ];
+
+  if (multiple) {
+    const formWizardTitles = {
+      type: 'heading'
+    };
+
+    if (num === 0) {
+      formWizardTitles.title = 'Step One';
+      formWizardTitles.description =
+        'Who is the administrator of this college savings account?';
+    } else if (num === 1) {
+      formWizardTitles.title = 'Step Two';
+      formWizardTitles.description = 'Who is the account being created for?';
+    } else if (num === 2) {
+      formWizardTitles.title = 'Step Three';
+      formWizardTitles.description = 'Great - now wrap it up, buddy!';
+    }
+
+    page.unshift(formWizardTitles);
+  }
+
+  return page;
 };
 
 const stories = storiesOf('2. Simple|Form', module);
@@ -323,7 +329,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
   // This requires flipping the value here, it cannot be done as a Storybook control
-  const initialValues = false;
+  const initialValues = true;
 
   const validations = boolean(
     'Should show additional validations?',

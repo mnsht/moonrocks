@@ -4,15 +4,11 @@ export default forms => {
   const initialValues = {};
 
   forms.forEach(({ page }) => {
-    page.forEach(input => {
-      if (input) {
-        if (input.type === 'array') {
-          initialValues[input.name] = input.initialValue || [
-            generateBlankFieldArray(input.fields)
-          ];
-        } else {
-          initialValues[input.name] = input.initialValue || '';
-        }
+    page.forEach(({ type, name, fields, initialValue }) => {
+      if (type === 'array') {
+        initialValues[name] = initialValue || [generateBlankFieldArray(fields)];
+      } else if (type !== 'divider' && type !== 'heading') {
+        initialValues[name] = initialValue || '';
       }
     });
   });
