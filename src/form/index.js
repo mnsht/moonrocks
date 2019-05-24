@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { display } from 'styled-system';
 import { Formik, Form as FormikForm } from 'formik';
 import constructInitialValues from './_initial';
 import constructValidation from './_validation';
 import createInput from './_input';
 import Steps from './_steps';
+import WizardCard from './_wizard';
 
 import { Row, Column } from '../grid';
-import Card from '../card';
 import Button from '../button';
-
-const WizardPage = styled(Card)(display);
 
 export default ({ submit, button, startAt, forms, showSteps, ...props }) => {
   const initial = constructInitialValues(forms);
@@ -38,30 +34,17 @@ export default ({ submit, button, startAt, forms, showSteps, ...props }) => {
 
             if (!isSingle) {
               return (
-                <WizardPage
+                <WizardCard
                   key={`wizard-page-${index}`}
-                  display={currentPage === index ? 'block' : 'none'}
+                  index={index}
+                  forms={forms}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  submitDisabled={isSubmitting || !isValid}
+                  submitButton={button}
                 >
                   {FormPage}
-                  {currentPage - 1 >= 0 && (
-                    <Button
-                      type="button"
-                      variant="secondary"
-                      onClick={() => setCurrentPage(currentPage - 1)}
-                    >
-                      Previous
-                    </Button>
-                  )}
-                  {currentPage + 1 < forms.length && (
-                    <Button
-                      type="button"
-                      variant="secondary"
-                      onClick={() => setCurrentPage(currentPage + 1)}
-                    >
-                      Next
-                    </Button>
-                  )}
-                </WizardPage>
+                </WizardCard>
               );
             }
 

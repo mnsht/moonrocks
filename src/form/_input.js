@@ -75,9 +75,23 @@ export default (
     const { title, description } = restOfInputProps;
 
     return (
-      <Column key={uuid()} width={1}>
-        {title && <CappedText>{title}</CappedText>}
-        {description && <Heading>{description}</Heading>}
+      <Column key={uuid()} width={1} mb={3}>
+        {title && (
+          <CappedText color="darkGray" style={{ display: 'block' }}>
+            {title}
+          </CappedText>
+        )}
+        {description && (
+          <Heading
+            as="span"
+            textStyle="h4"
+            color="mediumGray"
+            fontWeight="normal"
+            style={{ display: 'block' }}
+          >
+            {description}
+          </Heading>
+        )}
       </Column>
     );
   }

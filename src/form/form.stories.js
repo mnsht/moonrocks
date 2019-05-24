@@ -329,7 +329,7 @@ stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
   // This requires flipping the value here, it cannot be done as a Storybook control
-  const initialValues = true;
+  const initialValues = false;
 
   const validations = boolean(
     'Should show additional validations?',

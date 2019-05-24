@@ -93,7 +93,10 @@ const radii = {
 };
 
 const shadows = {
-  normal: `${space[0]}px ${space[1]}px ${space[2]}px ${space[0]}px ${blacks[0]}`
+  normal: `${space[0]}px ${space[1]}px ${space[2]}px ${space[0]}px ${
+    blacks[0]
+  }`,
+  heavy: `${space[0]}px ${space[2]}px ${space[3]}px ${space[0]}px ${blacks[0]}`
 };
 
 export default {
@@ -304,6 +307,14 @@ export default {
       backgroundColor: white,
       boxShadow: shadows.normal,
       borderRadius: radii.normal
+    },
+    wizard: {
+      [media.desktop]: {
+        color: black,
+        backgroundColor: white,
+        boxShadow: shadows.heavy,
+        borderRadius: radii.normal
+      }
     },
     note: {
       color: mediumGray,
