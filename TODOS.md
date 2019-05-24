@@ -3,8 +3,9 @@
 ## Simple Components
 
 - Form
-  - Fix validation problems in form wizard
-  - Add optional steps
+  - Reference validation does not work for second form page only... WEIRD
+  - Length validation isn't showing up or just not working
+  - Finish and optimize the steps
   - Disable next and previous buttons for wizard once steps are done
 - Header
 - Footer

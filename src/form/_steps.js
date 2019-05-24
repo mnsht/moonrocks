@@ -28,7 +28,7 @@ const constructSteps = (forms, errors) => {
 const ConnectedSteps = ({ formik: { errors }, forms }) => {
   const steps = constructSteps(forms, errors);
 
-  return <Steps steps={steps} />;
+  return <Steps steps={steps} mb={4} />;
 };
 
 export default connect(ConnectedSteps);

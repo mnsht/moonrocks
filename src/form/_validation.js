@@ -53,7 +53,6 @@ export default forms => {
         valid = valid.max(max, errors.maximum(max));
       }
 
-      // TODO: Not working in wizard...
       if (reference) {
         valid = valid.oneOf([Yup.ref(reference)], errors.reference);
       }
@@ -62,7 +61,6 @@ export default forms => {
         valid = valid.min(length, errors.length(length));
       }
 
-      // TODO: Not working in multiselect...
       if (type === 'select' || type === 'multiselect') {
         valid = valid.oneOf(
           input.options.map(({ value }) => value),
