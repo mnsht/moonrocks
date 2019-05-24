@@ -112,8 +112,8 @@ export default forms => {
   };
 
   forms.forEach(({ page }) => {
-    page.forEach(({ type, fields, name, ...input }) => {
-      if (type === 'array' && fields) {
+    page.forEach(({ fields, name, ...input }) => {
+      if (input.type === 'array' && fields) {
         const fieldValidation = {};
 
         fields.forEach(field => {
@@ -124,7 +124,7 @@ export default forms => {
           input,
           Yup.array().of(Yup.object().shape(fieldValidation))
         );
-      } else if (type !== 'divider' && type !== 'heading') {
+      } else if (input.type !== 'divider' && input.type !== 'heading') {
         validations[name] = constructValidationString(input);
       }
     });
