@@ -61,10 +61,29 @@ export default forms => {
         valid = valid.min(length, errors.length(length));
       }
 
-      if (type === 'select' || type === 'multiselect') {
+      if (type === 'select') {
         valid = valid.oneOf(
           input.options.map(({ value }) => value),
           errors.validOption
+        );
+      }
+
+      if (type === 'multiselect') {
+        valid = valid.test(
+          'contains-valid-options',
+          errors.validOption,
+          value => {
+            if (value) {
+              return (
+                input.options
+                  .map(({ value }) => value)
+                  .filter(elem => value.indexOf(elem) > -1).length ===
+                value.length
+              );
+            }
+
+            return null;
+          }
         );
       }
 
