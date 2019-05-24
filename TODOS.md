@@ -3,10 +3,9 @@
 ## Simple Components
 
 - Form
-  - Add optional steps
   - Fix validation problems in form wizard
-  - Remove direct export access for inputs and steps (just supply form)
-  - Export only the Form component bundled with Formik
+  - Add optional steps
+  - Disable next and previous buttons for wizard once steps are done
 - Header
 - Footer
 
