@@ -33,10 +33,6 @@
 
 ## Known Problems
 
-### Avatars
-
-- [Avatars don't have a fallback](src/avatar/index.js)
-
 ### Forms
 
 - Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React

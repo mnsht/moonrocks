@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { borderRadius, backgroundImage, themeGet } from 'styled-system';
 
-import Box from '../box';
+import DefaultAvatar from './avatar.svg';
 
-// TODO: Default placeholder isn't working on this version of webpack (maybe need 5.1.0 when it comes out?)
+import Box from '../box';
 
 const Avatar = styled(Box)(
   props => ({
@@ -27,6 +27,8 @@ Avatar.defaultProps = {
 
 Avatar.displayName = 'Avatar';
 
-export default ({ src, ...props }) => (
-  <Avatar {...props} backgroundImage={`url(${src})`} />
-);
+export default ({ src, ...props }) => {
+  if (!src || src === '') src = DefaultAvatar;
+
+  return <Avatar {...props} backgroundImage={`url(${src})`} />;
+};

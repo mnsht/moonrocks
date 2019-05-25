@@ -2,6 +2,7 @@ import babel from 'rollup-plugin-babel';
 import { uglify } from 'rollup-plugin-uglify';
 import external from 'rollup-plugin-peer-deps-external';
 import resolve from 'rollup-plugin-node-resolve';
+import svgo from 'rollup-plugin-svgo';
 
 import pkg from './package.json';
 
@@ -28,6 +29,7 @@ export default {
       presets: ['@babel/env', '@babel/preset-react']
     }),
     resolve(),
+    svgo(),
     uglify()
   ]
 };
