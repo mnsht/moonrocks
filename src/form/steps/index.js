@@ -55,7 +55,7 @@ const getBorder = (selected, complete) => {
   }
 };
 
-export default ({ steps, onChange, ...props }) => {
+export default ({ steps, onChange, currentPage, ...props }) => {
   const getCurrentStep = () => {
     let lastReady = 0;
 
@@ -68,11 +68,11 @@ export default ({ steps, onChange, ...props }) => {
     return lastReady;
   };
 
-  const [selected, setSelected] = useState(getCurrentStep());
+  const [selected, setSelected] = useState(currentPage || getCurrentStep());
 
   useEffect(() => {
-    setSelected(getCurrentStep());
-  }, [steps]);
+    setSelected(currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     if (onChange && typeof onChange === 'function') {
@@ -82,7 +82,8 @@ export default ({ steps, onChange, ...props }) => {
 
   return (
     <Flex {...props} flexDirection={['column', null, 'row']}>
-      {steps.map(({ complete, ready, title, description }, index) => {
+      {steps.map(({ complete, title, description }, index) => {
+        const ready = index === 0 || steps[index - 1].complete;
         const isSelected = index === selected;
 
         const titleProps = {

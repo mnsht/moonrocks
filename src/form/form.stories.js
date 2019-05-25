@@ -26,7 +26,7 @@ const createPage = (
 
   const page = [
     {
-      name: `text-${num}`,
+      name: `text_${num}`,
       type: 'text',
       placeholder: 'Full name',
       width: [1, null, 1 / 3],
@@ -39,7 +39,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `email-${num}`,
+      name: `email_${num}`,
       type: 'email',
       placeholder: 'Email address',
       width: [1, null, 1 / 3],
@@ -50,7 +50,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `phone-${num}`,
+      name: `phone_${num}`,
       type: 'phone',
       placeholder: 'Phone number',
       width: [1, null, 1 / 3],
@@ -61,7 +61,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `password-${num}`,
+      name: `password_${num}`,
       type: 'password',
       placeholder: 'Password',
       width: [1, null, 1 / 3],
@@ -72,19 +72,19 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `password-again-${num}`,
+      name: `password_again_${num}`,
       type: 'password',
       placeholder: 'Password (again)',
       width: [1, null, 1 / 3],
       ...genInitial('helloworld'),
       ...genValidation({
         required: true,
-        reference: `password-${num}`
+        reference: `password_${num}`
       }),
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `ssn-${num}`,
+      name: `ssn_${num}`,
       type: 'ssn',
       placeholder: 'Social security number',
       width: [1, null, 1 / 3],
@@ -96,7 +96,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `currency-${num}`,
+      name: `currency_${num}`,
       type: 'currency',
       placeholder: 'Total contribution',
       width: [1, null, 1 / 3],
@@ -107,7 +107,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `date-${num}`,
+      name: `date_${num}`,
       type: 'date',
       placeholder: 'Date (MM-DD)',
       width: [1, null, 1 / 3],
@@ -118,7 +118,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `date-yearly-${num}`,
+      name: `date_yearly_${num}`,
       type: 'date',
       placeholder: 'Date (MM-DD-YYYY)',
       width: [1, null, 1 / 3],
@@ -130,7 +130,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `paragraph-${num}`,
+      name: `paragraph_${num}`,
       type: 'paragraph',
       placeholder: 'Start typing anything...',
       width: [1],
@@ -144,7 +144,7 @@ const createPage = (
       type: 'divider'
     },
     {
-      name: `radio-${num}`,
+      name: `radio_${num}`,
       type: 'radio',
       label: 'Favorite ice cream flavor?',
       options: multipleOptions,
@@ -156,7 +156,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `checkboxes-${num}`,
+      name: `checkboxes_${num}`,
       type: 'checkboxes',
       label: 'What ice cream flavors do you like?',
       options: multipleOptions,
@@ -169,7 +169,7 @@ const createPage = (
       ...genTooltips('Choose at least 2')
     },
     {
-      name: `switch-${num}`,
+      name: `switch_${num}`,
       type: 'switch',
       off: 'Not to be',
       on: 'To be',
@@ -181,7 +181,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `select-${num}`,
+      name: `select_${num}`,
       type: 'select',
       placeholder: 'Select one...',
       options: multipleOptions,
@@ -193,7 +193,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      name: `multiselect-${num}`,
+      name: `multiselect_${num}`,
       type: 'multiselect',
       placeholder: 'Select multiple...',
       options: multipleOptions,
@@ -209,7 +209,7 @@ const createPage = (
       type: 'divider'
     },
     {
-      name: `array-${num}`,
+      name: `array_${num}`,
       type: 'array',
       button: 'Add person',
       width: [1],
@@ -253,7 +253,7 @@ const createPage = (
       type: 'divider'
     },
     {
-      name: `checkbox-${num}`,
+      name: `checkbox_${num}`,
       type: 'checkbox',
       label: (
         <InlineText>
@@ -304,7 +304,6 @@ const store = new Store({
   multipleForm: {
     submit: values => console.log('SUBMIT', values),
     button: 'Submit form',
-    startAt: 1,
     forms: [
       {
         title: 'Owner(s)',

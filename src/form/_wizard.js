@@ -57,6 +57,7 @@ export default ({
         {shouldShowPrevious && (
           <Button
             {...buttonStyles('previous')}
+            disabled={!forms[currentPage - 1]}
             onClick={() => setCurrentPage(currentPage - 1)}
           >
             Previous
@@ -65,6 +66,7 @@ export default ({
         {shouldShowNext && (
           <Button
             {...buttonStyles('next')}
+            disabled={!forms[currentPage]}
             onClick={() => setCurrentPage(currentPage + 1)}
           >
             Next
