@@ -49,36 +49,29 @@ const CappedLink = styled(CappedText)(props => ({
   ...getVariant(props)
 }));
 
-const determineDisplay = breakpoint => {
-  if (breakpoint === 'above') {
-    return ['none', null, 'flex'];
-  } else if (breakpoint === 'below') {
-    return ['flex', null, 'none'];
-  }
-
-  return 'none';
-};
-
-export default ({ links, breakpoint, variant }) => (
+export default ({ links, isMobile, isUserMenu = false, variant }) => (
   <Links
-    flexDirection={['column', null, 'row']}
-    alignItems="center"
-    display={determineDisplay(breakpoint)}
+    flexDirection={isUserMenu ? 'column' : ['column', null, 'row']}
+    alignItems={isUserMenu ? 'flex-end' : 'center'}
+    display={isMobile ? ['flex', null, 'none'] : ['none', null, 'flex']}
   >
     {links.map(({ to, onClick, title, button }, index) => {
       const CappedTitle = (
-        <CappedLink
-          variant={breakpoint === 'above' ? variant : 'light'} // Don't show variants on mobile layouts
-          mr={[0, null, 2]}
-        >
+        <CappedLink variant={variant} mr={isUserMenu ? 0 : [0, null, 2]}>
           {title}
         </CappedLink>
       );
 
+      const buttonProps = {
+        my: 2,
+        variant: variant === 'dark' ? 'secondary' : 'primary',
+        key: index
+      };
+
       if (!to && onClick) {
         if (button) {
           return (
-            <Button onClick={onClick} my={2} key={index}>
+            <Button onClick={onClick} {...buttonProps}>
               {title}
             </Button>
           );
@@ -95,19 +88,13 @@ export default ({ links, breakpoint, variant }) => (
         if (button) {
           if (isExternal) {
             return (
-              <Button
-                href={to}
-                as="a"
-                my={2}
-                key={index}
-                {...ExternalLinkProps}
-              >
+              <Button href={to} as="a" {...buttonProps} {...ExternalLinkProps}>
                 {title}
               </Button>
             );
           }
           return (
-            <Button to={to} as={Link} my={2} key={index}>
+            <Button to={to} as={Link} {...buttonProps}>
               {title}
             </Button>
           );

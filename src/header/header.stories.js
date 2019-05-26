@@ -104,6 +104,12 @@ stories.add('default', () => {
     'light',
     'Main'
   );
+  const position = select(
+    'Position',
+    ['relative', 'absolute', 'fixed'],
+    'fixed',
+    'Main'
+  );
   const isLoggedIn = boolean('Logged in?', true, 'Main');
 
   return (
@@ -111,6 +117,7 @@ stories.add('default', () => {
       logo={logo}
       links={links}
       user={isLoggedIn ? user.avatar_url : null}
+      position={position}
       variant={variant}
     />
   );

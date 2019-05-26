@@ -2,7 +2,6 @@
 
 ## Simple Components
 
-- Header
 - Footer
 
 ## Complex Components
