@@ -7,6 +7,7 @@ import {
   colorStyle,
   themeGet
 } from 'styled-system';
+import { Link } from 'react-router-dom';
 import Box from '../box';
 
 const Text = styled(Box)(textAlign, letterSpacing);
@@ -79,14 +80,20 @@ export const InternalLink = styled(Text)(
 
 InternalLink.defaultProps = {
   ...Text.defaultProps,
-  as: 'a',
+  as: Link,
   color: 'primary'
 };
 
 InternalLink.displayName = 'InternalLink';
 
-export const ExternalLink = ({ children, ...props }) => (
-  <InternalLink {...props} target="_blank" rel="noopener noreferrer">
+export const ExternalLink = ({ children, to, ...props }) => (
+  <InternalLink
+    {...props}
+    href={to}
+    as="a"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     {children}
   </InternalLink>
 );

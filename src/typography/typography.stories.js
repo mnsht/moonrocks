@@ -79,7 +79,7 @@ stories.add('as an internal link', () => {
   );
 
   return (
-    <InternalLink href="/" color={color}>
+    <InternalLink to="/" color={color}>
       {content}
     </InternalLink>
   );
@@ -95,7 +95,7 @@ stories.add('as an external link', () => {
   );
 
   return (
-    <ExternalLink href="https://google.com" color={color}>
+    <ExternalLink to="https://google.com" color={color}>
       {content}
     </ExternalLink>
   );
