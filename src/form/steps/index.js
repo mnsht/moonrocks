@@ -68,7 +68,9 @@ export default ({ steps, onChange, currentPage, ...props }) => {
     return lastReady;
   };
 
-  const [selected, setSelected] = useState(currentPage || getCurrentStep());
+  const [selected, setSelected] = useState(
+    currentPage !== undefined ? currentPage : getCurrentStep()
+  );
 
   useEffect(() => {
     setSelected(currentPage);
