@@ -258,7 +258,7 @@ const createPage = (
       label: (
         <InlineText>
           Please read the{' '}
-          <InternalLink href="/">terms and conditions</InternalLink>
+          <InternalLink to="/">terms and conditions</InternalLink>
         </InlineText>
       ),
       width: [1],

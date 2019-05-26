@@ -149,6 +149,8 @@ const handleClose = (closeFunc, onClose) => {
 };
 
 const generateButtons = (buttons, closeFunc, onClose) => {
+  if (!buttons) return {};
+
   const mappedButtons = (buttons, side) =>
     buttons && Array.isArray(buttons) && buttons.length > 0
       ? buttons.map((button, index) => {
@@ -220,10 +222,12 @@ export default ({
               <CloseButton onClick={() => handleClose(close, onClose)} />
             </DialogTop>
             <Content>{children}</Content>
-            <Buttons>
-              {leftButtons}
-              {rightButtons}
-            </Buttons>
+            {leftButtons && rightButtons && (
+              <Buttons>
+                {leftButtons}
+                {rightButtons}
+              </Buttons>
+            )}
           </DialogContainer>
         </PosedDialog>
       )}

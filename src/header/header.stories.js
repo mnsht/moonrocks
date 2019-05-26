@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
 
 import Header from './';
 
@@ -9,14 +9,86 @@ const stories = storiesOf('2. Simple|Header', module);
 stories.addDecorator(withKnobs);
 
 const links = {
-  left: [],
-  right: []
+  left: [
+    {
+      title: 'Dashboard',
+      to: '/dashboard',
+      authRequired: true
+    },
+    {
+      title: 'Contributions',
+      to: '/contributions',
+      authRequired: true
+    },
+    {
+      title: 'Features',
+      to: '/features',
+      unauthRequired: true
+    },
+    {
+      title: 'About',
+      to: '/about',
+      unauthRequired: true
+    },
+    {
+      title: 'Blog',
+      to: 'https://blog.scholarraise.com',
+      unauthRequired: true
+    },
+    {
+      title: 'FAQ',
+      to: 'https://help.scholarraise.com'
+    },
+    {
+      title: 'Contact',
+      onClick: () => console.log('Open Intercom'),
+      authRequired: true
+    }
+  ],
+  right: [
+    {
+      title: 'Login',
+      to: '/login',
+      unauthRequired: true
+    },
+    {
+      title: 'Sign Up',
+      to: '/signup',
+      unauthRequired: true,
+      button: true
+    }
+  ],
+  user: [
+    {
+      title: 'Profile',
+      to: '/account/profile',
+      authRequired: true
+    },
+    {
+      title: 'Payment Methods',
+      to: '/account/payment-methods',
+      authRequired: true
+    },
+    {
+      title: 'Communications',
+      to: '/account/communications',
+      authRequired: true
+    },
+    {
+      title: 'Security',
+      to: '/account/security',
+      authRequired: true
+    },
+    {
+      title: 'Logout',
+      to: '/logout',
+      authRequired: true
+    }
+  ]
 };
 
 const user = {
   // Whatever the user object is...
-  first_name: 'Silly',
-  last_name: 'Boy',
   avatar_url: 'https://picsum.photos/200'
 };
 
@@ -32,15 +104,13 @@ stories.add('default', () => {
     'light',
     'Main'
   );
+  const isLoggedIn = boolean('Logged in?', true, 'Main');
 
   return (
     <Header
       logo={logo}
       links={links}
-      user={{
-        name: user.first_name + ' ' + user.last_name,
-        avatar: user.avatar_url
-      }}
+      user={isLoggedIn ? user.avatar_url : null}
       variant={variant}
     />
   );

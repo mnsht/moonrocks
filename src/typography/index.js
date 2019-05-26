@@ -86,14 +86,13 @@ InternalLink.defaultProps = {
 
 InternalLink.displayName = 'InternalLink';
 
+export const ExternalLinkProps = {
+  target: '_blank',
+  rel: 'noopener noreferrer'
+};
+
 export const ExternalLink = ({ children, to, ...props }) => (
-  <InternalLink
-    {...props}
-    href={to}
-    as="a"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+  <InternalLink {...props} href={to} as="a" {...ExternalLinkProps}>
     {children}
   </InternalLink>
 );
