@@ -6,3 +6,15 @@ export const uuid = () => {
     ).toString(16)
   );
 };
+
+export const filterLinksBySecurity = (isLoggedIn, links) => {
+  if (isLoggedIn) {
+    return links.filter(
+      link => link.authRequired || !link.hasOwnProperty('unauthRequired')
+    );
+  }
+
+  return links.filter(
+    link => link.unauthRequired || !link.hasOwnProperty('authRequired')
+  );
+};
