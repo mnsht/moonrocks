@@ -12,8 +12,7 @@ import Dialog from '../dialog';
 
 /*
 TODO:
-- Add left and right menus
-- Variants (light, dark, and transparent) as a prop, nothing to do with scroll
+- User hover menu
 */
 
 // TODO: This is a placeholder for inevitably finding a better way to implement responsive widths in styled-system and thusly on Avatars
@@ -28,15 +27,13 @@ const Avatar = props => {
   );
 };
 
-const getVariant = (where, { variant, ...props }) => {
-  if (where === 'container') {
-    if (variant === 'light') {
-      return { backgroundColor: themeGet('colors.white')(props) };
-    } else if (variant === 'dark') {
-      return { backgroundColor: themeGet('colors.black')(props) };
-    } else if (variant === 'transparent') {
-      return { backgroundColor: 'transparent' };
-    }
+const getVariant = ({ variant, ...props }) => {
+  if (variant === 'light') {
+    return { backgroundColor: themeGet('colors.white')(props) };
+  } else if (variant === 'dark') {
+    return { backgroundColor: themeGet('colors.black')(props) };
+  } else if (variant === 'transparent') {
+    return { backgroundColor: 'transparent' };
   }
 
   return null;
@@ -48,7 +45,7 @@ const HeaderContainer = styled(Flex)(
     top: 0,
     left: 0,
     width: '100%',
-    ...getVariant('container', props)
+    ...getVariant(props)
   }),
   height
 );
@@ -75,7 +72,7 @@ const filterLinksBySecurity = (isLoggedIn, links) => {
   );
 };
 
-export default ({ logo, links, user, variant, ...props }) => {
+export default ({ logo, links, user, variant = 'light', ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isLoggedIn = !!user;
 
@@ -87,8 +84,6 @@ export default ({ logo, links, user, variant, ...props }) => {
   const userLinks = filterLinksBySecurity(isLoggedIn, links.user);
   const rightLinks = filterLinksBySecurity(isLoggedIn, links.right);
 
-  console.log(allLinks, leftLinks, userLinks, rightLinks);
-
   return (
     <HeaderContainer
       {...props}
@@ -99,14 +94,20 @@ export default ({ logo, links, user, variant, ...props }) => {
       px={3}
     >
       <Flex alignItems="center" style={{ height: '100%' }}>
-        <Image src={logo} height={['90%', null, '80%']} />
+        <Image src={logo} height="90%" />
+        {leftLinks.length > 0 && (
+          <Links variant={variant} links={leftLinks} breakpoint="above" />
+        )}
       </Flex>
       <Flex alignItems="center" style={{ height: '100%' }}>
+        {rightLinks.length > 0 && (
+          <Links variant={variant} links={rightLinks} breakpoint="above" />
+        )}
         {isLoggedIn && <Avatar src={user} mr={[3, null, 0]} />}
         <Hamburger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
       </Flex>
       <Dialog hasBackground isOpen={isOpen} close={() => setIsOpen(!isOpen)}>
-        <Links links={allLinks} />
+        <Links variant={variant} links={allLinks} breakpoint="below" />
       </Dialog>
     </HeaderContainer>
   );
