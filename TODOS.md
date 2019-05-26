@@ -34,9 +34,13 @@
 
 ## Known Problems
 
+### Avatars
+
+- Avatars aren't responsive, you can see this in the Header component... this is because the lack of a width key on the theme and/or the themeGet function from styled-system being non-responsive
+
 ### Forms
 
-- Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React
+- Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React (see https://styled-system.com/guides/removing-props-from-html)
 
 ### Notifications
 
