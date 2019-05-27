@@ -3,7 +3,6 @@
 ## Complex Components
 
 - Dashboard card
-- Context menu (used in Dashboard card)
 - Information list (used in confirmation on add plan)
 - Link card (used in sidebar of add plan after)
 - Statistic (used in dashboard card and plan overview)
@@ -19,7 +18,10 @@
 - Move to personal public repo and add Lerna, forking for SRs
 - Turn all Storybook buttons into withKnob buttons
 - Consider refactoring how we're doing the React Select custom inputs
+- Allow for remote submission on forms (even multiple forms) if there's no "button" key specified
 - Consider setting up local visual regression testing before doing the following...
+  - Remove styled-icons in favor of something smaller and that can play well with Emotion
+  - Add emotion, remove styled-components
   - Adding or removing destructured props ("...props") for top level of all components
   - Adding display to Box and removing specific overrides elsewhere
   - Removing font CSS from Box and inheritance, replacing all text strings into respective Typography components
