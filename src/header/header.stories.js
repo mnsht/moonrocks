@@ -98,6 +98,7 @@ stories.add('default', () => {
     'https://scholarraise.com/static/media/logo.8ecccc62.svg',
     'Main'
   );
+  const current = text('Current path', '/dashboard', 'Main');
   const variant = select(
     'Variant',
     ['light', 'dark', 'transparent'],
@@ -115,6 +116,7 @@ stories.add('default', () => {
   return (
     <Header
       logo={logo}
+      currentPath={current}
       links={links}
       user={isLoggedIn ? user.avatar_url : null}
       position={position}

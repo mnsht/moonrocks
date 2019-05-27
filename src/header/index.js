@@ -13,11 +13,6 @@ import Image from '../image';
 import { default as BaseAvatar } from '../avatar';
 import Dialog from '../dialog';
 
-/*
-TODO:
-- Add current
-*/
-
 // TODO: This is a placeholder for inevitably finding a better way to implement responsive widths in styled-system and thusly on Avatars
 const ResponsiveAvatar = styled(BaseAvatar)({ cursor: 'pointer' }, display);
 
@@ -70,6 +65,7 @@ const UserLinksBox = posed(
 
 export default ({
   logo,
+  currentPath = '/',
   links,
   user,
   variant = 'light',
@@ -106,12 +102,14 @@ export default ({
       px={3}
     >
       <Flex alignItems="center" style={{ height: '100%' }}>
-        <Image src={logo} height={['70%', null, '60%']} />
-        {leftLinks.length > 0 && <Links variant={variant} links={leftLinks} />}
+        <Image src={logo} height={['70%', null, '60%']} mr={[0, null, 3]} />
+        {leftLinks.length > 0 && (
+          <Links current={currentPath} variant={variant} links={leftLinks} />
+        )}
       </Flex>
       <Flex alignItems="center" style={{ height: '100%' }}>
         {rightLinks.length > 0 && (
-          <Links variant={variant} links={rightLinks} />
+          <Links current={currentPath} variant={variant} links={rightLinks} />
         )}
         {isLoggedIn && (
           <Flex
@@ -133,13 +131,23 @@ export default ({
               display={['none', null, 'block']}
               {...avatarMouseEvents}
             >
-              <Links variant={variant} links={userLinks} isUserMenu />
+              <Links
+                current={currentPath}
+                variant={variant}
+                links={userLinks}
+                isUserMenu
+              />
             </UserLinksBox>
           )}
         </PoseGroup>
       </Flex>
       <Dialog hasBackground isOpen={isOpen} close={() => setIsOpen(!isOpen)}>
-        <Links variant="light" links={allLinks} isMobile />
+        <Links
+          current={currentPath}
+          variant="light"
+          links={allLinks}
+          isMobile
+        />
       </Dialog>
     </HeaderContainer>
   );

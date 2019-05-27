@@ -35,6 +35,8 @@ const getVariant = ({ variant, ...props }) => {
         color: themeGet('colors.darkGray')(props)
       }
     };
+  } else if (variant === 'current') {
+    return { color: themeGet('colors.primary')(props) };
   }
 
   return null;
@@ -49,7 +51,7 @@ const CappedLink = styled(CappedText)(props => ({
   ...getVariant(props)
 }));
 
-export default ({ links, isMobile, isUserMenu = false, variant }) => (
+export default ({ links, current, isMobile, isUserMenu = false, variant }) => (
   <Links
     flexDirection={isUserMenu ? 'column' : ['column', null, 'row']}
     alignItems={isUserMenu ? 'flex-end' : 'center'}
@@ -57,7 +59,10 @@ export default ({ links, isMobile, isUserMenu = false, variant }) => (
   >
     {links.map(({ to, onClick, title, button }, index) => {
       const CappedTitle = (
-        <CappedLink variant={variant} mr={isUserMenu ? 0 : [0, null, 2]}>
+        <CappedLink
+          variant={to && to === current ? 'current' : variant}
+          mr={isUserMenu ? 0 : [0, null, 2]}
+        >
           {title}
         </CappedLink>
       );
