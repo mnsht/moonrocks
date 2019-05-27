@@ -5,7 +5,7 @@ const lineHeights = {
   title: 1.5,
   paragraph: 1.75
 };
-const breakpoints = ['40em', '52em', '64em'];
+const breakpoints = ['40em', '64em', '80em'];
 const media = {
   tablet: `@media screen and (min-width: ${breakpoints[0]})`,
   desktop: `@media screen and (min-width: ${breakpoints[1]})`,
@@ -206,32 +206,18 @@ export default {
   },
 
   // ----- VARIANTS -----
-  // All of our color variants
+  // All of our color variants (links and their hovers)
   colorStyles: {
-    primary: {
-      color: primary500,
-      '&:hover': {
-        color: primary700
-      }
-    },
-    success: {
-      color: success500,
-      '&:hover': {
-        color: success700
-      }
-    },
-    warning: {
-      color: warning500,
-      '&:hover': {
-        color: warning700
-      }
-    },
-    error: {
-      color: error500,
-      '&:hover': {
-        color: error700
-      }
-    }
+    primary: { color: primary500, '&:hover': { color: primary700 } },
+    success: { color: success500, '&:hover': { color: success700 } },
+    warning: { color: warning500, '&:hover': { color: warning700 } },
+    error: { color: error500, '&:hover': { color: error700 } },
+    white: { color: white, '&:hover': { color: lightGray } },
+    snow: { color: snow, '&:hover': { color: lightGray } },
+    lightGray: { color: lightGray, '&:hover': { color: mediumGray } },
+    mediumGray: { color: mediumGray, '&:hover': { color: darkGray } },
+    darkGray: { color: darkGray, '&:hover': { color: black } },
+    black: { color: black, '&:hover': { color: trueBlack } }
   },
 
   // All of our text variants

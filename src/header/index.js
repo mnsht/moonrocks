@@ -13,6 +13,12 @@ import Image from '../image';
 import { default as BaseAvatar } from '../avatar';
 import Dialog from '../dialog';
 
+/*
+TODO:
+- Fix avatar
+- Add current
+*/
+
 // TODO: This is a placeholder for inevitably finding a better way to implement responsive widths in styled-system and thusly on Avatars
 const ResponsiveAvatar = styled(BaseAvatar)({ cursor: 'pointer' }, display);
 

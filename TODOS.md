@@ -1,9 +1,5 @@
 # Todos
 
-## Simple Components
-
-- Footer
-
 ## Complex Components
 
 - Dashboard card

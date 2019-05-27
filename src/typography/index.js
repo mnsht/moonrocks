@@ -81,7 +81,7 @@ export const InternalLink = styled(Text)(
 InternalLink.defaultProps = {
   ...Text.defaultProps,
   as: Link,
-  color: 'primary'
+  colors: 'primary'
 };
 
 InternalLink.displayName = 'InternalLink';

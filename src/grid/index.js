@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 import Box from '../box';
 import Flex from '../flex';
-import { maxWidth } from 'styled-system';
 
-export const Container = styled(Box)(maxWidth);
+import theme from '../theme';
+
+export const Container = styled(Box)({
+  width: '100%',
+  [theme.media.desktop]: { width: 1024 },
+  [theme.media.widescreen]: { width: 1200 }
+});
 
 Container.defaultProps = {
   as: 'div',
-  mx: 'auto',
-  maxWidth: ['100%', null, null, '1400px']
+  mx: 'auto'
 };
 
 Container.displayName = 'Container';

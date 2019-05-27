@@ -79,7 +79,7 @@ stories.add('as an internal link', () => {
   );
 
   return (
-    <InternalLink to="/" color={color}>
+    <InternalLink to="/" colors={color}>
       {content}
     </InternalLink>
   );
@@ -95,7 +95,7 @@ stories.add('as an external link', () => {
   );
 
   return (
-    <ExternalLink to="https://google.com" color={color}>
+    <ExternalLink to="https://google.com" colors={color}>
       {content}
     </ExternalLink>
   );
@@ -113,7 +113,7 @@ stories.add('as an interactive link', () => {
   return (
     <InteractiveLink
       onClick={action('We did something special!')}
-      color={color}
+      colors={color}
     >
       {content}
     </InteractiveLink>

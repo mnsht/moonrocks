@@ -49,8 +49,16 @@ const themeBreakpoints = {
 
 addParameters({
   viewport: {
-    defaultViewport: 'widescreen',
+    defaultViewport: 'responsive',
     viewports: {
+      responsive: {
+        name: 'Responsive',
+        styles: {
+          width: 'calc(100% - 24px)',
+          height: 'calc(100% - 24px)'
+        },
+        type: 'desktop'
+      },
       ...themeBreakpoints,
       ...INITIAL_VIEWPORTS
     }
