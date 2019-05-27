@@ -15,7 +15,6 @@ import Dialog from '../dialog';
 
 /*
 TODO:
-- Fix avatar
 - Add current
 */
 
@@ -115,13 +114,14 @@ export default ({
           <Links variant={variant} links={rightLinks} />
         )}
         {isLoggedIn && (
-          <Box
+          <Flex
             {...avatarMouseEvents}
             mr={[3, null, 0]}
+            alignItems="center"
             style={{ height: '100%' }}
           >
-            <Avatar src={user} mt={3} />
-          </Box>
+            <Avatar src={user} />
+          </Flex>
         )}
         <Hamburger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
         <PoseGroup>
