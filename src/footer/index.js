@@ -58,7 +58,7 @@ export default ({
       <Container>
         <Row mx={[3, null, 0]}>
           <Column width={[1, null, 1 / 3]} mb={[4, null, 0]}>
-            <Image src={logo} height={48} />
+            <Image src={logo} height={48} mb={2} />
             {address.map((line, index) => (
               <Paragraph color="mediumGray" mb={0} key={index}>
                 {line}
