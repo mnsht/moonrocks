@@ -321,6 +321,48 @@ const store = new Store({
         page: createPage(2, true)
       }
     ]
+  },
+  multipleFormFirstPage: {
+    submit: values => console.log('SUBMIT', values),
+    button: 'Submit form',
+    forms: [
+      {
+        title: 'Owner(s)',
+        description: 'Define the administrators of this 529 account',
+        page: createPage(0, true, true)
+      },
+      {
+        title: 'Scholar',
+        description: 'Tell us who the account is going to benefit',
+        page: createPage(1, true)
+      },
+      {
+        title: 'Confirm',
+        description: 'Answer some security questions and confirm details',
+        page: createPage(2, true)
+      }
+    ]
+  },
+  multipleFormComplete: {
+    submit: values => console.log('SUBMIT', values),
+    button: 'Submit form',
+    forms: [
+      {
+        title: 'Owner(s)',
+        description: 'Define the administrators of this 529 account',
+        page: createPage(0, true, true)
+      },
+      {
+        title: 'Scholar',
+        description: 'Tell us who the account is going to benefit',
+        page: createPage(1, true, true)
+      },
+      {
+        title: 'Confirm',
+        description: 'Answer some security questions and confirm details',
+        page: createPage(2, true, true)
+      }
+    ]
   }
 });
 
@@ -352,6 +394,30 @@ stories.add('as a form wizard', () => {
   return (
     <State store={store}>
       {({ multipleForm }) => <Form {...multipleForm} showSteps={steps} />}
+    </State>
+  );
+});
+
+stories.add('as a form wizard with the first page completed', () => {
+  const steps = boolean('Should show steps?', true, 'Main');
+
+  return (
+    <State store={store}>
+      {({ multipleFormFirstPage }) => (
+        <Form {...multipleFormFirstPage} showSteps={steps} />
+      )}
+    </State>
+  );
+});
+
+stories.add('as a complete form wizard', () => {
+  const steps = boolean('Should show steps?', true, 'Main');
+
+  return (
+    <State store={store}>
+      {({ multipleFormComplete }) => (
+        <Form {...multipleFormComplete} showSteps={steps} />
+      )}
     </State>
   );
 });
