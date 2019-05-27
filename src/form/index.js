@@ -11,14 +11,17 @@ import Button from '../button';
 
 let steps;
 
-const constructSteps = (forms, errors) => {
+const constructSteps = (forms, errors, touched, validPages) => {
   const tempSteps = [];
 
-  forms.forEach(({ title, description, page }) => {
+  forms.forEach(({ title, description, page }, index) => {
     let complete = true;
 
     page.forEach(({ name }) => {
-      if (errors.hasOwnProperty(name) && errors[name] !== '') {
+      if (
+        (errors.hasOwnProperty(name) && errors[name] !== '') ||
+        (!validPages[index] && !Object.keys(touched).length)
+      ) {
         complete = false;
       }
     });
@@ -33,7 +36,16 @@ export default ({ submit, button, forms, showSteps, ...props }) => {
   const initial = constructInitialValues(forms);
   const validation = constructValidation(forms);
   const isSingle = forms.length === 1;
-  const [currentPage, setCurrentPage] = useState(0);
+  const initiallyValidPages = forms.map((form, index) => {
+    const validator = constructValidation([form]);
+    return !validator ? true : validator.isValidSync(initial);
+  });
+  const firstIncompletePage = initiallyValidPages.findIndex(
+    page => page === false
+  );
+  const [currentPage, setCurrentPage] = useState(
+    firstIncompletePage !== -1 ? firstIncompletePage : forms.length - 1
+  );
 
   return (
     <Formik
@@ -44,8 +56,12 @@ export default ({ submit, button, forms, showSteps, ...props }) => {
     >
       {({ isSubmitting, isValid, ...formikProps }) => (
         <FormikForm>
-          {/* TODO: @tcp, If you undo this line if you want to have a different error... */}
-          {/* {constructSteps(forms, formikProps.errors)} */}
+          {constructSteps(
+            forms,
+            formikProps.errors,
+            formikProps.touched,
+            initiallyValidPages
+          )}
           {!isSingle && showSteps && (
             <Steps
               mb={4}
