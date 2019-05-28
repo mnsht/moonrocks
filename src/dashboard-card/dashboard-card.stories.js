@@ -53,6 +53,9 @@ stories.add('default', () => {
         hashId={hashId}
         financials={financials}
         openDepositDialog={toggleDialog}
+        openFacebook={link => console.log('DO FACEBOOK SHARE', link)}
+        openTwitter={link => console.log('DO TWITTER SHARE', link)}
+        onCopyProfile={link => console.log('DO COPY PROFILE', link)}
       />
     </React.Fragment>
   );

@@ -168,7 +168,11 @@ export default {
     whites,
 
     // Transparent helper color
-    transparent
+    transparent,
+
+    // Social media
+    facebook: '#3B5998',
+    twitter: '#38A1F3'
   },
 
   // Opacities (0 - 1)

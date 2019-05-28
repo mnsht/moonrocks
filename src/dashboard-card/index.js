@@ -3,6 +3,12 @@ import styled from 'styled-components';
 import { display } from 'styled-system';
 import { Link } from 'react-router-dom';
 
+import { Link as LinkIcon } from 'styled-icons/fa-solid';
+import {
+  FacebookSquare as Facebook,
+  TwitterSquare as Twitter
+} from 'styled-icons/fa-brands';
+
 import Card from '../card';
 import Flex from '../flex';
 import Box from '../box';
@@ -10,11 +16,7 @@ import { ResponsiveAvatar } from '../avatar';
 import { Heading, CappedText, InternalLink } from '../typography';
 import Button from '../button';
 import { default as BaseTooltip } from '../form/inputs/_tooltip';
-
-/*
-TODO
-- Icons
-*/
+import Icon from '../icon';
 
 const Tooltip = styled(BaseTooltip)(display);
 
@@ -24,6 +26,9 @@ export default ({
   hashId,
   financials,
   openDepositDialog,
+  openFacebook,
+  openTwitter,
+  onCopyProfile,
   ...props
 }) => {
   const { balance, principal, interest, withdrawals } = financials;
@@ -104,7 +109,31 @@ export default ({
                   {name}
                 </Heading>
               </InternalLink>
-              <span>BUTTONS GO HERE</span>
+              <Flex
+                justifyContent={['center', 'flex-start']}
+                alignItems="center"
+              >
+                <Icon
+                  icon={Facebook}
+                  size={1}
+                  color="facebook"
+                  mr={3}
+                  onClick={() => openFacebook(profileUrl)}
+                />
+                <Icon
+                  icon={Twitter}
+                  size={1}
+                  color="twitter"
+                  mr={3}
+                  onClick={() => openTwitter(profileUrl)}
+                />
+                <Icon
+                  icon={LinkIcon}
+                  size={1}
+                  color="lightGray"
+                  onClick={() => onCopyProfile(profileUrl)}
+                />
+              </Flex>
             </Box>
           </Flex>
           <Flex alignItems="center">

@@ -2,7 +2,6 @@
 
 ## Complex Components
 
-- Dashboard card
 - Information list (used in confirmation on add plan)
 - Link card (used in sidebar of add plan after)
 - Statistic (used in dashboard card and plan overview)
@@ -22,6 +21,7 @@
 - Consider setting up local visual regression testing before doing the following...
   - Remove styled-icons in favor of something smaller and that can play well with Emotion
   - Add emotion, remove styled-components
+  - Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128];
   - Adding or removing destructured props ("...props") for top level of all components
   - Adding display to Box and removing specific overrides elsewhere
   - Removing font CSS from Box and inheritance, replacing all text strings into respective Typography components
