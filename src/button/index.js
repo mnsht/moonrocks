@@ -24,7 +24,8 @@ const Button = styled(Box)(
     transition: `background ${themeGet('animations.fast')(props)} ease-in-out`,
     cursor: props.disabled ? 'default' : 'pointer',
     opacity: props.disabled ? themeGet('opacities.1')(props) : 1,
-    pointerEvents: props.disabled ? 'none' : 'initial'
+    pointerEvents: props.disabled ? 'none' : 'initial',
+    whiteSpace: 'nowrap'
   }),
   borders,
   borderColor,

@@ -10,18 +10,8 @@ import { filterLinksBySecurity } from '../_helpers';
 import Flex from '../flex';
 import Box from '../box';
 import Image from '../image';
-import { default as BaseAvatar } from '../avatar';
+import { ResponsiveAvatar } from '../avatar';
 import Dialog from '../dialog';
-
-// TODO: This is a placeholder for inevitably finding a better way to implement responsive widths in styled-system and thusly on Avatars
-const ResponsiveAvatar = styled(BaseAvatar)({ cursor: 'pointer' }, display);
-
-const Avatar = props => (
-  <React.Fragment>
-    <ResponsiveAvatar {...props} size={2} display={['block', null, 'none']} />
-    <ResponsiveAvatar {...props} size={3} display={['none', null, 'block']} />
-  </React.Fragment>
-);
 
 const getVariant = ({ variant, ...props }) => {
   if (variant === 'light') {
@@ -91,6 +81,11 @@ export default ({
   const userLinks = filterLinksBySecurity(isLoggedIn, links.user);
   const rightLinks = filterLinksBySecurity(isLoggedIn, links.right);
 
+  const avatarSizes = [
+    { size: 2, display: ['block', null, 'none'] },
+    { size: 3, display: ['none', null, 'block'] }
+  ];
+
   return (
     <HeaderContainer
       {...props}
@@ -116,9 +111,9 @@ export default ({
             {...avatarMouseEvents}
             mr={[3, null, 0]}
             alignItems="center"
-            style={{ height: '100%' }}
+            style={{ height: '100%', cursor: 'pointer' }}
           >
-            <Avatar src={user} />
+            <ResponsiveAvatar src={user} sizes={avatarSizes} />
           </Flex>
         )}
         <Hamburger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />

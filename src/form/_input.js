@@ -87,7 +87,6 @@ export default (
             textStyle="h4"
             color="mediumGray"
             fontWeight="normal"
-            style={{ display: 'block' }}
           >
             {description}
           </Heading>

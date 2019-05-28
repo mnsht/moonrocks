@@ -33,7 +33,7 @@
 
 ### Avatars
 
-- Avatars aren't responsive, you can see this in the Header component... this is because the lack of a width key on the theme and/or the themeGet function from styled-system being non-responsive
+- Avatars aren't responsive, you can see this in the Header and DashboardCard components... this is because the lack of a width key on the theme and/or the themeGet function from styled-system being non-responsive
 
 ### Forms
 
