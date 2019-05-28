@@ -48,7 +48,9 @@ export default ({ title, name, items, message, onChange, ...props }) => {
             <InlineText style={{ display: 'block' }} mt={1}>
               {Array.isArray(value)
                 ? value.map(line => (
-                    <InlineText style={{ display: 'block' }}>{line}</InlineText>
+                    <InlineText key={line} style={{ display: 'block' }}>
+                      {line}
+                    </InlineText>
                   ))
                 : value}
             </InlineText>
