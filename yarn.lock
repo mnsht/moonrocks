@@ -8693,7 +8693,7 @@ styled-components@^4.2.0:
     stylis-rule-sheet "^0.0.10"
     supports-color "^5.5.0"
 
-styled-icons@8.0.0:
+styled-icons@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/styled-icons/-/styled-icons-8.0.0.tgz#d4d128514d1ea13addb5fbc0045cbd09a3465d44"
   integrity sha512-QzSAWuXjGCXBrNXj6wvh57YFlN8RuH3T10Wym9nAWULVUP9FmP61IviaLyyBlVB2Y6Nx3TgUP/xJQJnV5Z1btg==

@@ -26,7 +26,6 @@
     "react-pose": "^4.0.8",
     "react-select": "^2.4.3",
     "styled-components": "^4.2.0",
-    "styled-icons": "8.0.0",
     "styled-system": "^4.1.0",
     "yup": "^0.27.0"
   },
@@ -54,12 +53,14 @@
     "rollup-plugin-svgo": "^1.0.2",
     "rollup-plugin-uglify": "^6.0.2",
     "source-map-explorer": "^1.8.0",
-    "storybook-react-router": "^1.0.5"
+    "storybook-react-router": "^1.0.5",
+    "styled-icons": "^8.0.0"
   },
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^5.0.0",
+    "styled-icons": "^8.0.0"
   },
   "husky": {
     "hooks": {
