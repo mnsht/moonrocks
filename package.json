@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/scholarraise/sr-components#readme",
   "dependencies": {
-    "cleave.js": "1.5.0",
+    "cleave.js": "1.4.10",
     "formik": "1.5.7",
     "react-pose": "^4.0.8",
     "react-select": "^2.4.3",
