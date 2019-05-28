@@ -2,7 +2,6 @@
 
 ## Complex Components
 
-- Information list (used in confirmation on add plan)
 - Link card (used in sidebar of add plan after)
 - Statistic (used in dashboard card and plan overview)
 - Short card (used on edit profile and on invitations, has a one or two button option)
@@ -22,7 +21,7 @@
   - Remove styled-icons in favor of something smaller and that can play well with Emotion
   - Add emotion, remove styled-components
   - Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128];
-  - Adding or removing destructured props ("...props") for top level of all components
+  - Adding and testing destructured props ("...props") for top level of all components to allow for custom margins and display to be set
   - Adding display to Box and removing specific overrides elsewhere
   - Removing font CSS from Box and inheritance, replacing all text strings into respective Typography components
   - Convert as many styled components over to using existing Box, Flex, and Card components

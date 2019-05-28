@@ -172,7 +172,9 @@ export default {
 
     // Social media
     facebook: '#3B5998',
-    twitter: '#38A1F3'
+    facebookHover: '#22407F',
+    twitter: '#38A1F3',
+    twitterHover: '#1F88DA'
   },
 
   // Opacities (0 - 1)

@@ -17,7 +17,14 @@ IconContainer.displayName = 'IconContainer';
 
 const Icon = styled(Box)(props => ({
   width: themeGet(`widths.${props.dimension}`)(props),
-  height: themeGet(`heights.${props.dimension}`)(props)
+  height: themeGet(`heights.${props.dimension}`)(props),
+  cursor: props.hoverColor && 'pointer',
+  transition: `color ${themeGet('animations.fast')(props)} ease-in-out`,
+  '&:hover': {
+    color: props.hoverColor
+      ? themeGet(`colors.${props.hoverColor}`, props.hoverColor)(props)
+      : props.color
+  }
 }));
 
 Icon.defaultProps = {
@@ -26,8 +33,10 @@ Icon.defaultProps = {
 
 Icon.displayName = 'Icon';
 
-export default React.forwardRef(({ icon, size, color, ...props }, ref) => (
-  <IconContainer {...props} dimension={size} ref={ref}>
-    <Icon as={icon} color={color} dimension={size} />
-  </IconContainer>
-));
+export default React.forwardRef(
+  ({ icon, size, color, hoverColor, ...props }, ref) => (
+    <IconContainer {...props} dimension={size} ref={ref}>
+      <Icon as={icon} color={color} hoverColor={hoverColor} dimension={size} />
+    </IconContainer>
+  )
+);

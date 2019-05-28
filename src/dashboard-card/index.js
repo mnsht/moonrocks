@@ -117,6 +117,7 @@ export default ({
                   icon={Facebook}
                   size={1}
                   color="facebook"
+                  hoverColor="facebookHover"
                   mr={3}
                   onClick={() => openFacebook(profileUrl)}
                 />
@@ -124,6 +125,7 @@ export default ({
                   icon={Twitter}
                   size={1}
                   color="twitter"
+                  hoverColor="twitterHover"
                   mr={3}
                   onClick={() => openTwitter(profileUrl)}
                 />
@@ -131,6 +133,7 @@ export default ({
                   icon={LinkIcon}
                   size={1}
                   color="lightGray"
+                  hoverColor="mediumGray"
                   onClick={() => onCopyProfile(profileUrl)}
                 />
               </Flex>
