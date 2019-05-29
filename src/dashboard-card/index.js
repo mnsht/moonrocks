@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import { display } from 'styled-system';
 import { Link } from 'react-router-dom';
 
 import { Link as LinkIcon } from 'styled-icons/fa-solid';
@@ -13,12 +11,10 @@ import Card from '../card';
 import Flex from '../flex';
 import Box from '../box';
 import { ResponsiveAvatar } from '../avatar';
-import { Heading, CappedText, InternalLink } from '../typography';
+import { Heading, InternalLink } from '../typography';
 import Button from '../button';
-import { default as BaseTooltip } from '../form/inputs/_tooltip';
 import Icon from '../icon';
-
-const Tooltip = styled(BaseTooltip)(display);
+import Statistic from '../statistic';
 
 export default ({
   avatar,
@@ -40,7 +36,7 @@ export default ({
 
   const financialsArray = [
     {
-      title: 'Account Balance',
+      title: 'Balance',
       amount: balance
     },
     {
@@ -50,7 +46,7 @@ export default ({
       amount: principal
     },
     {
-      title: 'Interest Earned',
+      title: 'Interest',
       tooltip:
         'Your principal money is invested, and this is the income earned off of your investments. AKA “Free Money”',
       amount: interest
@@ -159,38 +155,16 @@ export default ({
             const isFirst = index === 0;
 
             return (
-              <Box
+              <Statistic
+                key={index}
                 mb={isLast ? 0 : [3, 0]}
+                alignItems={['center', 'flex-start']}
                 width={['auto', null, `${100 / financialsArray.length}%`]}
-              >
-                <Flex alignItems="center" mb={2}>
-                  <CappedText
-                    mb={0}
-                    textAlign={['center', 'left']}
-                    color={isFirst ? 'darkGray' : 'mediumGray'}
-                  >
-                    {title}
-                  </CappedText>
-                  {tooltip && (
-                    <Tooltip
-                      display={['none', null, 'block']}
-                      tooltip={tooltip}
-                      position="top-left"
-                      ml={2}
-                    />
-                  )}
-                </Flex>
-                <Heading
-                  textAlign={['center', 'left']}
-                  fontWeight="normal"
-                  mt={0}
-                  mb={0}
-                  as="span"
-                  textStyle="h3"
-                >
-                  {currencyFormat(amount)}
-                </Heading>
-              </Box>
+                title={title}
+                important={isFirst}
+                value={currencyFormat(amount)}
+                tooltip={tooltip}
+              />
             );
           })}
         </Flex>

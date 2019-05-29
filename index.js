@@ -32,6 +32,7 @@ export {
   NotificationsConsumer
 } from './src/notifications';
 export { default as Pagination } from './src/pagination';
+export { default as Statistic } from './src/statistic';
 export { default as Tooltip } from './src/form/inputs/_tooltip';
 export {
   InlineText,

@@ -2,8 +2,6 @@
 
 ## Complex Components
 
-- Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
-- Statistic (used in dashboard card and plan overview)
 - Short card (used on edit profile and on invitations, has a one or two button option)
 - Backer card
 - Payment method card
@@ -15,7 +13,8 @@
 
 - Create real responsive avatar
 - Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128]; - PLEASE CHECK EVERY COMPONENT AGAIN... this will have cascading effects
-- Investigate <FastField /> @tcp
+- **@tcp** - Investigate <FastField />
+- **@tcp** - Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
 - Conditional inputs (see "Future Projects")
 - Move to personal public repo and add Lerna, forking for SRs
 - Turn all Storybook buttons into withKnob buttons
@@ -76,3 +75,5 @@
     }
   }
 ```
+
+- Add bounds to tooltip or consider using a library

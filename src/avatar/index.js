@@ -46,8 +46,8 @@ const DisplayAvatar = styled(DefaultAvatar)(display);
 
 export const ResponsiveAvatar = ({ sizes, ...props }) => (
   <React.Fragment>
-    {sizes.map(({ size, display }) => (
-      <DisplayAvatar {...props} size={size} display={display} />
+    {sizes.map(({ size, display }, index) => (
+      <DisplayAvatar {...props} key={index} size={size} display={display} />
     ))}
   </React.Fragment>
 );
