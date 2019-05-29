@@ -1,21 +1,53 @@
 import React from 'react';
 
+import { currencyFormat } from '../_helpers';
 import Card from '../card';
-import { Heading, Paragraph, InternalLink } from '../typography';
-import Icon from '../icon';
+import Flex from '../flex';
+import {
+  Heading,
+  CappedText,
+  InteractiveLink,
+  InlineText
+} from '../typography';
+import { ResponsiveAvatar } from '../avatar';
 
-export default ({ icon, title, description, link, ...props }) => {
+export default ({
+  avatar,
+  name,
+  timeAgo,
+  amount,
+  type,
+  interval,
+  onCancelRecurring,
+  ...props
+}) => {
+  const isRecurring = interval && onCancelRecurring;
+  const avatarSizes = [
+    { size: 3, display: ['block', 'none'] },
+    { size: 4, display: ['none', 'block'] }
+  ];
+
   return (
-    <InternalLink to={link}>
-      <Card p={4} {...props}>
-        <Icon icon={icon} color="primary" size={3} />
-        <Heading mt={3} as="h5" textStyle="h5Static">
-          {title}
+    <Card p={[3, 4]} {...props}>
+      <Flex flexDirection="column" alignItems="center">
+        <ResponsiveAvatar src={avatar} sizes={avatarSizes} mb={2} />
+        <Heading fontWeight="normal" as="h4" textStyle="h4">
+          {name}
         </Heading>
-        <Paragraph mb={0} color="darkGray">
-          {description}
-        </Paragraph>
-      </Card>
-    </InternalLink>
+        <CappedText color="lightGray">{timeAgo}</CappedText>
+        <Heading fontWeight="normal" as="span" textStyle="h3">
+          {currencyFormat(amount)}
+          {isRecurring && ` / ${interval}`}
+        </Heading>
+        {!isRecurring && (
+          <InlineText color="mediumGray">One-time {type}</InlineText>
+        )}
+        {isRecurring && (
+          <InteractiveLink onClick={onCancelRecurring} colors="error">
+            Cancel recurring contribution
+          </InteractiveLink>
+        )}
+      </Flex>
+    </Card>
   );
 };

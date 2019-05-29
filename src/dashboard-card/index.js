@@ -7,6 +7,7 @@ import {
   TwitterSquare as Twitter
 } from 'styled-icons/fa-brands';
 
+import { currencyFormat } from '../_helpers';
 import Card from '../card';
 import Flex from '../flex';
 import Box from '../box';
@@ -63,18 +64,6 @@ export default ({
     { size: 3, display: ['block', 'none'] },
     { size: 4, display: ['none', 'block'] }
   ];
-
-  const currencyFormat = num => {
-    let value = num.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    });
-
-    if (value.substr(value.length - 3) === '.00')
-      return value.substr(0, value.length - 3);
-
-    return value;
-  };
 
   return (
     <Card p={4} {...props}>

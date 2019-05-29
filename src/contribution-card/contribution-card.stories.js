@@ -1,30 +1,39 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
 
-import { ChartLine } from 'styled-icons/fa-solid';
-
-import LinkCard from '.';
+import ContributionCard from '.';
 
 const stories = storiesOf('3. Complex|Contribution Card', module);
 
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const title = text('Title', 'Define  your goals', 'Main');
-  const description = text(
-    'Description',
-    'Set up financial goals that you’d like to see your scholar hit.  Keep track of how much you’re earning and stay on track with helpful tips!',
+  const avatar = text(
+    'Avatar',
+    'http://www.ghostofaflea.com/archives/RaptorJesus.jpg',
     'Main'
   );
-  const link = text('Link', '/plans/fw398y83/goals', 'Main');
+  const name = text('Title', 'Ben Wendel', 'Main');
+  const timeAgo = text('Time ago', '2 days ago', 'Main');
+  const amount = text('Amount', '1500', 'Main');
+  const type = select(
+    'Type',
+    ['contribution', 'deposit'],
+    'contribution',
+    'Main'
+  );
+  const isRecurring = boolean('Is recurring?', false, 'Main');
 
   return (
-    <LinkCard
-      icon={ChartLine}
-      title={title}
-      description={description}
-      link={link}
+    <ContributionCard
+      avatar={avatar}
+      name={name}
+      timeAgo={timeAgo}
+      amount={amount}
+      type={type}
+      interval={isRecurring ? 'month' : null}
+      onCancelRecurring={isRecurring ? () => console.log('Cancel me') : null}
     />
   );
 });

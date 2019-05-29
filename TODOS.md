@@ -2,20 +2,23 @@
 
 ## Complex Components
 
-- Contribution card
 - Backer card
 - Table (including header with sort functionality, and configurable table row)
 - Transaction (desktop and mobile)
 
-## Refactors
+## Before Separation
 
+- Examine and correct SR components within context of a grid, spacing could be off
 - Ensure no margins are set by default on components
-- Create real responsive avatar
-- Create responsive icons
 - Consider breakpoints being set at ['36em', '60em', '80em']; (at least for SR)
 - Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128]; - PLEASE CHECK EVERY COMPONENT AGAIN... this will have cascading effects
+- Create real responsive avatar
+- Create responsive icons
 - **@tcp** - Investigate <FastField />
 - **@tcp** - Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
+
+## Refactors
+
 - Conditional inputs (see "Future Projects")
 - Move to personal public repo and add Lerna, forking for SRs
 - Turn all Storybook buttons into withKnob buttons
@@ -33,13 +36,9 @@
 
 ## Known Problems
 
-### Avatars
-
-- Avatars aren't responsive, you can see this in the Header and DashboardCard components... this is because the lack of a width key on the theme and/or the themeGet function from styled-system being non-responsive
-
 ### Forms
 
-- Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React (see https://styled-system.com/guides/removing-props-from-html)
+- Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React (see https://styled-system.com/guides/removing-props-from-html). This may beb a problem for more than just the inputs.
 
 ### Notifications
 
@@ -47,7 +46,7 @@
 
 ## Future Projects
 
-- Conditional inputs
+- Conditional inputs, something like this:
 
 ```js
   {
@@ -64,10 +63,10 @@
     width: [1, null, 1 / 3],
     conditions: values => {
       if(values['checkbox_conditional'] === true) {
-        return true;
+        return true;  // Show it
       }
 
-      return false;
+      return false;  // Hide it
     },
     validation: {
       min: 2,

@@ -18,3 +18,17 @@ export const filterLinksBySecurity = (isLoggedIn, links) => {
     link => link.unauthRequired || !link.hasOwnProperty('authRequired')
   );
 };
+
+export const currencyFormat = num => {
+  num = +num;
+
+  let value = num.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  });
+
+  if (value.substr(value.length - 3) === '.00')
+    return value.substr(0, value.length - 3);
+
+  return value;
+};
