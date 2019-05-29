@@ -2,16 +2,18 @@
 
 ## Complex Components
 
-- Short card (used on edit profile and on invitations, has a one or two button option)
-- Backer card
 - Payment method card
 - Contribution card
+- Backer card
 - Table (including header with sort functionality, and configurable table row)
 - Transaction (desktop and mobile)
 
 ## Refactors
 
+- Ensure no margins are set by default on components
 - Create real responsive avatar
+- Create responsive icons
+- Consider breakpoints being set at ['36em', '60em', '80em']; (at least for SR)
 - Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128]; - PLEASE CHECK EVERY COMPONENT AGAIN... this will have cascading effects
 - **@tcp** - Investigate <FastField />
 - **@tcp** - Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
