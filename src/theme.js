@@ -90,7 +90,8 @@ const fontWeights = {
 
 const letterSpacings = {
   normal: 'normal',
-  spaced: '1px'
+  spaced: '1px',
+  crazy: '4px'
 };
 
 const radii = {

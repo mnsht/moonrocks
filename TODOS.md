@@ -2,7 +2,6 @@
 
 ## Complex Components
 
-- Payment method card
 - Contribution card
 - Backer card
 - Table (including header with sort functionality, and configurable table row)

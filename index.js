@@ -4,9 +4,11 @@ export { ThemeProvider } from 'styled-components';
 
 // Export components
 export { default as Avatar, ResponsiveAvatar } from './src/avatar';
+export { default as BackerCard } from './src/backer-card';
 export { default as Box } from './src/box';
 export { default as Button } from './src/button';
 export { default as Card } from './src/card';
+export { default as ContributionCard } from './src/contribution-card';
 export { default as DashboardCard } from './src/dashboard-card';
 export { default as Dialog } from './src/dialog';
 export { default as Divider } from './src/divider';
@@ -32,6 +34,8 @@ export {
   NotificationsConsumer
 } from './src/notifications';
 export { default as Pagination } from './src/pagination';
+export { default as PaymentMethod } from './src/payment-method';
+export { default as ShortCard } from './src/short-card';
 export { default as Statistic } from './src/statistic';
 export { default as Tooltip } from './src/form/inputs/_tooltip';
 export {

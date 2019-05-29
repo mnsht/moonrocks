@@ -18,6 +18,8 @@ IconContainer.displayName = 'IconContainer';
 const Icon = styled(Box)(props => ({
   width: themeGet(`widths.${props.dimension}`)(props),
   height: themeGet(`heights.${props.dimension}`)(props),
+  minWidth: themeGet(`widths.${props.dimension}`)(props),
+  minHeight: themeGet(`heights.${props.dimension}`)(props),
   cursor: props.hoverColor && 'pointer',
   transition: `color ${themeGet('animations.fast')(props)} ease-in-out`,
   '&:hover': {
