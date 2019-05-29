@@ -31,7 +31,7 @@ export default ({
     <Card p={[3, 4]} {...props}>
       <Flex flexDirection="column" alignItems="center">
         <ResponsiveAvatar src={avatar} sizes={avatarSizes} mb={2} />
-        <Heading fontWeight="normal" as="h4" textStyle="h4">
+        <Heading fontWeight="normal" as="h4" textStyle="h4" mb={2}>
           {name}
         </Heading>
         <CappedText color="lightGray">{timeAgo}</CappedText>

@@ -1,30 +1,33 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
 
-import { ChartLine } from 'styled-icons/fa-solid';
-
-import LinkCard from '.';
+import BackerCard from '.';
 
 const stories = storiesOf('3. Complex|Backer Card', module);
 
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const title = text('Title', 'Define  your goals', 'Main');
-  const description = text(
-    'Description',
-    'Set up financial goals that you’d like to see your scholar hit.  Keep track of how much you’re earning and stay on track with helpful tips!',
+  const avatar = text(
+    'Avatar',
+    'http://www.ghostofaflea.com/archives/RaptorJesus.jpg',
     'Main'
   );
-  const link = text('Link', '/plans/fw398y83/goals', 'Main');
+  const name = text('Title', 'Ben Wendel', 'Main');
+  const timeAgo = text('Time ago', '2 days ago', 'Main');
+  const description = text(
+    'Description',
+    'What a beautiful young boy, so excited for you Ben! Go get em in college, buddy.',
+    'Main'
+  );
 
   return (
-    <LinkCard
-      icon={ChartLine}
-      title={title}
+    <BackerCard
+      avatar={avatar}
+      name={name}
+      timeAgo={timeAgo}
       description={description}
-      link={link}
     />
   );
 });
