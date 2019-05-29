@@ -228,30 +228,18 @@ export default {
 
   // All of our text variants
   textStyles: {
-    h1: {
-      fontSize: fontSizes[6],
-      [media.desktop]: { fontSize: fontSizes[7] }
-    },
-    h2: {
-      fontSize: fontSizes[5],
-      [media.desktop]: { fontSize: fontSizes[6] }
-    },
-    h3: {
-      fontSize: fontSizes[4],
-      [media.desktop]: { fontSize: fontSizes[5] }
-    },
-    h4: {
-      fontSize: fontSizes[3],
-      [media.desktop]: { fontSize: fontSizes[4] }
-    },
-    h5: {
-      fontSize: fontSizes[2],
-      [media.desktop]: { fontSize: fontSizes[3] }
-    },
-    h6: {
-      fontSize: fontSizes[1],
-      [media.desktop]: { fontSize: fontSizes[2] }
-    }
+    h1: { fontSize: fontSizes[6], [media.desktop]: { fontSize: fontSizes[7] } },
+    h1Static: { fontSize: fontSizes[7] },
+    h2: { fontSize: fontSizes[5], [media.desktop]: { fontSize: fontSizes[6] } },
+    h2Static: { fontSize: fontSizes[6] },
+    h3: { fontSize: fontSizes[4], [media.desktop]: { fontSize: fontSizes[5] } },
+    h3Static: { fontSize: fontSizes[5] },
+    h4: { fontSize: fontSizes[3], [media.desktop]: { fontSize: fontSizes[4] } },
+    h4Static: { fontSize: fontSizes[4] },
+    h5: { fontSize: fontSizes[2], [media.desktop]: { fontSize: fontSizes[3] } },
+    h5Static: { fontSize: fontSizes[3] },
+    h6: { fontSize: fontSizes[1], [media.desktop]: { fontSize: fontSizes[2] } },
+    h6Static: { fontSize: fontSizes[2] }
   },
 
   // All of our button variants

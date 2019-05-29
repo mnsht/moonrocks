@@ -57,7 +57,12 @@ stories.add('as a heading', () => {
 
   const headingSizes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   const elem = select('Element', headingSizes, 'h3', 'Main');
-  const variant = select('Variant', headingSizes, 'h3', 'Main');
+  const variant = select(
+    'Variant',
+    headingSizes.concat(headingSizes.map(heading => heading + 'Static')).sort(),
+    'h3',
+    'Main'
+  );
 
   return (
     <React.Fragment>

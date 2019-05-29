@@ -35,7 +35,7 @@ export default ({ title, name, items, message, onChange, ...props }) => {
       <Heading
         fontWeight="normal"
         as="span"
-        textStyle="h4"
+        textStyle="h4Static"
         mt={2}
         color={incomplete ? 'mediumGray' : 'black'}
       >

@@ -2,14 +2,13 @@
 
 ## Complex Components
 
-- Link card (used in sidebar of add plan after)
 - Statistic (used in dashboard card and plan overview)
 - Short card (used on edit profile and on invitations, has a one or two button option)
-- Table (including header with sort functionality, and configurable table row)
-- Transaction (desktop and mobile)
 - Backer card
 - Payment method card
 - Contribution card
+- Table (including header with sort functionality, and configurable table row)
+- Transaction (desktop and mobile)
 
 ## Refactors
 
