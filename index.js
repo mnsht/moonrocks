@@ -3,7 +3,7 @@ export { default as theme } from './src/theme';
 export { ThemeProvider } from 'styled-components';
 
 // Export components
-export { default as Avatar } from './src/avatar';
+export { default as Avatar, ResponsiveAvatar } from './src/avatar';
 export { default as Box } from './src/box';
 export { default as Button } from './src/button';
 export { default as Card } from './src/card';

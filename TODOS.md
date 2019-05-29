@@ -2,6 +2,8 @@
 
 ## Complex Components
 
+- Add Component inserts at various places in the Form (maybe even replace the step and description headings?)
+- Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
 - Statistic (used in dashboard card and plan overview)
 - Short card (used on edit profile and on invitations, has a one or two button option)
 - Backer card
@@ -12,6 +14,8 @@
 
 ## Refactors
 
+- Create real responsive avatar
+- Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128]; - PLEASE CHECK EVERY COMPONENT AGAIN... this will have cascading effects
 - Move to personal public repo and add Lerna, forking for SRs
 - Turn all Storybook buttons into withKnob buttons
 - Consider refactoring how we're doing the React Select custom inputs
@@ -19,7 +23,6 @@
 - Consider setting up local visual regression testing before doing the following...
   - Remove styled-icons in favor of something smaller and that can play well with Emotion
   - Add emotion, remove styled-components
-  - Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128];
   - Adding and testing destructured props ("...props") for top level of all components to allow for custom margins and display to be set
   - Adding display to Box and removing specific overrides elsewhere
   - Removing font CSS from Box and inheritance, replacing all text strings into respective Typography components

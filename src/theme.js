@@ -67,6 +67,13 @@ const error500 = '#EF815F';
 const error700 = '#A2442B';
 const error900 = '#722E1F';
 
+const socialMediaColors = {
+  facebook: '#3B5998',
+  facebookHover: '#22407F',
+  twitter: '#38A1F3',
+  twitterHover: '#1F88DA'
+};
+
 const SYSTEM_FONTS =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"';
 
@@ -171,10 +178,7 @@ export default {
     transparent,
 
     // Social media
-    facebook: '#3B5998',
-    facebookHover: '#22407F',
-    twitter: '#38A1F3',
-    twitterHover: '#1F88DA'
+    ...socialMediaColors
   },
 
   // Opacities (0 - 1)
@@ -277,6 +281,20 @@ export default {
       backgroundColor: error500,
       '&:hover': {
         backgroundColor: error700
+      }
+    },
+    facebook: {
+      color: white,
+      backgroundColor: socialMediaColors.facebook,
+      '&:hover': {
+        backgroundColor: socialMediaColors.facebookHover
+      }
+    },
+    twitter: {
+      color: white,
+      backgroundColor: socialMediaColors.twitter,
+      '&:hover': {
+        backgroundColor: socialMediaColors.twitterHover
       }
     }
   },
