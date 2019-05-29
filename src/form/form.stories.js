@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { State, Store } from '@sambego/storybook-state';
 
-import Form from './';
+import Form, { FormInsert, FormDivider, FormDescription } from './';
 
 import { InlineText, InternalLink } from '../typography';
 
@@ -130,6 +130,22 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
+      type: (
+        <FormInsert mb={3}>
+          {({ values }) => {
+            const paragraphValue = values[`paragraph_${num}`];
+
+            if (paragraphValue)
+              return <InlineText>WOAH... {paragraphValue}</InlineText>;
+
+            return (
+              <InlineText>Start typing in the paragraph below...</InlineText>
+            );
+          }}
+        </FormInsert>
+      )
+    },
+    {
       name: `paragraph_${num}`,
       type: 'paragraph',
       placeholder: 'Start typing anything...',
@@ -141,7 +157,7 @@ const createPage = (
       ...genTooltips('Make tooltips great again')
     },
     {
-      type: 'divider'
+      type: <FormDivider />
     },
     {
       name: `radio_${num}`,
@@ -206,7 +222,7 @@ const createPage = (
       ...genTooltips('Choose at least 2')
     },
     {
-      type: 'divider'
+      type: <FormDivider />
     },
     {
       name: `array_${num}`,
@@ -250,7 +266,7 @@ const createPage = (
       ]
     },
     {
-      type: 'divider'
+      type: <FormDivider />
     },
     {
       name: `checkbox_${num}`,
@@ -271,23 +287,34 @@ const createPage = (
   ];
 
   if (multiple) {
-    const formWizardTitles = {
-      type: 'heading'
-    };
-
     if (num === 0) {
-      formWizardTitles.title = 'Step One';
-      formWizardTitles.description =
-        'Who is the administrator of this college savings account?';
+      page.unshift({
+        type: (
+          <FormDescription
+            title="Step One"
+            description="Who is the administrator of this college savings account?"
+          />
+        )
+      });
     } else if (num === 1) {
-      formWizardTitles.title = 'Step Two';
-      formWizardTitles.description = 'Who is the account being created for?';
+      page.unshift({
+        type: (
+          <FormDescription
+            title="Step Two"
+            description="Who is the account being created for?"
+          />
+        )
+      });
     } else if (num === 2) {
-      formWizardTitles.title = 'Step Three';
-      formWizardTitles.description = 'Great - now wrap it up, buddy!';
+      page.unshift({
+        type: (
+          <FormDescription
+            title="Step Three"
+            description="Great - now wrap it up, buddy!"
+          />
+        )
+      });
     }
-
-    page.unshift(formWizardTitles);
   }
 
   return page;

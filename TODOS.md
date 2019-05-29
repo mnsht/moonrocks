@@ -2,7 +2,6 @@
 
 ## Complex Components
 
-- Add Component inserts at various places in the Form (maybe even replace the step and description headings?)
 - Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
 - Statistic (used in dashboard card and plan overview)
 - Short card (used on edit profile and on invitations, has a one or two button option)
@@ -16,6 +15,8 @@
 
 - Create real responsive avatar
 - Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128]; - PLEASE CHECK EVERY COMPONENT AGAIN... this will have cascading effects
+- Investigate <FastField /> @tcp
+- Conditional inputs (see "Future Projects")
 - Move to personal public repo and add Lerna, forking for SRs
 - Turn all Storybook buttons into withKnob buttons
 - Consider refactoring how we're doing the React Select custom inputs
@@ -43,3 +44,35 @@
 ### Notifications
 
 - [Notifications are always sticky and don't automatically disappear](src/notifications/index.js)
+
+## Future Projects
+
+- Conditional inputs
+
+```js
+  {
+    name: 'checkbox_conditional',
+    type: 'checkbox',
+    label: 'Try toggling my value',
+    width: [1],
+    initialValue: false
+  },
+  {
+    name: 'text_conditional',
+    type: 'text',
+    placeholder: 'Here I am...',
+    width: [1, null, 1 / 3],
+    conditions: values => {
+      if(values['checkbox_conditional'] === true) {
+        return true;
+      }
+
+      return false;
+    },
+    validation: {
+      min: 2,
+      max: 50,
+      required: true
+    }
+  }
+```

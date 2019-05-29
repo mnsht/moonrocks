@@ -24,8 +24,6 @@ import { BareMessages } from './inputs/_messages';
 
 import { uuid } from '../_helpers';
 import { Row, Column } from '../grid';
-import { CappedText, Heading } from '../typography';
-import Divider from '../divider';
 import Icon from '../icon';
 import Button from '../button';
 
@@ -59,41 +57,23 @@ export const generateBlankFieldArray = fields => {
 
 export default (
   { type, name, width, fields, button, ...restOfInputProps },
-  { errors, touched, setFieldValue, setFieldTouched, values }
+  formikProps
 ) => {
   const isArray = type === 'array' && fields;
+  const {
+    errors,
+    touched,
+    setFieldValue,
+    setFieldTouched,
+    values
+  } = formikProps;
 
-  if (type === 'divider') {
-    return (
-      <Column key={uuid()} width={1}>
-        <Divider mt={3} mb={4} />
-      </Column>
-    );
-  }
-
-  if (type === 'heading') {
-    const { title, description } = restOfInputProps;
-
-    return (
-      <Column key={uuid()} width={1} mb={3}>
-        {title && (
-          <CappedText color="darkGray" style={{ display: 'block' }}>
-            {title}
-          </CappedText>
-        )}
-        {description && (
-          <Heading
-            as="span"
-            textStyle="h4"
-            color="mediumGray"
-            fontWeight="normal"
-          >
-            {description}
-          </Heading>
-        )}
-      </Column>
-    );
-  }
+  if (React.isValidElement(type))
+    return React.cloneElement(type, {
+      ...type.props,
+      key: uuid(),
+      formikProps
+    });
 
   const getInputType = type => {
     if (type === 'text') return TextInput;
@@ -110,8 +90,6 @@ export default (
     else if (type === 'select') return SelectInput;
     else if (type === 'multiselect') return MultiSelectInput;
     else if (type === 'date') return DateInput;
-
-    console.log('WE HAVE A PROBLEM', type);
 
     return null;
   };

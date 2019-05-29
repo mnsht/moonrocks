@@ -12,7 +12,12 @@ export { default as Dialog } from './src/dialog';
 export { default as Divider } from './src/divider';
 export { default as Flex } from './src/flex';
 export { default as Footer } from './src/footer';
-export { default as Form } from './src/form';
+export {
+  default as Form,
+  FormInsert,
+  FormDivider,
+  FormDescription
+} from './src/form';
 export { Container, Row, Column } from './src/grid';
 export { default as Header } from './src/header';
 import { default as Icon } from './src/icon';

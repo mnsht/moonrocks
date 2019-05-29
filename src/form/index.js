@@ -113,3 +113,5 @@ export default ({ submit, button, forms, showSteps, ...props }) => {
     </Formik>
   );
 };
+
+export { FormInsert, FormDivider, FormDescription } from './_inserts';
