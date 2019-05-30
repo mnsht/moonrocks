@@ -2,10 +2,10 @@
 
 ## Before Separation
 
-- Examine and correct SR components within context of a grid, spacing could be off
 - Ensure no margins are set by default on components, but all can add it
 - Create real responsive avatar
 - Create responsive icons
+- Overview all references to an icon or avatar to make sure they're still sized correctly
 - **@tcp** - Investigate <FastField />
 - **@tcp** - Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
 

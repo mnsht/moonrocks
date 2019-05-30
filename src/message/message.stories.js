@@ -5,6 +5,8 @@ import { SpaceShuttle } from 'styled-icons/fa-solid';
 
 import Message from './';
 
+import { Column } from '../grid';
+
 const stories = storiesOf('2. Simple|Message', module);
 
 stories.addDecorator(withKnobs);
@@ -24,6 +26,13 @@ stories.add('default', () => {
   );
 
   return (
-    <Message type={type} icon={SpaceShuttle} title={title} content={content} />
+    <Column width={[1, 2 / 3, 1 / 2]}>
+      <Message
+        type={type}
+        icon={SpaceShuttle}
+        title={title}
+        content={content}
+      />
+    </Column>
   );
 });

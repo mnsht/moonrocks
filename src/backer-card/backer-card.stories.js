@@ -4,6 +4,8 @@ import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
 
 import BackerCard from '.';
 
+import { Column } from '../grid';
+
 const stories = storiesOf('3. Complex|Backer Card', module);
 
 stories.addDecorator(withKnobs);
@@ -23,11 +25,13 @@ stories.add('default', () => {
   );
 
   return (
-    <BackerCard
-      avatar={avatar}
-      name={name}
-      timeAgo={timeAgo}
-      description={description}
-    />
+    <Column width={[1, 2 / 3]}>
+      <BackerCard
+        avatar={avatar}
+        name={name}
+        timeAgo={timeAgo}
+        description={description}
+      />
+    </Column>
   );
 });

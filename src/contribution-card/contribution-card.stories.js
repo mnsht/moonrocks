@@ -4,6 +4,8 @@ import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
 
 import ContributionCard from '.';
 
+import { Column } from '../grid';
+
 const stories = storiesOf('3. Complex|Contribution Card', module);
 
 stories.addDecorator(withKnobs);
@@ -26,14 +28,16 @@ stories.add('default', () => {
   const isRecurring = boolean('Is recurring?', false, 'Main');
 
   return (
-    <ContributionCard
-      avatar={avatar}
-      name={name}
-      timeAgo={timeAgo}
-      amount={amount}
-      type={type}
-      interval={isRecurring ? 'month' : null}
-      onCancelRecurring={isRecurring ? () => console.log('Cancel me') : null}
-    />
+    <Column width={[1, 1 / 2, 1 / 3]}>
+      <ContributionCard
+        avatar={avatar}
+        name={name}
+        timeAgo={timeAgo}
+        amount={amount}
+        type={type}
+        interval={isRecurring ? 'month' : null}
+        onCancelRecurring={isRecurring ? () => console.log('Cancel me') : null}
+      />
+    </Column>
   );
 });

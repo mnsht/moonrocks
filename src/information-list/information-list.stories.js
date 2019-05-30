@@ -4,6 +4,8 @@ import { withKnobs, text } from '@storybook/addon-knobs';
 
 import InformationList from './';
 
+import { Column } from '../grid';
+
 import { Paragraph, InlineText } from '../typography';
 
 const stories = storiesOf('3. Complex|Information List', module);
@@ -34,12 +36,14 @@ stories.add('default', () => {
   ];
 
   return (
-    <InformationList
-      title={title}
-      name={name}
-      items={items}
-      onChange={page => console.log('WE NEED TO CHANGE PAGES', page)}
-    />
+    <Column width={[1, 2 / 3, 1 / 2]}>
+      <InformationList
+        title={title}
+        name={name}
+        items={items}
+        onChange={page => console.log('WE NEED TO CHANGE PAGES', page)}
+      />
+    </Column>
   );
 });
 
@@ -56,10 +60,12 @@ stories.add('as an empty list', () => {
 
   // NOTE: The message can also be a string
   return (
-    <InformationList
-      title={title}
-      message={message}
-      onChange={page => console.log('WE NEED TO CHANGE PAGES', page)}
-    />
+    <Column width={[1, 1 / 2, 1 / 3]}>
+      <InformationList
+        title={title}
+        message={message}
+        onChange={page => console.log('WE NEED TO CHANGE PAGES', page)}
+      />
+    </Column>
   );
 });

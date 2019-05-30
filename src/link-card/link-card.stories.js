@@ -6,6 +6,8 @@ import { ChartLine } from 'styled-icons/fa-solid';
 
 import LinkCard from '.';
 
+import { Column } from '../grid';
+
 const stories = storiesOf('3. Complex|Link Card', module);
 
 stories.addDecorator(withKnobs);
@@ -20,11 +22,13 @@ stories.add('default', () => {
   const link = text('Link', '/plans/fw398y83/goals', 'Main');
 
   return (
-    <LinkCard
-      icon={ChartLine}
-      title={title}
-      description={description}
-      link={link}
-    />
+    <Column width={[1, 1 / 2, 1 / 3]}>
+      <LinkCard
+        icon={ChartLine}
+        title={title}
+        description={description}
+        link={link}
+      />
+    </Column>
   );
 });

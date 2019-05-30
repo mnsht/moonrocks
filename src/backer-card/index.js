@@ -7,8 +7,8 @@ import { ResponsiveAvatar } from '../avatar';
 
 export default ({ avatar, name, timeAgo, description, ...props }) => {
   const avatarSizes = [
-    { size: 3, display: ['block', 'none'] },
-    { size: 4, display: ['none', 'block'] }
+    { size: 4, display: ['block', null, 'none'] },
+    { size: 5, display: ['none', null, 'block'] }
   ];
 
   return (

@@ -18,7 +18,8 @@ export const InlineText = styled(Text)({});
 
 InlineText.defaultProps = {
   ...Text.defaultProps,
-  as: 'span'
+  as: 'span',
+  display: 'inline'
 };
 
 InlineText.displayName = 'InlineText';
@@ -30,6 +31,7 @@ Paragraph.defaultProps = {
   as: 'p',
   mt: 0,
   mb: 3,
+  display: 'block',
   lineHeight: 'paragraph'
 };
 
