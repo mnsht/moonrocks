@@ -7,6 +7,7 @@ import Steps from './steps';
 import WizardCard from './_wizard';
 
 import { Row, Column } from '../grid';
+import Box from '../box';
 import Button from '../button';
 
 let steps;
@@ -48,69 +49,70 @@ export default ({ submit, button, forms, showSteps, ...props }) => {
   );
 
   return (
-    <Formik
-      {...props}
-      onSubmit={submit}
-      initialValues={initial}
-      validationSchema={validation}
-    >
-      {({ isSubmitting, isValid, ...formikProps }) => (
-        <FormikForm>
-          {constructSteps(
-            forms,
-            formikProps.errors,
-            formikProps.touched,
-            initiallyValidPages
-          )}
-          {!isSingle && showSteps && (
-            <Steps
-              mb={4}
-              steps={steps}
-              currentPage={currentPage}
-              onChange={page => setCurrentPage(page)}
-            />
-          )}
-          {forms.map(({ page }, index) => {
-            let FormPage = (
-              <Row key={index} mt={isSingle ? 3 : 2}>
-                {page.map(input => createInput(input, formikProps))}
-              </Row>
-            );
-
-            if (!isSingle) {
-              return (
-                <WizardCard
-                  key={`wizard-page-${index}`}
-                  index={index}
-                  forms={steps.map(({ complete }) => complete)}
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                  submitDisabled={isSubmitting || !isValid}
-                  submitButton={button}
-                >
-                  {FormPage}
-                </WizardCard>
+    <Box {...props}>
+      <Formik
+        onSubmit={submit}
+        initialValues={initial}
+        validationSchema={validation}
+      >
+        {({ isSubmitting, isValid, ...formikProps }) => (
+          <FormikForm>
+            {constructSteps(
+              forms,
+              formikProps.errors,
+              formikProps.touched,
+              initiallyValidPages
+            )}
+            {!isSingle && showSteps && (
+              <Steps
+                mb={4}
+                steps={steps}
+                currentPage={currentPage}
+                onChange={page => setCurrentPage(page)}
+              />
+            )}
+            {forms.map(({ page }, index) => {
+              let FormPage = (
+                <Row key={index} mt={isSingle ? 3 : 2}>
+                  {page.map(input => createInput(input, formikProps))}
+                </Row>
               );
-            }
 
-            return FormPage;
-          })}
-          {isSingle && (
-            <Row>
-              <Column width={1}>
-                <Button
-                  mt={3}
-                  type="submit"
-                  disabled={isSubmitting || !isValid}
-                >
-                  {button}
-                </Button>
-              </Column>
-            </Row>
-          )}
-        </FormikForm>
-      )}
-    </Formik>
+              if (!isSingle) {
+                return (
+                  <WizardCard
+                    key={`wizard-page-${index}`}
+                    index={index}
+                    forms={steps.map(({ complete }) => complete)}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    submitDisabled={isSubmitting || !isValid}
+                    submitButton={button}
+                  >
+                    {FormPage}
+                  </WizardCard>
+                );
+              }
+
+              return FormPage;
+            })}
+            {isSingle && (
+              <Row>
+                <Column width={1}>
+                  <Button
+                    mt={3}
+                    type="submit"
+                    disabled={isSubmitting || !isValid}
+                  >
+                    {button}
+                  </Button>
+                </Column>
+              </Row>
+            )}
+          </FormikForm>
+        )}
+      </Formik>
+    </Box>
   );
 };
 

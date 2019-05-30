@@ -22,17 +22,17 @@ stories.add('default', () => {
         </Column>
       </Row>
       <Row>
-        <Column width={1 / 3}>
+        <Column width={[1, 1 / 2, 1 / 3]}>
           <Card p={2} my={2}>
             1 / 3
           </Card>
         </Column>
-        <Column width={1 / 3}>
+        <Column width={[1, 1 / 2, 1 / 3]}>
           <Card p={2} my={2}>
             1 / 3
           </Card>
         </Column>
-        <Column width={1 / 3}>
+        <Column width={[1, 1 / 2, 1 / 3]}>
           <Card p={2} my={2}>
             1 / 3
           </Card>

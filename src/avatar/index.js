@@ -23,7 +23,8 @@ const Avatar = styled(Box)(
     backgroundRepeat: 'no-repeat'
   }),
   borderRadius,
-  backgroundImage
+  backgroundImage,
+  display
 );
 
 Avatar.defaultProps = {
@@ -33,6 +34,8 @@ Avatar.defaultProps = {
 };
 
 Avatar.displayName = 'Avatar';
+
+// TODO: FINISH DISPLAY HERE and remove the <ReponsiveAvatar />
 
 const DefaultAvatar = ({ src, ...props }) => {
   if (!src || src === '') src = AvatarPlaceholder;

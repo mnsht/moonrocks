@@ -9,8 +9,6 @@ import { CappedText } from '../typography';
 
 const TRACK_SIZE = '2px';
 
-const Menu = styled(Box)({ display: 'inline-block' });
-
 const Item = styled(CappedText)(
   props => ({
     transition: `color ${themeGet('animations.fast')(
@@ -76,7 +74,7 @@ export default ({ pages, current, onChange, ...props }) => {
   }, [selected]);
 
   return (
-    <Menu {...props} ref={menuRef}>
+    <Box display="inline-block" {...props} ref={menuRef}>
       <Flex flexDirection={['column', null, 'row']}>
         {pages.map(({ title, href }, index) => {
           const isSelected = href === selected;
@@ -106,6 +104,6 @@ export default ({ pages, current, onChange, ...props }) => {
           marginLeft={`${selectedPosition}px`}
         />
       </Track>
-    </Menu>
+    </Box>
   );
 };

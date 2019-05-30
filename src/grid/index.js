@@ -6,7 +6,7 @@ import theme from '../theme';
 
 export const Container = styled(Box)({
   width: '100%',
-  [theme.media.desktop]: { width: 1024 },
+  [theme.media.desktop]: { width: 960 },
   [theme.media.widescreen]: { width: 1200 }
 });
 

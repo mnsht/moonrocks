@@ -3,19 +3,22 @@ import {
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent
+  justifyContent,
+  display
 } from 'styled-system';
 import Box from '../box';
 
 const Flex = styled(Box)(
-  {
-    display: 'flex'
-  },
   flexWrap,
   flexDirection,
   alignItems,
-  justifyContent
+  justifyContent,
+  display
 );
+
+Flex.defaultProps = {
+  display: 'flex'
+};
 
 Flex.displayName = 'Flex';
 

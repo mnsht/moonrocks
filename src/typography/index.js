@@ -36,7 +36,6 @@ Paragraph.defaultProps = {
 Paragraph.displayName = 'Paragraph';
 
 export const CappedText = styled(Text)(props => ({
-  display: 'inline-block',
   userSelect: 'none',
   fontFamily: themeGet('fonts.main')(props),
   fontWeight: themeGet('fontWeights.extraBold')(props),
@@ -50,15 +49,17 @@ CappedText.defaultProps = {
   mt: 0,
   mb: 2,
   fontSize: [1, 1, 2],
-  color: 'darkGray'
+  color: 'darkGray',
+  display: 'inline-block'
 };
 
 CappedText.displayName = 'CappedText';
 
-export const Heading = styled(Text)({ display: 'block' }, textStyle);
+export const Heading = styled(Text)(textStyle);
 
 Heading.defaultProps = {
   ...Text.defaultProps,
+  display: 'block',
   as: 'h3',
   variant: 'h3',
   mt: [1, null, 2],

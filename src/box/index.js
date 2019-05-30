@@ -10,7 +10,8 @@ import {
   color,
   flex,
   order,
-  alignSelf
+  alignSelf,
+  display
 } from 'styled-system';
 
 const Box = styled('div')(
@@ -29,7 +30,8 @@ const Box = styled('div')(
   color,
   flex,
   order,
-  alignSelf
+  alignSelf,
+  display
 );
 
 Box.defaultProps = {
@@ -38,7 +40,8 @@ Box.defaultProps = {
   fontSize: 2,
   lineHeight: 'normal',
   fontWeight: 'regular',
-  color: 'black'
+  color: 'black',
+  display: 'block'
 };
 
 Box.displayName = 'Box';

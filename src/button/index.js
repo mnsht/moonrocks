@@ -5,7 +5,8 @@ import {
   borders,
   borderColor,
   borderRadius,
-  buttonStyle
+  buttonStyle,
+  display
 } from 'styled-system';
 
 const Button = styled(Box)(
@@ -30,7 +31,8 @@ const Button = styled(Box)(
   borders,
   borderColor,
   borderRadius,
-  buttonStyle
+  buttonStyle,
+  display
 );
 
 Button.defaultProps = {
