@@ -12,8 +12,8 @@ import { CappedText, Paragraph, InlineText } from '../../typography';
 const StatusContainer = styled(Flex)({ width: '100%' }, display);
 
 const Status = styled(Flex)(props => ({
-  width: themeGet('widths.2')(props),
-  height: themeGet('heights.2')(props),
+  width: themeGet('widths.3')(props),
+  height: themeGet('heights.3')(props),
   borderRadius: themeGet('radii.round')(props),
   backgroundColor: props.selectable
     ? themeGet('colors.darkGray')(props)

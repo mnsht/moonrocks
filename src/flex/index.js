@@ -9,6 +9,7 @@ import {
 import Box from '../box';
 
 const Flex = styled(Box)(
+  { display: 'flex' },
   flexWrap,
   flexDirection,
   alignItems,

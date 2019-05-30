@@ -2,7 +2,6 @@
 
 ## Before Separation
 
-- Add 30 to size scale - especially for icons, it's too big of a jump between 24 and 36... const sizeScale = [18, 24, 36, 48, 64, 72, 96, 128]; - PLEASE CHECK EVERY COMPONENT AGAIN... this will have cascading effects and some may look better with one or the other
 - Examine and correct SR components within context of a grid, spacing could be off
 - Ensure no margins are set by default on components, but all can add it
 - Create real responsive avatar
