@@ -1,10 +1,5 @@
 # Todos
 
-## Complex Components
-
-- Table (including header with sort functionality, and configurable table row)
-- Transaction (desktop and mobile)
-
 ## Before Separation
 
 - Examine and correct SR components within context of a grid, spacing could be off
@@ -76,3 +71,4 @@
 ```
 
 - Add bounds to tooltip or consider using a library
+- Table support?

@@ -25,10 +25,10 @@ stories.add('default', () => {
   const hashId = text('Hash ID', 'od8fgd8i', 'Main');
 
   const financials = {
-    balance: 3875.2,
-    principal: 3040,
-    interest: 835.2,
-    withdrawals: 0
+    balance: '3875.2',
+    principal: '3040',
+    interest: '835.2',
+    withdrawals: '0'
   };
 
   const toggleDialog = () => store.set({ isOpen: !store.get('isOpen') });
