@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { themeGet, display, borders } from 'styled-system';
+import { themeGet, borders } from 'styled-system';
 import { Check } from 'styled-icons/fa-solid';
 
 import theme from '../../theme';
@@ -9,7 +9,7 @@ import Box from '../../box';
 import Icon from '../../icon';
 import { CappedText, Paragraph, InlineText } from '../../typography';
 
-const StatusContainer = styled(Flex)({ width: '100%' }, display);
+const StatusContainer = styled(Flex)({ width: '100%' });
 
 const Status = styled(Flex)(props => ({
   width: themeGet('widths.3')(props),
@@ -33,13 +33,8 @@ const Title = styled(CappedText)(
       props
     )} ease-in-out, border ${themeGet('animations.fast')(props)} ease-in-out`
   }),
-  display,
   borders
 );
-
-const Description = styled(Paragraph)(display);
-
-const MobileCheckIcon = styled(Icon)(display);
 
 const getBorder = (selected, complete) => {
   const border = `${theme.space[1]}px solid`;
@@ -131,7 +126,7 @@ export default ({ steps, onChange, currentPage, ...props }) => {
             <Title {...titleProps} display={['none', null, 'block']}>
               {title}
             </Title>
-            <Description
+            <Paragraph
               display={['none', null, 'block']}
               color="mediumGray"
               lineHeight="title"
@@ -140,9 +135,9 @@ export default ({ steps, onChange, currentPage, ...props }) => {
               mb={0}
             >
               {description}
-            </Description>
+            </Paragraph>
             {complete && (
-              <MobileCheckIcon
+              <Icon
                 display={['block', null, 'none']}
                 icon={Check}
                 color="success"

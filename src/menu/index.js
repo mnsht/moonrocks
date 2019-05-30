@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { themeGet, borders, display } from 'styled-system';
+import { themeGet, borders } from 'styled-system';
 
 import theme from '../theme';
 import Box from '../box';
@@ -22,12 +22,9 @@ const MenuItem = React.forwardRef((props, ref) => (
   <Item {...props} ref={ref} />
 ));
 
-const Track = styled(Box)(
-  {
-    height: TRACK_SIZE
-  },
-  display
-);
+const Track = styled(Box)({
+  height: TRACK_SIZE
+});
 
 const Progress = styled(Box)(props => ({
   height: TRACK_SIZE,

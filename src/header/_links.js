@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { themeGet, display } from 'styled-system';
+import { themeGet } from 'styled-system';
 import { Link } from 'react-router-dom';
 
 import Flex from '../flex';
@@ -42,8 +42,6 @@ const getVariant = ({ variant, ...props }) => {
   return null;
 };
 
-const Links = styled(Flex)(display);
-
 const CappedLink = styled(CappedText)(props => ({
   marginBottom: 0,
   padding: themeGet('space.2')(props),
@@ -52,7 +50,7 @@ const CappedLink = styled(CappedText)(props => ({
 }));
 
 export default ({ links, current, isMobile, isUserMenu = false, variant }) => (
-  <Links
+  <Flex
     flexDirection={isUserMenu ? 'column' : ['column', null, 'row']}
     alignItems={isUserMenu ? 'flex-end' : 'center'}
     display={isMobile ? ['flex', null, 'none'] : ['none', null, 'flex']}
@@ -116,5 +114,5 @@ export default ({ links, current, isMobile, isUserMenu = false, variant }) => (
 
       return null;
     })}
-  </Links>
+  </Flex>
 );

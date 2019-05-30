@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { themeGet, display } from 'styled-system';
+import { themeGet } from 'styled-system';
 
 import { currencyFormat } from '../_helpers';
 import Card from '../card';
@@ -45,15 +45,12 @@ const ContentBox = styled(Box)({
   overflow: 'hidden'
 });
 
-const HiddenParagraph = styled(Paragraph)(
-  {
-    flex: 1,
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden'
-  },
-  display
-);
+const HiddenParagraph = styled(Paragraph)({
+  flex: 1,
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden'
+});
 
 export default ({ name, type, timeAgo, description, amount, ...props }) => (
   <TransactionCard p={3} type={type} {...props}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { themeGet, height, display, top } from 'styled-system';
+import { themeGet, height, top } from 'styled-system';
 import posed, { PoseGroup } from 'react-pose';
 
 import Hamburger from './_hamburger';
@@ -45,8 +45,7 @@ const UserLinksBox = posed(
       paddingLeft: themeGet('space.3')(props),
       ...getVariant(props)
     }),
-    top,
-    display
+    top
   )
 )({
   enter: { opacity: 1, right: 0 },

@@ -1,20 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { themeGet, display } from 'styled-system';
+import { themeGet } from 'styled-system';
 
 import Box from '../box';
 
 const PATTY_UNIT = 4;
 
-const HamburgerContainer = styled(Box)(
-  {
-    position: 'relative',
-    cursor: 'pointer',
-    width: PATTY_UNIT * 6,
-    height: PATTY_UNIT * 5
-  },
-  display
-);
+const HamburgerContainer = styled(Box)({
+  position: 'relative',
+  cursor: 'pointer',
+  width: PATTY_UNIT * 6,
+  height: PATTY_UNIT * 5
+});
 
 const getPattyDimensions = ({ index, isOpen }) => {
   const dimensions = {};
