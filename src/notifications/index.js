@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import posed, { PoseGroup } from 'react-pose';
-import { Times } from 'styled-icons/fa-solid';
+import { FaTimes } from 'react-icons/fa';
 
 import theme from '../theme';
 import { uuid } from '../_helpers';
@@ -158,7 +158,7 @@ const RemoveIconElem = styled(Flex)(props => ({
 
 const RemoveIcon = props => (
   <RemoveIconElem {...props}>
-    <Icon icon={Times} size={0} color={getIconColors(props.type).color} />
+    <Icon icon={FaTimes} size={0} color={getIconColors(props.type).color} />
   </RemoveIconElem>
 );
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import posed, { PoseGroup } from 'react-pose';
-import { Times } from 'styled-icons/fa-solid';
+import { FaTimes } from 'react-icons/fa';
 
 import theme from '../theme';
 import Card from '../card';
@@ -133,7 +133,7 @@ const CloseButton = styled(Icon)(props => ({
 CloseButton.defaultProps = {
   ...Icon.defaultProps,
   size: 2,
-  icon: Times,
+  icon: FaTimes,
   mx: ['auto', 0],
   my: [DIALOG_PADDING, 0]
 };

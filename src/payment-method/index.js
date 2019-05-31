@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CreditCard, University, Trash } from 'styled-icons/fa-solid';
+import { FaCreditCard, FaUniversity, FaTrash } from 'react-icons/fa';
 
 import Card from '../card';
 import Flex from '../flex';
@@ -20,7 +20,7 @@ export default ({ type, addedOn, lastFour, onRemove, ...props }) => (
       >
         <Flex alignItems="center" mb={2}>
           <Icon
-            icon={type === 'card' ? CreditCard : University}
+            icon={type === 'card' ? FaCreditCard : FaUniversity}
             color="mediumGray"
             size={1}
             mr={2}
@@ -32,7 +32,7 @@ export default ({ type, addedOn, lastFour, onRemove, ...props }) => (
         <InlineText color="mediumGray">Added on {addedOn}</InlineText>
       </Box>
       <Icon
-        icon={Trash}
+        icon={FaTrash}
         color="error500"
         hoverColor="error700"
         onClick={onRemove}

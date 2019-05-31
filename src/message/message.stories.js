@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
-import { SpaceShuttle } from 'styled-icons/fa-solid';
+import { FaSpaceShuttle } from 'react-icons/fa';
 
 import Message from './';
 
@@ -29,7 +29,7 @@ stories.add('default', () => {
     <Column width={[1, 2 / 3, 1 / 2]}>
       <Message
         type={type}
-        icon={SpaceShuttle}
+        icon={FaSpaceShuttle}
         title={title}
         content={content}
       />

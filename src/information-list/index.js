@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PencilAlt } from 'styled-icons/fa-solid';
+import { FaPencilAlt } from 'react-icons/fa';
 
 import Box from '../box';
 import Flex from '../flex';
@@ -26,7 +26,7 @@ export default ({ title, name, items, message, onChange, ...props }) => {
           {title}
         </CappedText>
         <Icon
-          icon={PencilAlt}
+          icon={FaPencilAlt}
           color="mediumGray"
           hoverColor="darkGray"
           onClick={onClick}

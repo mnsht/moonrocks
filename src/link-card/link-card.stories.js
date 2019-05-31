@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 
-import { ChartLine } from 'styled-icons/fa-solid';
+import { FaChartLine } from 'react-icons/fa';
 
 import LinkCard from '.';
 
@@ -24,7 +24,7 @@ stories.add('default', () => {
   return (
     <Column width={[1, 1 / 2, 1 / 3]}>
       <LinkCard
-        icon={ChartLine}
+        icon={FaChartLine}
         title={title}
         description={description}
         link={link}

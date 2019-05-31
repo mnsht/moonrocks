@@ -5,21 +5,9 @@ import { themeGet } from 'styled-system';
 import Box from '../box';
 
 const IconContainer = styled(Box)(props => ({
-  width: themeGet(`widths.${props.dimension}`)(props),
-  height: themeGet(`heights.${props.dimension}`)(props)
-}));
-
-IconContainer.defaultProps = {
-  dimension: 0
-};
-
-IconContainer.displayName = 'IconContainer';
-
-const Icon = styled(Box)(props => ({
-  width: themeGet(`widths.${props.dimension}`)(props),
-  height: themeGet(`heights.${props.dimension}`)(props),
-  minWidth: themeGet(`widths.${props.dimension}`)(props),
-  minHeight: themeGet(`heights.${props.dimension}`)(props),
+  position: 'relative',
+  width: themeGet(`widths.${props.size}`)(props),
+  height: themeGet(`heights.${props.size}`)(props),
   cursor: props.hoverColor && 'pointer',
   transition: `color ${themeGet('animations.fast')(props)} ease-in-out`,
   '&:hover': {
@@ -29,16 +17,37 @@ const Icon = styled(Box)(props => ({
   }
 }));
 
-Icon.defaultProps = {
-  color: 'black'
+IconContainer.defaultProps = {
+  size: 0,
+  display: 'inline-block'
 };
 
-Icon.displayName = 'Icon';
+IconContainer.displayName = 'IconContainer';
 
 export default React.forwardRef(
-  ({ icon, size, color, hoverColor, ...props }, ref) => (
-    <IconContainer {...props} dimension={size} ref={ref}>
-      <Icon as={icon} color={color} hoverColor={hoverColor} dimension={size} />
-    </IconContainer>
-  )
+  ({ icon, size, color, hoverColor, ...props }, ref) => {
+    const Icon = icon;
+    const iconStyles = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '100%',
+      height: '100%'
+    };
+
+    // centering, responsive
+
+    return (
+      <IconContainer
+        ref={ref}
+        {...props}
+        size={size}
+        color={color}
+        hoverColor={hoverColor}
+      >
+        <Icon style={iconStyles} />
+      </IconContainer>
+    );
+  }
 );

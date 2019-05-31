@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import { FieldArray, getIn } from 'formik';
-import { Trash } from 'styled-icons/fa-solid';
+import { FaTrash } from 'react-icons/fa';
 
 import {
   TextInput,
@@ -138,7 +138,7 @@ export default (
             ))}
             {arrayValue.length > 1 && (
               <RemoveIcon
-                icon={Trash}
+                icon={FaTrash}
                 size={0}
                 onClick={() => arrayHelpers.remove(index)}
               />

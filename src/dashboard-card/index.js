@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Link as LinkIcon } from 'styled-icons/fa-solid';
-import {
-  FacebookSquare as Facebook,
-  TwitterSquare as Twitter
-} from 'styled-icons/fa-brands';
+import { FaLink } from 'react-icons/fa';
+import { FaFacebookSquare, FaTwitterSquare } from 'react-icons/fa';
 
 import { currencyFormat } from '../_helpers';
 import Card from '../card';
@@ -99,7 +96,7 @@ export default ({
                 alignItems="center"
               >
                 <Icon
-                  icon={Facebook}
+                  icon={FaFacebookSquare}
                   size={1}
                   color="facebook"
                   hoverColor="facebookHover"
@@ -107,7 +104,7 @@ export default ({
                   onClick={() => openFacebook(profileUrl)}
                 />
                 <Icon
-                  icon={Twitter}
+                  icon={FaTwitterSquare}
                   size={1}
                   color="twitter"
                   hoverColor="twitterHover"

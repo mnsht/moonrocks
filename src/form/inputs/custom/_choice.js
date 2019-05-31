@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import posed from 'react-pose';
-import { Check } from 'styled-icons/fa-solid';
+import { FaCheck } from 'react-icons/fa';
 
 import Required from '../_required';
 import Tooltip from '../_tooltip';
@@ -103,7 +103,7 @@ export const CustomChoice = ({
   ) : (
     <PosedCheck
       pose={selected ? 'selected' : 'unselected'}
-      icon={Check}
+      icon={FaCheck}
       size={0}
       m="2px"
       color="primary"

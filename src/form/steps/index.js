@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { themeGet, borders } from 'styled-system';
-import { Check } from 'styled-icons/fa-solid';
+import { FaCheck } from 'react-icons/fa';
 
 import theme from '../../theme';
 import Flex from '../../flex';
@@ -111,7 +111,7 @@ export default ({ steps, onChange, currentPage, ...props }) => {
                 justifyContent="center"
                 alignItems="center"
               >
-                {complete && <Icon icon={Check} color="success" size={0} />}
+                {complete && <Icon icon={FaCheck} color="success" size={0} />}
                 {!complete && (
                   <InlineText color="white" fontWeight="extraBold">
                     {index + 1}

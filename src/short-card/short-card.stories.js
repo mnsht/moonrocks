@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
 
-import { UndoAlt, Trash } from 'styled-icons/fa-solid';
+import { FaUndoAlt, FaTrash } from 'react-icons/fa';
 
 import ShortCard from '.';
 
@@ -23,7 +23,7 @@ stories.add('as a reminder', () => {
         description={description}
         buttons={[
           {
-            icon: Trash,
+            icon: FaTrash,
             color: 'error',
             color: 'error500',
             hoverColor: 'error700',
@@ -46,13 +46,13 @@ stories.add('as an invitation', () => {
         description={description}
         buttons={[
           {
-            icon: UndoAlt,
+            icon: FaUndoAlt,
             color: 'mediumGray',
             hoverColor: 'darkGray',
             onClick: () => console.log('Resend me')
           },
           {
-            icon: Trash,
+            icon: FaTrash,
             color: 'error500',
             hoverColor: 'error700',
             onClick: () => console.log('Delete me')
