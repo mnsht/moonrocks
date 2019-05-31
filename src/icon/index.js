@@ -18,8 +18,7 @@ const IconContainer = styled(Box)(props => ({
 }));
 
 IconContainer.defaultProps = {
-  size: 0,
-  display: 'inline-block'
+  size: 0
 };
 
 IconContainer.displayName = 'IconContainer';
@@ -35,8 +34,6 @@ export default React.forwardRef(
       width: '100%',
       height: '100%'
     };
-
-    // centering, responsive
 
     return (
       <IconContainer

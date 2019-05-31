@@ -58,8 +58,8 @@ export default ({
   ];
 
   const avatarSizes = [
-    { size: 3, display: ['block', 'none'] },
-    { size: 4, display: ['none', 'block'] }
+    { size: 4, display: ['block', 'none'] },
+    { size: 5, display: ['none', 'block'] }
   ];
 
   return (
@@ -97,7 +97,7 @@ export default ({
               >
                 <Icon
                   icon={FaFacebookSquare}
-                  size={1}
+                  size={2}
                   color="facebook"
                   hoverColor="facebookHover"
                   mr={3}
@@ -105,15 +105,15 @@ export default ({
                 />
                 <Icon
                   icon={FaTwitterSquare}
-                  size={1}
+                  size={2}
                   color="twitter"
                   hoverColor="twitterHover"
                   mr={3}
                   onClick={() => openTwitter(profileUrl)}
                 />
                 <Icon
-                  icon={LinkIcon}
-                  size={1}
+                  icon={FaLink}
+                  size={2}
                   color="lightGray"
                   hoverColor="mediumGray"
                   onClick={() => onCopyProfile(profileUrl)}

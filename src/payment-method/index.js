@@ -35,6 +35,7 @@ export default ({ type, addedOn, lastFour, onRemove, ...props }) => (
         icon={FaTrash}
         color="error500"
         hoverColor="error700"
+        size={1}
         onClick={onRemove}
       />
     </Flex>

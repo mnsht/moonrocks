@@ -139,7 +139,7 @@ export default ({ steps, onChange, currentPage, ...props }) => {
             {complete && (
               <Icon
                 display={['block', null, 'none']}
-                icon={Check}
+                icon={FaCheck}
                 color="success"
               />
             )}

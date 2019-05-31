@@ -4,9 +4,7 @@
 
 - Ensure no margins are set by default on components, but all can add it
 - Create real responsive avatar
-- Remove styled-icons in favor of something smaller and that can play well with Emotion
 - Create responsive icons
-- Overview all references to an icon or avatar to make sure they're still sized correctly
 - **@tcp** - Investigate <FastField />
 - **@tcp** - Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
 
@@ -15,7 +13,6 @@
 - Move to personal public repo and add Lerna, forking for SRs
 - Turn all Storybook buttons into withKnob buttons
 - Consider refactoring how we're doing the React Select custom inputs
-- Allow for remote submission on forms (even multiple forms) if there's no "button" key specified
 - Consider setting up local visual regression testing before doing the following...
   - Add emotion, remove styled-components
   - Adding and testing destructured props ("...props") for top level of all components to allow for custom margins and display to be set
@@ -27,7 +24,7 @@
 
 ### Forms
 
-- Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React (see https://styled-system.com/guides/removing-props-from-html). This may beb a problem for more than just the inputs.
+- Some props get passed through to inputs (for instance, "lineHeight" on SSNInput) which throws a non-destructive error in React (see https://styled-system.com/guides/removing-props-from-html). This may be a problem for more than just the inputs.
 
 ### Notifications
 

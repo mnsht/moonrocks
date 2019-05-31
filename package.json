@@ -54,15 +54,13 @@
     "rollup-plugin-svgo": "^1.0.2",
     "rollup-plugin-uglify": "^6.0.2",
     "source-map-explorer": "^1.8.0",
-    "storybook-react-router": "^1.0.5",
-    "styled-icons": "^8.0.0"
+    "storybook-react-router": "^1.0.5"
   },
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
-    "react-router-dom": "^5.0.0",
-    "styled-icons": "^8.0.0"
+    "react-router-dom": "^5.0.0"
   },
   "husky": {
     "hooks": {

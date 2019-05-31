@@ -28,7 +28,7 @@ export default ({ title, description, buttons, ...props }) => (
             icon={icon}
             color={color}
             hoverColor={hoverColor}
-            size={1}
+            size={0}
             ml={index !== 0 && 3}
             onClick={onClick}
           />

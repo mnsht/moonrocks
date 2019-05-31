@@ -23,8 +23,8 @@ export default ({
 }) => {
   const isRecurring = interval && onCancelRecurring;
   const avatarSizes = [
-    { size: 3, display: ['block', 'none'] },
-    { size: 4, display: ['none', 'block'] }
+    { size: 4, display: ['block', 'none'] },
+    { size: 5, display: ['none', 'block'] }
   ];
 
   return (
