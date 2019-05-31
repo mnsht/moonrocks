@@ -4,6 +4,7 @@
 
 - Ensure no margins are set by default on components, but all can add it
 - Create real responsive avatar
+- Remove styled-icons in favor of something smaller and that can play well with Emotion
 - Create responsive icons
 - Overview all references to an icon or avatar to make sure they're still sized correctly
 - **@tcp** - Investigate <FastField />
@@ -16,7 +17,6 @@
 - Consider refactoring how we're doing the React Select custom inputs
 - Allow for remote submission on forms (even multiple forms) if there's no "button" key specified
 - Consider setting up local visual regression testing before doing the following...
-  - Remove styled-icons in favor of something smaller and that can play well with Emotion
   - Add emotion, remove styled-components
   - Adding and testing destructured props ("...props") for top level of all components to allow for custom margins and display to be set
   - Removing font CSS from Box and inheritance, replacing all text strings into respective Typography components

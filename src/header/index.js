@@ -85,6 +85,9 @@ export default ({
     { size: 3, display: ['none', null, 'block'] }
   ];
 
+  const toggleMobileMenu = val =>
+    setIsOpen(typeof val !== 'undefined' ? val : !isOpen);
+
   return (
     <HeaderContainer
       {...props}
@@ -98,12 +101,22 @@ export default ({
       <Flex alignItems="center" style={{ height: '100%' }}>
         <Image src={logo} height={['70%', null, '60%']} mr={[0, null, 3]} />
         {leftLinks.length > 0 && (
-          <Links current={currentPath} variant={variant} links={leftLinks} />
+          <Links
+            toggleMobileMenu={toggleMobileMenu}
+            current={currentPath}
+            variant={variant}
+            links={leftLinks}
+          />
         )}
       </Flex>
       <Flex alignItems="center" style={{ height: '100%' }}>
         {rightLinks.length > 0 && (
-          <Links current={currentPath} variant={variant} links={rightLinks} />
+          <Links
+            toggleMobileMenu={toggleMobileMenu}
+            current={currentPath}
+            variant={variant}
+            links={rightLinks}
+          />
         )}
         {isLoggedIn && (
           <Flex
@@ -115,7 +128,7 @@ export default ({
             <ResponsiveAvatar src={user} sizes={avatarSizes} />
           </Flex>
         )}
-        <Hamburger isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+        <Hamburger isOpen={isOpen} onClick={toggleMobileMenu} />
         <PoseGroup>
           {avatarHovered && (
             <UserLinksBox
@@ -126,6 +139,7 @@ export default ({
               {...avatarMouseEvents}
             >
               <Links
+                toggleMobileMenu={toggleMobileMenu}
                 current={currentPath}
                 variant={variant}
                 links={userLinks}
@@ -135,8 +149,14 @@ export default ({
           )}
         </PoseGroup>
       </Flex>
-      <Dialog hasBackground isOpen={isOpen} close={() => setIsOpen(!isOpen)}>
+      <Dialog
+        hasBackground
+        display={['block', null, 'none']}
+        isOpen={isOpen}
+        close={() => setIsOpen(!isOpen)}
+      >
         <Links
+          toggleMobileMenu={toggleMobileMenu}
           current={currentPath}
           variant="light"
           links={allLinks}

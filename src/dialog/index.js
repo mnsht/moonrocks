@@ -193,6 +193,7 @@ export default ({
   heading,
   buttons,
   hasBackground = true,
+  display,
   children,
   ...props
 }) => {
@@ -211,11 +212,12 @@ export default ({
       {isOpen && hasBackground && (
         <PosedBackground
           key="background"
+          display={display}
           onClick={() => handleClose(close, onClose)}
         />
       )}
       {isOpen && (
-        <PosedDialog {...props} key="dialog">
+        <PosedDialog {...props} display={display} key="dialog">
           <DialogContainer>
             <DialogTop>
               <Heading>{heading}</Heading>

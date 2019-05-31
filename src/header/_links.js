@@ -49,7 +49,14 @@ const CappedLink = styled(CappedText)(props => ({
   ...getVariant(props)
 }));
 
-export default ({ links, current, isMobile, isUserMenu = false, variant }) => (
+export default ({
+  links,
+  toggleMobileMenu,
+  current,
+  isMobile,
+  isUserMenu = false,
+  variant
+}) => (
   <Flex
     flexDirection={isUserMenu ? 'column' : ['column', null, 'row']}
     alignItems={isUserMenu ? 'flex-end' : 'center'}
@@ -74,14 +81,26 @@ export default ({ links, current, isMobile, isUserMenu = false, variant }) => (
       if (!to && onClick) {
         if (button) {
           return (
-            <Button onClick={onClick} {...buttonProps}>
+            <Button
+              onClick={() => {
+                toggleMobileMenu(false);
+                onClick();
+              }}
+              {...buttonProps}
+            >
               {title}
             </Button>
           );
         }
 
         return (
-          <InteractiveLink onClick={onClick} key={index}>
+          <InteractiveLink
+            onClick={() => {
+              toggleMobileMenu(false);
+              onClick();
+            }}
+            key={index}
+          >
             {CappedTitle}
           </InteractiveLink>
         );
@@ -91,13 +110,24 @@ export default ({ links, current, isMobile, isUserMenu = false, variant }) => (
         if (button) {
           if (isExternal) {
             return (
-              <Button href={to} as="a" {...buttonProps} {...ExternalLinkProps}>
+              <Button
+                href={to}
+                onClick={() => toggleMobileMenu(false)}
+                as="a"
+                {...buttonProps}
+                {...ExternalLinkProps}
+              >
                 {title}
               </Button>
             );
           }
           return (
-            <Button to={to} as={Link} {...buttonProps}>
+            <Button
+              to={to}
+              onClick={() => toggleMobileMenu(false)}
+              as={Link}
+              {...buttonProps}
+            >
               {title}
             </Button>
           );
@@ -106,7 +136,7 @@ export default ({ links, current, isMobile, isUserMenu = false, variant }) => (
         const TheLink = isExternal ? ExternalLink : InternalLink;
 
         return (
-          <TheLink to={to} key={index}>
+          <TheLink to={to} onClick={() => toggleMobileMenu(false)} key={index}>
             {CappedTitle}
           </TheLink>
         );
