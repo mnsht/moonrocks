@@ -7,7 +7,7 @@ import { InlineText } from '../typography';
 import Icon from '../icon';
 
 export default ({ title, description, buttons, ...props }) => (
-  <Card p={3} {...props}>
+  <Card {...props} p={3}>
     <Flex justifyContent="space-between" alignItems="center">
       <Box
         mr={[2, 3]}

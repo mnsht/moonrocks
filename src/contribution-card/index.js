@@ -24,7 +24,7 @@ export default ({
   const isRecurring = interval && onCancelRecurring;
 
   return (
-    <Card p={[3, 4]} {...props}>
+    <Card {...props} p={[3, 4]}>
       <Flex flexDirection="column" alignItems="center">
         <Avatar src={avatar} size={[4, 5]} mb={2} />
         <Heading fontWeight="normal" as="h4" textStyle="h4" mb={2}>

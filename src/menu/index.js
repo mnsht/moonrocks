@@ -71,7 +71,7 @@ export default ({ pages, current, onChange, ...props }) => {
   }, [selected]);
 
   return (
-    <Box display="inline-block" {...props} ref={menuRef}>
+    <Box {...props} display="inline-block" ref={menuRef}>
       <Flex flexDirection={['column', null, 'row']}>
         {pages.map(({ title, href }, index) => {
           const isSelected = href === selected;

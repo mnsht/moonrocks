@@ -58,7 +58,7 @@ export default ({
   ];
 
   return (
-    <Card p={4} {...props}>
+    <Card {...props} p={4}>
       <Flex flexDirection="column" alignItems="center">
         <Flex
           flexDirection={['column', 'row']}

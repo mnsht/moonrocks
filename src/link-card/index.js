@@ -7,7 +7,7 @@ import Icon from '../icon';
 export default ({ icon, title, description, link, ...props }) => {
   return (
     <InternalLink to={link}>
-      <Card p={4} {...props}>
+      <Card {...props} p={4}>
         <Icon icon={icon} color="primary" size={4} />
         <Heading mt={3} as="h5" textStyle="h5Static">
           {title}

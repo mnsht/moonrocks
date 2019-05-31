@@ -6,7 +6,7 @@ import { Heading, InlineText, Paragraph } from '../typography';
 import Avatar from '../avatar';
 
 export default ({ avatar, name, timeAgo, description, ...props }) => (
-  <Card p={[3, 4]} {...props}>
+  <Card {...props} p={[3, 4]}>
     <Flex alignItems="center">
       <Avatar src={avatar} size={[4, null, 5]} mr={3} />
       <Flex

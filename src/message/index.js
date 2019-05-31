@@ -25,10 +25,10 @@ const getBorder = (type, isLarger) => {
 
 export default ({ type = 'info', icon, title, content, ...props }) => (
   <Card
+    {...props}
     borderLeft={[null, null, getBorder(type, true)]}
     borderTop={[getBorder(type), null, 'none']}
     padding={[3, null, 4]}
-    {...props}
   >
     <Flex alignItems="center">
       {icon && (

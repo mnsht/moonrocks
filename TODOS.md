@@ -2,9 +2,6 @@
 
 ## Before Separation
 
-- Ensure no margins are set by default on components, but all can add it
-- Create real responsive avatar
-- Create responsive icons
 - **@tcp** - Investigate <FastField />
 - **@tcp** - Perhaps allow multiple forms to be submitted remotely by a different button?... this would be helpful for "multi-column" forms.
 

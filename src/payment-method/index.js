@@ -9,7 +9,7 @@ import { InlineText } from '../typography';
 import Icon from '../icon';
 
 export default ({ type, addedOn, lastFour, onRemove, ...props }) => (
-  <Card p={[3, 4]} {...props}>
+  <Card {...props} p={[3, 4]}>
     <Flex justifyContent="space-between" mb={[5, 6]}>
       <Box
         style={{

@@ -53,7 +53,7 @@ const HiddenParagraph = styled(Paragraph)({
 });
 
 export default ({ name, type, timeAgo, description, amount, ...props }) => (
-  <TransactionCard p={3} type={type} {...props}>
+  <TransactionCard {...props} p={3} type={type}>
     <Flex alignItems="center">
       <ContentBox width={['auto', 200]} mr={3}>
         <Heading as="h5" textStyle="h5" style={{ display: 'inline' }}>
