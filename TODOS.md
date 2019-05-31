@@ -15,6 +15,8 @@
 - Consider refactoring how we're doing the React Select custom inputs
 - Consider setting up local visual regression testing before doing the following...
   - Add emotion, remove styled-components
+  - Run analyzer to get bundle size down
+  - Investigate doing Formik validation per page only
   - Adding and testing destructured props ("...props") for top level of all components to allow for custom margins and display to be set
   - Removing font CSS from Box and inheritance, replacing all text strings into respective Typography components
   - Convert as many styled components over to using existing Box, Flex, and Card components

@@ -9,7 +9,7 @@ import {
   InteractiveLink,
   InlineText
 } from '../typography';
-import { ResponsiveAvatar } from '../avatar';
+import Avatar from '../avatar';
 
 export default ({
   avatar,
@@ -22,15 +22,11 @@ export default ({
   ...props
 }) => {
   const isRecurring = interval && onCancelRecurring;
-  const avatarSizes = [
-    { size: 4, display: ['block', 'none'] },
-    { size: 5, display: ['none', 'block'] }
-  ];
 
   return (
     <Card p={[3, 4]} {...props}>
       <Flex flexDirection="column" alignItems="center">
-        <ResponsiveAvatar src={avatar} sizes={avatarSizes} mb={2} />
+        <Avatar src={avatar} size={[4, 5]} mb={2} />
         <Heading fontWeight="normal" as="h4" textStyle="h4" mb={2}>
           {name}
         </Heading>

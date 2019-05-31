@@ -8,7 +8,7 @@ import { currencyFormat } from '../_helpers';
 import Card from '../card';
 import Flex from '../flex';
 import Box from '../box';
-import { ResponsiveAvatar } from '../avatar';
+import Avatar from '../avatar';
 import { Heading, InternalLink } from '../typography';
 import Button from '../button';
 import Icon from '../icon';
@@ -57,11 +57,6 @@ export default ({
     }
   ];
 
-  const avatarSizes = [
-    { size: 4, display: ['block', 'none'] },
-    { size: 5, display: ['none', 'block'] }
-  ];
-
   return (
     <Card p={4} {...props}>
       <Flex flexDirection="column" alignItems="center">
@@ -77,7 +72,7 @@ export default ({
             alignItems="center"
             mb={[3, 0]}
           >
-            <ResponsiveAvatar src={avatar} sizes={avatarSizes} />
+            <Avatar src={avatar} size={[4, 5]} />
             <Box ml={[0, 3]} mt={[3, 0]}>
               <InternalLink to={overviewUrl}>
                 <Heading

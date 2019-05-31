@@ -10,7 +10,7 @@ import { filterLinksBySecurity } from '../_helpers';
 import Flex from '../flex';
 import Box from '../box';
 import Image from '../image';
-import { ResponsiveAvatar } from '../avatar';
+import Avatar from '../avatar';
 import Dialog from '../dialog';
 
 const getVariant = ({ variant, ...props }) => {
@@ -80,11 +80,6 @@ export default ({
   const userLinks = filterLinksBySecurity(isLoggedIn, links.user);
   const rightLinks = filterLinksBySecurity(isLoggedIn, links.right);
 
-  const avatarSizes = [
-    { size: 2, display: ['block', null, 'none'] },
-    { size: 3, display: ['none', null, 'block'] }
-  ];
-
   const toggleMobileMenu = val =>
     setIsOpen(typeof val !== 'undefined' ? val : !isOpen);
 
@@ -125,7 +120,7 @@ export default ({
             alignItems="center"
             style={{ height: '100%', cursor: 'pointer' }}
           >
-            <ResponsiveAvatar src={user} sizes={avatarSizes} />
+            <Avatar src={user} size={[2, null, 3]} />
           </Flex>
         )}
         <Hamburger isOpen={isOpen} onClick={toggleMobileMenu} />

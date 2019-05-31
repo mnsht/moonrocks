@@ -4,6 +4,10 @@ import {
   borderRadius,
   backgroundImage,
   display,
+  minWidth,
+  minHeight,
+  maxWidth,
+  maxHeight,
   themeGet
 } from 'styled-system';
 
@@ -14,17 +18,17 @@ import Box from '../box';
 const Avatar = styled(Box)(
   props => ({
     display: 'inline-block',
-    width: themeGet(`widths.${props.size}`)(props),
-    height: themeGet(`heights.${props.size}`)(props),
-    minWidth: themeGet(`widths.${props.size}`)(props),
-    minHeight: themeGet(`heights.${props.size}`)(props),
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat'
   }),
   borderRadius,
   backgroundImage,
-  display
+  display,
+  minWidth,
+  minHeight,
+  maxWidth,
+  maxHeight
 );
 
 Avatar.defaultProps = {
@@ -35,22 +39,17 @@ Avatar.defaultProps = {
 
 Avatar.displayName = 'Avatar';
 
-// TODO: FINISH DISPLAY HERE and remove the <ReponsiveAvatar />
-
-const DefaultAvatar = ({ src, ...props }) => {
+export default ({ src, size, ...props }) => {
   if (!src || src === '') src = AvatarPlaceholder;
 
-  return <Avatar {...props} backgroundImage={`url(${src})`} />;
+  return (
+    <Avatar
+      {...props}
+      minWidth={size}
+      minHeight={size}
+      maxWidth={size}
+      maxHeight={size}
+      backgroundImage={`url(${src})`}
+    />
+  );
 };
-
-export default DefaultAvatar;
-
-const DisplayAvatar = styled(DefaultAvatar)(display);
-
-export const ResponsiveAvatar = ({ sizes, ...props }) => (
-  <React.Fragment>
-    {sizes.map(({ size, display }, index) => (
-      <DisplayAvatar {...props} key={index} size={size} display={display} />
-    ))}
-  </React.Fragment>
-);
