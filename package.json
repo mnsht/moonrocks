@@ -1,7 +1,7 @@
 {
   "name": "src",
   "version": "0.9.2",
-  "description": "The UI component library based on Styled System.",
+  "description": "Just another UI component library based on Styled System.",
   "source": "index.js",
   "main": "dist/index.js",
   "scripts": {

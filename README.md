@@ -1,6 +1,6 @@
 # SRC
 
-The UI component library based on [Styled System](https://styled-system.com/).
+Just another UI component library based on [Styled System](https://styled-system.com/).
 
 ## Developing
 
