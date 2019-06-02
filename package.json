@@ -1,7 +1,7 @@
 {
-  "name": "sr-components",
+  "name": "src",
   "version": "0.9.2",
-  "description": "The UI component library for Scholar Raise, using Storybook",
+  "description": "The UI component library based on Styled System.",
   "source": "index.js",
   "main": "dist/index.js",
   "scripts": {
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scholarraise/sr-components.git"
+    "url": "git+https://github.com/cereallarceny/src.git"
   },
-  "author": "Patrick Cason <patrick@scholarraise.com>",
+  "author": "Patrick Cason <me@patrickcason.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/scholarraise/sr-components/issues"
+    "url": "https://github.com/cereallarceny/src/issues"
   },
-  "homepage": "https://github.com/scholarraise/sr-components#readme",
+  "homepage": "https://github.com/cereallarceny/src#readme",
   "dependencies": {
     "cleave.js": "1.4.10",
     "formik": "1.5.7",
