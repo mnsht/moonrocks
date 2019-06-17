@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { themeGet } from 'styled-system';
+import { themeGet, height } from 'styled-system';
 
 import { REQUIRED_SIZE } from './_required';
 import { TOOLTIP_SIZE } from './_tooltip';
@@ -58,15 +58,18 @@ Input.defaultProps = {
 
 Input.displayName = 'Input';
 
-export const Textarea = styled(Input)({
-  resize: 'vertical',
-  minHeight: '90px'
-});
+export const Textarea = styled(Input)(
+  {
+    resize: 'vertical'
+  },
+  height
+);
 
 Textarea.defaultProps = {
   ...Box.defaultProps,
   ...Input.defaultProps,
   as: 'textarea',
+  height: 90,
   lineHeight: 'title'
 };
 

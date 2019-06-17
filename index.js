@@ -17,6 +17,22 @@ export {
   FormDivider,
   FormDescription
 } from './src/form';
+export {
+  TextInput,
+  EmailInput,
+  PasswordInput,
+  CheckboxInput,
+  CheckboxInputs,
+  RadioInput,
+  SwitchInput,
+  PhoneInput,
+  SSNInput,
+  CurrencyInput,
+  ParagraphInput,
+  SelectInput,
+  MultiSelectInput,
+  DateInput
+} from './src/form/inputs';
 export { Container, Row, Column } from './src/grid';
 export { default as Header } from './src/header';
 export { default as Icon } from './src/icon';

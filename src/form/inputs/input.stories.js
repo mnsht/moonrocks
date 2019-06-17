@@ -452,6 +452,7 @@ stories.add('as a paragraph input', () => {
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
       <ParagraphInput
+        height={200}
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
