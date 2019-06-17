@@ -33,13 +33,12 @@ const Avatar = styled(Box)(
 
 Avatar.defaultProps = {
   as: 'div',
-  size: 3,
   borderRadius: 'round'
 };
 
 Avatar.displayName = 'Avatar';
 
-export default ({ src, size, ...props }) => {
+export default ({ src, size = 3, ...props }) => {
   if (!src || src === '') src = AvatarPlaceholder;
 
   return (

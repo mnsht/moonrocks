@@ -19,7 +19,7 @@ export {
 } from './src/form';
 export { Container, Row, Column } from './src/grid';
 export { default as Header } from './src/header';
-import { default as Icon } from './src/icon';
+export { default as Icon } from './src/icon';
 export { default as Image } from './src/image';
 export { default as Menu } from './src/menu';
 export { default as Message } from './src/message';

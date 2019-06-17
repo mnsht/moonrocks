@@ -27,14 +27,10 @@ const IconContainer = styled(Box)(
   maxHeight
 );
 
-IconContainer.defaultProps = {
-  size: 0
-};
-
 IconContainer.displayName = 'IconContainer';
 
 export default React.forwardRef(
-  ({ icon, size, color, hoverColor, ...props }, ref) => {
+  ({ icon, size = 0, color, hoverColor, ...props }, ref) => {
     const Icon = icon;
     const iconStyles = {
       position: 'absolute',
