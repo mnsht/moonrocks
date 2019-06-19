@@ -1,6 +1,6 @@
 {
   "name": "@cereallarceny/src",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Just another UI component library based on Styled System.",
   "source": "index.js",
   "main": "dist/index.js",
