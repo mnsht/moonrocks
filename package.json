@@ -8,6 +8,7 @@
     "analyze": "yarn build && source-map-explorer dist/index.js dist/index.js.map",
     "start": "start-storybook",
     "build": "rm -rf ./dist && rollup -c",
+    "prepare": "yarn build",
     "release": "release-it"
   },
   "repository": {
