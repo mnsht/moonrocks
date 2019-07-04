@@ -16,6 +16,9 @@
     "release": "np",
     "test": "echo \"Error: no test specified\""
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mnsht/moonrocks.git"
