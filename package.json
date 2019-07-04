@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cereallarceny/src.git"
+    "url": "git+https://github.com/mnsht/src.git"
   },
   "author": "Patrick Cason <me@patrickcason.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cereallarceny/src/issues"
+    "url": "https://github.com/mnsht/src/issues"
   },
-  "homepage": "https://github.com/cereallarceny/src#readme",
+  "homepage": "https://github.com/mnsht/src#readme",
   "dependencies": {
     "cleave.js": "1.4.10",
     "formik": "1.5.7",
