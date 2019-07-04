@@ -9,7 +9,7 @@
     "start": "start-storybook",
     "build": "rm -rf ./dist && rollup -c",
     "prepare": "yarn build",
-    "beforeStage": "auto-changelog -p && git add CHANGELOG.md",
+    "version": "auto-changelog -p && git add CHANGELOG.md",
     "release": "release-it"
   },
   "publishConfig": {
