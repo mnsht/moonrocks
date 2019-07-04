@@ -6,15 +6,6 @@ Just another UI component library based on [Styled System](https://styled-system
 
 1. `yarn install`
 2. `yarn start`
-3. GG.
-
-## Contributing
-
-1. Fork.
-2. Work.
-3. Commit.
-4. PR.
-5. GG.
 
 ## Using
 
