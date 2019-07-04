@@ -1,6 +1,6 @@
 {
   "name": "moonrocks",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Just another UI component library based on Styled System.",
   "source": "index.js",
   "main": "dist/index.js",
