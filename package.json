@@ -12,6 +12,9 @@
     "beforeStage": "auto-changelog -p",
     "release": "release-it"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cereallarceny/src.git"
