@@ -4,16 +4,17 @@
   "description": "Just another UI component library based on Styled System.",
   "source": "index.js",
   "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "analyze": "yarn build && source-map-explorer dist/index.js dist/index.js.map",
     "start": "start-storybook",
     "build": "rm -rf ./dist && rollup -c",
     "prepare": "yarn build",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "release": "release-it"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "release": "np",
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,22 @@
     "url": "https://github.com/mnsht/moonrocks/issues"
   },
   "homepage": "https://github.com/mnsht/moonrocks#readme",
+  "keywords": [
+    "styled-system",
+    "styled system",
+    "rebass",
+    "ui",
+    "component",
+    "storybook",
+    "library",
+    "moonshot",
+    "mnsht"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && yarn build"
+    }
+  },
   "dependencies": {
     "cleave.js": "1.4.10",
     "formik": "1.5.7",
@@ -46,13 +63,13 @@
     "auto-changelog": "^1.13.0",
     "babel-loader": "^8.0.5",
     "husky": "^2.1.0",
+    "np": "^5.0.3",
     "prettier": "^1.17.0",
     "pretty-quick": "1.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
     "react-router-dom": "^5.0.0",
-    "release-it": "12.2.1",
     "rollup": "1.12.3",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-node-resolve": "^5.0.0",
@@ -67,10 +84,5 @@
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
     "react-router-dom": "^5.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && yarn build"
-    }
   }
 }
