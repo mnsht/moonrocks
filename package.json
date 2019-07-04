@@ -1,5 +1,5 @@
 {
-  "name": "@cereallarceny/src",
+  "name": "moonrocks",
   "version": "1.0.7",
   "description": "Just another UI component library based on Styled System.",
   "source": "index.js",
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mnsht/src.git"
+    "url": "git+https://github.com/mnsht/moonrocks.git"
   },
-  "author": "Patrick Cason <me@patrickcason.com>",
+  "author": "Moonshot <contact@mns.ht>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mnsht/src/issues"
+    "url": "https://github.com/mnsht/moonrocks/issues"
   },
-  "homepage": "https://github.com/mnsht/src#readme",
+  "homepage": "https://github.com/mnsht/moonrocks#readme",
   "dependencies": {
     "cleave.js": "1.4.10",
     "formik": "1.5.7",
