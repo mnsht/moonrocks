@@ -4,8 +4,8 @@ Just another UI component library based on [Styled System](https://styled-system
 
 ## Developing
 
-1. `yarn install`
-2. `yarn start`
+1. `yarn install` - installs all dev dependencies
+2. `yarn start` - your storybook preview
 
 ## Using
 
