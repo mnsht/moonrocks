@@ -436,6 +436,7 @@ stories.add('as a currency input', () => {
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
       <CurrencyInput
+        placeholder="Type an amount"
         required={required}
         tooltip={tooltip}
         onChange={value => console.log('STORY', value)}

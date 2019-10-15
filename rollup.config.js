@@ -1,35 +1,44 @@
 import babel from 'rollup-plugin-babel';
-import { uglify } from 'rollup-plugin-uglify';
-import external from 'rollup-plugin-peer-deps-external';
-import resolve from 'rollup-plugin-node-resolve';
-import url from 'rollup-plugin-url';
+import commonjs from 'rollup-plugin-commonjs';
+import svg from 'rollup-plugin-svg';
+import cleanup from 'rollup-plugin-cleanup';
+import filesize from 'rollup-plugin-filesize';
 
 import pkg from './package.json';
 
 export default {
   input: 'index.js',
-  external: ['react'],
   output: [
     {
-      name: 'sr-components',
-      file: pkg.main,
+      file: pkg.browser,
       format: 'umd',
-      sourcemap: true,
-      globals: {
-        react: 'React'
-      }
+      name: 'sr-components',
+      sourcemap: true
+    },
+    {
+      file: pkg.main,
+      format: 'cjs',
+      name: 'sr-components',
+      sourcemap: true
+    },
+    {
+      file: pkg.module,
+      format: 'esm',
+      sourcemap: true
     }
   ],
+  external: [
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {})
+  ],
   plugins: [
-    external({
-      includeDependencies: true
-    }),
     babel({
       exclude: 'node_modules/**',
       presets: ['@babel/env', '@babel/preset-react']
     }),
-    resolve(),
-    url(),
-    uglify()
+    commonjs(),
+    svg(),
+    cleanup(),
+    filesize()
   ]
 };
