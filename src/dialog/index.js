@@ -117,8 +117,6 @@ Buttons.defaultProps = {
 
 Buttons.displayName = 'Buttons';
 
-const ButtonSide = styled(Box)({});
-
 const CloseButton = styled(Icon)(props => ({
   cursor: 'pointer',
   '& > svg': {
@@ -175,12 +173,14 @@ const generateButtons = (buttons, closeFunc, onClose) => {
 
   return {
     leftButtons: (
-      <ButtonSide mb={[2, 0]}>{mappedButtons(buttons.left, 'left')}</ButtonSide>
+      <Flex flexDirection={['column', 'row']} mb={[2, 0]}>
+        {mappedButtons(buttons.left, 'left')}
+      </Flex>
     ),
     rightButtons: (
-      <ButtonSide mb={[-1, 0]}>
+      <Flex flexDirection={['column', 'row']} mb={[-1, 0]}>
         {mappedButtons(buttons.right, 'right')}
-      </ButtonSide>
+      </Flex>
     )
   };
 };

@@ -56,9 +56,16 @@ const removeMessage = type => {
   store.set({ messages: newMessages });
 };
 
+const generateButtons = () => {
+  button('Add warning', () => addMessage('warnings', "Password isn't strong"));
+  button('Add error', () => addMessage('errors', 'This field is required'));
+  button('Remove warning', () => removeMessage('warnings'));
+  button('Remove error', () => removeMessage('errors'));
+};
+
 stories.add('everything but the kitchen sink', () => {
-  const required = boolean('Is required?', true, 'Main');
-  const tooltip = text('Tooltip text', 'Hello world!', 'Main');
+  const required = boolean('Is required?', true);
+  const tooltip = text('Tooltip text', 'Hello world!');
   const messages = store.get('messages');
 
   const onChange = (key, value) => {
@@ -67,10 +74,7 @@ stories.add('everything but the kitchen sink', () => {
     console.log('STORE', key, value, store.get());
   };
 
-  button('Add warning', () => addMessage('warnings', "Password isn't strong"));
-  button('Add error', () => addMessage('errors', 'This field is required'));
-  button('Remove warning', () => removeMessage('warnings'));
-  button('Remove error', () => removeMessage('errors'));
+  generateButtons();
 
   const options = [
     {
@@ -237,14 +241,11 @@ stories.add('everything but the kitchen sink', () => {
 });
 
 stories.add('as a text input', () => {
-  const placeholder = text('Placeholder', 'Type something...', 'Main');
-  const required = boolean('Is required?', true, 'Main');
-  const tooltip = text('Tooltip text', 'Hello world!', 'Main');
+  const placeholder = text('Placeholder', 'Type something...');
+  const required = boolean('Is required?', true);
+  const tooltip = text('Tooltip text', 'Hello world!');
 
-  button('Add warning', () => addMessage('warnings', "Password isn't strong"));
-  button('Add error', () => addMessage('errors', 'This field is required'));
-  button('Remove warning', () => removeMessage('warnings'));
-  button('Remove error', () => removeMessage('errors'));
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -260,9 +261,11 @@ stories.add('as a text input', () => {
 });
 
 stories.add('as an email input', () => {
-  const placeholder = text('Placeholder', 'Type your email...', 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const placeholder = text('Placeholder', 'Type your email...');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -270,6 +273,7 @@ stories.add('as an email input', () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -277,9 +281,11 @@ stories.add('as an email input', () => {
 });
 
 stories.add('as an password input', () => {
-  const placeholder = text('Placeholder', 'Type your password...', 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const placeholder = text('Placeholder', 'Type your password...');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -287,6 +293,7 @@ stories.add('as an password input', () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -294,9 +301,11 @@ stories.add('as an password input', () => {
 });
 
 stories.add('as a checkbox input', () => {
-  const label = text('Label', 'Do we wanna do this?', 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const label = text('Label', 'Do we wanna do this?');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -304,6 +313,7 @@ stories.add('as a checkbox input', () => {
         label={label}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         initialValue={true}
         onChange={value => console.log('STORY', value)}
       />
@@ -312,8 +322,10 @@ stories.add('as a checkbox input', () => {
 });
 
 stories.add('as multiple checkboxes', () => {
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   const options = [
     {
@@ -336,6 +348,7 @@ stories.add('as multiple checkboxes', () => {
         options={options}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -343,8 +356,10 @@ stories.add('as multiple checkboxes', () => {
 });
 
 stories.add('as multiple radios', () => {
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   const options = [
     {
@@ -367,6 +382,7 @@ stories.add('as multiple radios', () => {
         options={options}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -374,9 +390,11 @@ stories.add('as multiple radios', () => {
 });
 
 stories.add('as a switch input', () => {
-  const on = text('On', 'To be', 'Main');
-  const off = text('Off', 'Not to be', 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const on = text('On', 'To be');
+  const off = text('Off', 'Not to be');
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -385,6 +403,7 @@ stories.add('as a switch input', () => {
         on={on}
         off={off}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -392,9 +411,11 @@ stories.add('as a switch input', () => {
 });
 
 stories.add('as a phone input', () => {
-  const placeholder = text('Placeholder', 'Type your phone number...', 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const placeholder = text('Placeholder', 'Type your phone number...');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -402,6 +423,7 @@ stories.add('as a phone input', () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -409,11 +431,13 @@ stories.add('as a phone input', () => {
 });
 
 stories.add('as an SSN input', () => {
-  const placeholder = text('Placeholder', 'Type your SSN...', 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
-  const hidden = boolean('Is hidden?', false, 'Main');
-  const value = hidden ? text('SSN', '***-**-1210', 'Main') : null;
+  const placeholder = text('Placeholder', 'Type your SSN...');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+  const hidden = boolean('Is hidden?', false);
+  const value = hidden ? text('SSN', '***-**-1210') : null;
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -423,6 +447,7 @@ stories.add('as an SSN input', () => {
         tooltip={tooltip}
         hidden={hidden}
         value={value}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -430,8 +455,10 @@ stories.add('as an SSN input', () => {
 });
 
 stories.add('as a currency input', () => {
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -439,6 +466,7 @@ stories.add('as a currency input', () => {
         placeholder="Type an amount"
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -446,9 +474,11 @@ stories.add('as a currency input', () => {
 });
 
 stories.add('as a paragraph input', () => {
-  const placeholder = text('Placeholder', 'Type a number...', 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const placeholder = text('Placeholder', 'Type a number...');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -457,6 +487,7 @@ stories.add('as a paragraph input', () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -464,10 +495,12 @@ stories.add('as a paragraph input', () => {
 });
 
 stories.add('as a select input', () => {
-  const placeholder = text('Placeholder', 'Select something...', 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
-  const borderless = boolean('Is borderless?', false, 'Main');
+  const placeholder = text('Placeholder', 'Select something...');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+  const borderless = boolean('Is borderless?', false);
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -477,6 +510,7 @@ stories.add('as a select input', () => {
         tooltip={tooltip}
         borderless={borderless}
         options={sampleOptions}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -484,9 +518,11 @@ stories.add('as a select input', () => {
 });
 
 stories.add('as a multiselect input', () => {
-  const placeholder = text('Placeholder', 'Select multiple things...', 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const placeholder = text('Placeholder', 'Select multiple things...');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -495,6 +531,7 @@ stories.add('as a multiselect input', () => {
         required={required}
         tooltip={tooltip}
         options={sampleOptions}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>
@@ -507,8 +544,10 @@ stories.add('as a date input (mm-dd-yyyy)', () => {
     `Type a date (mm-dd-yyyy)...`,
     'Main'
   );
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -516,6 +555,7 @@ stories.add('as a date input (mm-dd-yyyy)', () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         hasYear
         onChange={value => console.log('STORY', value)}
       />
@@ -524,9 +564,11 @@ stories.add('as a date input (mm-dd-yyyy)', () => {
 });
 
 stories.add('as a date input (mm-dd)', () => {
-  const placeholder = text('Placeholder', `Type a date (mm-dd)...`, 'Main');
-  const required = boolean('Is required?', false, 'Main');
-  const tooltip = text('Tooltip text', '', 'Main');
+  const placeholder = text('Placeholder', `Type a date (mm-dd)...`);
+  const required = boolean('Is required?', false);
+  const tooltip = text('Tooltip text', '');
+
+  generateButtons();
 
   return (
     <Box width={[1, 1 / 2, 1 / 3]}>
@@ -534,6 +576,7 @@ stories.add('as a date input (mm-dd)', () => {
         placeholder={placeholder}
         required={required}
         tooltip={tooltip}
+        messages={store.get('messages')}
         onChange={value => console.log('STORY', value)}
       />
     </Box>

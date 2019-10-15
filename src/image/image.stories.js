@@ -11,10 +11,9 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => {
   const src = text(
     'Image URL',
-    'http://www.ghostofaflea.com/archives/RaptorJesus.jpg',
-    'Main'
+    'http://www.ghostofaflea.com/archives/RaptorJesus.jpg'
   );
-  const alt = text('Alternate text', 'Jesus Christ', 'Main');
+  const alt = text('Alternate text', 'Jesus Christ');
 
   return <Image src={src} alt={alt} />;
 });

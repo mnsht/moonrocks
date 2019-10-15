@@ -105,16 +105,10 @@ const copyright = `© ${new Date().getFullYear()} Scholar Raise, Inc.`;
 stories.add('default', () => {
   const logo = text(
     'Logo',
-    'https://scholarraise.com/static/media/logo.8ecccc62.svg',
-    'Main'
+    'https://scholarraise.com/static/media/logo.8ecccc62.svg'
   );
-  const variant = select(
-    'Variant',
-    ['light', 'dark', 'transparent'],
-    'dark',
-    'Main'
-  );
-  const isLoggedIn = boolean('Logged in?', true, 'Main');
+  const variant = select('Variant', ['light', 'dark', 'transparent'], 'dark');
+  const isLoggedIn = boolean('Logged in?', true);
 
   return (
     <Footer

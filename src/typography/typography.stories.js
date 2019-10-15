@@ -25,13 +25,13 @@ const stories = storiesOf('1. Foundation|Typography', module);
 stories.addDecorator(withKnobs);
 
 stories.add('as inline text', () => {
-  const content = text('Text', 'Sample Text', 'Main');
+  const content = text('Text', 'Sample Text');
 
   return <InlineText>{content}</InlineText>;
 });
 
 stories.add('as a parargaph', () => {
-  const content = text('Text', sampleParagraph, 'Main');
+  const content = text('Text', sampleParagraph);
 
   return (
     <React.Fragment>
@@ -42,7 +42,7 @@ stories.add('as a parargaph', () => {
 });
 
 stories.add('as capped text', () => {
-  const content = text('Text', 'Important Title', 'Main');
+  const content = text('Text', 'Important Title');
 
   return (
     <React.Fragment>
@@ -53,15 +53,14 @@ stories.add('as capped text', () => {
 });
 
 stories.add('as a heading', () => {
-  const content = text('Text', 'My Heading', 'Main');
+  const content = text('Text', 'My Heading');
 
   const headingSizes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-  const elem = select('Element', headingSizes, 'h3', 'Main');
+  const elem = select('Element', headingSizes, 'h3');
   const variant = select(
     'Variant',
     headingSizes.concat(headingSizes.map(heading => heading + 'Static')).sort(),
-    'h3',
-    'Main'
+    'h3'
   );
 
   return (
@@ -75,12 +74,11 @@ stories.add('as a heading', () => {
 });
 
 stories.add('as an internal link', () => {
-  const content = text('Text', 'Shall we go home?', 'Main');
+  const content = text('Text', 'Shall we go home?');
   const color = select(
     'Color',
     ['primary', 'success', 'warning', 'error'],
-    'primary',
-    'Main'
+    'primary'
   );
 
   return (
@@ -91,12 +89,11 @@ stories.add('as an internal link', () => {
 });
 
 stories.add('as an external link', () => {
-  const content = text('Text', 'Going somewhere?', 'Main');
+  const content = text('Text', 'Going somewhere?');
   const color = select(
     'Color',
     ['primary', 'success', 'warning', 'error'],
-    'primary',
-    'Main'
+    'primary'
   );
 
   return (
@@ -107,12 +104,11 @@ stories.add('as an external link', () => {
 });
 
 stories.add('as an interactive link', () => {
-  const content = text('Text', 'I am interactive!', 'Main');
+  const content = text('Text', 'I am interactive!');
   const color = select(
     'Color',
     ['primary', 'success', 'warning', 'error'],
-    'primary',
-    'Main'
+    'primary'
   );
 
   return (

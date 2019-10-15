@@ -15,14 +15,12 @@ stories.add('default', () => {
   const type = select(
     'Type',
     ['info', 'primary', 'success', 'warning', 'error'],
-    'primary',
-    'Main'
+    'primary'
   );
-  const title = text('Title', 'Mission accomplished', 'Main');
+  const title = text('Title', 'Mission accomplished');
   const content = text(
     'Content',
-    'Congratulations on creating a plan for Sam!  While we’re wrapping up all the details in a nice, little bow, wouldn’t it be great if you started spreading the news?  Send invites to friends and family and get the contributions rolling in.',
-    'Main'
+    'Congratulations on creating a plan for Sam!  While we’re wrapping up all the details in a nice, little bow, wouldn’t it be great if you started spreading the news?  Send invites to friends and family and get the contributions rolling in.'
   );
 
   return (

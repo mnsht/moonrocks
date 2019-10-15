@@ -11,8 +11,7 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => {
   const content = text(
     'Content',
-    'Hey, remember to update the flux capacitor with lots of goodies.',
-    'Main'
+    'Hey, remember to update the flux capacitor with lots of goodies.'
   );
 
   return <Note>{content}</Note>;

@@ -9,7 +9,7 @@ const stories = storiesOf('1. Foundation|Card', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const content = text('Text', 'What a beautiful card!', 'Main');
+  const content = text('Text', 'What a beautiful card!');
 
   return (
     <Card p={3} m={3}>

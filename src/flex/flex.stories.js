@@ -10,7 +10,7 @@ const stories = storiesOf('1. Foundation|Flex', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const content = text('Text', 'Sample Text', 'Main');
+  const content = text('Text', 'Sample Text');
 
   return (
     <Flex flexDirection={['column', null, 'row']}>

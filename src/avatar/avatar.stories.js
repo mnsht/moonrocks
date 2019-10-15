@@ -12,10 +12,9 @@ stories.addDecorator(withKnobs);
 stories.add('default', () => {
   const src = text(
     'Image URL',
-    'http://www.ghostofaflea.com/archives/RaptorJesus.jpg',
-    'Main'
+    'http://www.ghostofaflea.com/archives/RaptorJesus.jpg'
   );
-  const size = sizeKnob('Size', 4, 'Main');
+  const size = sizeKnob('Size', 4);
 
   return <Avatar size={size} src={src} m={2} />;
 });

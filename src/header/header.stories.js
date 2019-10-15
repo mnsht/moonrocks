@@ -95,23 +95,16 @@ const user = {
 stories.add('default', () => {
   const logo = text(
     'Logo',
-    'https://scholarraise.com/static/media/logo.8ecccc62.svg',
-    'Main'
+    'https://scholarraise.com/static/media/logo.8ecccc62.svg'
   );
-  const current = text('Current path', '/dashboard', 'Main');
-  const variant = select(
-    'Variant',
-    ['light', 'dark', 'transparent'],
-    'light',
-    'Main'
-  );
+  const current = text('Current path', '/dashboard');
+  const variant = select('Variant', ['light', 'dark', 'transparent'], 'light');
   const position = select(
     'Position',
     ['relative', 'absolute', 'fixed'],
-    'fixed',
-    'Main'
+    'fixed'
   );
-  const isLoggedIn = boolean('Logged in?', true, 'Main');
+  const isLoggedIn = boolean('Logged in?', true);
 
   return (
     <Header

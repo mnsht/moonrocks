@@ -11,16 +11,16 @@ const stories = storiesOf('2. Simple|Icon', module);
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const size = sizeKnob('Size', 2, 'Main');
-  const color = colorKnob('Color', 'success', 'Main');
+  const size = sizeKnob('Size', 2);
+  const color = colorKnob('Color', 'success');
 
   return <Icon icon={FaCheck} size={size} m={3} color={color} />;
 });
 
 stories.add('as an interactive icon', () => {
-  const size = sizeKnob('Size', 2, 'Main');
-  const color = colorKnob('Color', 'success', 'Main');
-  const hoverColor = colorKnob('Hover color', 'success700', 'Main');
+  const size = sizeKnob('Size', 2);
+  const color = colorKnob('Color', 'success');
+  const hoverColor = colorKnob('Hover color', 'success700');
 
   return (
     <Icon

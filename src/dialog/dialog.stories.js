@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, button } from '@storybook/addon-knobs';
 import { State, Store } from '@sambego/storybook-state';
 
 import Dialog from './';
@@ -71,12 +71,14 @@ const store = new Store({
 stories.addDecorator(withKnobs);
 
 stories.add('default', () => {
-  const heading = text('Heading', 'This is my title', 'Main');
-  const contentIsText = boolean('Content is text?', true, 'Main');
+  const heading = text('Heading', 'This is my title');
+  const contentIsText = boolean('Content is text?', true);
   const content = contentIsText
-    ? text('Content', 'This is my title', 'Main')
+    ? text('Content', 'This is my title')
     : reactContent;
-  const hasBackground = boolean('Has background', true, 'Main');
+  const hasBackground = boolean('Has background', true);
+
+  button('Open the dialog', () => toggleDialog());
 
   const buttons = {
     left: [
@@ -95,23 +97,20 @@ stories.add('default', () => {
   const toggleDialog = () => store.set({ isOpen: !store.get('isOpen') });
 
   return (
-    <React.Fragment>
-      <Button onClick={toggleDialog}>Open the dialog</Button>
-      <State store={store}>
-        {({ isOpen }) => (
-          <Dialog
-            heading={heading}
-            buttons={buttons}
-            hasBackground={hasBackground}
-            isOpen={isOpen} // Whether or not the dialog is open
-            close={toggleDialog} // Function that closes the dialog
-            onOpen={() => console.log('DIALOG', 'open')} // Event listener that fires when the dialog is opened
-            onClose={() => console.log('DIALOG', 'close')} // Event listener that fires when the dialog is closed
-          >
-            {content}
-          </Dialog>
-        )}
-      </State>
-    </React.Fragment>
+    <State store={store}>
+      {({ isOpen }) => (
+        <Dialog
+          heading={heading}
+          buttons={buttons}
+          hasBackground={hasBackground}
+          isOpen={isOpen} // Whether or not the dialog is open
+          close={toggleDialog} // Function that closes the dialog
+          onOpen={() => console.log('DIALOG', 'open')} // Event listener that fires when the dialog is opened
+          onClose={() => console.log('DIALOG', 'close')} // Event listener that fires when the dialog is closed
+        >
+          {content}
+        </Dialog>
+      )}
+    </State>
   );
 });

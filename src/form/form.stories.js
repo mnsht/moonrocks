@@ -399,12 +399,8 @@ stories.add('default', () => {
   // This requires flipping the value here, it cannot be done as a Storybook control
   const initialValues = false;
 
-  const validations = boolean(
-    'Should show additional validations?',
-    true,
-    'Main'
-  );
-  const tooltips = boolean('Should show tooltips?', false, 'Main');
+  const validations = boolean('Should show additional validations?', true);
+  const tooltips = boolean('Should show tooltips?', false);
 
   return (
     <State store={store}>
@@ -416,7 +412,7 @@ stories.add('default', () => {
 });
 
 stories.add('as a form wizard', () => {
-  const steps = boolean('Should show steps?', true, 'Main');
+  const steps = boolean('Should show steps?', true);
 
   return (
     <State store={store}>
@@ -426,7 +422,7 @@ stories.add('as a form wizard', () => {
 });
 
 stories.add('as a form wizard with the first page completed', () => {
-  const steps = boolean('Should show steps?', true, 'Main');
+  const steps = boolean('Should show steps?', true);
 
   return (
     <State store={store}>
@@ -438,7 +434,7 @@ stories.add('as a form wizard with the first page completed', () => {
 });
 
 stories.add('as a complete form wizard', () => {
-  const steps = boolean('Should show steps?', true, 'Main');
+  const steps = boolean('Should show steps?', true);
 
   return (
     <State store={store}>
